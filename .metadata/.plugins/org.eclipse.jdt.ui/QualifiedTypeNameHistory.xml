@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javaexp.z02_homework.vo.Person"/>
+    <fullyQualifiedTypeName name="javaexp.z02_homework.vo.Book"/>
+    <fullyQualifiedTypeName name="javaexp.z03_programs.vo.ReservationSystem"/>
+    <fullyQualifiedTypeName name="javaexp.a06_object.vo.Car"/>
+    <fullyQualifiedTypeName name="javaexp.z02_homework.CoffeeOrderSystem"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthOptionPaneUI"/>
+</qualifiedTypeNameHistroy>

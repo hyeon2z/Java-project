@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    /*
+    # let 변수는
+     1. 지역변수와 전역변수를 구분하여 처리한다.
+         - block 안에서 선언되면 block 안에서만 사용 : 지역변수
+         - block을 포함한 상위에서 변수를 선언하면 모든 블럭에 사용 : 전역변수
+    
+    */
+    var num01 = 25
+    var num01 = 30  // var 변수는 중복선언이 가능하다.
+    let variable2 = 123
+    // let은 중복선언을 할 수 없다.
+        {
+            // 스코프 A
+            let variable = 273;
+            alert("scopeA" + variable)
+            alert("scope" + variable2)
+        }
+        {
+        // 스코프 B
+        alert("scope" + variable2)
+        }
+        // 전역 스코프
+        alert("scopeAll" + variable2)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 함수를 선언합니다.
+        // // 가변형 매개변수의 default 데이터를 사용할 때, 활용한다.
+        // function test(a, b = 52, c = 273) {
+        //     // 출력합니다.
+        //     alert(a + ':' + b + ':' + c);
+        // }
+        // // 함수를 호출합니다.
+        // test(1); // a =1 b,c default 출력
+        // test(1, 2); // a = 1 b=2 c = default
+        // test(1, 2, 3);
+
+        function buyProd(name = "물건선택없음", price = 0, cnt = 0) {
+            alert(`
+                구매한물건 : ${name}
+                가격 : ${price}
+                갯수 : ${cnt}
+            `)
+        }
+        // buyProd()
+        // buyProd("사과")
+        // buyProd("바나나", 3000)
+        // buyProd("딸기", 5000, 10)
+        
+        // ex) regMember 회원의 아이디, 패스워드, 이름을 등록하게 하고
+        //      해당 내용이 없을 때, default를 설정하게 하세요
+
+        function regMember(id = "none", pass = "none", name = "none"){
+            alert(`
+                회원의 아이디 : ${id}
+                회원의 비밀번호 : ${pass}
+                회원의 이름 : ${name}
+            `)
+        }
+        regMember("asd", "asd23", "kim")
+        regMember() 
+    </script>
+</head>
+<body>
+
+</body>
+</html>

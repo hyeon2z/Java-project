@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 변수를 선언합니다.
+        /*
+        if(조건1) {
+
+
+        }else if(조건2) { // 조건1을 제외한 조건2
+
+        }else { // 조건1,2를 제외한 처리 시
+
+        }
+        ex) var month = Math.floor(Math.random() * 12 + 1)
+        월을 입력하여 월에 따라 계절을 출력하세요
+        */
+
+        var month = Math.floor(Math.random() * 12 + 1)
+        if(month >= 6 && month <= 8) {
+            alert(month + "월 여름입니다.")
+        }
+        if(month >= 9 && month <= 11) {
+            alert(month + "월 가을입니다.")
+        }
+        if(month >= 12 && month <= 2) {
+            alert(month + "월 겨울입니다.")
+        }
+        if(month >= 3 && month <= 5) {
+            alert(month + "월 봄입니다.")
+        }
+        
+
+        var date = new Date();
+        var hour = date.getHours();
+        // if else if 조건문
+        if (hour < 11) {
+            // "hour < 11"이 참일 때 실행합니다.
+            alert('아침 먹을 시간입니다.');
+        } else if (hour < 15) {
+            // "hour < 11"이 거짓이고 "hour < 15"가 참일 때 실행합니다.
+            alert('점심 먹을 시간입니다.');
+        } else {
+            // "hour < 15"가 거짓일 때 실행합니다.
+            alert('저녁 먹을 시간입니다.');
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

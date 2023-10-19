@@ -1,0 +1,253 @@
+1. 변수와 데이터 타입
+ **변수 선언**
+  - var(전역변수, 선언후 재선언 가능)
+  - let(지역/전역변수 구분, 선언후 재선언 불가)
+  - const(상수, 한번 선언 후, 초기화되면 다시 재할당 불가)
+    
+ **변수 이름 규칙**
+  - _, $ 만 사용가능
+  - 숫자로 시작할 수 없음
+  - keyword사용 불가(특징 기본 변수가 정상적으로 동작하지 않는 경우가 많음 - name, top 등등 BOM/DOM 에 기본 내장키가 많음)
+  - 대소문자 구분
+    
+ **기본 데이터 타입**
+  - 숫자(Number)
+  - 문자열(String)
+  - 불리언(Boolean)
+  - 함수형(function)
+  - 객체형(Object)
+  -----------------
+  - Undefined(선언되지 않고 초기화되지 않은 변수사용),
+  - Null(객체의 경우 값이 할당되지 않은 경우) 
+  - NaN(숫자형 문자열이 아닌데, 형변환 처리시)
+  ==> 실행은 되지만 에러리턴코드
+  
+ **형 변환**
+  - 형변환이 자유로운 편이다.
+    사칙연산자 + 이외에는 숫자형 문자열인 경우 자동형변환이 된다.
+      "2" + "3" ==> "23"
+      "2" - "3" ==> -1 (형변환 되어 숫자연산)
+      "2" * "3" ==> 6
+      "2" / "3" ==> 0.66666
+  - 명시적, 암묵적 형 변환
+      Number() : 실수/정수 형변환 처리
+      parseInt() : 정수형 형변환 처리 숫자만 추출해서 
+                    parseInt("25.75달러") ==> 25
+      parseFloat() : 실수형 형변환 처리 숫자만 추출하여
+                      parseFloat("25.75달러") ==> 25.75
+
+  - 데이터 타입 확인하기
+     typeof() 함수 활용.
+     
+ **기본 연산자와 제어구문**
+ - 자바와 동일
+ 
+ **함수**
+  - 함수 선언과 호출
+      변수형 함수
+      선언
+          var fun01 = function(){
+          
+          }
+      호출
+          fun01() : 선언과 다른변수로 할당, 실행
+      선언적 함수
+          function fun02(){
+          
+          }
+      호출
+          fun02()
+      // 선언된 내용을 특정 변수에 재할당
+      var fun03 = fun02;
+      fun03(); // fun02에 선언된 내용이 수행됨
+      
+ 
+  - 매개변수와 반환 값
+      function plus(num01, num02) { // 매개변수
+          var sum = num01 + num02; // 로직처리(저장/반복/조건)
+          return sum; // 호출하는 곳에 전달할 리턴값
+      }
+      var tot = plus(25,5) 
+      var tot2 = plus(30,5) 
+      var tot3 = plus(25,7)
+      
+      # 매개변수의 여러가지 유형
+          1. 기본 변수 전달
+          2. js의 type 전달(number(숫자), string(문자열), boolean(true/false), function, object(array포함) 
+              function call(name) {
+                  alert("이름 : " + name)
+              }
+              call("홍길동")
+              --------------------------------
+              function greet() {
+                  alert("안녕하세요(전달하는 함수)")
+              }
+              function callAll(helloFun) { 
+              // var helloFun = greet
+                  alert("혼합함수")
+                  helloFun();
+              }
+              // 함수에서 매개변수로 greet로 정의된 내용을 전달
+              callAll(greet);
+ greet가 helloFun에 할당
+ = helloFun()은 greet()이랑 똑같은
+ 
+ 3. 익명함수 처리
+     // 정의된 함수를 호출하여 매개변수로 전달하는 것을 말한다.
+     // 정의된 내용을 재활용하지 않고 바로 사용할 때 활용된다.
+     callAll(function(){alert("익명함수전달")})
+     // var helloFun = function(){alert("익명함수전달")}
+     // helloFun() 실행처리
+     // ==> 결과적으로 alert("혼합함수") 수행,
+     //    alert("익명함수전달") 수행 처리된다.
+    
+    # 동적인 매개변수 처리
+        동일한 함수로 여러가지 매개변수에 따른 처리를 하고자 할 때 사용
+        1) arguments
+            내장객체를 이용해서 매개변수의 내용을 순서로 배열로 할당하여 처리
+            function call() {
+                arguments.length
+                arguments[0]
+                arguments[1]
+                arguments[2]
+            }
+            call(3000) 
+                arguments.length(1) arguments[0]에 3000할당
+            call(1,2)
+                arguments.length(2)
+                arguments[0]에 1할당
+                arguments[1]에 2할당
+            call("홍길동","김길동","신길동")
+            
+            function pointSum(){
+                // arguments = [70,80]
+                var tot = 0
+                for(var idx = 0; idx < arguments.length; idx++){
+                    tot += arguments[idx]
+                }
+                alert(`
+                    통계낼 인원 : ${arguments.length}
+                    총점 : ${tot}
+                    평균 : ${tot/arguments.length}
+                `)
+            }
+            pointSum(70,80)
+            pointSum(70,80,90)
+            pointSum(70,80,80,70)
+            
+        2) ...배열명 : 내가 지정한 배열명으로 매개변수 값을 선언하여 활용할 수 있다.
+        
+            function pointSum(...points){
+            // points = [80,70,90]
+                var tot = 0
+                for(var idx = 0; idx < points.length; idx++){
+                    tot += points[idx]
+                }
+                alert(`
+                    통계낼 인원 : ${points.length}
+                    총점 : ${tot}
+                    평균 : ${tot/points.length}
+                `)
+            }
+            
+        3) default 매개변수 : 해당 매개변수가 없을 때는 선언된 default 값으로 처리
+            함수명(name = "이름없음", price = 0, cnt = 1)
+            function buyProd(name = "구매물건없음", price = 0, cnt = 1) {
+                alert(`
+                    # 구매정보 #
+                    물건명 : ${name}
+                    가격 : ${price}
+                    갯수 : ${cnt}
+                `)
+            }
+            buyProd()
+            buyProd('사과')
+            buyProd('사과', 3000, 3)
+
+	 
+   기본내장함수
+   - `alert()`, `prompt()`, `comfirm()`
+   - 기타 유용한 내장 함수
+       Number(), parseInt(), parseFloat() : 숫자형변환
+       eval() : 코드로 변환 처리
+       isNaN() : 형변환시, 입력값이 숫자형 문자형이 아닐 때, 여부를 check해주는 boolean 함수
+       
+       setTimeout(함수, 1/1000) : 해당 시간이후 처리할 내용 함수로 구현
+       clearTimeout(변수) : 위 setTimeout을 메모리 해제 처리
+       setInterval(함수, 1/1000) : 해당 시간 간격마다 반복해서 처리할 내용
+       clearInterval(변수) : 위 setInterval 메모리 해제로 반복을 중단
+   
+ **배열의 정의와 사용**
+  - 배열 생성
+    var arry = []
+    
+  - 배열 요소 접근
+    index로 추가접근
+    arry[0] = 1000
+    
+  - 배열 메서드(`push`, `pop`, `shift`, `unshift` 등)
+    배열명.push(마지막에 추가할 데이터)
+    배열명.pop() : 마지막에 내용을 삭제하면서 마지막 요소를 리턴한다.
+    
+ **객체의 정의와 사용**
+   var obj = {속성:속성값, 속성2:속성2값} : json(javascript object notation) 객체 선언방식
+   
+   function Person(name, age){
+       this.name = name
+       this.age = age
+       this.show = function(){
+           console.log("#객체#")
+           console.log("이름:"+this.name)
+           console.log("나이:"+this.age)
+       }
+   }
+   var p01 = new Person("홍길동",25)
+   
+   class Car{
+       constructor(brand, model){
+           this.brand = brand
+           this.model = model
+       }
+       displayInfo(){
+           console.log(`이 차는 ${this.brand}이고 모델 ${this.model}입니다`)
+           
+       }
+   }
+   var c01 = new Car("현대", "그렌져")
+   c01.displayInfo()
+   
+   - 객체 리터럴
+   - 프로퍼티와 메서드
+   - 객체 내부에서의 `this`
+   var Person = {name : "홍길동", age : 25, loc : 서울, 
+                  show : Function(){
+                      alert(`
+                          # person의 정보 #
+                          이름 : ${this.name} // 자바스크립트 반드시 this
+                          나이 : ${this.age}
+                          사는곳 : ${this.loc}
+                      `)
+                  }}
+   person.name, person['age'] // 둘다 가능
+   person.show() 객체.메서드명()
+                                                        
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
