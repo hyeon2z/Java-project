@@ -1,6 +1,11 @@
 package javaexp.z02_homework;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class A1019 {
 
@@ -62,20 +67,128 @@ public class A1019 {
 	
 //[1단계:확인] 
 //	4. 반의 정보를 파일명으로(1학년1반.txt)으로 하여, 배열로 선언된 학생 이름과 점수를 입력되게 하세요.
+	String path01 = "C:\\a01_java\\workspace\\javaexp\\src\\javaexp\\z02_homework\\";
+	String f01Name = path01 + "1학년1반.txt";
+	String f01Name1 = "1학년1반.txt";
+	File f01 = new File(f01Name);
 	
-	
+	if(!f01.exists()) {
+		try {
+			f01.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	String[] stName = {"길동", "민수", "철수"};
+	String[] stScore = {"50점", "80점", "100점"};
+	try {
+		FileWriter fw01 = new FileWriter(path01 + f01Name1);
+		for(int cnt = 0; cnt < stName.length; cnt ++) {
+			fw01.append(stName[cnt] + "\t");
+			fw01.append(stScore[cnt] + "\n");
+		}
+		
+		fw01.flush();
+		fw01.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 //[1단계:확인] 
 //	5. 오늘날짜를 YYYYMMDD 형식으로 입력받아, 일기장을 내용을 입력하고, Q를 입력시, 종료하여, 해당 날짜.txt파일로 일기를 쓰는 처리를 하세요
+	Scanner sc = new Scanner(System.in);
+	System.out.print("오늘 날짜를 입력하세요(YYYYMMDD)");
+	String date = sc.nextLine();
 	
-	
+	File f02 = new File(path01 + date);
+	if(!f02.exists()) {
+		try {
+			f02.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	try {
+		FileWriter diary = new FileWriter(path01 + date);
+		System.out.println("일기 내용을 입력하세요(Q입력 시 종료)");
+		while(true) {
+			String diaryWrite = sc.nextLine();
+			if(diaryWrite.equals("Q")) {
+				System.out.println("입력종료");
+				break;
+			}
+			diary.append(diaryWrite + "\n");
+		}
+		diary.flush();
+		diary.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 //[1단계:개념] 
 //	6. FileWriter, FileReader 차이점과 주요 메서드와 기능 처리 내용을 기술하세요.
-	
+//	둘다 FileReader, FileWriter 생성자를 선언한는건 똑같지만
+//	Writer는 write와 append를 사용해서 파일에 내용을 추가하는 명령어고
+//	Reader는 파일의 글자들을 코드로 하나하나 읽어온다.
+//	알아볼수 있게 처리하려면 char로 형변환 해야함.
 	
 //[1단계:확인] 
 //	7. product.txt라는 파일에 물건 정보를 포함(사과&3000&2 형식-다중행처리)시켜놓고, 해당 물건 정보를 탭간격으로 출력되게 하세요.
-
-		 
+	String f03Name = "product.txt";
+	File f03 = new File(path01 + f03Name);
+	if(!f03.exists()) {
+		try {
+			f03.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	try {
+		FileWriter pro01 = new FileWriter(path01 + f03Name);
+		pro01.append("사과&3000&2\n");
+		pro01.append("딸기&2000&5\n");
+		pro01.append("바나나&2500&1");
+		
+		pro01.flush();
+		pro01.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	try {
+		FileReader pro01Read = new FileReader(path01 + f03Name);
+		StringBuffer sbf = new StringBuffer();
+		
+		while(true) {
+			int data = pro01Read.read();
+			if(data == -1) {
+				break;
+			}
+			sbf.append((char)data);
+		}
+		pro01Read.close();
+		
+		String[] arr = sbf.toString().split("\n");
+		for(String str : arr) {
+			String[] arr2 = str.split("&");
+			for(int i = 0; i < arr.length; i ++) {
+				System.out.print(arr2[i] + "\t");
+			}
+			System.out.println();
+		}
+		
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 	}
 
 }
