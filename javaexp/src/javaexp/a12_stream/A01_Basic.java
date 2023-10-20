@@ -42,7 +42,11 @@ public class A01_Basic {
 		        - 메서드 read()
 		            이 read()메서드를 통해서 console창에 입력된 문자를 byte단위로 입력받게 처리한다.
 		            int code = is.read();
-		            그리고 이 byte는 char유형으로 글자 한자를 만들수 있고, 이것은
+		            그리고 이 byte는 char유형으로 글자 한자를 만들수 있고,
+		            이것은 다음 단계에 데이터를 처리하기 위해 메모리에 가지고 있는다.
+		                ex) byte[] byes = new byte[10]
+		                is.read(byes);
+		                
 		    3) OutputStream os = System.out
 		        자바의 기본 출력 Stream으로 System.out을
 		        OutputStream으로 처리하여 변수 os에 할당한다.
@@ -57,12 +61,20 @@ public class A01_Basic {
 		InputStream is = System.in;
 		try {
 			int code = is.read(); // 입력으로 IO발생 컴파일 예외처리
-			
 			// 자바에서 콘솔창에 출력하는 출력 스트림객체 선언
+			
 			OutputStream os = System.out;
 			System.out.print("입력한 내용 : ");
 			// 출력 스트림을 통해서 코드값을 출력
 			os.write(code); // write()를 통해 code값을 실제 문자로 출력
+			/*
+			'1' ==> 1
+			'a'
+			char c = (char)code
+			if(c == '1')
+			 */
+			
+			
 			/*
 			# 데이터 전송
 			하드웨어 ==> 소프트웨어
