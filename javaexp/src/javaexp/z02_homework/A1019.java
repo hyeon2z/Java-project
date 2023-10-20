@@ -172,6 +172,9 @@ public class A1019 {
 		}
 		pro01Read.close();
 		
+		// sbf == toString()을 호출
+		// StringBuffer split()기능을 가지지 않는다.
+		// sbf.toString()통해 String으로 변환이 됨
 		String[] arr = sbf.toString().split("\n");
 		for(String str : arr) {
 			String[] arr2 = str.split("&");
