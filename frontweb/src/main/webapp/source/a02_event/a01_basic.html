@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        # javascript의 이벤트 처리
+        1. 이벤트
+            화면에 있는 요소객체들 중에 특정한 이벤트(클릭, 데이터입력, 화면로딩, 마우스커서를 위치시키는 것)를 했을 때,
+            연결되는 이벤트 핸들러 함수에 선언된 내용이 수행되는 것을 말한다.
+            
+        2. 이벤트 처리를 위한 구성요소
+            1) 이벤트가 일어날 대상 DOM객체
+            2) 이벤트내용(클릭, 마우스오버, 키입력, ...)
+            3) 이벤트핸들러 함수
+                위 이벤트 발생 시, 처리할 내용을 선언한 함수를 말한다(js 중괄호 블럭)
+
+        3. js에서 이벤트 처리 형식
+            1) <태그 on이벤트명 = "이벤트핸들러함수(매개데이터)">
+                function 이벤트핸들러함수(){
+                    이벤트핸들러함수를 통해서 처리할 내용
+                }
+                함수의 매개변수를 선언하여, 이벤트 처리 시, 매개데이터를 전송하여 처리하는 경우도 있다.
+                매개변수 전달 이벤트핸들러함수(this) : 이벤트가 일어날 때,
+                    해당 객체를 그대로 전달 처리
+                    이벤트핸들러함수('문자열데이터')
+                    이벤트핸들러함수(25, 30) 숫자형데이터
+
+                    function 핸들러함수( obj ) this로 넘겼을 때, 객체로 받음
+                        obj.src = "@@@.jpg"
+                        obj.align = "center"
+                        obj.innerText = "변경할 레이블 내용"
+                    function 핸들러함수( str ) 문자열을 넘겼을 때, 문자열로 사용
+                    function 핸들러함수( num01, num02 ) 숫자로 받을 때, 숫자로 연산가능
+
+            2) <태그>
+                function call(){
+                    선언된 내용..
+                }
+                var domOb = document.querySelector("태그/선택자")
+                domOb.on이벤트명 = function(){
+                    // 익명이벤트 핸들러 함수
+                }
+                domOb.on이벤트명
+                var domArr = document.querySelectorAll("태그/선택자")
+                for(var idx = 0; idx < domArr.length; idx++){
+                    domArr[idx].on이벤트명 = function(){
+                        이벤트 핸들러 함수.
+                    }
+                }
+
+        4. 이벤트 종류
+            1) click : 마우스를 클릭 시 발생
+            2) dblclick : 마우스를 두번 클릭 시 발생
+            3) keyup/keydown : 키보드의 키를 입력 시 발생
+                keyCode : 모든 키보드의 키는 고유의 키코드를 가지고 있다.
+            4) mouseover / mouseout : 마우스를 움직여 해당 요소에 커서를 위치시켰을 때 발생하고, 벗어났을 때 발생
+            5) focus/blur : 특정요소(주로 input형태의 태그)에 커서를 위치시키거나 다른 곳에 위치시켰을때 발생
+
+        # 연습 순서
+        1. 이벤트 종류에 따라
+            1) 코드에 바로 이벤트처리
+            2) DOM객체의 단일/다중
+            3) 매개변수(obj/일반변수를 전달)
+            # 위 내용을 가지고 여러가지 이벤트 핸들러 함수를 이용해서 
+            속성변경(.innerHTML, .innerText, .고유속성, .style.스타일속성)
+        */
+    </script>
+    <h1 onclick="call1()">바로 이벤트 처리</h1>
+    <h1 onclick="call2('홍길동', 25)">매개변수 전달 이벤트 처리</h1>
+    <h1 onclick="call3({name : '사과', price : 3000})">매개변수 전달(객체) 이벤트 처리</h1>
+
+    <h2 onclick="call01()">매개변수 없음</h2>
+    <h2 onclick="call02('수학의정석', '교보문고')">매개변수 있음</h2>
+    <h2 onclick="call03({comp : 'LG', cpu : 'i5-9700k', ram : '16g'})">객체로 있음</h2>
+    <img onclick= "sendObj(this)" src = "apple.png" width="100" height="100" alt="apple">
+    <script>
+        function sendObj(obj){ // obj = this(document.querySelector("img"))
+            // 객체가 전달되면 여러가지 속성들을 변경하거나 수정할 수 있다.
+            obj.width += 10
+            obj.height += 10
+            obj.src = "banana.png"
+        }
+
+        function call01(){
+            alert("반가워요")
+        }
+        function call02(bname, company){
+            alert("도서명 : " + bname)
+            alert("출판사 : " + company)
+        }
+        function call03(obj){
+            alert("객체로 전달")
+            alert("제조사 : " + obj.comp)
+            alert("cpu성능 : " + obj.cpu)
+            alert("ram성능 : " + obj.ram)
+        }
+
+        function call1(){
+            alert("안녕하세요")
+        }
+        function call2(name, age){
+            alert("매개변수 전달 : ")
+            alert("이름 : " + name)
+            alert("나이 : " + age)
+        }
+        function call3(obj){
+            alert("객체전달")
+            alert("물건명 : " + obj.name)
+            alert("가격 : " + obj.price)
+        }
+        // ex) h2를 onclick으로 선언하고, 매개변수가 없는 것 : 반가워요
+        // 매개변수가 있는 것(도서명과 출판사), 
+        // 매개변수가 객체로 있는 것(컴퓨터객체의 제조사, cpu성능, ram 성능)
+        // 전달해서 alert로 출력
+    </script>
+</body>
+</html>

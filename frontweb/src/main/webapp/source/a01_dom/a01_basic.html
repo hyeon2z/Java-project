@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
@@ -13,7 +13,8 @@
 		/*
 		# javascript와 web 화면 동작 순서
 		    1) 웹서버 실행과 클라이언트 화면에서 호출
-			    웹서버에 코드가 들어가 있고,
+			    웹서버에 코드가 들어가 있고, 웹서버 실행 클라이언트가 웹서버 주소와 경로 호출하면
+			    해당위치에 있는 html코드를 가져와서
 			    브라우저 프로그램(크롬,사파리,익스플로러)으로 해석해서 출력
 			     
 		    2) html로딩 시 javascript 프로그램 호출 순서
@@ -42,6 +43,8 @@
 				
 				// BOM이 로딩이 다 된 후에 수행할 코드
 				// html코드를 다 메모리에 로딩된 후 처리하기에 코드가 html태그 위에 있더라도 수행 처리가 된다.
+				// BOM>DOM
+				
 				window.onload = function(){
 					
 				}
@@ -57,12 +60,15 @@
 			4) css 속성 처리
 			5) 이벤트 처리 방법
 
-		*/
+		
 		function call(){
 			alert("반갑습니다!")
 		}
 		
-		
+		// X 에러발생 : 태그가 선언된 후, 메모리가 로딩되었을 때, 객체로 인식할 수 있다.
+		var h1Ob = document.querySelector("h1");
+		// h1Ob.innerText = "변경"
+		*/
 	</script>
 </head>
 <body>
@@ -75,4 +81,5 @@
 		
 		
 	</script>
+
 </html>

@@ -254,6 +254,14 @@
   }
    
  ** DOM 조작 **
+ 
+ BOM(Browser Object Model) : 브라우저 로딩 시 창 자체를 의미하는 객체
+     var win = window.open("파일명", "", "속성")
+     win.document.querySelector("h1")
+ 하위에
+     DOM(Document Object Model)의 기본 개념과 구조를 학습합니다.
+     var h1Ob = document.querySelector("태그");
+ 
 * DOM(Document Object Model)의 기본 개념과 구조를 학습합니다.
 * DOM을 사용하여 HTML 요소를 생성, 수정, 삭제하는 방법을 익힙니다.
 
@@ -271,6 +279,16 @@ h2Ob.onclick = function(){
     h2Ob.style.color = "red"; // 클릭 시 글자 색상으로 빨간색으로 지정.
     h2Ob.innerText = "hello"; // 타이틀 내용을 변경
 }
+
+출력형식
+    DOM 객체 중에 화면에 출력할 내용을 포함하는 경우를 말한다.
+    h1~h6, p, div, span
+    1) 그대로 출력 처리할 때.
+        .innerText : 호출
+        .innerText = "출력할 내용" : 할당
+    2) 다른 요소객체 태그를 포함해서 그 내용을 랜더링(해석)출력.
+        .innerHTML : 호출
+        .innerHTML = "태그코드" : 할당
 
  ** 이벤트와 기본 DOM 조작 **
 - 웹 페이지 이벤트

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>안녕하세요</h2>
+    <p>여기에도 표시</p>
+<script>
+    // var blankExp = document.querySelector("h2")
+    // var pOb = document.querySelector("p")
+    var cnt = 1;
+
+    // blankExp.onclick = function(){
+    //     this.innerHTML += " !&nbsp;"
+    //     pOb.innerHTML += "안녕하세요<br>"
+    // }
+
+    var h2Ob = document.querySelector("h2")
+    var pOb = document.querySelector("p")
+
+    h2Ob.onclick = function(){
+        this.innerHTML+=cnt+") &nbsp;!"
+        pOb.innerHTML+=cnt+++") 안녕하세요<br>"
+    }
+</script>
+</body>
+</html>
