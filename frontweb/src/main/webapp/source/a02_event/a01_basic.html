@@ -24,6 +24,12 @@
                 function 이벤트핸들러함수(){
                     이벤트핸들러함수를 통해서 처리할 내용
                 }
+                ex) <h1 onclick = "call(this)"> 클릭하면 색상변경
+                    function call(obj){
+                        obj.style.background = "pink"
+                        obj.innerText = "색변경"
+                    }
+
                 함수의 매개변수를 선언하여, 이벤트 처리 시, 매개데이터를 전송하여 처리하는 경우도 있다.
                 매개변수 전달 이벤트핸들러함수(this) : 이벤트가 일어날 때,
                     해당 객체를 그대로 전달 처리
@@ -56,9 +62,21 @@
         4. 이벤트 종류
             1) click : 마우스를 클릭 시 발생
             2) dblclick : 마우스를 두번 클릭 시 발생
+                
+                h2Ob.ondblclick = function(){
+                    alert("수정했습니다.")
+                }
             3) keyup/keydown : 키보드의 키를 입력 시 발생
                 keyCode : 모든 키보드의 키는 고유의 키코드를 가지고 있다.
+                ex) id : [    ] [유효성출력내용]
+                idOb.onkeyup = function(){
+                    var idVal = this.value
+                    if(idVal.length<8){
+                        msgObj.innerText = "아이디는 8자이상이어야 합니다."
+                    }
+                }
             4) mouseover / mouseout : 마우스를 움직여 해당 요소에 커서를 위치시켰을 때 발생하고, 벗어났을 때 발생
+                ex) 전체 메뉴에서 마우스 커서 위치를 시켰을 때, 하단에 상세메뉴.
             5) focus/blur : 특정요소(주로 input형태의 태그)에 커서를 위치시키거나 다른 곳에 위치시켰을때 발생
 
         # 연습 순서

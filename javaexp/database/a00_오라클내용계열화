@@ -28,12 +28,17 @@
 6. DB설계
 
 # 설치
+0. 다운로드된 압축파일
+    c:\b01_javaexp\DISK1
+    c:\b01_javaexp\sqldeveloper
+
 1. oracle xe 11(서버)
     설치
     다운로드
     DISK1/setup.exe 파일을 실행
     관리자비번
     1111
+    ==> system/1111
     
 2. 클라이언트툴1(sqlplus)를 통해 sample DB생성
 	cmd
@@ -41,7 +46,7 @@
 	system
 	1111
 	로딩까지.
-	C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
+C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
 	
 	scott.sql : 연습계정과 연습DB를 만들어주는 파일
 	계정비밀번호 변경 - tiger
@@ -61,7 +66,7 @@
 
 3. 클라이언트툴2 : sql developer를 통해서 접속하여 처리
 4. 클라이언트툴3 : eclipse지원 dbeaver를 활용해서 처리
-
+connection/oracle
 
 
 
