@@ -27,6 +27,10 @@ FROM emp;
 
 -- ex2) 사원번호와 사원명, 급여 + 보너스를 출력하세요
 --      nvl(컬럼명,데이터가null초기값)
+--	null vs '  ' (공백), 0(default)차이
+--	null 데이터바 비어있는 상태
+--	1000 + null ==> null
+--	nvl(숫자, 0), nvl(문자열, ' ')
 SELECT empno 사원번호, ename 사원명, sal 급여, nvl(comm,0) 보너스, sal + nvl(comm,0) "급여+보너스"
 FROM emp;
 

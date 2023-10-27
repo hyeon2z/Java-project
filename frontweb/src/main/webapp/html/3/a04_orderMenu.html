@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        주문할 음식 : <input type="text" name = "food" value = "">
+        <input type="button" value="주문" id = "foodBtn"><br>
+        <div id="show"><!-- 주로 범위를 지정해서 화면에 출력할 때 사용하는 태그-->
+
+        </div>
+    </form>
+
+    <script>
+        var foodOb = document.querySelector("[name=food]")
+        var foodBtnOb = document.querySelector("#foodBtn")
+        var showOb = document.querySelector("#show")
+        showOb.innerHTML = "<h3>주문목록리스트</h3>"
+
+        foodBtnOb.onclick = function(){
+            // alert("주문할 음식 : " + foodOb.value)
+            // showOb.innerHTML += 등록할 데이터 : 등록할 데이터를 누적해서 처리
+                                            //   html랜더링(해석)
+            showOb.innerHTML += foodOb.value + "<br>"
+            foodOb.value = "" // 입력과 동시에 입력할수있게 삭제
+            foodOb.focus() // 이벤트로 해당 객체에 focus를 위치시키게 해준다.
+        }
+        // ex) a05_favorBooks.html
+        // 좋아하는 도서 : [  ] [추가]
+
+        // 도서목록
+        // @@@
+    </script>
+    
+</body>
+</html>
