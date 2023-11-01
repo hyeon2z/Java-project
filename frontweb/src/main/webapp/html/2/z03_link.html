@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 페이지 이동 ahref = "이동할페이지"
+    ex) a href를 이용해서
+        1) 네이버 사이트로 이동(이미지클릭)
+        2) 내부에 ex2-01.html 이동하게 하기(첫 페이지 이동 문자 클릭시)      
+-->
+
+<a href="ex2-01.html">첫페이지 이동</a><br>
+<a href="http://www.naver.com">
+<img width = "100" height = "100" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160504_295%2Fzzlidde_1462360339348GT0M2_PNG%2F2016-05-04_20.11.40.png&type=a340"></a>
+<h1>
+<a href="javascript:movePage('http://www.naver.com')">이동함수</a>
+<a href="javascript:movePage('http://www.google.com')">이동함수2</a>
+</h1>
+<h2>리스트 클릭 시 페이지 이동</h2>
+<ol>
+    <li onclick = "movePage('ex2-05.html')">페이지5로 이동</li>
+    <li onclick = "movePage('ex2-06.html')">페이지6로 이동</li>
+    <li onclick = "movePage('ex2-07.html')">페이지7로 이동</li>
+</ol>
+<script>
+    function movePage(page){
+        if(confirm(page + "이동합니까?"))
+        location.href = page;
+    }
+</script>
+</body>
+</html>

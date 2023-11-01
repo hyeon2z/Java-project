@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    물건명<input type = "text" name = "name" size = "5"><br>
+    가격<input type = "text" name = "price" size = "5"><br>
+    갯수<input type = "text" name = "cnt" size = "5"><br>
+    <input type = "button" id = "regBtn" value = "등록"><br>
+    <p id = "show"></p>
+    <script>
+        var nameOb = document.querySelector("[name = name]")
+        var priceOb = document.querySelector("[name = price]")
+        var cntOb = document.querySelector("[name = cnt]")
+        var regBtnOb = document.querySelector("#regBtn")
+        var showOb = document.querySelector("#show")
+
+        regBtnOb.onclick = function(){
+            var name = regBtnOb.value
+            var price = priceOb.value
+            var cnt = cntOb.value
+            showOb.innerText = `구매한 물건은 ${name}, 총비용은 ${price*cnt}`
+        }
+        // 커서를 위치시키면 공백이 되어 입력 편하게 처리
+        regBtnOb.onfocus = function(){ this.value=""}
+        priceOb.onfocus = function(){ this.value=""}
+        cntOb.onfocus = function(){ this.value=""}
+
+    </script>
+</body>
+</html>
