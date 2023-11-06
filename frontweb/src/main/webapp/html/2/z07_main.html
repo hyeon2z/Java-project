@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>최상위페이지</h2>
+    <iframe src = "z05_top.html" name = "frame01" width = "30%" height = "30%"></iframe>
+    <iframe src = "z06_left.html" name = "frame02" width = "65%" height = "65%"></iframe>
+</body>
+<script>
+    // window.open() ==> document.의 상위객체
+    // iframe
+    var iframe02Ob = document.querySelector("[name = frame02]")
+    var h2Ob = iframe02Ob.document.querySelector("h2")
+    h2Ob.onclick = function(){
+        alert(this.innerText)
+    }
+</script>
+</html>

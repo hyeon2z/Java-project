@@ -15,7 +15,25 @@
 	2) 상단이나 특정한 곳에서 리스트를 만들어 이동할 곳을 a href로 표기한다.
 	3) href = "#아이디명" : 앞에서 특정 위치에 저장한 아이디 속성을
 	    #아이디명으로 지정하면, 해당 link를 클릭 시 이동된다.
+	4) href = "이동할페이지#아이디명"
+	    다른 페이지에 특정한 위치로 이동처리하게 해준다.
+	참고)
+	요청값을 전송하는 경우도 있다.
+	a href = "페이지?id=himan&pwd=9999"
 -->
+<h2>특정페이지에 요청값까지 전달</h2>
+검색할물건명 : <input type = "text" id = "pname">
+<button type = "button" onclick = "send()">물건명으로 검색</button>
+<script>
+	var pnameOb = document.querySelector("#pname")
+	function send(){
+		var pnameVal = pnameOb.value
+		if(confirm(pnameVal + "를 검색하시겠습니까?")){
+			location.href = "z04_schProduct.jsp?pname=" + pnameVal
+		}
+	}
+</script>
+<h3></h3>
 <ul>
 	<li><a href="#love">Love me tender</a>
 	<li><a href="#can">Can't help falling in love</a>

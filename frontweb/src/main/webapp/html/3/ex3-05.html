@@ -5,7 +5,7 @@
 <title>로그인 폼</title></head>
 <body>
 <h3>로그인 폼</h3>
-<hr>
+
 <!--
     # form 형식
     1. 데이터를 입력해서 서버에 전송할 때, 사용되는 형식이다.
@@ -21,12 +21,20 @@
             - name : 서버에 데이터를 보낼 때, key
             - value : 서버에 데이터를 보낼 때, 실제 데이터
         key = value
-
 -->
-<input>
-<form name="fo" method="get">
-사용자 ID : <input type="text" size="15" value=""><br>
-비밀 번호 : <input type="password" size="15" value="">
+<!--
+# 요청값전달방식(2단계)
+1) a href = "z01_send.jsp?id=himan&pwd=7777"
+2) location.href = "z01_send.jsp?id=himan&pwd=7777"
+3) form action = "z01_send.jsp"
+	<XXX name = 'id' value = 'himan'>
+	<XXX name = 'pwd' value = '7777'>
+# 3가지 모두 다 서버에 특정페이지로 데이터를 전송하는 것이다.
+단, java를 해석하고 컴파일 가능한 was(web application server)
+-->
+<form name="fo" method="get" action = "z01_send.jsp">
+사용자 ID : <input name = "id" type="text" size="15" value=""><br>
+비밀 번호 : <input name = "pwd" type="password" size="15" value="">
 <input type="submit" value="완료">
 </form>
 </body>
