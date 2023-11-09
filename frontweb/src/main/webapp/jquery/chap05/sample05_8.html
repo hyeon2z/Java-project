@@ -7,6 +7,24 @@
 <script type="text/javascript">
 
    $(document).ready(function(){
+    /*
+    # 형식1) 선택자1 선택자2 vs 형식2) 선택자1>선택자
+    1. 공통 : 둘다 계층 구조태그에서 선택1을 상위로 한 선택자2에 적용
+    2. 차이점 :
+      1) 형식1은 상/하위 계층 레벨상관없이
+      (중간에 다른 요소객체가 계층에 포함되어 있더라도) 선택자2에서 처리된다.
+        <table>
+          <tr>
+            <td><img>
+
+        $("table img") 계층레벨 중간에 상관없이 table을 상위로 하면서 img에 적용
+
+      2) 형식2는 상/하위 계층이 부모/자식간 바로 위 계층을 포함하여야 한다.
+        $("td>img") : img의 상위 태그가 바로 td일때만 img가 적용된다.
+        
+
+
+    */
 	   $( "ul.topnav > li" ).css( "border", "3px double red" );
 	   console.log($( "ul.topnav > li" ).length);
    });

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+</head>
+<body>
+<table class="cls03" border = 1>
+    <tr><th>1행1열</th><th class="cls04">1행2열</th><th>1행3열</th></tr>
+    <tr class="cls01"><th>2행1열</th><th>2행2열</th><th class="cls02">2행3열</th></tr>
+    <tr><th>3행1열</th><th>3행2열</th><th>3행3열</th></tr>
+</table>
+</body>
+<script>
+    
+/*
+[1단계:개념] 1. jquery 초기 설정 방식을 선언하세요
+script src = "jquery-3.1.1.js"
+
+[1단계:개념] 2. jquery==>javascript, javascript==>jquery변환형식을 기술하세요.
+$("h1").css("color","red") <- jquery
+var h1Arr = $("h1") <- js
+
+h1Arr[0].style.color = "green"
+
+var h2Arr = document.querySelectorAll("h2") <- js
+$(h2Arr).css("color","blue") <- jquery
+
+[1단계:확인] 3. jquery에서 h2 3개를 인사말로 선언하고, 동일한 태그(h2)의 jquery를 이용해서
+ 모두 글자색상 적용과 이중에서 2번째 태그에 내용 변경처리를 하세요
+<h2>안녕1</h2>
+<h2>안녕2</h2>
+<h2>안녕3</h2>
+
+$("h2").css("color","blue")
+$("h2").eq(1).text("감사")
+
+[1단계:개념] 4. jquery의 기본 출력 속성과 css, attribute 속성를 예제로 설명하고 만드세요..
+$("선택자").css({속성:속성값, 속성2, 속성값2})
+$("요소객체선택자").css("css속성", "속성값")
+ex) $("h2").css("color","red") <- 글자 빨간색변경
+ex2) $(".cls6").css({backgroundColor : "red",color : "yellow"}) <-배경,글자색 변경
+
+[1단계:개념] 5. 선택자로 $("선택자1 선택자2")와 $("선택자1>선택자")의 차이점을 예제로 기술하세요.
+선택자1 선택자2의 경우는 선택자1이 조상인 선택자2에대한 모든것의 속성을 변경하는것이고
+
+선택자1>선택자2의 경우는 바로앞에 부모로 선택자1을 가진 선택자2를 대상으로
+속성을 변경할때 사용한다.
+<table>
+    <tr><th></th></tr>
+</table>
+$("table th") <- table이 상위에 있는 모든 th에대한 속성변경
+$("table>th") <- table이 부모로 있는 th에 대한 속성 변경
+
+
+[1단계:확인] 6. table의 3X3테이블을 만들고, 클래스를 선언하여 jquery로
+               .cls01>.cls02가 2행3열로 배경색상을 빨강색으로 처리되게 하고,
+               .cls03.cls04로 1행2열의 글자색상이 노랑색으로 처리되게 하세요	
+*/
+$(".cls01>.cls02").css("background","red");
+$(".cls03 .cls04").css("color","yellow");
+
+</script>
+</html>

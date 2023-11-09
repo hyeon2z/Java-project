@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>$(".class") 선택자 실습</title>
+<style>
+	/*
+	#기본선택자 3가지
+	태그명{속성:속성값;} 태그일때 적용
+	#아이디명{속성:속성값;} <태그 id = "아이디명"
+	.클래스명{속성:속성값;} <태그 class = "클래스명"
+	*/
+	.cls01{color:green}
+	.cls02{background-color: yellow;}
+</style>
+
 <script type="text/javascript" src="jquery-3.1.1.js"></script>
 <script type="text/javascript">
 
@@ -10,12 +21,69 @@
 	     $(".myClass").css("color","red");
 	     console.log("첫 번째 .myClass 값:" + $(".myClass").first().text() );
 	     console.log("마지막 .myClass 값:" + $(".myClass").last().text() );
+		 $(".notMe").css("color","blue")
+		 $(".notMe").eq(1).css("color","green")
+
+		 // class = "cls01 cls02"
+		 // ==> jquery 선택자
+		 // $(".클래스명1.클래스명2") : 클래스1과 클래스2가
+		 // 태그로 나열되어 선언되어 있을 때 선택자
+		$(".cls5.cls6.cls7").css("color","red")
+		 $(".cls01.cls02").text("변경")
+		 // ex) h3로 class를 속성으로 cls9 cls10 cls11 선언
+		 // jquery로 선택자로 선언하고 배경색을 orange처리
+		$(".cls9.cls10.cls11").css("background","orange").text("안녕")
+		// $("상위 하위") : 중간에 다른 계층레벨이 들어가도 상관없음
+		$(".cls12 .cls13").css("color","blue")
+		// ex1) div cls14 상위 p cls15 하위로 해서 배경설정
+		$(".cls14 .cls15").css("background","gold");
+		// ex2) table cls16 상위 td cls17 하위로 하여 글자색
+		$(".cls16 .cls17").css("color","blue")
+		// $("상위>하위") : 중간에 다른 계층레벨 없이 바로 부모를 가진 하위선택자
+		$(".cls14>.cls15").text("부모자식 적용1")
+		// tr을 바로 위 부모로 해서 class가 cls17인 경우
+		$("tr>.cls17").text("부모자식 적용2")
+		$("tr>.cls19").css("background","red")
+		// ex) tr을 상위로 한 th의 배경색상으로 red로 처리
+		// $("table td") 부모/자식(X) 조상/후손(O)
+		// $("tr td") 부모/자식(O) 조상/후손(O)
+		// $("table<td") 부모/자식(X)
+		// $("tr<td") 부모/자식(O)
+
+		// $("부모<자식") 바로있는 부모를 가진 자식에 대한 속성설정시
+		// $("조상 후손") 레벨상관없이 조상을 가진 후손에 대한 속성설정시
+		$("tr th").css("background-color","red")
    });
 </script>
 </head>
 <body>
+<table border = "1" class="cls18">
+<tr><th class="cls19">빨</th><th class="cls19">간</th><th class="cls19">색</th></tr>
+
+</table>
+
+	<table class="cls16" border = "2">
+		<tbody>
+			<tr><td class="cls17">첫칸</td><td>두번째칸</td></tr>
+		</tbody>
+	</table>
+<div class="cls14">
+	<h2>자바</h2>
+	<p class="cls15">배경</p>
+</div>
+
+	<div class="cls12">
+		아<h2 class="cls13">요</h2>
+	</div>
+	<h3 class = "cls9 cls10 cls11">오렌지</h3>
+	<h1 class = "cls5 cls6 cls7">좋은하루</h1>
+	<div class = "cls01">안녕1</div>
+	<div class = "cls02">안녕2</div>
+	<div class = "cls01 cls02">안녕3</div>
 <div class="notMe">div class="notMe"</div>
 <div class="myClass">div class="myClass"</div>
 <span class="myClass">span class="myClass"</span>
+<div class="notMe">div class="notMe"</div>
+<div class="notMe">div class="notMe"</div>
 </body>
 </html>

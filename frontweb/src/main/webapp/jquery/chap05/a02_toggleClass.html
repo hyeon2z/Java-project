@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{width:100px;height:100px;
+            border:1px solid red;}
+        .widthLen{width:300px;height:150px;}
+        img{width:300px;height:300px;}
+        .long{width:500px;height:500px;}
+    </style>
+
+    <script src = "jquery-3.1.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("h2").click(function(){
+                $("div").toggleClass("widthLen")
+            })
+            $("[type=button]").click(function(){
+                $("img").toggleClass("long")
+            })
+            // ex) 버튼 클릭 시, 여의봉을 검색해
+            // 이미지에 넣고 클래스가 적용 여부가 반복되게 처리
+        })
+
+    </script>
+</head>
+<body>
+    <input type="button" value="커져라 작아져라" >
+    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20230808_100%2F1691428595416ezSx8_JPEG%2F39093513451592839_1486818439.jpg&type=a340">
+    <h2>토글 클래스 처리</h2>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

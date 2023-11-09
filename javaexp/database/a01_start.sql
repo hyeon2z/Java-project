@@ -54,4 +54,28 @@ SELECT empno AS 사원번호,
         sal "급 여!",
         deptno 부서번호
     FROM emp;
-    
+
+SELECT ename
+FROM EMP
+WHERE empno = 7369;
+/*
+확인할 사원번호[####] [검색] : 사원번호를 입력
+해당사원번호 해당하는 이름 @@@ 입니다 : 사원명 출력
+==> DB서버에 접속 ==> 그 결과를 받아 ==> Java 객체로 바꿔 ==> 화면출력
+
+sql연습
+==> Java객체/변수로(기능메서드) 만드는 방법
+출력할 내용을 메서드 리턴 유형과 리턴값으로 선언
+입력할 내용을 메서드 매개변수 유형으로 선언한다.
+
+리턴유형 메서드명(입력값){
+    return 실제리턴값;
+}
+
+String getEname(int empno){
+    String sql = "SELECT ename
+					FROM EMP
+					WHERE empno = "+empno;
+    String ename = null;
+    return ename;
+}

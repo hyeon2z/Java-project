@@ -7,15 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import frontweb.Dept;
 import frontweb.Emp;
-
-
-// ctrl+shift+o
-// backendWeb.z01_vo.Emp
-// backendWeb.a01_dao.A04_PreparedDao
 /*
-import = "frontweb.dao.A04_PreparedDao"
-import = "frontweb.Emp"
+import="frontweb.Emp"
+import="frontweb.dao.A04_PreparedDao"
 */
 public class A04_PreparedDao {
 	
@@ -56,13 +52,14 @@ public class A04_PreparedDao {
 	}
 /*
 SELECT * FROM emp
-WHERE ENAME LIKE '%A%';
-*/
+WHERE ename LIKE '%A%' 
+ */
+	
 
 	public List<Emp> getEmpList(String ename) {
 	    List<Emp> elist = new ArrayList<>();
-	    String sql = " SELECT * FROM emp\r\n"
-	    		+ "WHERE ENAME LIKE '%"+ename+"%' ";
+	    String sql = "SELECT * FROM emp\r\n"
+	    		+ "WHERE ename LIKE '%"+ename+"%' ";
 	    
 	    try {
 	        con = DB.con();
@@ -90,6 +87,44 @@ WHERE ENAME LIKE '%A%';
 	    }
 	    return elist;
 	}
+	/*
+	SELECT * FROM emp
+	WHERE ename LIKE '%A%' 
+	 */
+		/*
+SELECT *
+FROM dept
+WHERE dname LIKE '%S%'
+		 * */
+	
+		public List<Dept> getDeptList(String dname) {
+		    List<Dept> elist = new ArrayList<Dept>();
+		    String sql = "SELECT *\r\n"
+		    		+ "FROM dept\r\n"
+		    		+ "WHERE dname LIKE '%"+dname+"%' ";
+		    
+		    try {
+		        con = DB.con();
+		        pstmt = con.prepareStatement(sql); 
+		        rs = pstmt.executeQuery();
+		
+		        while (rs.next()) {
+		            elist.add(new Dept(
+		                    rs.getInt("deptno"),
+		                    rs.getString("dname"),
+		                    rs.getString("loc")
+		            ));
+		        }
+		    } catch (SQLException e) {
+		        System.out.println("DB 관련 오류: " + e.getMessage());
+		    } catch (Exception e) {
+		        System.out.println("일반 오류: " + e.getMessage());
+		    } finally {
+		        DB.close(rs, pstmt, con);
+		    }
+		    return elist;
+		}
+
 
 	public static void main(String[] args) {
 		A04_PreparedDao dao = new A04_PreparedDao();

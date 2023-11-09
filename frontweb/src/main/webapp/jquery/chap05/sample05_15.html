@@ -7,7 +7,13 @@
 <script type="text/javascript">
 
    $(document).ready(function(){
-	   $( "input[name*='man']" ).val( "man 글자 포함" );
+	   /*
+      $("[속성*=속성값]")
+          속성값이 포함되어 있을 때
+      $("[속성~=속성값]")
+          속성값이 단어로 포함되어 있을 때
+      */
+      $( "input[name*='man']" ).val( "man 글자 포함" );
 	   $( "input[name~='man']" ).css("border" , " 3px solid red");
    });
 </script>

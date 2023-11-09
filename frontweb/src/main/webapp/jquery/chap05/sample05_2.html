@@ -8,6 +8,13 @@
 
    $(document).ready(function(){
 	     $("*").css("color","red");
+        // * : 선택자
+        // $("요소객체선택자").css("css속성", "속성값")
+        // $("선택자").css({속성:속성값, 속성2, 속성값2})
+        $("button").css({backgroundColor:"pink",color:"blue"})
+        // ex) 하단 2X2테이블을 추가하여, td 단위로 글자와 배경색상을 설정하고 출력
+      $("td").css({backgroundColor:"skyblue",color:"yellow"})
+      $("td").eq(1).css("color","blue")
    });
 </script>
 </head>
@@ -15,5 +22,9 @@
  <div>DIV</div>
  <span>SPAN</span>
  <p>P <button>Button</button></p>
+ <table>
+   <tr><td>1</td><td>2</td></tr>
+   <tr><td>3</td><td>4</td></tr>
+ </table>
 </body>
 </html>

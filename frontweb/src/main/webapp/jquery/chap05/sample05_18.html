@@ -5,18 +5,58 @@
 <title>:eq(index) Filter Selector</title>
 <script type="text/javascript" src="jquery-3.1.1.js"></script>
 <script type="text/javascript">
+  /*
+  # 다중의 선택자 처리
+  1. $("td:eq(index번호)")
+  2. $("td").eq(index번호)
+  여러개가 있을 때, index번호로 하나씩 접근해서 처리가 필요할 때 사용된다.
+  */
 
    $(document).ready(function(){
-	   $( "td:eq( 2 )" ).css("background-color","green");
-	   $( "td:eq( -1 )" ).css("background-color","green");
+    //  $("td:eq(0)").css("background","red");
+	  //  $( "td:eq( 2 )" ).css("background-color","green");
+	  //  $( "td:eq( -1 )" ).css("background-color","green");
+     // $("td").length 크기
+     // Math.random()*$("td").length 0~크기보다 -1 작은 수 랜덤 처리
+     var ranIdx = Math.floor(Math.random()*$("td").length)
+    //  $("td").eq(ranIdx).css("color","orange").text("당첨!!")
+     // ex) h2로 번호 1~5개를 리스트 하고 카운트 1~5 출력하고
+     // eq()를 이용하여 첫번째와 마지막 배경 색상은 노랑색으로 처리하고,
+     // 임의의 h2는 빙고라고 표시하게 하세요
+    $("li:eq(0)").css("background","yellow");
+    $("li:eq(4)").css("background","yellow");
+    var bingo = Math.floor(Math.random()*$("li").length)
+    $("li").eq(bingo).text("빙고")
+
+    var random1 = Math.floor(Math.random()*$("td").length)
+    $("#but").click(function(){
+      $("td").eq(random1).text("당첨")
+    })
+
    });
+   
 </script>
 </head>
 <body>
+<h2>
+  <li>카운트1</li>
+  <li>카운트2</li>
+  <li>카운트3</li>
+  <li>카운트4</li>
+  <li>카운트5</li>
+</h2>
+
 <table border="1">
   <tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
   <tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
   <tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+<input type="button" value="미니로또" id="but">
+<table border="1">
+  <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+  <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+  <tr><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+  <tr><td>13</td><td>14</td><td>15</td><td>16</td></tr>
 </table>
 </body>
 </html>

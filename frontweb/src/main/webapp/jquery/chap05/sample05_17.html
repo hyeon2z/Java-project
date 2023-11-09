@@ -9,8 +9,8 @@
     border: 1px solid blue;
     width: 70px;
     height: 70px;
-    margin: 0 3px;
-    float: left;
+    margin: 0 3px; /* 상하/좌우 여백 */
+    float: left; /*  */
   }
   .toggleWidth{
      width: 40px;
@@ -24,21 +24,36 @@
    $(document).ready(function(){
 
 	   $( "#run" ).click(function() {
-		   $( ":animated" ).toggleClass("toggleWidth");
-	   });
-	    
+      // toggleClass("css에서 선언된 클래스")
+      // 클릭 시 마다 선언된 클래스가
+      // 적용여부를 반복할 때, 처리하는것
+      $("div").toggleClass("toggleWidth")
+		  //  $( ":animated" ).toggleClass("toggleWidth");
+      // $("#ani").slideDown("slow");
+    });
+	  // 재귀 호출 처리함수
 	   function animateIt() {
+
+      // $("#ani").slideUp("slow");
+
+      // $("선택자").slideToggle("속도",함수호출)
 	     $( "#ani" ).slideToggle( "slow", animateIt );
 	   } 
 	   animateIt();
+/*
+1. 재귀처리할 함수 선언
+2. 초기 호출
+    함수안에서 매개변수로 함수 호출
+*/
+
    });
 </script>
 </head>
 <body>
 <button id="run">Run</button>
 
-<div></div>
-<div id="ani"></div>
-<div></div>
+<div>1</div>
+<div id="ani">2</div>
+<div>3</div>
 </body>
 </html>

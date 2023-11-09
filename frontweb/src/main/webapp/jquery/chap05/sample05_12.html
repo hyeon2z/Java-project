@@ -5,14 +5,36 @@
 <title>$(“selector[attr]") 선택자 실습</title>
 <script type="text/javascript" src="jquery-3.1.1.js"></script>
 <script type="text/javascript">
+/*
+# 태그의 속성 선택자
+1. <input type = "text" name = "name01"/>
+    input : 태그
+    type, name : 속성
+    text, name01 : 속성값
+2. $("[속성]") : 이 속성을 가진 모든 대상객체
+3. $("[속성=속성값]") : 특정 속성에 속성값이 있는 대상 객체
+4. $("태그[속성=속성값]") : 특정 선택자의 속성과 속성값이 있는 대상 객체
 
+*/
    $(document).ready(function(){
 	   $( "[id]" ).css( "font-size", "30px" );
-   });
+      $("[id=hey]").text("속성과 속성값 설정")
+      $("div[class=cls01]").css("color","blue")
+      // ex) type이 button인 요소객체를 클릭 시,
+      // 태그가 div이고 id=there인 요소객체의 배경색상으로
+      // 노랑처리
+      $("[type=button]").click(function(){
+         $("input + div[id=there]").css("background-color","yellow")
+      })
+});
 </script>
 </head>
 <body>
-<div>아이템 1</div>
+<input type = "button" value = "클릭">
+<div id ="there">노랑</div>
+
+<input class="cls01"/>
+<div class="cls01">아이템 1</div>
 <div id="hey">아이템 2</div>
 <div id="there">아이템 3</div>
 <div>아이템 4</div>

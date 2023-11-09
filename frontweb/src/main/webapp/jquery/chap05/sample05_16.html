@@ -7,8 +7,15 @@
 <script type="text/javascript">
 
    $(document).ready(function(){
+      // $("[속성1][속성2]") : 두가지 속성이 다 있는경우
 	   $( "input[id][name$='man']" ).val( "man 글자 포함" );
-	   $( "input[value |='en']" ).css("border" , " 3px dotted red");
+	   // $("[속성|=속성값]")
+      // 정확하게 해당 속성 값이거나
+      // 해당 속성값으로 끝나면 -(하이폰)을 포함하는 경우
+      $( "input[value |='en']" ).css("border" , " 3px dotted red");
+      // ex) 아래 내용 정확하게 kr로 value이 있거나
+      // kr-으로 시작되는 value에 대하여, 배경색상으로 오렌지로 처리
+      $("input[value |='kr']").css("background","orange")
    });
 </script>
 </head>
@@ -17,5 +24,7 @@
 <input name="milkman" value="kr">
 <input id="letterman" name="new-letterman" >
 <input name="newmilk" value="en-UK">
+<input name="milkman" value="kr-fruits">
+<input name="milkman" value="kr-goods">
 </body>
 </html>

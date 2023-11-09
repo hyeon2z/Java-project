@@ -1,6 +1,5 @@
 package frontweb;
-// import = "frontweb.Person"
-
+// import="frontweb.Person"
 
 
 
@@ -34,4 +33,5 @@ public class Person {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
+	
 }
