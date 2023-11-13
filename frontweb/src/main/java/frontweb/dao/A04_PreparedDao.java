@@ -59,11 +59,12 @@ WHERE ename LIKE '%A%'
 	public List<Emp> getEmpList(String ename) {
 	    List<Emp> elist = new ArrayList<>();
 	    String sql = "SELECT * FROM emp\r\n"
-	    		+ "WHERE ename LIKE '%"+ename+"%' ";
+	    		+ "WHERE ename LIKE ? ";
 	    
 	    try {
 	        con = DB.con();
 	        pstmt = con.prepareStatement(sql); 
+	        pstmt.setString(1, "%"+ename+"%");
 	        rs = pstmt.executeQuery();
 	
 	        while (rs.next()) {

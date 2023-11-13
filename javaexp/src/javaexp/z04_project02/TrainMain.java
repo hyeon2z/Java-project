@@ -33,8 +33,8 @@ public class TrainMain {
 									try {
 										int usrNum3 = Integer.parseInt(sc.nextLine());
 										if(usrNum3 <= ow.dateLength() && usrNum3 > 0) {
-											System.out.println("선택한 날짜 : " + ow.getDate(usrNum3-1)+"\n");
 											userDate = ow.getDate(usrNum3-1);
+											System.out.println("선택한 날짜 : " + ow.getDate(usrNum3-1)+"\n");
 											while(true) {
 												System.out.print("탑승할 성인 수를 설정하세요(0입력 시 종료)");
 												try {
