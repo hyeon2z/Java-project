@@ -9,6 +9,7 @@ import java.util.List;
 
 import frontweb.Dept;
 import frontweb.Emp;
+import frontweb.vo.Employee;
 /*
 import="frontweb.Emp"
 import="frontweb.dao.A04_PreparedDao"
@@ -125,6 +126,8 @@ WHERE dname LIKE '%S%'
 		    }
 		    return elist;
 		}
+		
+		
 
 
 	public static void main(String[] args) {

@@ -1,12 +1,16 @@
 package frontweb.database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import frontweb.Dept;
-import frontweb.dao.DB;
 import frontweb.vo.EmpShort;
+import frontweb.vo.Job;
 import frontweb.vo.Member;
 import frontweb.vo.Reservation;
 
@@ -91,8 +95,42 @@ public class EmpDao {
 //		}
 //		return max;
 //	}
-	public Member memId(String id){
-		Member getId = null;
+	public Job getJob(String job) {
+		Job jobinfo = null;
+		String sql = "SELECT *\r\n"
+				+ "FROM jobs\r\n"
+				+ "WHERE job_id='"+job+"'";
+		// 1. 연결?필드에 선언된 con = DBConn에 할당
+		try {
+			con = DBCon.con();
+			// 2. 대화처리
+			stmt = con.createStatement();
+			// 3. 결과
+			rs = stmt.executeQuery(sql);
+			// 데이터가 있는지 여부만 가져오면 되기에
+			if(rs.next()) {
+				jobinfo = new Job(
+						rs.getString("job_id"),
+						rs.getString("job_title"),
+						rs.getInt("min_salary"),
+						rs.getInt("max_salary")
+						);
+			}
+			// 4. 예외와 자원해제
+			
+		} catch (SQLException e) {
+			System.out.println("DB 예외 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			// 자원해제(연결처리 후 사용한 객체들)
+			DBCon.close(rs, stmt, con);
+		}
+		return jobinfo;
+	}
+	
+	public Member getMember(String id){
+		Member mem = null;
 		String sql = "SELECT *\r\n"
 				+ "FROM MEMBER01\r\n"
 				+ "WHERE id = '"+id+"'";
@@ -105,8 +143,8 @@ public class EmpDao {
 			// 3. 결과
 			rs = stmt.executeQuery(sql);
 			// 데이터가 있는지 여부만 가져오면 되기에
-			rs.next();
-			getId = new Member(
+			if(rs.next()) {
+				mem = new Member(
 						rs.getInt("mno"),
 						rs.getString("name"),
 						rs.getString("id"),
@@ -114,6 +152,8 @@ public class EmpDao {
 						rs.getString("auth"),
 						rs.getInt("point")
 						);
+			}
+			
 			// 4. 예외와 자원해제
 			
 		} catch (SQLException e) {
@@ -124,7 +164,7 @@ public class EmpDao {
 			// 자원해제(연결처리 후 사용한 객체들)
 			DBCon.close(rs, stmt, con);
 		}
-		return getId;
+		return mem;
 	}
 	
 	public EmpShort getEmpShort(int empno) {
@@ -232,6 +272,30 @@ WHERE deptno=10;
 		String sql = "SELECT sal\r\n"
 				+ "FROM emp\r\n"
 				+ "WHERE deptno="+deptno;
+		
+		try {
+			con = DBCon.con();
+			// 2. 대화처리
+			stmt = con.createStatement();
+			// 3. 결과
+			rs = stmt.executeQuery(sql);
+			// 다중행이 있을 때는 while문으로 행처리 단위로 가져오게 처리
+			while(rs.next()) {
+				// rs.getString(1) : select문의 첫번째 문자열 데이터 가져오기
+				sals.add(rs.getDouble(1));
+				// 선언한 List<String>에 추가.
+			}
+			System.out.println("데이터 건수 : " + sals.size());
+			// 4. 예외와 자원해제
+			
+		} catch (SQLException e) {
+			System.out.println("DB 예외 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			// 자원해제(연결처리 후 사용한 객체들)
+			DBCon.close(rs, stmt, con);
+		}
 		return sals;
 	}
 	/*
@@ -377,15 +441,92 @@ where id = 'himan' and pwd = '777'
 		where id = 'himan' and pwd = '777'
 		    회원로그인 성공여부 확인 기능메서드
 		 */
+	public List<String> getEnames(int deptno){
+		List<String> enames = new ArrayList<String>();
+		String sql = "SELECT ename\r\n"
+				+ "FROM emp\r\n"
+				+ "WHERE DEPTNO ="+deptno;
+		try {
+			con = DBCon.con();
+			// 2. 대화처리
+			stmt = con.createStatement();
+			// 3. 결과
+			rs = stmt.executeQuery(sql);
+			// 다중행이 있을 때는 while문으로 행처리 단위로 가져오게 처리
+			while(rs.next()) {
+				// rs.getString(1) : select문의 첫번째 문자열 데이터 가져오기
+				enames.add(rs.getString(1));
+				// 선언한 List<String>에 추가.
+			}
+			System.out.println("데이터 건수 : " + enames.size());
+			// 4. 예외와 자원해제
 			
-
+		} catch (SQLException e) {
+			System.out.println("DB 예외 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			// 자원해제(연결처리 후 사용한 객체들)
+			DBCon.close(rs, stmt, con);
+		}
+		return enames;	
+	}
+	
+	public List<String> getEmails(int id){
+		List<String> email = new ArrayList<String>();
+		String sql = "SELECT email\r\n"
+				+ "FROM employees\r\n"
+				+ "WHERE manager_id ="+id;
+		try {
+			con = DBCon.con();
+			// 2. 대화처리
+			stmt = con.createStatement();
+			// 3. 결과
+			rs = stmt.executeQuery(sql);
+			// 다중행이 있을 때는 while문으로 행처리 단위로 가져오게 처리
+			while(rs.next()) {
+				// rs.getString(1) : select문의 첫번째 문자열 데이터 가져오기
+				email.add(rs.getString(1));
+				// 선언한 List<String>에 추가.
+			}
+			System.out.println("데이터 건수 : " + email.size());
+			// 4. 예외와 자원해제
+			
+		} catch (SQLException e) {
+			System.out.println("DB 예외 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 예외 : " + e.getMessage());
+		} finally {
+			// 자원해제(연결처리 후 사용한 객체들)
+			DBCon.close(rs, stmt, con);
+		}
+		return email;	
+	}
 
 	public static void main(String[] args) {
 		// 기능메서드 잘되어 있는지 테스트 처리
 		EmpDao dao = new EmpDao();
 		EmpShort es = dao.getEmpShort(7499);
 		Member mem = new Member();
-		System.out.println(mem.getId());
+		for(String email:dao.getEmails(101)) {
+			System.out.println(email);
+		}
+//		
+//		for(double sal:dao.getSal(10)) {
+//			System.out.println(sal);
+//		}
+		
+//		System.out.println(mem.getId());
+//		for(String ename:dao.getEnames(30)) {
+//			System.out.println(ename);
+//		}
+//		Job job = dao.getJob("AD_VP");
+//		if(job!=null) {
+//			System.out.println(job.getJob_id());
+//			System.out.println(job.getJob_title());
+//			System.out.println(job.getMin_salary());
+//			System.out.println(job.getMax_salary());
+//		}
 		
 //		if(es!=null) {
 //			System.out.println("데이터 있음.");

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기차예매1</title>
+</head>
+<body>
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden;}
+        
+        header {
+            width: 100%; height: 4.65%; 
+            background: white;
+        }
+        
+        aside { 
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        
+        section {
+            width: 45%; height: 95.35%; float: left;
+            background: white;
+        }
+        aside {
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        </style>
+        <header style="border: 1px solid #E6E6E6;">
+            <div style="display: flex; height: 100%;">
+                <div style="width: 27.5%;"></div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="trainTicket.html" style="width: 100%;">
+                        <img src="화살표.png" style="float: right;" id="back" width="25px" height="25px">
+                    </a> <!-- 뒤로가기 -->
+                </div>
+                
+                <div style="width:2.5%">
+
+                </div>
+
+                <div style="width: 37%; display: flex; justify-content: center; align-items: center;">
+                    <h4 style="margin: 0;">기차</h4>
+                </div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="trainTicket.html" style="width: 100%;">
+                        <img src="돋보기.jpg" style="float: right;" width="25px" height="25px">
+                    </a>
+                </div>
+
+                <div style="width: 1%;">
+                </div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="trainTicket.html" style="width: 100%;">
+                        <img src="장바구니.png" style="float: right;" width="25px" height="25px">
+                    </a>
+                </div>
+            
+                <div style="width: 27.5%; display: flex; align-items: center;">
+                    <h4 style="text-align: center; margin: 0;"></h4>
+                </div>
+            </div>
+        </header>
+            <aside></aside>
+            <section>
+                <section style="width: 100%; height: 1.5%;">
+
+                </section>
+                <section style="width: 100%;">
+                    <section style="display: flex; width:94%; margin-left: 3%;margin-right: 3%;">
+                        <section style="display: flex ;border: 1px solid #E6E6E6; border-radius: 10px; width: 100%; height: 50%; flex-direction: column;">
+                            <section id = "way"style="background-color:#E6E6E6; display: flex;  border:1px solid #E6E6E6; border-radius:10px;width:100%; height:10%;">
+                                <button onclick="oneway()" style="display: flex; border:1px solid #E6E6E6; border-radius: 10px; width: 50%; height: 100%; justify-content: center; align-items: center;">
+                                    <h3>편도</h3>
+                                </button>
+                                <button onclick="twoway()"style="display: flex; border:1px solid #E6E6E6; border-radius: 10px; width: 50%; height: 100%; justify-content: center; align-items: center;">
+                                    <h3>왕복</h3>
+                                </button>
+                            </section>
+                            <section style="display: flex; width: 100%; height: 5%;">
+                            </section>
+                            <section style="display: flex; width: 96%; height: 92%;flex-direction: column; margin-left : 2%; margin-right: 2%;">
+                                <section style="display: flex; width: 100%; height: 25%;">
+                                    <button onclick="approach()" style="background-color:white; display: flex; border:none; width: 50%; height: 100%; flex-direction: column;">
+                                        <div style="display: flex; width: 100%; height: 20%; justify-content: center; align-items: center;">
+                                            출발역
+                                        </div>
+                                        <div style="display: flex; width: 100%; height: 80%; justify-content: center; align-items: center;">
+                                            <h2>서울</h2>
+                                        </div>
+                                    </button>
+                                    <button onclick="departure()" style="background-color:white; display: flex; border:none; width: 50%; height: 100%; flex-direction: column;">
+                                        <div style="display: flex; width: 100%; height: 20%; justify-content: center; align-items: center;">
+                                            도착역
+                                        </div>
+                                        <div style="display: flex; width: 100%; height: 80%; justify-content: center; align-items: center;">
+                                            <h2>대전</h2>
+                                        </div>
+                                    </button>
+                                </section>
+                                <section style="display: flex; width: 100%; height: 25%;">
+                                    <button onclick="setdate()" style="border: 1px solid #E6E6E6; background-color: white;width: 100%;">
+                                        가는날
+                                    </button>
+                                </section>
+                                <section style="display: flex; width: 100%; height: 25%;">
+                                    <button onclick="setPeople()" style="background-color: white; border: none; width: 100%;">
+                                        인원
+                                    </button>
+                                </section>
+                                <section style="display: flex; width: 100%; height: 25%;">
+                                    <section style="display: flex; width:100%;margin-bottom:4%; height: 96%;">
+                                        <button onclick="setPeople()" style="background-color:rgba(255, 255, 255, 0.144); border: 1px; width: 100%;">
+                                            승차권조회
+                                        </button>
+                                    </section>
+                                </section>
+                            </section>
+                            
+                        </section>
+                    </section>
+                </section>
+                
+
+            </section>
+            <aside></aside> 
+        <script>
+            $(document).ready(function(){
+                $("#back").css(middle)
+            })
+        </script>
+</body>
+</html>

@@ -64,7 +64,158 @@ WHERE id = 'himan' : 매개변수로
 public Member memId(String id){
 		Member getId = null;
 		String sql = "";
+		
+		if(rs.next()){ Member(
+		    rs.getInt("mno")
+		    rs.getString("name")
+		    rs.getString("id")
+		    rs.getString("pwd")
+		    rs.getString("auth")
+		    rs.getInt("point")
+		    ) ==> Member()에 할당해서 메서드 리턴
+		}
+		member = Member(3,"홍길동","himan"...) <- 생성자
+		DB ==> sql ==> ResultSet ==> VO
+		db에 있는 데이터를 sql로 뽑고
+		sql구문으로 ResultSet으로 데이터를 추출한거를
+		VO클래스에 담기
+		
 		return getId;
 	}
 */
+SELECT *
+FROM jobs
+WHERE job_id='AD_VP';
 
+/*
+한 열을 기준으로 다중 행 처리
+List<데이터유형>
+ */
+SELECT ename
+FROM emp
+WHERE DEPTNO = 10;
+
+/*
+public List<String> getEnames(int deptno){
+	List<String> enames = new ArrayList<String>();
+	String sql = "SELECT ename
+	FROM emp
+	WHERE DEPTNO = "+deptno;
+	return ename;	
+}
+
+if( ) 한개의 행
+while(rs.next()){
+	// 컬럼의 index를 사용해서 호출
+	enames.add(rs.getString(1))
+	반복을 통해 계속 추가처리
+}
+ */
+
+
+SELECT email
+FROM employees
+WHERE manager_id = 101;
+
+SELECT Street_address
+FROM locations
+WHERE country_id = 'US';
+
+/*
+public List<String> getStreetAddress(String country_id){
+	List<String> list = new ArrayList<String>();
+	
+	return list;
+}
+*/
+SELECT *
+FROM emp
+WHERE ename LIKE '%A%';
+-- 다중열 ==> 열에 대한 클래스 선언
+-- 다중행 ==> 행에 대한 List 선언
+/*
+다중행 다중열 List<클래스>
+
+public List<Emp> getEmpList(String sch){
+	List<Emp> empList = new ArrayList<Emp>();
+	String sql = "SELECT * FROM emp WHERE ename LIKE '%"+shc+"%'";
+	
+	return empList;
+	
+	Emp emp = new Emp(
+		rs.getInt("empno"),
+		rs.getString("ename"),
+		rs.getString("job"),
+		rs.getInt("mgr"),
+		rs.getDate("hiredate),
+		rs.getDouble("sal"),
+		rs.getDouble("comm"),
+		rs.getInt("deptno")
+		);
+		empList.add(emp); // 한행의 여러개의 열을 객체에 담에서 행단위로 계속 추가
+}
+*/
+SELECT *
+FROM dept
+WHERE dname LIKE '%A%';
+
+-- ex) min, max(입력), Employee
+SELECT EMPLOYEE_ID, FIRST_NAME, EMAIL, SALARY
+FROM employees
+WHERE salary BETWEEN 1000 AND 3000;
+
+SELECT MAX(SAL) 
+FROM emp;
+
+SELECT COUNT(ename)
+FROM emp;
+
+SELECT AVG(sal)
+FROM emp;
+
+SELECT min(sal)
+FROM emp;
+
+SELECT count(ename)
+FROM emp
+WHERE DEPTNO = 10;
+
+SELECT AVG(sal), SUM(sal)
+FROM EMP;
+
+SELECT ename, hiredate
+FROM emp
+WHERE ename = 'SMITH';
+
+SELECT deptno
+FROM emp;
+
+SELECT ename
+FROM EMP 
+WHERE sal >= 3000;
+
+SELECT ename
+FROM emp
+WHERE job = 'CLERK'
+
+SELECT * FROM emp;
+SELECT ename, job, sal
+FROM emp
+WHERE DEPTNO = 20 AND SAL > 1000;
+
+SELECT JOB, avg(sal)
+FROM emp
+GROUP BY job;
+
+SELECT DEPTNO ,COUNT(ename), AVG(sal)
+FROM emp
+GROUP BY DEPTNO;
+
+SELECT deptno, avg(sal) avsal
+FROM EMp
+WHERE deptno = 10
+GROUP BY deptno;
+
+SELECT ename, hiredate
+FROM emp
+WHERE ename='';

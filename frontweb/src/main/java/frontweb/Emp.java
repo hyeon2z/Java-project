@@ -14,6 +14,13 @@ public class Emp {
 	public Emp() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Emp(String ename, String job, int deptno) {
+		this.ename = ename;
+		this.job = job;
+		this.deptno = deptno;
+	}
+	
 	public Emp(int empno, String ename, String job, int mgr, Date hiredate, double sal, double comm, int deptno) {
 		this.empno = empno;
 		this.ename = ename;
@@ -23,6 +30,9 @@ public class Emp {
 		this.sal = sal;
 		this.comm = comm;
 		this.deptno = deptno;
+	}
+	public Emp(double double1, double double2) {
+		// TODO Auto-generated constructor stub
 	}
 	public int getEmpno() {
 		return empno;

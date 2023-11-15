@@ -16,6 +16,12 @@ public class DBCon {
 	private static final String USERNAME = "scott";
 	private static final String PASSWORD = "tiger";
 	public static Connection con() throws SQLException {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return DriverManager.getConnection(URL,USERNAME,PASSWORD);
 	}
 	// 2. DB 처리한 후, 자원을 해제하는 기능 공통 기능 메서드
@@ -36,14 +42,14 @@ public class DBCon {
 	}
 	
 	public static void main(String[] args) {
-		try {
+		/*try {
 			close(con());
 			System.out.println("접속성공!");
 //			DBCon.con();
 //			System.out.println("접속성공!");
 		} catch (SQLException e) {
 			System.out.println("에러발생 : " + e.getMessage());
-		} 
+		}*/ 
 	}
 
 }

@@ -12,13 +12,19 @@
     <fullyQualifiedTypeName name="java.sql.DriverManager"/>
     <fullyQualifiedTypeName name="java.lang.AutoCloseable"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="frontweb.TrainReservation"/>
     <fullyQualifiedTypeName name="frontweb.dao.DB"/>
-    <fullyQualifiedTypeName name="frontweb.database.DBCon"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="frontweb.vo.EmpShort"/>
     <fullyQualifiedTypeName name="frontweb.vo.Member"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="frontweb.database.EmpDao"/>
+    <fullyQualifiedTypeName name="frontweb.database.ExpDao"/>
+    <fullyQualifiedTypeName name="frontweb.vo.Employee"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="frontweb.database.DBCon"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="frontweb.database.PreparedStmtDao"/>
+    <fullyQualifiedTypeName name="frontweb.homework_vo.Location"/>
 </qualifiedTypeNameHistroy>
