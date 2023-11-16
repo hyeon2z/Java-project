@@ -17,7 +17,6 @@
     <fullyQualifiedTypeName name="frontweb.dao.DB"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="frontweb.vo.EmpShort"/>
-    <fullyQualifiedTypeName name="frontweb.vo.Member"/>
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="frontweb.database.EmpDao"/>
     <fullyQualifiedTypeName name="frontweb.database.ExpDao"/>
@@ -27,4 +26,7 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="frontweb.database.PreparedStmtDao"/>
     <fullyQualifiedTypeName name="frontweb.homework_vo.Location"/>
+    <fullyQualifiedTypeName name="frontweb.Dept"/>
+    <fullyQualifiedTypeName name="frontweb.vo.Member"/>
+    <fullyQualifiedTypeName name="frontweb.vo.EmpHomework"/>
 </qualifiedTypeNameHistroy>

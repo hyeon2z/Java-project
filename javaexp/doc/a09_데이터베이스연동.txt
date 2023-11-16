@@ -184,5 +184,41 @@
     1) 요청값을 전달해서
         조회를 하거나
         등록/수정/삭제 구현
-    
+
+# 등록 처리
+1. sql 작성/테스트
+2. VO : 등록데이터에 맞는 VO객체 생성 처리
+3. 기능메서드 선언
+    public boolean insertXXXX(VO ins){
+        boolean isInsert = false;
+        String sql = "등록 sql ??"
+        // 템플릿활용(ResultSet 삭제)
+        con.setAutoCommit(false); // CUD를 처리는 임시처리가능
+        // pstmt.setXXX(1, ins.getXXX()) // ? 숫자에 해당되는 데이터 할당
+        // 실행문으로 executeUpdate()
+        int insCnt = psmt.executeUpdate(); // 등록되는 숫자.
+        isInsert = insCnt>0; // 1개이상 처리될 때
+        // 처리 후, con.commit()
+        // DB예외가 있을 때, 원복 con.rollback처리
+        
+        return isInsert; 
+    }
+4. 화면으로 등록 인터페이스 구현
+5. 위 기능 메서드 호출 후, 등록 완료
+6. 등록 이후 처리내용
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   

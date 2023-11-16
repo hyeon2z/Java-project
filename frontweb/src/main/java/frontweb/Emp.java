@@ -11,6 +11,23 @@ public class Emp {
 	private double sal;
 	private double comm;
 	private int deptno;
+	private String hire;
+	public Emp(int empno, String ename, String job, Date hiredate, String hire) {
+		this.empno = empno;
+		this.ename = ename;
+		this.job = job;
+		this.hiredate = hiredate;
+		this.hire = hire;
+	}
+
+	public String getHire() {
+		return hire;
+	}
+
+	public void setHire(String hire) {
+		this.hire = hire;
+	}
+
 	public Emp() {
 		// TODO Auto-generated constructor stub
 	}
@@ -21,6 +38,10 @@ public class Emp {
 		this.deptno = deptno;
 	}
 	
+	public Emp(int deptno) {
+		this.deptno = deptno;
+	}
+
 	public Emp(int empno, String ename, String job, int mgr, Date hiredate, double sal, double comm, int deptno) {
 		this.empno = empno;
 		this.ename = ename;

@@ -8,11 +8,42 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>사원정보조회</h2>
+	<h2 align ="center">사원정보조회</h2>
 	<%
 	PreparedStmtDao dao = new PreparedStmtDao();
 	%>
-	<table border>
+	<%-- a01_empList.jsp?ename=홍길동&job=사원&deptno=10 --%>
+	<%-- 
+	<h3 align ="center">사원명:
+	<%=request.getParameter("ename")==null?"":request.getParameter("ename") %></h3>
+	<h3 align ="center">직책명:
+	<%=request.getParameter("job")==null?"":request.getParameter("job") %></h3>
+	<h3 align ="center">부서:
+	<%=request.getParameter("deptno")==null?"0":request.getParameter("deptno") %></h3>
+	--%>
+	<%
+	String ename = request.getParameter("ename");
+	if(ename==null) ename = "";
+
+	String job = request.getParameter("job");
+	if(job==null) job = "";
+	
+	String deptnoStr = request.getParameter("deptno");
+	int deptno = 10;
+	if(deptnoStr!=null) deptno = Integer.parseInt(deptnoStr);
+	%>
+	<form>
+	<table width = "40%" border align ="center">
+		<col width = "40%">
+		<col width = "60%">
+		<tr><th>사원명</th><td><input type="text" name="ename" value="<%=ename%>"/></td></tr>
+		<tr><th>직책명</th><td><input type="text" name="job" value="<%=job%>"/></td></tr>
+		<tr><th>부서</th><td><input type="text" name="deptno" value="<%=deptno%>"/></td></tr>
+		<tr><td colspan="2"><input type="submit" value="검색"/></td></tr>
+	</table>
+	</form>
+
+	<table width = "80%" border align ="center">
 		<tr>
 			<th>사원번호</th>
 			<th>사원명</th>
@@ -23,7 +54,7 @@
 			<th>부서번호</th>
 		</tr>
 		<%
-		for (Emp emp : dao.getEmpList(new Emp("", "", 30))) {
+		for (Emp emp : dao.getEmpList(new Emp(ename, job, deptno))) {
 		%>
 		<tr>
 			<th><%=emp.getEmpno()%></th>
