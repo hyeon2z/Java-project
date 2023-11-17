@@ -68,4 +68,43 @@ FROM emp
 WHERE to_char(HIREDATE,'YYYY-MM,DD') > ?
 AND to_char(HIREDATE,'YYYY-MM,DD') < ?;
 
+
+SELECT empno, ename, job, to_char(hiredate, 'Q') hire_qua,
+to_char(hiredate, 'YYYY/MM/DD') hire_Str
+FROM emp
+WHERE job LIKE ?
+AND to_char(hiredate, 'Q') = ?
+
+입력값 : job, hire_qua
+출력값 : empno, ename, job, hire_qua, hire_str
+class EmpHire{
+	private int empno;
+	private String ename;
+	private String job;
+	private String hire_qua;
+	private String hire_str;
+}
+
+*/
+
+SELECT empno, ename, job, to_char(hiredate, 'Q') hire_qua,
+to_char(hiredate, 'YYYY/MM/DD') hire_Str
+FROM emp
+WHERE job LIKE '%MAN%'
+AND to_char(hiredate, 'Q') = '1';
+
+SELECT empno, ename, job,
+to_char(hiredate, 'YYYY/MM/DD') hirestr, deptno
+FROM emp
+WHERE hiredate BETWEEN to_date('1981/01/01', 'YYYY/MM/DD')
+AND to_date('1981/06/01', 'YYYY/MM/DD');
+
+/*
+empno, ename, job, hirestr, deptno
+
+SELECT empno, ename, job,
+to_char(hiredate, 'YYYY/MM/DD') hirestr, deptno
+FROM emp
+WHERE hiredate BETWEEN to_date(?, 'YYYY/MM/DD')
+AND to_date(?, 'YYYY/MM/DD');
 */

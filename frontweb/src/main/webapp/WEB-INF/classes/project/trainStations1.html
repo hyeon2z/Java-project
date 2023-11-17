@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출발역 선택</title>
+</head>
+<script src="jquery-3.1.1.js"></script>
+
+<body>
+  
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden;}
+        
+        header {
+            width: 100%; height: 4.65%; 
+            background: white;
+        }
+        
+        aside { 
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        
+        section {
+            width: 45%; height: 95.35%; float: left;
+            background: white;
+        }
+        aside {
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        button {
+            border-bottom: 1px solid #E6E6E6;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            display: flex;  width: 15.3%; height: 100%; justify-content: center; align-items: center; cursor: pointer; background-color:white;
+        }
+        #divStyle1 {
+          display: flex; justify-content: center; align-items: center;
+        }
+        p {
+          font-size: 14px; width:100%;text-align:left;
+        }
+        #pStyle1{
+          margin: 0; font-weight: bold; font-size: 17px; text-align: center;
+        }
+      </style>
+        <header style="border: 1px solid #E6E6E6;">
+            <div style="display: flex; height: 100%;">
+                <div style="width: 27.5%;"></div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="train.html" style="width: 100%;">
+                        <img src="취소.png" style="float: right;" id="back" width="15px" height="15px">
+                    </a> <!-- 뒤로가기 -->
+                </div>
+                <div id = "divStyle1" style="width: 42%;">
+                    <p id="pStyle1">출발역 선택</p>
+                </div>
+            
+                <div style="width: 1.5%;">
+                </div>
+                <div style="width: 27.5%; display: flex; align-items: center;">
+                    <h4 style="text-align: center; margin: 0;"></h4>
+                </div>
+            </div>
+        </header>
+            <aside></aside>
+            <section style="flex-direction: column;">
+                <section id = "divStyle1" style="width: 100%; height: 6%;">
+                    <p style="width: 93%;height: 40%; margin: 0; font-weight: bold; font-size: 17px; text-align: left;">주요역</p>
+                </section>
+                
+                <section style="width: 100%; height:10%; ">
+                    <section style="display: flex; width:94%; margin-left: 3%;margin-right: 3%;">
+                        <section style="display: flex ;border: none; width: 100%; height: 100%; flex-direction: column;">
+                            <section style="display: flex; width:100%; height:50%;">
+                                <button onclick="stationBtn('서울')">
+                                    <p>서울</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('용산')">
+                                    <p>용산</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('부산')">
+                                    <p>부산</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('대전')">
+                                    <p>대전</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('동대구')">
+                                    <p>동대구</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('광주송정')">
+                                    <p>광주송정</p>
+                                </button>
+                            </section>
+                            <section style="display: flex; width:100%; height:50%;">
+                                <button onclick="stationBtn('신경주')">
+                                    <p>신경주</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('여수EXPO')">
+                                    <p>여수EXPO</p>
+                                </button>
+                                <div style="width: 1.5%;"></div>
+                                <button onclick="stationBtn('강릉')">
+                                    <p>강릉</p>
+                                </button>
+                            </section>
+                            
+                            
+                        </section>
+                    </section>
+                </section>
+              
+                <section id = "divStyle1" style="width: 100%; height: 3%;;">
+                </section>
+                <section id = "divStyle1" style="width: 100%; height: 6%;">
+                    <p style="width: 93%;height: 40%; margin: 0; font-weight: bold; font-size: 17px; text-align: left;">모든 정차역</p>
+                </section>
+              
+                <section style="display: flex; width:94%; margin-left: 3%;margin-right: 3%; flex-direction: column;">
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('가남')">
+                                <p>가남</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('강릉')">
+                                <p>강릉</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('계룡')">
+                                <p>계룡</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('광명')">
+                                <p>광명</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('군산')">
+                                <p>군산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('김천')">
+                                <p>김천</p>
+                            </button>
+                        </section>
+                    </section>
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('나주')">
+                                <p>나주</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('논산')">
+                                <p>논산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('대구')">
+                                <p>대구</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('대전')">
+                                <p>대전</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('덕소')">
+                                <p>덕소</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('동대구')">
+                                <p>동대구</p>
+                            </button>
+                        </section>
+                    </section>
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('동백산')">
+                                <p>동백산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('마산')">
+                                <p>마산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('목포')">
+                                <p>목포</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('무안')">
+                                <p>무안</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('밀양')">
+                                <p>밀양</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('벌교')">
+                                <p>벌교</p>
+                            </button>
+                        </section>
+                    </section>
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('보성')">
+                                <p>보성</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('부산')">
+                                <p>부산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('삽교')">
+                                <p>삽교</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('상봉')">
+                                <p>상봉</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('서대구')">
+                                <p>서대구</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('서대전')">
+                                <p>서대전</p>
+                            </button>
+                        </section>
+                    </section>
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('서울')">
+                                <p>서울</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('수원')">
+                                <p>수원</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('안동')">
+                                <p>안동</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('양평')">
+                                <p>양평</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('영등포')">
+                                <p>영등포</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('예천')">
+                                <p>예천</p>
+                            </button>
+                        </section>
+                    </section>
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('용산')">
+                                <p>용산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('전주')">
+                                <p>전주</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('제천')">
+                                <p>제천</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('증평')">
+                                <p>증평</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('진주')">
+                                <p>진주</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('창원')">
+                                <p>창원</p>
+                            </button>
+                        </section>
+                    </section>
+                    <section style="display: flex ;border: none; width: 100%; height: 5%; flex-direction: column;">
+                        <section id = "way"style="display: flex; width:100%; height:100%;">
+                            <button onclick="stationBtn('천안')">
+                                <p>천안</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('천안아산')">
+                                <p>천안아산</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('청주')">
+                                <p>청주</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('판교')">
+                                <p>판교</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('평택')">
+                                <p>평택</p>
+                            </button>
+                            <div style="width: 1.5%;"></div>
+                            <button onclick="stationBtn('홍성')">
+                                <p>홍성</p>
+                            </button>
+                        </section>
+                    </section>
+                </section>
+              
+            </section>
+            <aside></aside> 
+      <script>
+            function stationBtn(stationName){
+              var departStation = stationName
+              localStorage.setItem('departStation',departStation);
+              window.location.href = 'train.html';
+            }
+      </script>
+  
+</body>
+</html>

@@ -185,6 +185,121 @@
         조회를 하거나
         등록/수정/삭제 구현
 
+# DB연동 화면 구현 순서
+1. 어떤 화면 내용과 데이터를 처리할지 간단하게 구상(요구사항파악/화면설계서/DB설계)
+    로그인
+    아이디 : [  ]
+    패스워드 : [  ]
+      [로그인]
+
+2. backend 구성
+    1) sql
+        select * from member01 where id = 'himan' pwd = '7777'
+    2) 구성결과
+        입력 : id, pwd
+        출력 : id, pwd, name, auth, point
+    3) 입력과 출력에 대한 VO 구성
+        class Member{
+            private String id;
+            private String pwd;
+            private String name;
+            private String auth;
+            private int point;
+            // 기본생성자
+            // 전체값 입력받는 생성자
+            // set/get 생성자
+            필요로 하는 입력 생성자를 확인해서 추가 처리  
+    4) 메서드 선언
+        입력 : 메서드의 매개변수로 선언
+        출력 : 메서드의 리턴값으로 선언
+        public Member login(String id, String pwd){
+        	// 3개이상을 객체로 선언
+        	Member mem = null;
+        	String sql = "select * from member01 where id = ? pwd = ?"
+        	// 코드에 따른 템플릿 적용
+        	// 1. ?에 매핑할 데이터
+        	pstmt.set타입(순서,데이터)
+        	pstmt.setString(1, id);
+        	pstmt.setString(2, pwd);
+        	// ...
+        	// 2. resultset에 대한 처리
+        	if(rs.next()){
+        		mem = new Member(
+        			rs.getString("id"),
+        			rs.getString("pwd"),
+        			...
+        			..
+        	};
+        	
+        	return mem;	
+        }
+
+3. 화면 구성
+    1) html 코드
+        로그인
+        아이디:[  ]
+        패스워드:[  ] ==> @@(이름)님 로그인 성공입니다.
+        [로그인]
+        form
+            name = "id"
+            name = "pwd"
+    2) 요청값 처리
+        String id = request.getParameter("id");
+        String pwd = request.getParameter("pwd");
+        if(id==null) id = "";
+        if(pwd==null) pwd = "";
+        // 참고
+        String priceStr = request.getParameter("price");
+        int price = 0;
+        if(priceStr != null) price = Integer.parseInt(priceStr);        
+
+		요청값을 화면에 테스트용으로 확인 후
+		<%=id%> <%=pwd%>
+		# 주의 java 컴파일 프로그램 ==> .class
+		심지어 jsp ==> java ==> .class
+		
+	3) 데이터베이스 처리 DAO/VO 가져와서 사용하기
+	    최상단 : import = "@@@@.클래스명"
+	    최상단 : import = "@@@@.클래스명" ==> ctrl+클릭
+	    최상단 : import = "@@@@.클래스명" ==> ctrl+클릭으로 확인
+	    아래와 같이 List객체로 따로 선언해서 사용할 필요성이 있는 경우
+	    // import = "java.util.List"
+	    List<Dept> list = dao.getDeptList(dname, loc);
+	4) Dao 객체 생성과 위에 선언한 요청값과 연동 처리
+		결과를 받은 객체 할당처리
+	    MemberDao dao = new MemberDao()
+	    Member logMem = dao.login(id,pwd);
+	    
+	    // 주의 객체가 데이터가 있는 여부에 따라서 
+	    결과가 다르게 처리되는 화면 같은 경우 조건문으로 처리
+	    loginMem != null 하지 않으면
+	    loginMem.getName() 객체 생성이 되지 않는 상황에서
+	    멤버를 호출하기에 nullpointer예외가 발생한다.
+	    <%
+	    if(loginMem != null){
+	    %>
+	      <script>
+	          alert("로그인 성공");
+	          location.href = "메인페이지"; // 메인페이지 이동 처리
+	      </script>
+	       
+	     회원 정보.. 출력
+	     이름 : <%=loginMem.getName()%>
+	     포인트 : <%=loginMem.getPoint()%>
+	     
+	    <%
+	    }else{
+	    %>
+	    	<script>
+	    	    alert("해당 아이디가 없습니다.");
+	    	</script>
+	    	<h2>로그인 실패했습니다. 다시 로그인하세요</h2>
+	    <%
+	    }
+	    %>
+	        
+	        
+
 # 등록 처리
 1. sql 작성/테스트
 2. VO : 등록데이터에 맞는 VO객체 생성 처리

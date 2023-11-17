@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기차예매1</title>
+    <title>기차예매조건</title>
 </head>
 <script src="jquery-3.1.1.js"></script>
 <body>
@@ -28,13 +28,87 @@
             width: 27.5%; height: 95.35%; float: left;
             background: #f2f2f2;
         }
+        #dateset{
+            border-bottom: 1px solid #E6E6E6;
+            border-top: 1px solid #E6E6E6;
+            border-left: none;
+            border-right: none;
+        }
+        #divstyle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #divstyle2{
+            justify-content: center;
+            align-items: center;
+        }
+        #sectionStyle1{
+            display: flex;
+            flex-direction: column;
+        }
+        #btnStyle1{
+            display: flex;
+            border:1px solid #E6E6E6;
+            border-radius:10px;
+            width: 50%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #sectionStyle2{
+            display: flex;
+            flex-direction: column;
+        }
+        #sectionStyle3{
+            display: flex;
+            width: 100%;
+            height: 25%;
+        }
+        #approach{
+            background-color:white; display: flex; border:none; width: 40%; height: 100%; flex-direction: column;cursor: pointer;
+        }
+        #departure{
+            background-color:white; display: flex; border:none; width: 40%; height: 100%; flex-direction: column;cursor: pointer;
+        }
+        #pStyle1{
+            font-weight: bold; font-size: 16px;
+        }
+        #pStyle2{
+            margin:0;text-align: left; font-size: 18px; 
+        }
+        #pStyle3{
+            margin:0;color: rgb(167, 164, 164); font-size: 10px; text-align: left;
+        }
+        #pStyle4{
+            color: rgb(167, 164, 164); font-size: 12px;
+        }
+        #start{
+            font-weight: bold; font-size: 24px; margin-bottom: 10%; margin-top: 7%;
+        }
+        #end{
+            font-weight: bold; font-size: 24px; margin-bottom: 10%; margin-top: 7%;
+        }
+        #dateset{
+            background-color: white;width: 100%;cursor: pointer;
+        }
+        #confirmBtn{
+            justify-content: center;
+            align-items: center;
+            background-color: #DE2E5F; border-radius:10px; border: none; width: 100%; height: 63%;
+            margin-top: 1%; margin-left: 3%; margin-right: 3%; margin-bottom: 5%; cursor: pointer; 
+        }
+        #confirmBtn:hover{
+            background-color: #BB1E4A;
+        }
         </style>
         <header style="border: 1px solid #E6E6E6;">
             <div style="display: flex; height: 100%;">
                 <div style="width: 27.5%;"></div>
             
                 <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
-                    <a href="trainTicket.html" style="width: 100%;">
+                    <a href="Main.html" style="width: 100%;">
                         <img src="화살표.png" style="float: right;" id="back" width="25px" height="25px">
                     </a> <!-- 뒤로가기 -->
                 </div>
@@ -44,11 +118,11 @@
                 </div>
 
                 <div style="width: 37%; display: flex; justify-content: center; align-items: center;">
-                    <h4 style="margin: 0;">기차</h4>
+                    <p style="margin: 0; font-weight: bold; font-size: 17px;">기차</p>
                 </div>
             
                 <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
-                    <a href="trainTicket.html" style="width: 100%;">
+                    <a href="" style="width: 100%;">
                         <img src="돋보기.jpg" style="float: right;" width="25px" height="25px">
                     </a>
                 </div>
@@ -57,7 +131,7 @@
                 </div>
             
                 <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
-                    <a href="trainTicket.html" style="width: 100%;">
+                    <a href="   " style="width: 100%;">
                         <img src="장바구니.png" style="float: right;" width="25px" height="25px">
                     </a>
                 </div>
@@ -73,51 +147,71 @@
 
                 </section>
                 <section style="width: 100%;">
-                    <section style="display: flex; width:94%; margin-left: 3%;margin-right: 3%;">
-                        <section style="display: flex ;border: 1px solid #E6E6E6; border-radius: 10px; width: 100%; height: 50%; flex-direction: column;">
-                            <section id = "way"style="background-color:#E6E6E6; display: flex;  border:1px solid #E6E6E6; border-radius:10px;width:100%; height:10%;">
-                                <button onclick="oneway()" style="display: flex; border:1px solid #E6E6E6; border-radius: 10px; width: 50%; height: 100%; justify-content: center; align-items: center; cursor: pointer;">
-                                    <h3>편도</h3>
+                    <section id = "sectionStyle1" style="width:94%; margin-left: 3%;margin-right: 3%;">
+                        <section id = "sectionStyle2" style="border: 1px solid #E6E6E6; border-radius: 10px; width: 100%; height: 50%;">
+                            <section style="display: flex; background-color:#f2f2f2;   border-radius:10px;width:100%; height:10%;">
+                                <button onclick="oneway()" id="btnStyle1">
+                                    <p id = "pStyle1">편도</p>
                                 </button>
-                                <button onclick="twoway()"style="display: flex; border:1px solid #E6E6E6; border-radius: 10px; width: 50%; height: 100%; justify-content: center; align-items: center; cursor: pointer;">
-                                    <h3>왕복</h3>
+                                <button onclick="twoway()" id="btnStyle1">
+                                    <p id = "pStyle1">왕복</p>
                                 </button>
                             </section>
-                            <section style="display: flex; width: 100%; height: 5%;">
+                            <section style="display: flex; width: 100%; height: 7%;">
                             </section>
-                            <section style="display: flex; width: 100%; height: 92%;flex-direction: column;">
-                                <section style="display: flex; width: 100%; height: 25%;">
-                                    <button id="approach" style="background-color:white; display: flex; border:none; width: 50%; height: 100%; flex-direction: column;cursor: pointer;">
-                                        <div style="display: flex; width: 100%; height: 20%; justify-content: center; align-items: center;">
-                                            출발역
+                            <section id = "sectionStyle2" style="width: 100%; height: 90%;">
+                                <section id = "sectionStyle3">
+                                    <div style="display: flex; border:none; width: 5%; height: 100%;">
+
+                                    </div>
+                                    <button id="approach">
+                                        <div id="divstyle" style="width: 100%; height: 20%;">
+                                            <p id = "pStyle4">출발역</p>
                                         </div>
-                                        <div style="display: flex; width: 100%; height: 80%; justify-content: center; align-items: center;">
-                                            <h2>서울</h2>
+                                        <div id="divstyle" style="width: 100%; height: 80%;">
+                                            <p id = "start">서울</p>
                                         </div>
                                     </button>
-                                    <button onclick="departure()" style="background-color:white; display: flex; border:none; width: 50%; height: 100%; flex-direction: column;cursor: pointer;">
-                                        <div style="display: flex; width: 100%; height: 20%; justify-content: center; align-items: center;">
-                                            도착역
+                                    <button onclick = "changeStation()" style="background-color:white; display: flex; border:none; width: 10%; height: 100%; flex-direction: column;">
+                                        <div style="width: 100%; height: 10%;">
                                         </div>
-                                        <div style="display: flex; width: 100%; height: 80%; justify-content: center; align-items: center;">
-                                            <h2>대전</h2>
+                                        <div id="divstyle" style="width: 100%; height: 90%;">
+                                            <img src = "교체.png" style="width: 40px; height: 40px;cursor: pointer;">
+                                        </div>
+                                    </button>
+                                    <button id="departure">
+                                        <div id="divstyle" style="width: 100%; height: 20%;">
+                                            <p id = "pStyle4">도착역</p>
+                                        </div>
+                                        <div id="divstyle" style="width: 100%; height: 80%;">
+                                            <p id="end" style="color: #D9D9D9;">선택</p>
                                         </div>
                                     </button>
                                 </section>
-                                <section style="display: flex; width: 100%; height: 25%;">
-                                    <button onclick="setdate()" style="border: 1px solid #E6E6E6; background-color: white;width: 100%;cursor: pointer;">
-                                        가는날
+                                <section id = "sectionStyle3">
+                                    <button onclick="setdate()" id="dateset">
+                                        <div id = "divstyle2" style="width: 100%; height: 25%; margin-bottom:1%;margin-left: 2%; margin-top:2%">
+                                            <p id = "pStyle3">가는날</p>
+                                        </div>
+                                        <div id = "divstyle2" style=" width: 100%; height: 73%; margin-left: 2%;">
+                                            <p id = "pStyle2" style="color: rgb(167, 164, 164);">날짜를 선택해주세요</p>
+                                        </div>
                                     </button>
                                 </section>
-                                <section style="display: flex; width: 100%; height: 25%;">
-                                    <button onclick="setPeople()" style="border: 1px solid #E6E6E6; background-color: white;width: 100%;cursor: pointer;">
-                                        인원
+                                <section id = "sectionStyle3">
+                                    <button onclick="setPeople()" style="border: none; background-color: white;width: 100%;cursor: pointer;">
+                                        <div id = "divstyle2" style="width: 100%; height: 25%; margin-left: 2%;margin-bottom:1%; margin-top:2%">
+                                            <p id = "pStyle3">인원</p>
+                                        </div>
+                                        <div id = "divstyle2" style=" width: 100%; height: 73%; margin-left: 2%;">
+                                            <p class="cnt" id = "pStyle2">성인 1명</p>
+                                        </div>
                                     </button>
                                 </section>
-                                <section style="display: flex; width: 100%; height: 25%;">
-                                    <section style="display: flex; width:100%;margin-bottom:4%; height: 96%;">
-                                        <button onclick="setPeople()" style="background-color:rgba(255, 255, 255, 0.144); border: 1px; width: 100%;cursor: pointer;">
-                                            승차권조회
+                                <section id = "sectionStyle3">
+                                    <section style="display: flex; width:100%; height: 100%;">
+                                        <button id = "confirmBtn">
+                                            <p style="color: white; font-weight: bold; font-size: 17px;">승차권 조회</p>
                                         </button>
                                     </section>
                                 </section>
@@ -125,18 +219,86 @@
                             
                         </section>
                     </section>
-                </section>
-                
-
+                </section> 
             </section>
             <aside></aside> 
         <script>
             $(document).ready(function(){
+                
                 $("#approach").click(function(){
-                    
-                    window.location.href = "trainStations.html";
+                    window.location.href = "trainStations1.html";
                 })
+                $("#departure").click(function(){
+                    window.location.href = "trainStations2.html";
+                })
+                
             })
+            function setdate(){
+                window.location.href = "trainDate.html";
+            }
+            function setPeople(){
+                window.location.href = "trainPeople.html";
+            }
+
+            function setDepartStation(){
+                var selectStation = localStorage.getItem('departStation');
+                document.querySelector('#start').innerText = selectStation;
+            }
+            function setApproachStation(){    
+                var selectStation2 = localStorage.getItem('approachStation');
+                document.querySelector('#end').innerText = selectStation2;
+                document.querySelector('#end').style.color = 'black';   
+            }
+            if(localStorage.getItem('approachStation')!=null){
+                setApproachStation();
+            }
+            if(localStorage.getItem('departStation')!=null){
+                setDepartStation();
+            }
+            function changeStation(){
+                if(localStorage.getItem('approachStation')!=null && localStorage.getItem('departStation')!=null){
+                    var selectStation = localStorage.getItem('approachStation');
+                    var selectStation2 = localStorage.getItem('departStation');
+
+                    localStorage.setItem('departStation', selectStation)
+                    localStorage.setItem('approachStation', selectStation2)
+                    
+                    document.querySelector('#start').innerText = selectStation;
+                    document.querySelector('#end').innerText = selectStation2;
+                    document.querySelector('#end').style.color = 'black';
+                }
+            }
+            function changePeople(){
+                if(localStorage.getItem('childCnt')==null){
+                    var cnt2 = 0;
+                    var cnt = localStorage.getItem('adultCnt');
+                    
+                    localStorage.setItem('adultCnt', cnt)
+                    
+                    document.querySelector('.cnt').innerHTML = "성인 " + cnt + "명";
+                    
+                }else if(localStorage.getItem('childCnt')!=null){
+                    var cnt = localStorage.getItem('adultCnt');
+                    
+                    localStorage.setItem('adultCnt', cnt)
+                    
+                    document.querySelector('.cnt').innerHTML = "성인 " + cnt + "명";
+                    
+                    cnt2 = localStorage.getItem('childCnt');
+
+                    localStorage.setItem('childCnt',cnt2)
+                    if(cnt2!=0){
+                        document.querySelector('.cnt').innerHTML = "성인 " + cnt + "명, 아동 " + cnt2 + "명";
+                    }else{
+                        document.querySelector('.cnt').innerHTML = "성인 " + cnt + "명";
+                        
+                    }
+                }
+            }
+            if(localStorage.getItem('adultCnt')!=null){
+                changePeople();
+            }
+
         </script>
 </body>
 </html>

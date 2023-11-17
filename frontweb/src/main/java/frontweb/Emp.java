@@ -20,6 +20,13 @@ public class Emp {
 		this.hire = hire;
 	}
 
+	public Emp(int empno, String ename, double sal, int deptno) {
+		this.empno = empno;
+		this.ename = ename;
+		this.sal = sal;
+		this.deptno = deptno;
+	}
+
 	public String getHire() {
 		return hire;
 	}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+</head>
+<script src="jquery-3.1.1.js"></script>
+<body>
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden;}
+        
+        header {
+            width: 100%; height: 4.65%; 
+            background: white;
+        }
+        
+        aside { 
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        
+        section {
+            width: 45%; height: 95.35%; float: left;
+            background: white;
+        }
+        aside {
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        #dateset{
+            border-bottom: 1px solid #E6E6E6;
+            border-top: 1px solid #E6E6E6;
+            border-left: none;
+            border-right: none;
+        }
+        #divstyle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #divstyle2{
+            justify-content: center;
+            align-items: center;
+        }
+        #sectionStyle1{
+            display: flex;
+            flex-direction: column;
+        }
+        #btnStyle1{
+            display: flex;
+            border:1px solid #E6E6E6;
+            border-radius:10px;
+            width: 50%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        #sectionStyle2{
+            display: flex;
+            flex-direction: column;
+        }
+        #sectionStyle3{
+            display: flex;
+            width: 100%;
+            height: 25%;
+        }
+        #approach{
+            background-color:white; display: flex; border:none; width: 40%; height: 100%; flex-direction: column;cursor: pointer;
+        }
+        #departure{
+            background-color:white; display: flex; border:none; width: 40%; height: 100%; flex-direction: column;cursor: pointer;
+        }
+        #pStyle1{
+            font-weight: bold; font-size: 16px;
+        }
+        #pStyle2{
+            margin:0;text-align: left; font-size: 18px; 
+        }
+        #pStyle3{
+            margin:0;color: rgb(167, 164, 164); font-size: 10px; text-align: left;
+        }
+        #pStyle4{
+            color: rgb(167, 164, 164); font-size: 12px;
+        }
+        #start{
+            font-weight: bold; font-size: 24px; margin-bottom: 10%; margin-top: 7%;
+        }
+        #end{
+            font-weight: bold; font-size: 24px; margin-bottom: 10%; margin-top: 7%;
+        }
+        #dateset{
+            background-color: white;width: 100%;cursor: pointer;
+        }
+        #confirmBtn{
+            justify-content: center;
+            align-items: center;
+            background-color: #DE2E5F; border-radius:10px; border: none; width: 100%; height: 63%;
+            margin-top: 1%; margin-left: 3%; margin-right: 3%; margin-bottom: 5%; cursor: pointer; 
+        }
+        #confirmBtn:hover{
+            background-color: #BB1E4A;
+        }
+		button {
+            border: none;
+            display: flex;  width: 20%; height: 100%; justify-content: center; align-items: center; cursor: pointer; background-color:white;
+        }
+        #divStyle1 {
+          display: flex; justify-content: center; align-items: center;
+        }
+        p {
+          font-size: 14px; width:100%;text-align:left;
+        }
+        #pStyle1{
+          margin: 0; font-weight: bold; font-size: 17px; text-align: center;
+        }
+		#pStyle2{
+			font-size: 13px; font-weight: bold; width: 20%; height: 100%; margin: 0; text-align: center; cursor:default;
+		}
+        </style>
+        <header style="border: 1px solid #E6E6E6;">
+            <div style="display: flex; height: 100%;">
+                <div style="width: 27.5%;"></div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+
+                </div>
+                
+                <div style="width:2.5%">
+
+                </div>
+
+                <div style="width: 37%; display: flex; justify-content: center; align-items: center;">
+                    <p style="margin: 0; font-weight: bold; font-size: 17px; text-align: center;">메인페이지</p>
+                </div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="" style="width: 100%;">
+                        <img src="돋보기.jpg" style="float: right;" width="25px" height="25px">
+                    </a>
+                </div>
+
+                <div style="width: 1%;">
+                </div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="" style="width: 100%;">
+                        <img src="장바구니.png" style="float: right;" width="25px" height="25px">
+                    </a>
+                </div>
+            
+                <div style="width: 27.5%; display: flex; align-items: center;">
+                    <h4 style="text-align: center; margin: 0;"></h4>
+                </div>
+            </div>
+        </header>
+            <aside></aside>
+            <section>
+                <section style="width: 100%; height: 1.5%;">
+
+                </section>
+                <section style="width: 100%;">
+                    <section id = "sectionStyle1" style="width:94%; margin-left: 3%;margin-right: 3%;">
+                        <section id = "sectionStyle2" style="border: none; width: 100%; height: 100%;">
+							<section style="width: 100%; height:30%;">
+								<section style="display: flex; width:94%; margin-left: 3%;margin-right: 3%;">
+									<section style="display: flex ;border: none; width: 100%; height: 100%; flex-direction: column;">
+										<section style="display: flex; width:100%; height:40%;">
+											<button onclick="Btn1()">
+												<img src="main1.png" width="70px; height : 70px;">
+											</button>
+											<div style="width: 6.622%;"></div>
+											<button onclick="Btn2()">
+												<img src="min2.png" width="70px; height : 70px;">
+											</button>
+											<div style="width: 6.622%;"></div>
+											<button onclick="Btn3()">
+												<img src="main3.png" width="70px; height : 70px;">
+											</button>
+											<div style="width: 6.622%;"></div>
+											<button onclick="Btn4()">
+												<img src="main4.png" width="70px; height : 70px;">
+											</button>
+										</section>
+										<section style="display: flex; width: 100%; height: 10%;">
+											<p id = "pStyle2">
+												호텔/리조트
+											</p>
+											<div style="width: 6.622%; height: 100%;">
+												
+											</div>
+											<p id = "pStyle2">
+												펜션/풀빌라
+											</p>
+											<div style="width: 6.622%; height: 100%;">
+												
+											</div>
+											<p id = "pStyle2">
+												가족형숙소
+											</p>
+											<div style="width: 6.622%; height: 100%;">
+
+											</div>
+											<p id = "pStyle2">
+												모텔
+											</p>
+										</section>
+										<section style="display: flex; width:100%; height:40%;">
+											<button onclick="Btn5()">
+												<img src="main5.png" width="70px; height : 70px;">
+											</button>
+											<div style="width: 6.622%;"></div>
+											<button onclick="Btn6()">
+												<img src="main6.png" width="70px; height : 70px;">
+											</button>
+											<div style="width: 6.622%;"></div>
+											<button onclick="Btn7()">
+												<img src="교통.png" width="70px; height : 70px;">
+											</button>
+											<div style="width: 6.622%;"></div>
+											<button onclick="Btn8()">
+												<img src="main8.png" width="70px; height : 70px;">
+											</button>
+										</section>
+										<section style="display: flex; width: 100%; height: 10%;">
+											<p id = "pStyle2">
+												항공
+											</p>
+											<div style="width: 6.622%; height: 100%;">
+												
+											</div>
+											<p id = "pStyle2">
+												해외숙소
+											</p>
+											<div style="width: 6.622%; height: 100%;">
+												
+											</div>
+											<p id = "pStyle2">
+												교통
+											</p>
+											<div style="width: 6.622%; height: 100%;">
+
+											</div>
+											<p id = "pStyle2">
+												레저/티켓
+											</p>
+										</section>
+										
+										
+									</section>
+								</section>
+							</section>
+                        </section>
+                    </section>
+                </section> 
+            </section>
+            <aside></aside> 
+        <script>
+            $(document).ready(function(){
+                
+                $("#approach").click(function(){
+                    window.location.href = "trainStations1.html";
+                })
+                $("#departure").click(function(){
+                    window.location.href = "trainStations2.html";
+                })
+                $("#setPeople").click(function(){
+                    window.location.href = "trainPeople.html";
+                })
+                
+            })
+            function Btn7(){
+                window.location.href = "train.html";
+            }
+
+           
+            
+        </script>
+</body>
+</html>

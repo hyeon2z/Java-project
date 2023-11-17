@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="frontweb.A1114Dao"
+	pageEncoding="UTF-8" import="frontweb.homework.A1114Dao"
 	import="frontweb.homework_vo.Location"%>
 <!DOCTYPE html>
 <html>

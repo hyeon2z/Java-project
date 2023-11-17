@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인원 선택</title>
+</head>
+<script src="jquery-3.1.1.js"></script>
+
+<body>
+  
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden;}
+        
+        header {
+            width: 100%; height: 4.65%; 
+            background: white;
+        }
+        
+        aside { 
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        
+        section {
+            width: 45%; height: 95.35%; float: left;
+            background: white;
+        }
+        aside {
+            width: 27.5%; height: 95.35%; float: left;
+            background: #f2f2f2;
+        }
+        button {
+            border: none;
+            display: flex;  width: 15.3%; height: 100%; justify-content: center; align-items: center; cursor: pointer; background-color:white;
+        }
+        #divStyle1 {
+          display: flex; justify-content: center; align-items: center;
+        }
+        p {
+          font-size: 14px; width:100%;text-align:left;
+        }
+        #pStyle1{
+          margin: 0; font-weight: bold; font-size: 17px; text-align: center;
+        }
+        #pStyle4{
+            color: rgb(129, 125, 125); font-size: 14px; margin-left: 3%;
+        }
+        #confirmBtn{
+            justify-content: center;
+            align-items: center;
+            background-color: #DE2E5F; border-radius:10px; border: none; width: 100%; height: 63%;
+            margin-top: 1%; margin-left: 3%; margin-right: 3%; margin-bottom: 5%; cursor: pointer; 
+        }
+        #confirmBtn:hover{
+            background-color: #BB1E4A;
+        }
+      </style>
+        <header style="border: 1px solid #E6E6E6;">
+            <div style="display: flex; height: 100%;">
+                <div style="width: 27.5%;"></div>
+            
+                <div style="width: 1.5%; display: flex; justify-content: flex-end; align-items: center;">
+                    <a href="train.html" style="width: 100%;">
+                        <img src="취소.png" style="float: right;" id="back" width="15px" height="15px">
+                    </a> <!-- 뒤로가기 -->
+                </div>
+                <div id = "divStyle1" style="width: 42%;">
+                    <p id="pStyle1">인원 선택</p>
+                </div>
+            
+                <div style="width: 1.5%;">
+                </div>
+                <div style="width: 27.5%; display: flex; align-items: center;">
+                    <h4 style="text-align: center; margin: 0;"></h4>
+                </div>
+            </div>
+        </header>
+            <aside></aside>
+            <section style="flex-direction: column;">
+                <section id = "divStyle1" style="width: 100%; height: 6%;">
+                    <p id = "pStyle4">
+                        탑승 인원(최대9명)</p>
+                </section>
+                
+                <section style="width: 100%; height:15%; ">
+                    <section style="display: flex; width:94%; margin-left: 3%;margin-right: 3%;">
+                        <section style="display: flex ;border: none; width: 100%; height: 100%; flex-direction: column;">
+                            <section style="display: flex; width:100%; height:50%;">
+                                <div style="display: flex; width: 15%;">
+                                    <p>성인</p>
+                                </div>
+                            <div style="display: flex;width:72%;"></div>
+                            <div style="display: flex;width:13%;">
+                                <button onclick="adultMinus()" style="display: flex;width:33.3%;">
+                                    <img src = "마이너스.png" style="width: 30px; height: 30px;">
+                                </button>
+                                <div style="display: flex;width:33.3%; flex-direction: column; justify-content: center;">
+                                    <p id="adult" style="text-align: center; font-size: 16px; margin: 0;">1</p>
+                                </div>
+                                <button onclick="adultPlus()" style="display: flex;width:33.3%;">
+                                    <img src = "플러스.png" style="width: 30px; height: 30px;">
+                                </button>
+                            </div>
+                            </section>
+                            <section style="display: flex; width:100%; height:50%;">
+                                <div style="display: flex; width: 15%;">
+                                    <p>아동</p>
+                                </div>
+                            <div style="display: flex;width:72%;"></div>
+                            <div style="display: flex;width:13%;">
+                                <button onclick="childMinus()" style="display: flex;width:33.3%;">
+                                    <img src = "마이너스.png" style="width: 30px; height: 30px;">
+                                </button>
+                                <div style="display: flex;width:33.3%; flex-direction: column; justify-content: center;">
+                                    <p id="child" style="text-align: center; font-size: 16px; margin: 0;">0</p>
+                                </div>
+                                <button onclick="childPlus()" style="display: flex;width:33.3%;">
+                                    <img src = "플러스.png" style="width: 30px; height: 30px;">
+                                </button>
+                            </div>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <section id = "divStyle1" style="width: 100%; height: 70%;"></section>
+                <section id = "divStyle1" style="width: 100%; height: 10%;">
+                    <section style="display: flex; width:100%; height: 100%;">
+                        <button onclick="confirmCnt()" id = "confirmBtn">
+                            <p style="color: white; font-weight: bold; font-size: 17px; text-align: center;">인원 적용</p>
+                        </button>
+                    </section>
+                </section>
+            </section>
+            <aside></aside> 
+      <script>
+        var adultCnt = 1;
+        var childCnt = 0;
+        function adultPlus(){
+                if((adultCnt+childCnt) < 9){
+                    localStorage.setItem('adultCnt',adultCnt+1);
+                adultCnt = Number(localStorage.getItem('adultCnt', adultCnt));
+                document.querySelector("#adult").innerText = adultCnt;
+                }
+            }
+            function adultMinus(){
+                if(adultCnt > 1 || localStorage.getItem('adultCnt') >1){
+                    localStorage.setItem('adultCnt',adultCnt-1);
+                adultCnt = Number(localStorage.getItem('adultCnt', adultCnt));
+                document.querySelector("#adult").innerText = adultCnt;
+                }
+            }
+            function childPlus(){
+                if((adultCnt+childCnt) < 9){
+                    localStorage.setItem('childCnt',childCnt+1);
+              childCnt = Number(localStorage.getItem('childCnt', childCnt));
+              document.querySelector("#child").innerText = childCnt;
+                }   
+            }
+            function childMinus(){
+                if(childCnt > 0 || localStorage.getItem('childCnt') >0){
+                    localStorage.setItem('childCnt',childCnt-1);
+              childCnt = Number(localStorage.getItem('childCnt', childCnt));
+              document.querySelector("#child").innerText = childCnt;
+                }   
+            }
+            if(localStorage.getItem('adultCnt')!=null){
+                document.querySelector("#adult").innerText = localStorage.getItem('adultCnt');
+            }
+            if(localStorage.getItem('childCnt')!=null){
+                document.querySelector("#child").innerText = localStorage.getItem('childCnt');
+            }
+
+            function confirmCnt(){
+                window.location.href = 'train.html';
+            }
+      </script>
+  
+</body>
+</html>
