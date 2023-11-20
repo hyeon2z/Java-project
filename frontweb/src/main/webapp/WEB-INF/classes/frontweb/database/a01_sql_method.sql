@@ -440,3 +440,7 @@ INSERT INTO trainschedule values('KR10000002','새마을','서울','부산','A05
 	50000,4.0);
 SELECT * FROM TRAINSCHEDULE
 WHERE departstation = '서울' AND arrivalstation = '대전';
+
+SELECT e.*, to_char(hiredate, 'YYYY-MM-DD') hiredatestr
+FROM emp01 e
+WHERE empno = 7499;

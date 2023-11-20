@@ -20,6 +20,31 @@ import = "frontweb.Emp"
 */ 
 public class PreparedStmtDao {
 	
+	public int templateCUD(String ename) {
+		int cudCnt = 0;
+		String sql = "INSERT INTO emp01(ename) values(?)";
+		try(Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);){
+			con.setAutoCommit(false);
+			
+			pstmt.setString(1, ename);
+			
+			cudCnt = pstmt.executeUpdate();
+			if(cudCnt == 0) {
+				System.out.println("CUD 실패");
+				con.rollback();
+			}else {
+				con.commit();
+				System.out.println("CUD성공");
+			}
+		}catch(SQLException e) {
+			System.out.println("DB 에러 :" + e.getMessage());
+		}catch(Exception e) {
+			System.out.println("일반 에러 :" + e.getMessage());
+		}
+				
+		return cudCnt;
+	}
+	
 	public Object template(String dname){
 		Object ob = new Object();
 		String sql = "select * from dept where dname like ?";
@@ -129,14 +154,21 @@ AND deptno = ?
 		String sql = "SELECT *\r\n"
 				+ "FROM emp01\r\n"
 				+ "WHERE ename LIKE ?\r\n"
-				+ "AND job LIKE ?\r\n"
-				+ "AND deptno = ?";
+				+ "AND job LIKE ?\r\n";
+		// 기본값 0인경우 전체 검색이 필요하기에 0은 검색조건에서 제외
+		// sql문과 pstmt에 처리
+		if(sch.getDeptno()!=0) {
+			sql	+= "AND deptno = ?";
+			sql += "order by empno";
+		}
+			
 		try(
 				Connection con = DBCon.con();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 			){
 			pstmt.setString(1, "%"+sch.getEname()+"%");
 			pstmt.setString(2, "%"+sch.getJob()+"%");
+			if(sch.getDeptno()!=0)
 			pstmt.setInt(3, sch.getDeptno());
 			try(
 					ResultSet rs = pstmt.executeQuery();
@@ -347,6 +379,125 @@ AND deptno = ?
 	}
 
 
+	public EmpDTO getEmp(int empno){
+		EmpDTO emp = null;
+		String sql = "SELECT e.*, to_char(hiredate, 'YYYY-MM-DD') hiredatestr \r\n"
+				+ "FROM emp01 e\r\n"
+				+ "WHERE empno = ?";
+	
+	
+		try(
+				Connection con = DB.con();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+			){
+			// 처리코드1
+			pstmt.setInt(1, empno);
+			try(
+					ResultSet rs = pstmt.executeQuery();
+				){
+				// 처리코드2
+				if(rs.next()) {
+					emp = new EmpDTO(
+							rs.getInt("empno"),
+							rs.getString("ename"),
+							rs.getString("job"),
+							rs.getInt("mgr"),
+							rs.getString("hiredatestr"),
+							rs.getDouble("sal"),
+							rs.getDouble("comm"),
+							rs.getInt("deptno")
+							);
+				}
+			}
+			
+		}catch(SQLException e) {
+			System.out.println("DB 에러 : " + e.getMessage());
+		}catch(Exception e) {
+			System.out.println("일반 에러 : " + e.getMessage());
+		}
+		return emp;
+	}
+/*
+UPDATE EMP01
+    SET ename = ?,
+        job = ?,
+        mgr = ?,
+        hiredate = to_date(?, 'YYYY-MM-DD'),
+        sal = ?,
+        comm = ?,
+        deptno = ?
+    WHERE empno = ?
+*/
+	public int updateEmp01(EmpDTO upt) {
+		int uptCnt = 0;
+		String sql = "UPDATE EMP01\r\n"
+				+ "    SET ename = ?,\r\n"
+				+ "        job = ?,\r\n"
+				+ "        mgr = ?,\r\n"
+				+ "        hiredate = to_date(?, 'YYYY-MM-DD'),\r\n"
+				+ "        sal = ?,\r\n"
+				+ "        comm = ?,\r\n"
+				+ "        deptno = ?\r\n"
+				+ "    WHERE empno = ?";
+		try (Connection con = DBCon.con();
+	            PreparedStatement pstmt = con.prepareStatement(sql);)
+			{
+	            con.setAutoCommit(false);
+	         // 내가 처리할 처리코드 1
+	            pstmt.setString(1,upt.getEname());
+	            pstmt.setString(2,upt.getJob());
+	            pstmt.setInt(3,upt.getMgr());
+	            pstmt.setString(4,upt.getHiredateStr());
+	            pstmt.setDouble(5,upt.getSal());
+	            pstmt.setDouble(6,upt.getComm());
+	            pstmt.setInt(7,upt.getDeptno());
+	            pstmt.setInt(8,upt.getEmpno());
+	            
+	            uptCnt = pstmt.executeUpdate();
+	            if(uptCnt==0) {
+	            	System.out.println("수정 실패");
+	            	con.rollback();
+	            }else {
+	            	con.commit();
+	            	System.out.println("CUD 성공");
+	            }
+	           
+	         } catch (SQLException e) {
+	            System.out.println("DB에러 : " + e.getMessage());
+	            //con.rollback;
+	         } catch (Exception e) {
+	            System.out.println("일반에러 : " + e.getMessage());
+	         }
+		return uptCnt;
+	}
+	public int deleteEmp01(int empno) {
+		int delCnt = 0;
+		String sql = "delete from emp01 where empno=?";
+		try (Connection con = DBCon.con();
+	            PreparedStatement pstmt = con.prepareStatement(sql);)
+			{
+	            con.setAutoCommit(false);
+	         // 내가 처리할 처리코드 1
+	            pstmt.setInt(1,empno);
+	            delCnt = pstmt.executeUpdate();
+	            
+	            if(delCnt==0) {
+	            	System.out.println("삭제 실패");
+	            	con.rollback();
+	            }else {
+	            	con.commit();
+	            	System.out.println("삭제 성공");
+	            }
+	           
+	         } catch (SQLException e) {
+	            System.out.println("DB에러 : " + e.getMessage());
+	            //con.rollback;
+	         } catch (Exception e) {
+	            System.out.println("일반에러 : " + e.getMessage());
+	         }
+		return delCnt;
+	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PreparedStmtDao dao = new PreparedStmtDao();

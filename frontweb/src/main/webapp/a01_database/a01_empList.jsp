@@ -1,15 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="frontweb.database.PreparedStmtDao"
 	import="frontweb.Emp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h2 align ="center">사원정보조회</h2>
-	<%
+		<%
 	PreparedStmtDao dao = new PreparedStmtDao();
 	%>
 	<%-- a01_empList.jsp?ename=홍길동&job=사원&deptno=10 --%>
@@ -21,6 +13,7 @@
 	<h3 align ="center">부서:
 	<%=request.getParameter("deptno")==null?"0":request.getParameter("deptno") %></h3>
 	--%>
+	
 	<%
 	String ename = request.getParameter("ename");
 	if(ename==null) ename = "";
@@ -29,17 +22,46 @@
 	if(job==null) job = "";
 	
 	String deptnoStr = request.getParameter("deptno");
-	int deptno = 10;
+	int deptno = 0;
 	if(deptnoStr!=null) deptno = Integer.parseInt(deptnoStr);
 	%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src = "jquery-3.1.1.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("[name=deptno]").val("<%=deptno%>")
+		})
+		
+	</script>
+</head>
+<body>
+	<h2 align ="center">사원정보조회</h2>
+
 	<form>
 	<table width = "40%" border align ="center">
 		<col width = "40%">
 		<col width = "60%">
 		<tr><th>사원명</th><td><input type="text" name="ename" value="<%=ename%>"/></td></tr>
 		<tr><th>직책명</th><td><input type="text" name="job" value="<%=job%>"/></td></tr>
-		<tr><th>부서</th><td><input type="text" name="deptno" value="<%=deptno%>"/></td></tr>
-		<tr><td colspan="2"><input type="submit" value="검색"/></td></tr>
+		<tr><th>부서</th>
+		<td><select name = "deptno" style = 'width:80%'>
+			<option value = "0">전체</option>
+			<option value = "10">인사</option>
+			<option value = "20">재무</option>
+			<option value = "30">회계</option>
+			<option value = "40">기획</option>
+		</select>
+		</td></tr>
+		<tr><td colspan="2">
+		<input type="submit" value="검색"/>
+		<input type="button" value="등록화면"
+		onclick=location.href = "a01_empInsert.jsp";
+		/>
+		</td></tr>
 	</table>
 	</form>
 
@@ -56,7 +78,7 @@
 		<%
 		for (Emp emp : dao.getEmpList(new Emp(ename, job, deptno))) {
 		%>
-		<tr>
+		<tr ondblclick="goPage(<%=emp.getEmpno()%>)">
 			<th><%=emp.getEmpno()%></th>
 			<th><%=emp.getEname()%></th>
 			<th><%=emp.getJob()%></th>
@@ -69,6 +91,12 @@
 		}
 		%>
 	</table>
+	<script type = "text/javascript">
+		function goPage(empno){
+			// alert(empno)
+			location.href = "a01_empDetail.jsp?empno="+empno;
+		}
+	</script>
 
 </body>
 </html>
