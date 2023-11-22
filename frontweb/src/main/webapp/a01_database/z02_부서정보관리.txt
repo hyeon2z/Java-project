@@ -1,0 +1,64 @@
+# 부서정보 처리 파일
+1. java
+    dao
+    PreparedStmtDao.java
+        getDeptList() 부서정보 리스트
+        insertDept(Dept ins) 부서정보 등록
+        getDept(int deptno) 부서정보 상세
+        updateDept(Dept upt) 부서정보 수정
+        deleteDept(int deptno) 부서정보 삭제
+    jsp
+     a01_database\a05_deptList.jsp 부서정보리스트
+     a01_database\a05_deptInsert.jsp 부서정보등록화면/등록처리
+     a01_database\a05_deptDetail.jsp 부서정보상세
+     a01_database\a05_deptProc.jsp 부서정보수정/삭제
+     
+2. 부서정보 등록
+	1) 등록 버튼 추가. onclick location.href = "a05_deptInsert.jsp" 이동
+		<input type = "button" value = "부서등록"
+				onclick = "location.href = 'a05_deptInsert.jsp'"/>
+	
+	2) 등록 기본 화면 구성 
+	    a05_deptInsert.jsp
+		<form>
+	    <input name = "deptno"/>
+	    <input name = "dname"/>
+	    <input name = "loc"/>
+	    <input type = "submit" value = "등록"/>
+	    <input type = "button" value = "메인리스트화면"
+	            onclick = "location.href = 'a05_deptList.jsp'"/>
+		</form>
+		
+	3) 등록 처리 dao 기능 메서드처리
+	    insertDept(Dept ins)
+	        sql = "insert int dept01 values(?,?,?)
+	        pstmt.setInt(1, ins.getDeptno());
+	        pstmt.setString(2, ins.getDname());
+	        pstmt.setString(3, ins.getLoc());
+	        
+	4) 등록 화면에서 요청값 처리
+	    String deptnoStr = request.getParameter("deptno");
+	    int deptno = 0; if(deptnoStr!=null) deptno = Integer.parseInt(deptnoStr) 
+		String dname = request.getParameter("dname");
+		String loc = request.getParameter("loc");
+	
+	5) 등록 화면에 Dao, vo(Dept) import
+	    PreparedStmtDao dao = new PreparedStmtDao();
+	    boolean isInsert = false;
+	    if(deptnoStr!=null){
+	    	dao.insertDept(new Dept(deptno, dname, loc));
+	    	isInsert = true;
+		}
+	
+	6) 등록 성공 javascript 처리
+		var isInsert = <%=isInsert%>;
+		if(isInsert){
+			if(!confirm("부서정보등록 성공\n계속등록하시겠습니까?"))
+				location.href = "a05_deptList.jsp";
+		}
+	
+3. 부서정보 상세
+
+4. 부서정보 수정
+
+5. 부서정보 삭제

@@ -59,7 +59,7 @@
 		<tr><td colspan="2">
 		<input type="submit" value="검색"/>
 		<input type="button" value="등록화면"
-		onclick=location.href = "a01_empInsert.jsp";
+		onclick="location.href = 'a01_empInsert.jsp'"
 		/>
 		</td></tr>
 	</table>

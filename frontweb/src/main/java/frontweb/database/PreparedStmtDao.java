@@ -80,37 +80,6 @@ try(){
  */
 	
 	
-	public List<Dept> getDeptList(String dname){
-		List<Dept> dlist = new ArrayList<Dept>();
-		String sql = "select deptno,dname,loc from dept where dname like ?";
-		// try(객체처리){} : try resource 구문 파일이나 DB연결 자동 자원해제
-		try(
-				Connection con = DB.con();
-				PreparedStatement pstmt = con.prepareStatement(sql);
-			){
-			pstmt.setString(1, "%"+dname+"%");
-			try(
-					ResultSet rs = pstmt.executeQuery();
-				){
-				while(rs.next()) {
-					dlist.add(new Dept(
-								rs.getInt("deptno"),
-								rs.getString("dname"),
-								rs.getString("loc")
-							));
-				}
-				System.out.println("데이터 건수 : " + dlist.size());
-			}
-			
-		}catch(SQLException e) {
-			System.out.println("DB 에러 : " + e.getMessage());
-		}catch(Exception e) {
-			System.out.println("일반 에러 : " + e.getMessage());
-		}
-		
-		return dlist;
-	}
-	
 	public List<Dept> getDeptList(String dname, String loc){
 		List<Dept> dlist = new ArrayList<Dept>();
 		String sql = "select deptno,dname,loc from dept01 where dname like ? and loc like ?";
@@ -379,7 +348,18 @@ AND deptno = ?
 	}
 
 
-	public EmpDTO getEmp(int empno){
+	/*
+	try(){
+			 
+		}catch(SQLException e) {
+			
+		}catch(Exception se) {
+			
+		}
+	 */
+		
+		
+		public EmpDTO getEmp(int empno){
 		EmpDTO emp = null;
 		String sql = "SELECT e.*, to_char(hiredate, 'YYYY-MM-DD') hiredatestr \r\n"
 				+ "FROM emp01 e\r\n"
@@ -498,6 +478,324 @@ UPDATE EMP01
 		return delCnt;
 	}
 	
+	/*
+	try(){
+			 
+		}catch(SQLException e) {
+			
+		}catch(Exception se) {
+			
+		}
+	 */
+		
+		
+		public List<Dept> getDeptList(String dname){
+			List<Dept> dlist = new ArrayList<Dept>();
+			String sql = "select deptno,dname,loc from dept where dname like ? order by deptno";
+			// try(객체처리){} : try resource 구문 파일이나 DB연결 자동 자원해제
+			try(
+					Connection con = DB.con();
+					PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				pstmt.setString(1, "%"+dname+"%");
+				try(
+						ResultSet rs = pstmt.executeQuery();
+					){
+					while(rs.next()) {
+						dlist.add(new Dept(
+									rs.getInt("deptno"),
+									rs.getString("dname"),
+									rs.getString("loc")
+								));
+					}
+					System.out.println("데이터 건수 : " + dlist.size());
+				}
+				
+			}catch(SQLException e) {
+				System.out.println("DB 에러 : " + e.getMessage());
+			}catch(Exception e) {
+				System.out.println("일반 에러 : " + e.getMessage());
+			}
+			
+			return dlist;
+		}
+		
+		public Dept getDept(int deptno) {
+			Dept deptInfo = null;
+			String sql = "SELECT d.*\r\n"
+					+ "FROM dept01 d\r\n"
+					+ "WHERE deptno = ?";
+			try(
+					Connection con = DB.con();
+					PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				// 처리코드1
+				pstmt.setInt(1, deptno);
+				try(
+						ResultSet rs = pstmt.executeQuery();
+					){
+					// 처리코드2
+					if(rs.next()) {
+						deptInfo = new Dept(
+								rs.getInt("deptno"),
+								rs.getString("dname"),
+								rs.getString("loc")
+								);
+					}
+				}
+				
+			}catch(SQLException e) {
+				System.out.println("DB 에러 : " + e.getMessage());
+			}catch(Exception e) {
+				System.out.println("일반 에러 : " + e.getMessage());
+			}
+			return deptInfo;
+		}
+		
+		public int insertDept(Dept ins) {
+			int insCnt = 0;
+			String sql = "INSERT INTO dept01 VALUES (?,?,?)";
+			try (Connection con = DBCon.con();
+		            PreparedStatement pstmt = con.prepareStatement(sql);) {
+		            con.setAutoCommit(false);
+		         // 내가 처리할 처리코드 1
+		            pstmt.setInt(1,ins.getDeptno());
+		            pstmt.setString(2,ins.getDname());
+		            pstmt.setString(3,ins.getLoc());
+		            
+		            insCnt = pstmt.executeUpdate();
+		            if(insCnt==0) {
+		            	System.out.println("등록 실패");
+		            	con.rollback();
+		            }else {
+		            	con.commit();
+		            	System.out.println("등록 성공");
+		            }
+		         } catch (SQLException e) {
+		            System.out.println("DB에러 : " + e.getMessage());
+		            //con.rollback;
+		         } catch (Exception e) {
+		            System.out.println("일반에러 : " + e.getMessage());
+		         }
+			return insCnt;
+		}
+		public int updateDept(Dept upt) {
+			int uptCnt = 0;
+			String sql = "UPDATE DEPT01\r\n"
+					+ "SET deptno = ?, dname = ?, loc = ?\r\n"
+					+ "WHERE deptno = ?";
+			try (Connection con = DBCon.con();
+		            PreparedStatement pstmt = con.prepareStatement(sql);)
+				{
+		            con.setAutoCommit(false);
+		         // 내가 처리할 처리코드 1
+		            pstmt.setInt(1,upt.getDeptno());
+		            pstmt.setString(2,upt.getDname());
+		            pstmt.setString(3,upt.getLoc());
+		            
+		            uptCnt = pstmt.executeUpdate();
+		            if(uptCnt==0) {
+		            	System.out.println("수정 실패");
+		            	con.rollback();
+		            }else {
+		            	con.commit();
+		            	System.out.println("CUD 성공");
+		            }
+		           
+		         } catch (SQLException e) {
+		            System.out.println("DB에러 : " + e.getMessage());
+		            //con.rollback;
+		         } catch (Exception e) {
+		            System.out.println("일반에러 : " + e.getMessage());
+		         }
+			return uptCnt;
+		}
+		public int deleteDept(int deptno) {
+			int delCnt = 0;
+			String sql = "DELETE FROM dept01 WHERE deptno = ?";
+			try (Connection con = DBCon.con();
+		            PreparedStatement pstmt = con.prepareStatement(sql);)
+				{
+		            con.setAutoCommit(false);
+		         // 내가 처리할 처리코드 1
+		            pstmt.setInt(1,deptno);
+		            delCnt = pstmt.executeUpdate();
+		            
+		            if(delCnt==0) {
+		            	System.out.println("삭제 실패");
+		            	con.rollback();
+		            }else {
+		            	con.commit();
+		            	System.out.println("삭제 성공");
+		            }
+		           
+		         } catch (SQLException e) {
+		            System.out.println("DB에러 : " + e.getMessage());
+		            //con.rollback;
+		         } catch (Exception e) {
+		            System.out.println("일반에러 : " + e.getMessage());
+		         }
+			return delCnt;
+		}
+		public List<Member> getMemberList(String name){
+			List<Member> member = new ArrayList<Member>();
+			String sql = "select * from member01 where name like ? order by mno";
+			// try(객체처리){} : try resource 구문 파일이나 DB연결 자동 자원해제
+			try(
+					Connection con = DB.con();
+					PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				pstmt.setString(1, "%"+name+"%");
+				try(
+						ResultSet rs = pstmt.executeQuery();
+					){
+					while(rs.next()) {
+						member.add(new Member(
+									rs.getInt("mno"),
+									rs.getString("name"),
+									rs.getString("id"),
+									rs.getString("pwd"),
+									rs.getString("auth"),
+									rs.getInt("point")
+								));
+					}
+					System.out.println("데이터 건수 : " + member.size());
+				}
+				
+			}catch(SQLException e) {
+				System.out.println("DB 에러 : " + e.getMessage());
+			}catch(Exception e) {
+				System.out.println("일반 에러 : " + e.getMessage());
+			}
+			
+			return member;
+		}
+		public Member getMember(int mno) {
+			Member member = null;
+			String sql = "SELECT m.*\r\n"
+					+ "FROM member01 d\r\n"
+					+ "WHERE mno = ?";
+			try(
+					Connection con = DB.con();
+					PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+				// 처리코드1
+				pstmt.setInt(1, mno);
+				try(
+						ResultSet rs = pstmt.executeQuery();
+					){
+					// 처리코드2
+					if(rs.next()) {
+						member = new Member(
+								rs.getInt("mno"),
+								rs.getString("name"),
+								rs.getString("id"),
+								rs.getString("pwd"),
+								rs.getString("auth"),
+								rs.getInt("point")
+								);
+					}
+				}
+				
+			}catch(SQLException e) {
+				System.out.println("DB 에러 : " + e.getMessage());
+			}catch(Exception e) {
+				System.out.println("일반 에러 : " + e.getMessage());
+			}
+			return member;
+		}
+		public int insertMember(Member ins) {
+			int insCnt = 0;
+			String sql = "INSERT INTO Member01 VALUES (?,?,?,?,?,?)";
+			try (Connection con = DBCon.con();
+		            PreparedStatement pstmt = con.prepareStatement(sql);) {
+		            con.setAutoCommit(false);
+		         // 내가 처리할 처리코드 1
+		            pstmt.setInt(1,ins.getMno());
+		            pstmt.setString(2,ins.getName());
+		            pstmt.setString(3,ins.getId());
+		            pstmt.setString(4,ins.getPwd());
+		            pstmt.setString(5,ins.getAuth());
+		            pstmt.setInt(6,ins.getPoint());
+		            
+		            insCnt = pstmt.executeUpdate();
+		            if(insCnt==0) {
+		            	System.out.println("등록 실패");
+		            	con.rollback();
+		            }else {
+		            	con.commit();
+		            	System.out.println("등록 성공");
+		            }
+		         } catch (SQLException e) {
+		            System.out.println("DB에러 : " + e.getMessage());
+		            //con.rollback;
+		         } catch (Exception e) {
+		            System.out.println("일반에러 : " + e.getMessage());
+		         }
+			return insCnt;
+		}
+		public int updateMember(Member upt) {
+			int uptCnt = 0;
+			String sql = "UPDATE MEMBER01\r\n"
+					+ "SET mno = ?, name = ?, id = ?, pwd = ?, auth = ?, point = ?\r\n"
+					+ "WHERE deptno = ?";
+			try (Connection con = DBCon.con();
+		            PreparedStatement pstmt = con.prepareStatement(sql);)
+				{
+		            con.setAutoCommit(false);
+		         // 내가 처리할 처리코드 1
+		            pstmt.setInt(1,upt.getMno());
+		            pstmt.setString(2,upt.getName());
+		            pstmt.setString(3,upt.getId());
+		            pstmt.setString(4,upt.getPwd());
+		            pstmt.setString(5,upt.getAuth());
+		            pstmt.setInt(6,upt.getPoint());
+		            
+		            uptCnt = pstmt.executeUpdate();
+		            if(uptCnt==0) {
+		            	System.out.println("수정 실패");
+		            	con.rollback();
+		            }else {
+		            	con.commit();
+		            	System.out.println("CUD 성공");
+		            }
+		           
+		         } catch (SQLException e) {
+		            System.out.println("DB에러 : " + e.getMessage());
+		            //con.rollback;
+		         } catch (Exception e) {
+		            System.out.println("일반에러 : " + e.getMessage());
+		         }
+			return uptCnt;
+		}
+		public int deleteMember(int mno) {
+			int delCnt = 0;
+			String sql = "DELETE FROM MEMBER01 WHERE mno = ?";
+			try (Connection con = DBCon.con();
+		            PreparedStatement pstmt = con.prepareStatement(sql);)
+				{
+		            con.setAutoCommit(false);
+		         // 내가 처리할 처리코드 1
+		            pstmt.setInt(1,mno);
+		            delCnt = pstmt.executeUpdate();
+		            
+		            if(delCnt==0) {
+		            	System.out.println("삭제 실패");
+		            	con.rollback();
+		            }else {
+		            	con.commit();
+		            	System.out.println("삭제 성공");
+		            }
+		           
+		         } catch (SQLException e) {
+		            System.out.println("DB에러 : " + e.getMessage());
+		            //con.rollback;
+		         } catch (Exception e) {
+		            System.out.println("일반에러 : " + e.getMessage());
+		         }
+			return delCnt;
+		}
+		
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PreparedStmtDao dao = new PreparedStmtDao();
