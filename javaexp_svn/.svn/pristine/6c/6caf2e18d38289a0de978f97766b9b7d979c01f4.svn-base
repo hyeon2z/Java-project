@@ -1,0 +1,104 @@
+
+package Small_Project;
+import java.util.Scanner;
+public class Array 
+{
+	final int MailBoxSize=3; // 배열 사이즈 설정
+	Mail arr[]=new Mail[MailBoxSize]; // 배열선언
+	int pointing=-1; // 배열 최종위치 포인터(인덱스)
+	
+	Scanner scanner=new Scanner(System.in); //스캐너 클래스 정의
+	
+	void showAllMail()
+	{
+		if(pointing==-1)
+		{
+			System.out.println("메일함이 비어있습니다.");
+		}
+		else
+		{
+			for(int i=0;i<=pointing;i++)
+			{
+				arr[i].showAll();
+			}
+		}
+		System.out.println("");
+	}
+	void addMail()
+	{
+		if(pointing>=MailBoxSize-1)
+		{
+			System.out.println("메일함이 가득 찼습니다.");
+		}
+		else
+		{
+			System.out.println("새로운 메일을 추가하세요.");
+			/*
+			private String sender;
+			private String receiver;
+			private int date; //20230922 format
+			private String content;
+			 */
+			System.out.print("New Sender : ");
+			String newSender=scanner.nextLine();
+			
+			System.out.print("New Receiver : ");
+			String newReceiver=scanner.nextLine();
+			
+			System.out.print("New Date : ");
+			long newDate=Long.parseLong(scanner.nextLine());
+			
+			System.out.print("New Content : ");
+			String newContent=scanner.nextLine();
+
+			Mail newMail=new Mail(newSender,newReceiver,newDate,newContent);
+			this.pointing++;
+			arr[pointing]=newMail;
+		}
+	}
+
+	void removeMail()
+	{
+		boolean success=false;
+		System.out.println("삭제하기 원하는 메일의 date를 입력하세요.");
+		int date_delete=Integer.parseInt(scanner.nextLine());
+
+		
+		for(int i=0;i<=pointing;i++)
+		{
+
+			if(arr[0].getDate()==date_delete)
+			{
+				arr[0]=null;
+				for(int k=0;k<pointing;k++)
+				{
+					arr[k]=arr[k+1];
+				}
+				success=true;
+				pointing--;
+			}
+			else if(arr[i].getDate()==date_delete)
+			{
+				arr[i]=null;
+				success=true;
+				for(int j=i;j<pointing;j++) //삭제된 원소의 빈자리를 채우기위해 뒤에서 끌어온다.
+				{
+					arr[j]=arr[j+1];
+				}
+				pointing--;
+				break;
+			}
+
+		}
+		if (success==true)
+		{
+			System.out.println("성공적으로 삭제되었습니다.");
+		}
+		else
+		{
+			System.out.println("해당 date와 동일한 메일이 없습니다.");
+		}
+	}
+	
+	
+}

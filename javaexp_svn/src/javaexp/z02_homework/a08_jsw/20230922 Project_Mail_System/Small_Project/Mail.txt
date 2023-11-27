@@ -1,0 +1,86 @@
+package Small_Project;
+
+public class Mail
+{
+	private String sender;
+	private String receiver;
+	private long date; //20230922 format
+	private String content;
+	
+	//디폴트 생성자
+	public Mail()
+	{
+		
+	}
+	//매개변수 전체 생성자
+	public Mail(String sender, String receiver, long date,String content)
+	{
+		this.sender=sender;
+		this.receiver=receiver;
+		this.date=date;
+		this.content=content;
+	}
+	
+	//포인터 출력
+	public Mail getAddress()
+	{
+		return this;
+	}
+	
+	//전체 출력
+	public void showAll()
+	{
+		System.out.println("sender : "+sender);
+		System.out.println("receiver : "+receiver);
+		System.out.println("date : "+date);
+		System.out.println("content : "+content);
+		System.out.println("");
+
+	}
+	
+	
+	
+	
+	//개별 초기화 밑 리턴
+	public String getSender() 
+	{
+		return sender;
+	}
+	public void setSender(String sender)
+	{
+		this.sender = sender;
+	}
+	public String getReceiver() 
+	{
+		return receiver;
+	}
+	public void setReceiver(String receiver) 
+	{
+		this.receiver = receiver;
+	}
+	public long getDate()
+	{
+		return date;
+	}
+	public void setDate(long date)
+	{
+		this.date = date;
+	}
+	public String getContent()
+	{
+		return content;
+	}
+	public void setContent(String content)
+	{
+		this.content = content;
+	}
+	
+	//동시에 전부 초기화
+	public void setRecord(String sender, String receiver, long date,String content)
+	{		
+		this.sender = sender;
+		this.receiver = receiver;
+		this.date = date;
+		this.content = content;
+	}
+}

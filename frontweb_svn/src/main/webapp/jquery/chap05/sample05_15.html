@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$(“selector[attr*=‘value']") 선택자 실습</title>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+      /*
+      $("[속성*=속성값]")
+         속성값이 포함되어 있을 때
+      $("[속성~=속성값]")
+         속성값이 단어로 포함되어 있을 때
+      */
+	   $( "input[name*='man']" ).val( "man 글자 포함" );
+	   $( "input[name~='man']" ).css("border" , " 3px solid red");
+	   $( "input[name |='man']" ).css("border" , " 3px dotted blue");
+   });
+</script>
+</head>
+<body>
+<input name="man">
+<input name="man-news">
+<input name="milk man">
+<input name="letterman2">
+<input name="new man milk">
+<input name="superman">
+</body>
+</html>

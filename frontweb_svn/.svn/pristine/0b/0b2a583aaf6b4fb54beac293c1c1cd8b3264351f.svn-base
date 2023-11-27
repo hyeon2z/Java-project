@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+
+<body>
+	<script>
+		// # 아래 내용을 수업 예제 코드와 인터넷도 검색해서 정리해보세요
+		// [개념] 1. js의 ", '의 js와의 차이점을 기술하세요
+		//  java에서 "는 문자열 데이터를 입력할 때 사용하고,
+		// '는 문자 데이터를 입력할 때 사용한다.
+		// 하지만 js에서는 둘다 문자열 데이터이다.
+
+		// [개념] 2. js의 ", ' 데이터 출력형식을 기술하세요.
+		//   alert("텍스트") => 텍스트
+		//  alert('텍스트') => 텍스트
+		//  alert("텍스트'해인'") => 텍스트'해인'
+		//  alert('텍스트"해인"') => 텍스트"해인"
+		// ""안에 ""을 사용 하고 싶으면 \ 사용하면 된다.
+		// ex) alert("텍스트\"해인"")
+		// ex) alert('텍스트\'해인'')
+
+		// [개념] 3. js의 데이터유형을 기술하고, 예제를 통해 데이터 유형을 확인하는 함수와 함께 출력하세요.
+		// 문자열, 숫자형(실수), boolean형, 함수형, 객체형이 있다.
+
+		var name = "해인";
+		var price = 35;
+		var bool = true;
+		var sayHello = function () {
+			alert("함수 호출")
+			return "하이";
+		};
+		var x = {name: "해인", hose: "godlssl@naver.com"};
+
+		console.log(typeof (name))
+		console.log(typeof (price))
+		console.log(typeof (bool))
+		console.log(typeof (sayHello))
+		console.log(typeof (x))
+
+		// [확인] 4. js를 통해서 입력한 영화 관객 인원수와 관람료를 통한 총비용을 출력하게 하세요.
+		var moveCnt = 30;
+		var movePrice = 3000;
+		var tot = moveCnt * movePrice;
+		console.log(tot)
+
+		// [개념] 5. BOM과 DOM의 차이점을 기술하세요.
+		// BOM(Browser Object Model) : window 속성에 속하여 document가 아닌, window를 제어
+		// DOM(Document Object Model) : document, 현재 눈에 보이는 웹문서에 대한 제어와 변경
+
+		// [개념] 6. 문자열을 선언하고,
+		// 대입하는 것과 누적하는 것의 차이점을 예시로 만들어서 처리하세요.    
+		var name1
+		name1 = "문자열" // 대입하는 것
+		name1 += "누적" // 누적하는것
+		console.log(name1);
+
+		// [개념] 7. ++변수, 변수--의 의미를 예시를 통해서 기술하세요.
+		var cnt = 3;
+		++cnt; // 4 // 증가 후 출력
+		cnt--; // 4출력 후 3으로 감소
+		console.log(cnt) //3
+
+		// [개념] 8. js에서 변수을 선언/할당에 있어서, java와의 차이점을 예제를 통해 기술하세요.
+		// js에서는 자바와 달리 중복된 변수 선언/할당해도
+		//에러가 발생하지 않음. 
+		// 최종적으로 할당한 변수를 인식함.
+		var name2 = "민수";
+		var name2 = "성수";
+		var name2 = "진수";
+		console.log(name2) //최종적으로 할당한 변수는 진수가 출력된다.
+		// 자바에서는 중복 변수 선언시, 오류 남. 선언 자체 불가.
+		var num01;
+		alert(num01) // 선언 후 할당 하지 않으면 프로세스를 중단하지는 않지만, 
+		//에러코드 (undefined) 출력 됨
+		// [개념] 9. prompt창의 사용법을 기본예제를 통해서 기술하세요..
+		var name3 = prompt("이름을 입력하세요", "");
+		// var 변수명 = prompt("메세지내용","입력초기값");
+		// 확인 : 입력값, 취소 : null로 할당
+		// 입력된 데이터는 기본적으로 String 타입임.
+
+		// [개념] 10. confirm창의 사용법을 기본예제를 통해서 기술하세요..
+		//  var  변수명= confirm('노출될 메세지')
+		// var  isEnter= confirm('입장하시겠습니까?')
+		// if(isEnter){
+		//   alert("입장")
+		// }else{
+		//   alert("퇴장")
+		// }
+		// console.log(isEnter)
+		// 확인을 누르면 true가 출력되고, 취소를 누르면 false가 출력된다.
+		// if를 써서 결과 값 출력 가능
+
+		// [개념] 11. 형변환 '52' + 273 + 12, 52 + 273 + '12' 차이점을 기술하세요.
+		//  '52' + 273 + 12 ==> 앞에 문자열이 선언되어 있으면 + 숫자는 문자열로 변경이 되어서
+		// '52'+'273'+'12' 가 되어 ==> 최종적으로 5227312 가 된다.
+		// 52 + 273 + '12'는 52+273이 먼저 더해지고 (325), 뒤에 문자열과 더해질때 325 역시,
+		// 문자열이 되어 '325'+'12' ==> 32512가 된다. 
+
+		// [개념] 12. js에서 형변환의 특징을 예제를 통해 기술하세요
+		// + 제외한 모든 사칙연산자와 %에서
+		// 숫자형 문자열일 때, 자동형변환 하여 연산을 처리해 준다.
+		// ==> 최종 결과는 숫자가 된다.
+		console.log(3 * 5);
+		console.log(3 * '5');
+		console.log('3' * '5');
+		console.log('3' * 5);
+		// 모두 최종 결과는 숫자 이다.
+		console.log(typeof (3 * 5));
+		console.log(typeof (3 * '5'));
+		console.log(typeof ('3' * '5'));
+		console.log(typeof ('3' * 5));
+
+		//prompt나 alert으로 결과가 출력할때는 숫자를 입력해도 문자열로 출력되기때문에
+		// + 계산 시,  숫자형 변환이 필요한데
+		// 변수 앞에 Number를 붙이면 된다. (그 외는 자동 형변환으로 연산 가능)
+		// var price1 = Number("오늘 먹은 점심의 가격을 입력하세요",0)
+		var price1 = prompt("오늘 먹은 점심의 가격을 입력하세요", 0)
+		var numberPrice1 = Number(price1);
+		alert(numberPrice1 + 1000);
+
+		// [개념] 13. js에서 사용하는 Math객체의 하위 메서드를 예제를 통해 기술하세요.
+		var randomNum1 = Math.floor(Math.random() * 10) // 실수 내림 처리(정수형)
+		var randomNum2 = Math.random() * 10 // 0.0~ 1.0 임의의 수 출력
+		var randomNum3 = Math.floor(Math.random() * 10)
+		var randomNum4 = Math.floor(Math.random() * 10)
+		var sum = randomNum1 + randomNum3 + randomNum4;
+		var randomNum4 = Math.ceil(Math.random() * 10)
+		// var sum = randomNum1+randomNum2+randomNum3
+		console.log(randomNum1) //9
+		console.log(randomNum2) //8.215841654...
+		console.log(sum / 3) //5.333333
+		console.log(Math.round(sum / 3)) //5 // 반올림
+		console.log(Math.ceil(sum / 3)) //6 // 올림
+
+		// [확인] 14. js에서 사용하는 Math객체의 random()메서드를 활용해서 모두의 마블 2개의 팀의 점수를 나타내세요.
+
+		var team1 = Math.floor(Math.random() * 10)
+		var team2 = Math.floor(Math.random() * 10)
+		console.log(team1 + "점")
+		console.log(team2 + "점")
+
+		// [확인] 15. js에서 back tick 사용을 통해서 변수 선언과 활용 예제 만들어 기술하세요
+		var familyAge1 = 28
+		var familyAge2 = 30
+		console.log(`오빠와 동생의 나이 
+     합은 ${familyAge1 + familyAge2}이다`);
+      //줄 바뀜 바로 반영, S{변수명}으로 데이터 사용 가능
+
+
+	</script>
+
+</body>
+
+</html>

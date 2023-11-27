@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  텍스트 기반 RPG게임(팀프로젝트)
+        let character; 
+        let exp; 
+        let atk;
+        let def;
+        let maxHp;
+        let hp;
+        let slime;
+        let level;
+        let playerSelect;
+        let gainExp;
+        let usrAttack;
+        let monsterAttack;
+
+        function rpgGame(){
+            character = prompt("캐릭터의 이름을 입력하세요","")
+            alert("게임시작")
+            player();
+            while(true) {
+                playerSelect = prompt(`1. 상태창 열기
+2. 사냥터 가기
+3. 게임종료(데이터는 저장되지 않습니다.)`,0)
+                if(playerSelect == 1) {
+                    playerInfo();
+                    continue;
+                }else if(playerSelect == 2) {
+                    monster();
+                    fightMonster();
+                }else if(playerSelect == 3) {
+                    alert("게임종료")
+                    break;
+                }
+            }
+            
+            monster();
+            levelUp();
+        }
+        function playerInfo(){
+            alert(`##캐릭터 상태창##
+이름 : ${character}
+레벨 : ${level}
+현재경험치 : ${exp}
+최대경험치 : ${maxExp}
+현재체력 : ${hp}
+최대체력 : ${maxHp}
+공격력 : ${atk}
+방어력 : ${def}
+                `)
+        }
+
+        function player(){ // 기본 플레이어 상태
+            level = 1;
+            exp = 0;
+            maxExp = 20;
+            atk = 5;
+            def = 1;
+            maxHp = 20;
+            hp = maxHp;
+        }
+
+        function expGet(){
+            exp += slime.gainExp;
+            alert(`경험치 ${slime.gainExp}만큼 획득!`)
+        }
+
+        function monster(){
+            slime = {
+                atk : 3,
+                def : 0,
+                maxHp : 10,
+                hp : maxHp,
+                gainExp : Math.floor((Math.random()+1) * 2)
+            };
+            alert("슬라임이 나타났다!")
+        }
+        function levelUp(){
+            alert("레벨업!")
+            alert("체력이 가득 찼습니다.")
+            level++
+            atk += 2;
+            def += 1;
+            maxHp += 5;
+            maxExp += 10;
+            hp = maxHp;
+            exp = 0;
+            playerInfo();
+
+        }
+        function fightMonster(){
+            let moreExp;
+            let usrAction;
+            let monsterAction;
+
+            while(slime.hp > 0 && hp > 0){
+                usrAction = confirm("공격하시겠습니까? (취소 시 막기)")
+            
+                if(usrAction) {
+                    monsterAttack = (slime.atk + Math.floor(Math.random()*2-1) - def);
+                    usrAttack = (atk + Math.floor(Math.random()*2-1) - slime.def);
+                    slime.hp -= usrAttack;
+                    hp -= monsterAttack;
+                    alert(`슬라임에게 ${usrAttack}만큼의 데미지를 입혔습니다!`)
+                    alert(`슬라임으로부터 ${monsterAttack} 의 데미지를 입었습니다.`)
+                    alert("플레이어의 남은 체력 : " + hp)
+                    alert("슬라임의 남은 체력 : " + slime.hp)
+                    if(slime.hp <= 0) {
+                        expGet();
+
+                        if(exp == maxExp){
+                            levelUp();
+                            alert(`슬라임에게서 ${slime.gainExp}만큼의 경험치를 얻었습니다.`)
+                    
+                        }else if(exp > maxExp) {
+                            moreExp = exp-maxExp
+                            levelUp();
+                            exp += moreExp;
+                        }
+                    }
+                }else {
+                    alert("공격을 막았습니다.")
+                    hp -= (slime.atk - (def*2))
+                    alert(`슬라임으로부터 ${slime.atk - (def*2)} 의 데미지를 입었습니다.`)
+                    alert("플레이어의 남은 체력 : " + hp)
+                    alert("슬라임의 남은 체력 : " + slime.hp)
+                }
+            }
+            if(hp <= 0) {
+                alert("사망했습니다")
+                alert("집으로 가서 부활합니다")
+                hp = maxHp;
+            }
+            
+        }
+
+        rpgGame()
+
+    </script>
+</body>
+</html>

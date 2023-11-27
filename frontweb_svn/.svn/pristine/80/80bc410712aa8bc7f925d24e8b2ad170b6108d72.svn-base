@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      td{width:25%;}
+    </style>
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+    <script>//[1단계:확인] 5. 4X4테이블을 만들어서, 상단에 [미니롯또]라는 버튼을 클릭시, 
+    //          1~16 cell중에 당첨 레이블이 출력되게 하세요.</script>
+    <script type="text/javascript">
+        $("document").ready(function(){
+            $( "[type=button]" ).click(function(){
+               var tdArr = $("td") 
+               for(var idx=0;idx<tdArr.length;idx++){
+                  tdArr[idx].innerText = idx+1
+                  tdArr[idx].style.color = ""
+               }
+               var ranIdx = Math.floor(Math.random()*$("td").length)
+               $("td").eq(ranIdx).css("color","red").text("당첨")
+            })
+
+        })
+    </script>
+</head>
+<body>
+    <input type="button" value="미니로또">
+    <table width="200" height="200" border>
+        <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+        <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+        <tr><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+    </table>
+</body>
+</html>

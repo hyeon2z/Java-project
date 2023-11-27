@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="man01.jpg" width="200" height="200">
+    <img src="https://mblogthumb-phinf.pstatic.net/MjAxNzEyMDZfMjY2/MDAxNTEyNTMwNDM2MTMw.pOaQ-GlMLVZzMB06Cnv6BcPOHPMMhtu9T7lPCpFI5j4g.4W6ZAz0O2p_FTz1AELRojIiHyD6dv_cO1VRWC3P0sCcg.JPEG.animaking/2FYJ79S89U6Y20W089C8.jpg?type=w800" width="200" height="200">
+    <br>
+    <h2 onclick="enLg()">커져라</h2>
+    <h2 onclick="enSm()">작아져라</h2>
+    <script>
+        var imgs = document.querySelectorAll("img");
+        function enLg(){
+            imgs[0].width+=20; imgs[0].height+=20;
+            imgs[1].width+=20; imgs[1].height+=20;
+        }
+        function enSm(){
+            imgs[0].width-=20; imgs[0].height-=20;
+            imgs[1].width-=20; imgs[1].height-=20;
+        }
+        // 0.5초마다 커지는 처리..
+        var setInt = setInterval(function(){
+            enLg();
+        },500)
+    </script>
+</body>
+</html>

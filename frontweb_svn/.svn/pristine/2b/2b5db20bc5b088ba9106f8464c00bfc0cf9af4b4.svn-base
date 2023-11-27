@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 간단한 계산기
+        let num1;
+        let num2;
+        function calculator(){
+            while(true){
+                num1 = parseFloat(prompt("첫번째 숫자 입력",0));
+                num2 = parseFloat(prompt("두번째 숫자 입력",0));
+
+                if(isNaN(num1) || isNaN(num2)){
+                    alert("숫자를 입력하세요")
+                }else if(!isNaN(num1) && !isNaN(num2)){
+                    break;
+                }
+            }
+            let result;
+            let operator = prompt("연산자 입력(+,-,*,/)","")
+            
+            switch(operator){
+                case '+':
+                    result = num1 + num2
+                    break;
+                case '-':
+                    result = num1 - num2
+                    break;
+                case '*':
+                    result = num1 * num2
+                    break;
+                case '/':
+                    if(num2 == 0){
+                        alert("0으로 나눌수 없습니다")
+                        return;
+                    }else if(num2 != 0) {
+                        result = num1 / num2
+                        break;
+                    }
+                default:
+                    alert("옳은 연산자를 입력하세요")
+                    return;
+                }
+            alert(`계산결과 : ${result}`)
+            
+
+        }
+        calculator();
+
+
+
+
+
+    </script>
+</body>
+</html>

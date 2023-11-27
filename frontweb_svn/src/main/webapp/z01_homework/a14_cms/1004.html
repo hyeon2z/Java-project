@@ -1,0 +1,63 @@
+<<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        //# javascript
+// [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+/*
+# 1. 선언적 함수
+        선언적 함수는 선언문을 사용하여 함수를 정의한다. 함수 선언문은 코드의 어느 위치에서든
+        호출할 수 있다.
+        ex) 
+    2. 변수형 함수 
+        변수형 함수는 함수 표현식을 사용하여 함수를 할당하는 방식이다.
+        ex) var plus() = function(num01, num02){
+            return num01+num02
+        }
+*/
+// [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+function gugudan(max){
+    for(let i = 2; i<=max; i++){
+        for(let j = 1; j<=9; j++ ){
+            console.log(`${i} x ${j} = ${i*j}`)
+        }
+    }
+}
+var input = prompt("정수를 입력하십시오.", 0)
+gugudan(input)
+
+
+// [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+function getMax(num01, num02){ //num01과 num02를 매개변수로 받아 최대값을 출력해준다.
+    return num01>num02?num01:(num01==num02?"숫자가 같음":num02) //리턴값
+}
+alert(getMax(10, 20))
+
+// [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요
+
+/*
+ # argments의 활용
+ arguments는 함수 내에서 사용되는 특별한 객체로, 함수에 모든 인수에 대한 정보를 가지고 있습니다.
+ 이 객체는 함수 내에서 매개변수이름을 명시하지 않고도 모든 인수에 접근할 수 있도록 도와줍니다.
+ arguments는 배열과 유사하지만 배열이 아닙니다.
+*/
+function sum(){
+    let total = 0;
+    for(let i =0; i < arguments.length; i++){
+        total+=arguments[i]
+    }
+    return total;
+}
+console.log(sum(1,2,3)) //1,2,3의 길이를 argument.length로 찾을 수 있다.
+
+
+// # 조별로 파악사항(아래사항 조별로 취합 전달 17:20까지 전달)
+// 1. 오늘 가장 어려웠던 부분 best3 및 내일 자세한 설명 필요한 부분
+// 2. 위 내용 중에 개념부분에 대한 의견을 조원들과 함께 나누고 정리해서 제출하세요
+// 3. 오늘 지각(9:00기준)인원과 사유, 수업 중 집중 의무 준수 여부
+    </script>
+</head>
+<body>
+
+</body>
+</html>

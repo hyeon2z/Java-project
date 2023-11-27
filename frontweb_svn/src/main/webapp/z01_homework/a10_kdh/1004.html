@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//# javascript
+// [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+    alert(fun01(1,2));
+    function fun01(x,y){
+        return x+y;
+    }
+    // alert(fun02(1,2));
+    var fun02 = function(x,y){
+        return x*y;
+    }
+    alert(fun02(1,2));
+    // 선언적 함수는 선언 전에 호출을 할 수 있지만 변수형 함수는 선언 전에 호출할 수 없다.
+// [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+    function fun03(start,end){
+        for(var i = start ; i <= end ; i++){
+            for(var j = 1; j <=9 ; j++){
+                console.log(`${i} * ${j} = ${i*j}`);
+            }
+            console.log('\n');
+        }
+    }
+    fun03(2,4);
+// [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+    function fun04(x,y){
+        return x*y;
+    }
+    //위 함수는 매개변수 x,y라는 두 값을 받아 두 값의 곱을 리턴한다.
+// [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요
+//     javascript에서 사용되는 매개변수를 배열로 받아서 처리하는 객체 내부적으로 매개변수를 배열로 처리
+        function sumAll() {
+            alert(typeof (arguments) + ' : ' + arguments.length);
+            for(var idx in arguments){
+                console.log(idx+":"+arguments[idx])
+            }
+        }
+        sumAll(2,4,6,8,10);
+// # 조별로 파악사항(아래사항 조별로 취합 전달 17:20까지 전달)
+// 1. 오늘 가장 어려웠던 부분 best3 및 내일 자세한 설명 필요한 부분
+// 2. 위 내용 중에 개념부분에 대한 의견을 조원들과 함께 나누고 정리해서 제출하세요
+// 3. 오늘 지각(9:00기준)인원과 사유, 수업 중 집중 의무 준수 여부
+
+
+    </script>
+</body>
+</html>

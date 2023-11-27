@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // ex) a06_rainbow.html
+        //     h2로 영문으로 무지개 색상 7개를 설정한 후, 클릭시,
+        //     하단 p 무지개 색상이라고 표시된 곳에, 해당 색상을
+        //     출력하게 해보세요.
+        ///    1) 화면 태그 
+        //     2) DOM 객체 선언 h2(배열객체), p
+        //     3) 이벤트 처리(h2) 
+        //        for문으로 각 배열에 이벤트 처리..
+        //            this 활용하기 : 이벤트를 클릭한 대상객체..
+        //        .innerText나 innerHTML을 이용해서 p에 표현하기.
+
+    </script>
+</head>
+<body>
+    <h2>red</h2>
+    <h2>orange</h2>
+    <h2>yellow</h2>
+    <h2>green</h2>
+    <h2>blue</h2>
+    <h2>navy</h2>
+    <h2>purple</h2>
+    <p>무지개 색상:@@@
+		<h2>red</h2>
+		<h2>yellow</h2>
+		
+	</p>
+    <!-- 
+		첫번째 h2를 클릭하고 이것을 p태그 안에 추가 누적처리..
+		h2Arr[0].onclick=function(){
+			this.innerText : red 클릭 것의 레이블 내용을 가져올 때..
+			pOb.innerHTML += "<h2>"+this.innerText+"</h2>"
+		}
+	-->
+    
+    
+    
+    <script>
+    var h2Arr = document.querySelectorAll("h2")
+    // f12 (트래킹 메뉴)
+    console.log(h2Arr)
+    //alert(h2Arr)
+    var pOb = document.querySelector("p")
+    console.log(h2Arr)
+    //alert(h2Arr.length)
+    /// h2Arr[0].onclick=function(){}
+    /// h2Arr[1].onclick=function(){}
+    /// h2Arr[2].onclick=function(){}
+    // for(배열인덱스시작;배열의크기보다-1;증감연산자)
+    //    배열명[idx].onclick=function(){
+    for(var idx=0;idx<h2Arr.length;idx++){
+        console.log(h2Arr.length)
+        h2Arr[idx].onclick=function(){
+            //alert(this.innerText)
+            // 하단에 p에 무지객 색상은 @@ (클릭한 내용으로 출력)
+            pOb.innerHTML+="<h3>선택한 무지개색상:"+this.innerText+"</h3>"
+            // 해당 p태그의 배경 색상을 속성으로 변경 처리..
+            pOb.style.background=this.innerText
+        }
+    }
+    //ex) ol li로  판매하는 물건 리스트를 출력(사과 바나나 딸기 오렌지 수박)
+    // li를 클릭시, 해당 물건명을
+    // 하단에 장바구니 리스트(p)에 h4로 계속 누적 추가되게 하세요.
+    // 1. 화면 구현(태그)
+    // 2. DOM객체 선언
+    // 3. li이벤트 처리(for문 활용)
+    // 4. li에 있는 레이블 내용을 p안에 h4로 추가 누적처리 .innerHTML+=
+
+
+    </script>
+</body>
+</html>

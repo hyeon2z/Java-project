@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+/*
+[1단계:개념] 1. html태그에서 &XXX; 를 사용하는 이유는 무엇인가? 예제를 통해 설명하세요.
+[1단계:확인] 2. 아래와 같이 기능버튼에 따라 출력되게, 처리하세요.
+	      안녕하세요
+	      공백
+	      줄바꿈처리
+	      ----------(사선)
+	      <p></p>
+	      위 명령을 클릭시마다, 화면에 위 명령내용 출력 및 처리 출력
+[1단계:개념] 3. img의 속성을 기술하고, 좋아하는 풍경이미지를 동적으로 크졌다 작아졌다 변경되었다하게 처리하세요.
+[1단계:확인] 4. 주사위 이미지(1~6)를 복사해서 현재 폴드에 넣고, 클릭시 마다 주사위의 번호가 바뀌게 처리하세요.
+[1단계:개념] 5. 블럭태그와 인라인 태그의 차이점을 기본예제와 함께 기술하세요.
+
+
+### 1. html태그에서 &XXX; 사용 이유
+
+`&XXX;` 형태의 문자열은 HTML 엔터티(Entity)입니다. 
+HTML에서는 `<`, `>`, `&`와 같은 특수 문자를 직접 사용하면 문제가
+ 발생할 수 있기 때문에 이들 문자를 안전하게 표현하기 위해 엔터티를 
+ 사용합니다.
+
+예제:
+```html
+<p>&lt;div&gt;This is a div tag&lt;/div&gt;</p>
+```
+위 예제에서 `<div>` 태그는 화면에 표시되지 않지만 `&lt;div&gt;`를 사용하면 화면에 `<div>` 문자열로 표시됩니다.
+
+### 2. 기능버튼 출력
+
+```html
+<button onclick="displayText('안녕하세요')">안녕하세요</button>
+<button onclick="displayText('&nbsp;')">공백</button>
+<button onclick="displayText('<br/>')">줄바꿈처리</button>
+
+<p id="output"></p>
+
+
+function displayText(text) {
+    const output = document.querySelector('#output');
+    output.innerHTML += text;
+}
+
+
+### 3. img의 속성
+
+`<img>` 태그는 이미지를 표시하기 위해 사용되며, 
+주로 `src`, `alt`, `width`, `height`와 같은 속성을 포함합니다.
+
+예제:
+```html
+<img id="landscape" src="path_to_landscape.jpg" 
+alt="Beautiful Landscape" width="300" height="200">
+
+<script>
+const img = document.querySelector('#landscape');
+var isClick=true
+// setInterval(function(){반복할함수},1/1000초단위)
+// 해당 초단위로 반복할 함수 내용 처리.
+
+var setInt = setInterval(function(){
+	if(isClick){
+    	img.width = 100;
+    	img.height =100;
+    	isClick=false
+    }else{
+	    img.width = 300;
+	    img.height = 300;
+	    isClick=true		
+	}	
+},1000)
+
+### 4. 주사위 이미지 변경
+
+```html
+dice1.jpg dice2.jpg dice3.jpg dice4.jpg
+dice5.jpg dice6.jpg
+
+<img id="dice" src="dice0.jpg" alt="Dice">
+
+<script>
+const dice = document.querySelector('#dice');
+var idx=0;
+dice.onclick= function() {
+	
+    dice.src = `dice${idx+1}.jpg`;
+    idx++%6;
+};
+
+### 5. 블럭태그와 인라인 태그의 차이점
+블럭(Block) 태그는 새로운 라인에서 시작되고, 가능한 모든 너비를 차지하는 반면, 인라인(Inline) 태그는 내용의 흐름에 따라 나타나며 해당 내용만큼의 너비를 차지합니다.
+예제:
+ 블럭 태그 
+ <div>This is a block element.</div>
+
+인라인 태그 
+<span>This is an inline element.</span>
+```
+
+위 예제에서 `<div>` 태그는 블럭 요소이므로 새로운 라인에서 시작되고, 
+	전체 너비를 차지하는 반면, `<span>` 태그는 
+	인라인 요소로 텍스트의 흐름 안에서 등장합니다.
+*/	
+	
+</script>
+</html>

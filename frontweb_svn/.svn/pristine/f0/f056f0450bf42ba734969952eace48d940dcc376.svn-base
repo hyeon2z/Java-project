@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//# javascript
+// [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+	// 선언적 함수와 변수형 함수와 달리 앞에 선언되어도 처리가 가능하다.
+	fun01()
+	function fun01() { alert('함수 A'); }
+	// 변수형 함수는 반드시 선언 후에 호출해야한다
+	var fun05 = function(output1,output2) {
+            return output1*output2
+        };
+     alert(fun05(3,5));
+// [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+	function multi(num01,num02){
+		for(var i=num01;i<=num02;i++){
+			console.log("6X"+i+"="+6*i)
+		}
+	}
+	multi(5,9)
+	
+// [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+	//매개변수 : 함수를 호출할 때 괄호안에 적는것
+	//리턴값 : 함수의 최종 결과값
+	function fun02(num01,num02){ //매개변수로 두개의 수를 받음
+		return num01*num02 //결과값 리턴
+	}
+	fun02(3,5)
+
+// [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요
+	//arguments란, 인수를 저장해놓은 공간이며, 함수에 전달되는 인수들을 배열 형태로 나타낸 객체이다.
+	// arguments는 변수이름이 아니라 키워드다. 배열이기 때문에 배열 메서드를 사용하면 에러가 뜬다.
+	// 전달받은 인수에 접근할 때에는 배열 접근법과 같은 방식으로 하면 된다.
+	function print(ar1,ar2,ar3){
+		console.log(arguments[0]);
+		console.log(arguments[1]);
+		console.log(arguments[2]);
+		//arguments 요소는 재할당도 가능하다.
+		arguments[0]='z';
+		console.log(arguments[0]);
+	}
+	print('a','b','c')
+//	arguments.length : 전달된 인수의 개수
+
+
+    </script>
+</body>
+</html>

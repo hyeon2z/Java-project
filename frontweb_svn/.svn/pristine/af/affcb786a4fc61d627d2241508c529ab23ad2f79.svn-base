@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        # let변수는
+        1. 지역변수와 전역변수를 구분하여 처리한다.
+           - block 안에서 선언되면 block안에서만 사용 : 지역변수
+           - block을 포함한 상위에서 변수를 선언하면 모든 블럭에 사용:전역변수
+        */
+        var num01 = 25
+        var num01 = 30      // var변수는 중복선언이 가능 하다.
+        let variable2 = 777;
+        // let variable2 = 50; let은 중복 선언을 할 수 없다.
+        {
+            // 스코프 A
+            let variable = 273;
+            alert("스코프 A:"+variable)
+            alert("전역변수호출1:"+variable2)
+        }
+        {
+        // 스코프 B
+        //alert("스코프 A:"+variable);
+        alert("전역변수호출2:"+variable2)
+        }
+        // 전역 스코프
+        //alert("전역 스코프:"+variable);
+        alert("전역변수호출3:"+variable2)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

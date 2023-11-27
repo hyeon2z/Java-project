@@ -35,7 +35,10 @@
 	2) primary key 지정
 	3) 기본형식
 	create table student(
-		studno number constraint student_studno_pk primary key
+		studno number constraint student_studno_pk primary key,
+		name not null - 제약조건명을 오라클 내부 규칙에 의해 만들어짐
+		constraint student_name_ck
+		    check(studno between 1000 and 9999)
 	);
 	create table student2(
 		studno number primary key

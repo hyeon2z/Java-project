@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="button" value="안녕하세요" onclick="sayhi()">
+<input type="button" value="공백" onclick="nbsp()">
+<input type="button" value="줄바꿈처리" onclick="downline()">
+<input type="button" value="-------(사선)" onclick="Del()">
+
+
+<p></p>
+<input type="button" value="이미지 키우기" onclick="lgimg()">
+<input type="button" value="이미지 줄이기" onclick="smimg()"><br>
+<img src="https://png.pngtree.com/background/20230401/original/pngtree-beautiful-scenery-suitable-for-summer-travel-picture-image_2253560.jpg"
+width="200" height="150"><br>
+
+
+
+<img src="dice1.png" id="dice" onclick="rolldice()">
+<br>
+<div style="background:red; width:500px;height:200px">블록태그입니다.<br>
+<span style="background:blue">인라인태그 블록 내부에 삽입</span>
+</div>
+
+<script>
+//[1단계:개념] 1. html태그에서 &XXX; 를 사용하는 이유는 무엇인가? 예제를 통해 설명하세요.
+//띄어쓰기를 1개이상 인식 못한다던가 등 인식하지 못하는 특정문자를 표현하기 위해서 
+//&특수문자키;를 사용한다
+// <p>
+//         안녕하세요&nbsp;반갑습니다&nbsp;&nbsp;&nbsp;!!&lt;&gt; 다음에 또만나요
+//     </p>
+
+//[1단계:확인] 2. 아래와 같이 기능버튼에 따라 출력되게, 처리하세요.
+//	      안녕하세요
+//	      공백
+//	      줄바꿈처리
+//	      ----------(사선)
+//	      <p></p>
+//	      위 명령을 클릭시마다, 화면에 위 명령내용 출력 및 처리 출력
+var pOb = document.querySelector("p")
+function sayhi(){pOb.innerText+="안녕하세요"}
+function nbsp(){pOb.innerHTML+="&nbsp;"}
+function downline(){pOb.innerHTML+="<br>"}
+function Del(){pOb.innerText+="-----------------"}
+
+
+//[1단계:개념] 3. img의 속성을 기술하고, 좋아하는 풍경이미지를 동적으로 크졌다 작아졌다 변경되었다하게 처리하세요.
+//src : 이미지의 위치, alt : 이미지 문자열, width : 이미지 넓이, height : 이미지 높이
+var imgOb = document.querySelector("img")
+function lgimg(){
+    imgOb.width+=20;
+    imgOb.height+=15
+}
+function smimg(){
+    imgOb.width-=20;
+    imgOb.height-=15
+}
+//[1단계:확인] 4. 주사위 이미지(1~6)를 복사해서 현재 폴드에 넣고, 클릭시 마다 주사위의 번호가 바뀌게 처리하세요.
+var diceImgOb = document.querySelector("#dice")
+var dicesImgs = ["dice1.png","dice2.png","dice3.png","dice4.png","dice5.png","dice6.png"]
+
+function rolldice(){
+    
+    diceImgOb.src=dicesImgs[Math.floor(Math.random() * 6)]}
+//[1단계:개념] 5. 블럭태그와 인라인 태그의 차이점을 기본예제와 함께 기술하세요.
+    //블록태그는 항상 새라인에서 시작 하여 출력하고 해당라인을 독점한다 그리고 넓이나 높이를 css로 변경가능 
+    //인라인태그는 블록속에 삽입되어 그 일부로 사용가능하고 높이나 넓이를 지정할수 없다.
+    //블록태그
+  //  <div style="background:red; width:300;height:200">블록태그입니다.
+//인라인태크
+//<div><span>인라인태그 블록 내부에 삽입</span></div>
+</script>
+</html>
+

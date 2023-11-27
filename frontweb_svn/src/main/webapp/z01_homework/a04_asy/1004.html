@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/*# javascript
+// [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+			선언적 함수 : 선언 앞에 호출 되어도 처리가 가능함
+			plus()	//plus란 이름의 함수 호출
+			function plus() {	//plus란 함수를 선언(정의)
+				var num01 = 5;
+				alert(num01)
+			}
+			변수형 함수 : 선언 앞에 호출시 오류
+			var num01 = 10;
+			var plus2 = function(num2) {
+				return num01
+			}
+			alert(num01)
+			
+// [확인] 2. 선언적 함수로 매개변수로, 
+			구구단의 시작단수와 마지막단수를 입력받아 
+			console.log로 구구단을 출력하세요.*/
+			function gugudan(start,end) {
+				start = Number(prompt("시작 할 구구단 단수","0"))	//시작할구구단수
+				end = Number(prompt("마지막 구구단 단수","0"))		//마지막구구단수
+			if(isNaN(start) || isNaN(end)) {
+				console.log("올바른 숫자를 입력하세요.");
+				return;
+			}
+			for(var i = start; i<=end; i++) {
+			console.log(i+단);
+				for	(var j = 1; j<=9; j++)
+				console.log(`${i} x ${j} = ${i*j}`);
+			}
+		}
+/* [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+		-매개변수 : 함수를 정의할 때 매개변수를 선언하여 
+					함수 내부에서 이 매개변수를 사용하여 작업 수행할 수 있음
+					ex) function add(x, y)와 같이 함수를 정의하면 
+						x와 y가 매개변수가 되고, 
+						함수를 호출할 때 add(2, 3)과 같이 
+						전달된 값 2와 3이 각각 x와 y에 할당됩니다.
+						//함수 정의 : 두 숫자를 더하는 함수
+						function add(x,y) {
+							return x+y;
+						}
+						//함수 호출 및 결과를 변수에 저장
+						var result = add(2,3);
+						//출력값 : 5
+						console.log(result);
+						
+// [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요*/
+			function sum() {
+			var total = 0;
+			for(var i = 0; i<arguments.length; i++) {
+				total += arguments[i]
+			}
+			return total;
+			}
+			var result = num(1,2,3,4,5);
+			console.lot(result);	//출력 15
+
+
+    </script>
+</body>
+</html>

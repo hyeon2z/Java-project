@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$("prev + next") 선택자 실습</title>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+    /*
+    # 같은 레벨의 계층구조의 형제관계 선택자 처리.
+    1. 선택1 + 선택2 : 선택1 바로 앞에 둔 같은 레벨의 선택자2에서 
+        적용할 내용
+    */
+     // $("선택자").메서드1().메서드2() : 동일한 선택자에
+     //     기능메서드가 chaining
+	   $( "label + input" ).css( "color", "blue" ).val( "Labeled!" );
+    /*
+    # form의 value 속성
+    1. jquery에서는 form 하위 요소객체의 value 속성을 val("속성할당")
+       val() : 속성가져오기로 처리한다.
+    ex1) 선택자1 + 선택자2 형식으로 h1과 p를 설정하여 p에서 배경색상을
+        변경하세요..
+    ex2) form 하위의 요소객체를 id="name"속성을 선언한 value값을 val()을
+         활용하여  홍길동이라고 할당하고, 배경색성을 노랑색으로 처리하세요
+         (메서드 chainning 처리)
+    
+
+    ex3) h3와 p를 아래에 선언하고
+         h3 + p 일 때, 배경색상으로 노랑색을
+         설정해보세요..
+    */
+      $("h2").click(function(){
+        $("h3 + p").css("background-color",
+          "yellow")
+      })
+      $("h1").click(function(){
+        $("h3 ~ p").css("background-color",
+            "orange")
+      })
+   });
+</script>
+</head>
+<body>
+<h1>클릭!!(h3~p)</h1>
+<h2>클릭!!(h3+p)</h2>
+<h3>사과</h3>
+<p>사과의 가격은 2000원이고, 5개 구매하였습니다.</p>
+<h3>바나나</h3>
+<p>바나나의 가격은 4000원이고, 1송이 구매하였습니다.</p>
+<p>바나나의 가격은 4000원이고, 1송이 구매하였습니다.</p>
+<p>바나나의 가격은 4000원이고, 1송이 구매하였습니다.</p>
+<p>바나나의 가격은 4000원이고, 1송이 구매하였습니다.</p>
+<form>
+  <label for="name">Name:</label>
+  <input name="name" id="name">
+  <fieldset>
+    <label for="newsletter">Newsletter:</label>
+    <input name="newsletter" id="newsletter">
+  </fieldset>
+</form>
+<input name="none">
+</body>
+</html>

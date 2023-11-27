@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<!--[1단계:개념] 1. jquery 초기 설정 방식을 선언하세요 -->
+
+<!--
+ <script src="jquery-3.1.1.js"></script>
+ <script>
+ $(document).ready(function(){
+ });
+ </script> -->
+
+
+<!--[1단계:개념] 2. jquery==>javascript, javascript==>jquery변환형식을 기술하세요.-->
+
+<!-- 
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){   
+        var h1Arr = $("h1")
+        console.log(h1Arr[0].innerText)
+        h1Arr[0].style.color="pink";
+
+        var h2Arr = document.querySelector("h2")
+        $(h2Arr).text("javascript==>jquery")
+
+    });
+
+</script>
+<body>
+
+    <h1>jquery=javascript</h1>4
+    <h1>jquery=javascript</h1>3
+    <h2>javascript=jquery</h2>2
+</body>
+
+-->
+
+
+
+
+<!-- [1단계:확인] 3. jquery에서 h2 3개를 인사말로 선언하고, 
+    동일한 태그(h2)의 jquery를 이용해서 모두 글자색상 적용과 이중에서 2번째 태그에 내용 변경처리를 하세요 -->
+
+
+ <!-- <script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){   
+       $("h2").css({color:"pink"})
+       $("h2").eq(1).text("내용변경처리")
+    });
+
+</script>
+<body>
+    <h2>하이</h2>
+    <h2>안녕</h2>
+    <h2>굿</h2>
+</body> 
+-->
+
+
+
+<!--
+[1단계:개념] 4. jquery의 기본 출력 속성과 css, attribute 속성를 예제로 설명하고 만드세요..-->
+
+
+<!-- [1단계:개념] 5. 선택자로 $("선택자1 선택자2")와 $("선택자1>선택자")의 차이점을 예제로 기술하세요.-->
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){   
+       $("h2").css({color:"pink"}) //상위 하위 관계
+       
+    });
+
+</script>
+<body>
+    <h2>하이</h2>
+    <h2>안녕</h2>
+    <h2>굿</h2>
+</body> 
+
+
+<!-- [1단계:확인] 6. table의 3X3테이블을 만들고, 클래스를 선언하여 jquery로
+               .cls01>.cls02가 2행3열로 배경색상을 빨강색으로 처리되게 하고, .cls03.cls04로 1행2열의 글자색상이 노랑색으로 처리되게 하세요
+-->
+
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const addressBook = [];
+
+        function Address(name, phoneNumber, email){
+            this.name = name;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
+        }
+
+        function addAddress(name, phoneNumber, email){
+            const address = new Address(name, phoneNumber, email)
+            addressBook.push(address);
+            alert(`[${name}의 연락처가 추가 되었습니다.]`)
+        }
+
+        function showAddressBook(){
+            document.write('<br>'+'주소록 : '+"<br>")
+            addressBook.forEach((address, index) => {
+                document.write(`
+                [${index + 1}] 이름 : ${address.name}, 전화번호 : ${address.phoneNumber}, 이메일 : ${address.email}
+                <br>`)
+            })
+        }
+
+        function modifyAddress(index, name, phoneNumber, email){
+            if(index >=0 && index < addressBook.length){
+                const address = addressBook[index]
+                address.name = name
+                address.phoneNumber = phoneNumber
+                address.email = email
+                alert(`[${index+1}] 연락처를 수정했습니다.`)
+            }else{
+                alert('인덱스를 잘못입력하셨습니다.')
+            }
+        }
+
+        function deleteAddress(index){
+            if(index >=0 && index < addressBook.length){
+                addressBook.splice(index, 1)
+                alert(`[${index+1}] 연락처를 삭제했습니다.`)
+            }else{
+                alert('인덱스를 잘못입력하셨습니다.')
+            }
+        }
+
+    addAddress("홍길동", "123-456-7890", "Hong@naver.com");
+    addAddress("김길동", "222-222-2222", "kim@gmail.com");
+    addAddress("박길동", "333-333-3333", "park@gmail.com");
+
+    showAddressBook();
+
+    modifyAddress(0, "한길동", "555-555-5555", "mr_han@gmail.com");
+
+    deleteAddress(1);
+
+    showAddressBook();
+    </script>
+    
+</body>
+</html>

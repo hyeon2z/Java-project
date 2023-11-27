@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var character = {
+        name:"",
+        Level:1,
+        maxhp:500,
+        hp:500,
+        ad:5,
+        maxexp:10,
+        exp:0
+    }
+     character.name = prompt("캐릭터 이름을 입력해주세요","뉴비")
+
+     alert("캐릭터 생성 완료!!")
+     myInfo();
+
+     function myInfo(){
+        alert(`
+        이름:${character.name}
+        레벨:${character.Level}
+        체력:${character.hp}
+        경험치:${character.exp}
+        전투력:${character.ad}
+     `)
+     }
+     function BasicAction(){
+        return parseInt(prompt(`
+        1.캐릭터 정보확인
+        2.전투
+        3.휴식
+        4.종료
+        `,""))
+     }
+    
+     function BattleAction(){
+        let indata
+        let monster ={
+            name:"고블린",
+            hp:300 ,
+            ad:Math.floor(Math.random()*2+4),
+            exp:Math.floor(Math.random()*3+8)
+        }
+        while(indata!=2){
+            if(character.hp<=0){break;}
+            if(monster.hp<=0){
+
+                alert("몬스터 사망 "+monster.exp+"의 경험치 획득!")
+                character.exp+=monster.exp
+                break;
+            }
+            
+            let a = function (){
+        return parseInt(prompt(`
+        ${character.name}의 체력${character.hp}             ${monster.name}의 체력 ${monster.hp}            
+        1.공격
+        2.도망
+        `,""))
+     }
+            let indata2 = a()
+            
+                switch(indata2){
+                case 1:
+
+                    myTurn =function (){
+                        let atD = parseInt((character.ad*10) * (((Math.random()*2)*0.1)+1))
+                        alert(character.name+"의 공격! "+monster.name+"에게 "+atD+"의 피해를 입힘!")
+                        monster.hp-=atD
+                    }
+                    monsterTurn = function (){
+                        let atD = parseInt((monster.ad*10) * (((Math.random()*2)*0.1)+1))
+                        alert(monster.name+"의 공격! "+character.name+"에게 "+atD+"의 피해를 입힘!")
+                        character.hp-=atD
+                    }
+                    myTurn();
+                    monsterTurn();
+                    break;
+                case 2:
+                    
+                    alert("비겁하게 도망쳤다")
+                    indata = 2;
+                    break;
+                }
+            }
+            
+        }
+     
+
+    
+    var indata = 0;
+    while(indata!=4){
+        if(character.exp >= character.maxexp){
+            alert("레벨업!!")
+            character.Level++;
+            character.maxexp = character.maxexp * 1.5
+            character.exp = 0;
+            character.maxhp = parseInt(character.maxhp *1.2)
+            character.hp = character.maxhp
+            character.ad +=2;
+            myInfo()
+
+        }else if(character.hp<=0){
+                document.write("<h1>캐릭터 사망</h1")
+                    break;
+        }
+        indata = BasicAction()
+        switch(indata){
+            case 1:
+                myInfo();
+                break;
+            case 2:
+            BattleAction()
+                break;
+                case 3:
+                    alert("휴식을 취해 체력 모두 회복!")
+                    character.hp = character.maxhp
+                    break;
+            case 4:
+           
+            document.write("<h1>게임종료</h1")
+                break;
+        }
+    }
+
+    
+   
+</script>
+</body>
+</html>

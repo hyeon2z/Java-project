@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockManagement</title>
+</head>
+<body>
+    <script>
+        //stock management  실시간 종목 금액 구현 X
+        function Account(name, cnt, price){
+        this.name = name
+        this.cnt = cnt
+        this.price = price
+
+        this.getCnt = function () {
+            return this.cnt
+        }
+
+        this.toString = function () {
+                return this.name + '\t' + this.cnt + '\t' + this.price;
+            };
+        }
+        var stock = []
+        var selectMode = 0
+        
+        while(selectMode!=9){
+            selectMode=prompt("매수=1, 매도=2, 계좌보기=3\n메뉴를골라주세요",0)
+            
+            if(selectMode==1){
+                addStock()
+            }
+            if(selectMode==2){
+                sellStock()
+            }
+            if(selectMode==3)
+                showInfo()
+        }
+        document.write("<h2> 프로그램 종료 </h2>")
+
+
+        function sellStock(){
+            let s1 = prompt("팔고싶은 주식명을 입력해주세요")
+            let s2 = prompt("팔고싶은 수량을 입력해주세요")
+
+            for (var i in stock){
+                if (stock[i].name==s1){
+                    stock[i].cnt = stock[i].cnt-s2
+                    alert(`매도주문 완료
+                    ${s1}
+                    ${s2}주
+                    ${stock[i].price}원
+                    `)
+                }
+            }
+            
+
+        }
+
+        function addStock(){
+            var t1 = prompt("주식명","")
+            var t2 = prompt("수량?",0)
+            var t3 = prompt("단가?",0)
+            let newS =true
+            for (var i in stock){
+                if (stock[i].name==t1){
+                    let tmp = stock[i].price*stock[i].cnt + t2*t3 // 평가금액
+                    stock[i].cnt = Number(stock[i].cnt)+Number(t2)
+                    stock[i].price = tmp/stock[i].cnt
+                    alert(`매수주문 완료
+                    ${t1}
+                    ${t2}주
+                    ${t3}원
+                    `)
+                    newS=false
+                }
+            }
+            if (newS){ // 새로운 주식이면
+                stock.push(new Account(t1,t2,t3)) // 배열에 주식넣기
+            }
+             
+        }
+
+        function showInfo(){
+            var printout = '주식이름\t주\t평균단가\n'
+            var totalMoney = 0
+            for (var i in stock){
+                printout += stock[i].toString() + '\n'
+                totalMoney += stock[i].price * stock[i].cnt
+            }
+            alert(printout+"\n 계좌 평가금액: "+totalMoney)
+        }
+    </script>
+</body>
+</html>

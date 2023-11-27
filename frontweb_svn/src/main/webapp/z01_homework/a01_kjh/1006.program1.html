@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 숫자맞추기 게임
+        function numChoiceGame(){
+            alert("1~100까지의 숫자 맞추기 게임입니다!")
+            while(true) {
+                let comNum = Math.floor(Math.random()*100+1)
+                let usrNum = Number(prompt("1~100사이의 숫자를 입력해주세요",0))
+                if(isNaN(usrNum) || (usrNum < 1 || usrNum > 100)){
+                    alert("1~100사이의 숫자만 입력해야 합니다!")
+                }else {
+                    if(usrNum == comNum){
+                        alert(`정답!! 컴퓨터의 수 : ${comNum}`)
+                        let moreGame = confirm("게임을 더 하시겠습니까?")
+                        if(moreGame) {
+                            continue;
+                        }else {
+                            alert("게임종료")
+                            break;
+                        }
+                    }else if(usrNum < comNum){
+                        alert("hint : 더 큰 수를 입력해보세요")
+                    }else {
+                        alert("hint : 더 작은 수를 입력해보세요")
+                    }
+                    
+                }
+
+
+            }
+
+
+
+        }
+        numChoiceGame();
+
+    </script>
+</body>
+</html>

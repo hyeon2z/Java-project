@@ -1,0 +1,151 @@
+//		[1단계:개념] 1. 추상클래스와 일반클래스의 재정의 차이점을 예제를 통해 기술하세요
+//	추상클래스는 추상메소드를 1개 이상 포함한 클래스이다. 이는 반드시 자식클래스에서 오버로딩을 수행해야만 한다. 그러나 일반클래스는 오버로딩의 강제성이 없다.
+		/*
+		Normal_Children a=new Normal_Children();
+		a.AbstractMethod();
+		Abstract_Children b=new Abstract_Children();
+		b.AbstractMethod();
+		abstract class Abstract_Parents
+		{
+			public abstract void AbstractMethod();
+		}
+		class Abstract_Children extends Abstract_Parents
+		{
+			public void AbstractMethod()
+			{
+				System.out.println("나는 자식클래스의 추상메서드");
+			}
+		}
+
+		class Normal_Parents
+		{
+			public void AbstractMethod()
+			{
+				System.out.println("나는 자식클래스의 일반메서드");
+			}
+		}
+		class Normal_Children extends Normal_Parents
+		{
+
+		}
+		*/
+//		[1단계:개념] 2. Food를 추상클래스로 선언하고, name(음식종류), eat()공통메서드 @@을 먹다, taste()추상메서드로 다양한 맛을 출력
+//				좋아하는음식 3가지를 실제클래스를 선언하여 출력하세요.
+		/*
+abstract class Food
+{
+	String name;
+	void eat()
+	{
+		System.out.println(name+"을 먹다.");
+	}
+	abstract void taste();
+}
+class 짜장면 extends Food
+{
+	짜장면()
+	{
+		name="짜장면";
+	}
+	void taste()
+	{
+		System.out.println("춘장 맛이 나다.");
+	}
+}
+class 짬뽕 extends Food
+{
+	짬뽕()
+	{
+		name="짬뽕";
+	}
+	void taste()
+	{
+		System.out.println("해산물 맛이 나다.");
+	}
+}
+class 탕수육 extends Food
+{
+	탕수육()
+	{
+		name="탕수육";
+	}
+	void taste()
+	{
+		System.out.println("고기 맛이 나다.");
+	}
+}
+		
+		짜장면 a= new 짜장면();
+		a.eat();
+		a.taste();
+		짬뽕 b= new 짬뽕();
+		b.eat();
+		b.taste();
+		탕수육 c= new 탕수육();
+		c.eat();
+		c.taste();
+		*/
+
+
+//		[1단계:개념] 3. 인터페이스의 구성요소의 특징을 예제와 함께 선언하세요
+	/*
+	 * 멤버변수(필드) 그리고 헤더만 존재하는 함수
+	 * 예제는 4번에 하겠습니다.
+	 */
+
+
+//		[1단계:확인] 4. FishingWay goFishing() 인터페이스를 선언하여, 상속받은 실제클래스를 2개를 선언하고, 실제클래스 Fisher에 이름과 인터페이스 FishingWay를 선언하고
+//				addFishingSkill() 할당하게 하면  해당 어부가 낙시하는 goFishing()메서드를 호출하여 처리하세요.
+		/*
+		interface FishingWay
+		{
+			void goFishing();
+		}
+
+		class Sea implements FishingWay
+		{
+			public void goFishing()
+			{
+				System.out.println("바다낚시");
+			}
+		}
+
+		class River implements FishingWay
+		{
+			public void goFishing()
+			{
+				System.out.println("강낚시");
+			}
+		}
+
+		class Fisher
+		{
+			private String name;
+			private FishingWay fishingway;
+			
+			Fisher(String name)
+			{
+				this.name=name;
+			}
+			void addFishingSkill(FishingWay fishingway)
+			{
+				this.fishingway=fishingway;
+			}
+			void goFishing()
+			{
+				if(fishingway!=null)
+				{
+					System.out.print(name+" 이 좋아하는 ");
+					fishingway.goFishing();
+				}
+				else
+				{
+					System.out.print(name+" 이 싫어하는 낚시");
+				}
+			}
+
+		}
+		Fisher me=new Fisher("장선웅");
+		me.addFishingSkill(new Sea());
+		me.goFishing();
+		*/

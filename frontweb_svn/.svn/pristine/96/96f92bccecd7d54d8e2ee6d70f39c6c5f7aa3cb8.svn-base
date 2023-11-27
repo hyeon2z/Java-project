@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    <style>
+      h1,h2{
+         text-align: center;
+      }
+      
+      table{
+         margin-left: auto;
+         margin-right: auto;
+      }
+      h3{
+         text-align: center;
+      }
+      
+   </style>
+   <script src="jquery-3.1.1.js"></script>
+</head>
+<body style="background-color: lightblue;">
+   <h1>HAPPYCAMPUS!
+      
+   </h1>
+      <label for="chk">
+         <h2>회원가입</h2>
+         <h3><input type="checkbox" name="chk">내국인 <input type="checkbox" name="chk">외국인</h3>
+    <form name="fo" method="get" action="memberSuccess.jsp">
+    <table>
+        <tr><th>아이디</th><td><input type="text" name="id" size="20"></td></tr>
+        <tr><th>비밀번호</th><td><input type="password" ondblclick="chType(this)" name="password" size="20"></td></tr>
+        <tr><th>비밀번호 확인</th><td><input type="password"  ondblclick="chType(this)"  name="passwordcheck" size="20"></td></tr>
+        <tr><th>이름</th><td><input type="text" name="name" size="20"></td></tr>
+        <tr><th>생년월일</th><td><input type="text" name="birth" size="20"></td></tr>
+        <tr><th>휴대전화</th><td><input type="text" name="phonenum" size="20"></td></tr>
+        <tr><th>이메일</th><td><input type="email" name="email" size="20"></td></tr>
+        <tr><th colspan="2"><input type="button" value="가입" id="regBtn" size="15"></tr>
+    </table>
+    
+    </form>
+    <script>
+		function chType(obj){
+			//if(confirm("현재 입력 유형은 "+obj.type+"입력니다 변경하시겠습니까?")){
+				if(obj.type=="text"){
+					obj.type="password"
+				}else{
+					obj.type="text"
+				}
+			//}
+			
+		}
+        var idOb = document.querySelector("[name=id]")
+        var passwordOb = document.querySelector("[name=password]")
+        var passwordcheckOb = document.querySelector("[name=passwordcheck]")
+        var nameOb = document.querySelector("[name=name]")
+        var birthOb = document.querySelector("[name=birth]")
+        var phonenumOb = document.querySelector("[name=phonenum]")
+        var emailOb = document.querySelector("[name=email]")
+        var regBtnOb = document.querySelector("#regBtn")
+      
+        regBtnOb.onclick=function(){
+            var isValid=true
+            if(idOb.value=="") isValid=false
+            if(passwordOb.value=="") isValid=false
+            if(passwordcheckOb.value=="") isValid=false
+            if(nameOb.value=="") isValid=false
+            if(birthOb.value=="") isValid=false
+            if(phonenumOb.value=="") isValid=false
+            if(emailOb.value=="") isValid=false
+            
+            if(isValid){
+                alert("등록진행")
+                document.querySelector("form").submit();
+            }else{
+                alert("입력이 필요한 항목이 있습니다.")
+            }
+        }
+        
+          regBtnOb.onclick=function() {
+            var pw = $("[name=password]").val();
+            if (pw.length < 8 || pw.length > 20) {
+               alert("비밀번호 8자리 ~ 20자리 이내로 입력해주세요.");
+               return false;
+            }
+            else {
+               alert("적절한 비밀번호입니다");
+               document.querySelector("form").submit();
+            }
+
+         }
+      // 문제점: 1. 적절한 비밀번호쳐도 가입페이지로 넘어가질 않음
+      //        2. 비번을 입력했을떄 옳거나 옳지 않다고 메세지 뜨게 하고픔
+     
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<!--
+	[1단계:개념] 1. html태그에서 &XXX; 를 사용하는 이유는 무엇인가? 예제를 통해 설명하세요.
+-->
+<!--
+	태그에서는 기본 태그 내용이나 특수문자, 공백 등을 포함하여 사용하는 것이 불가능하다.
+	따라서 이러한 것을 사용하기 위해서 &XXX;형태로 사용하는 것이다.
+	&nbsp; => 공백
+	&lt;태그/특수문자&gt; => 사이에 입력한 태그 또는 특수문자가 처리되지 않고 그대로 출력됨
+	&divide; => 나누기 기호
+	&radic; => 루트
+-->
+
+<!--
+	[1단계:확인] 2. 아래와 같이 기능버튼에 따라 출력되게, 처리하세요.
+	      안녕하세요
+	      공백
+	      줄바꿈처리
+	      ----------(사선)
+	      <p></p>
+	      위 명령을 클릭시마다, 화면에 위 명령내용 출력 및 처리 출력
+-->	
+
+<!--
+	[1단계:개념] 3. img의 속성을 기술하고, 좋아하는 풍경이미지를 동적으로 크졌다 작아졌다 변경되었다하게 처리하세요.
+-->
+<!--
+	img 태그는 이미지 파일의 주소를 통해 크기 등을 지정하여 출력하는 태그이다.
+	<img src="이미지 파일의 url(위치)" alt="문자열(파일이 해당 위치에 없을 때 출력)" width="이미지의 폭" height="이미지의 높이">
+-->
+
+<!--
+	[1단계:확인] 4. 주사위 이미지(1~6)를 복사해서 현재 폴드에 넣고, 클릭시 마다 주사위의 번호가 바뀌게 처리하세요.
+-->
+
+<!--
+	[1단계:개념] 5. 블럭태그와 인라인 태그의 차이점을 기본예제와 함께 기술하세요.
+-->
+<!--
+	1. 블럭태그
+		항상 새 라인에서 시작한다.(한 라인 독점)
+		css로 넓이와 높이 변경 가능
+		태그: p, h1, div, ul
+	2. 인라인태그
+		블럭태그 안에 사용된다.
+		높이를 지정할 수 없다.
+		태그: strong, a, img, span
+-->
+
+<body>
+	<h2>예제 및 코드</h2>
+	<hr>
+	<h4>1. 안녕하세요&nbsp;반갑습니다.<br>내일뵙겠습니다.</h4>
+	<hr>
+	<p>2. 안녕하세요&nbsp;<br><hr></p>
+	<script>
+		var pOb = document.querySelector("p")
+		pOb.onclick=function(){
+            this.innerHTML+="안녕하세요&nbsp;<br><hr>"
+        }
+	</script>
+	<h4>3. 이미지</h4>
+	<img src="https://previews.123rf.com/images/bogumil/bogumil1301/bogumil130100007/17101750-%ED%91%B8%EB%A5%B8-%ED%95%98%EB%8A%98%EC%97%90-narew-%EA%B0%95-%E2%80%8B%E2%80%8B%EA%B5%AC%EB%A6%84%EA%B3%BC-%EC%97%AC%EB%A6%84-%ED%92%8D%EA%B2%BD.jpg" alt="사진 없음" width="200" height="140">
+	<h3 onclick="lgImg()">커져라</h3>
+    <h3 onclick="smImg()">작아져라</h3>
+	<hr>
+	<script>
+		var img1 = document.querySelector("img")
+		function lgImg(){ img1.width+=20; img1.height+=20; }
+		var setInt = setInterval(function(){ lgImg(); },3000)
+		function smImg(){ img1.width-=10; img1.height-=10; }
+		var setInt = setInterval(function(){ smImg(); },1500)
+	</script>
+	<h4>4. 주사위</h4>
+	<img src="media/dice1.PNG" alt="사진 없음" width="100" height="100">
+	<h3 onclick="roll()">주사위 굴리기</h3>
+	<hr>
+	<script>
+		var img2 = document.querySelectorAll("img")
+		function roll(){ img2[1].src="media/dice"+Math.floor(Math.random()*6+1)+".PNG" }
+	</script>
+
+</body>
+
+</html>

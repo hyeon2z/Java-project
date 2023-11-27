@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 실습</title>
+<!--  lib 선언 부분-->
+<script type="text/javascript" src="jquery-3.1.1.js">
+</script>
+<!-- javascript 선언-->
+<script type="text/javascript">
+   // $(document)  : DOM객체를 지칭
+   // .ready()  : 준비가 되었을 때,
+   //     화면이 전체 로딩된 후, /body 까지 실행시켜
+   //     태그들을 인식하게 한 후,
+   // (function(){}) : 익명 함수 수행..
+   // 
+   $(document).ready(function(){
+	    alert("hello"); 
+       $("h1").text("안녕하세요")
+       // $ : jquery 처리 변수 지칭
+       // $("h1") : DOM객체 지칭
+       // .text("출력내용") : html랜더링하지 않고 출력 
+   });
+   // ex) a01_jqueryStart.html 만들고,
+   //     h3로 반갑습니다 query시작입니다. text로 출력하세 처리하세요.
+   
+</script>
+</head>
+<body>
+   <h1></h1>
+</body>
+</html>

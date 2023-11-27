@@ -1,0 +1,67 @@
+0925숙제 1
+따옴표와 큰따옴표의 차이는 
+없다.
+2.String
+3. String,number,boolean,function
+,object
+4.
+var pt1= Number(prompt("영화관람객수","0"))*1
+        var pt2 = Number(prompt("1인당관람비","0"))*1
+        alert(pt1*pt2)
+        
+5.bom은 유저가 눈에 보이는 윈도우 상의 웹문서의 내용을
+제외한 모든 환경을 제어하는 상위개념이고, dom은 사용자가 보고있는 웹문서의
+내용을 제어관리하는 하위개념이다.
+6.
+ var orderMenu = 'milk tea ';
+        orderMenu+= 'green tea ';
+        orderMenu+= 'milk ';
+        alert('주문한 메뉴는'+orderMenu+'입니다')
+7.
+print(++a,a++,--b,b--) 로 나눠지고 각각
+더해진 후의 a출력,a출력후 더하기, 빠진 후의 a출력, a출력 후 빼기의 뜻을 가진다.
+
+8.자바와 js에서의 차이는 변수를 선언할때 데이터 유형도 선언해야하는지
+아니면 선언하지 않고 추후에 선언해도되는지의 차이다.
+
+9.
+
+var eng = prompt("영어점수",'0')*1;
+alert("영어점수:"+(eng))
+
+다음의 코드를 따르면 영어점수를 프롬프트창에서 입력후 alert문을 통해 입력값을
+확인 가능하다.
+
+10.
+
+    var result = confirm("확인하셨습니까") 
+    if(result){
+        alert("확인을 누르셨습니다.") 
+    }else("거절을 누르셨습니다.")
+    
+    다음의 코드를 통해 확인하셨습니까라는 선택창이나오고 대답여부에따라
+    부정,긍정의 코멘트가 나온다.
+
+                var orderMenu = 'milk tea ';
+        orderMenu = 'green tea ';
+        orderMenu = 'milk ';
+        alert('주문한 메뉴는'+orderMenu+'입니다')
+        
+        위 2코드의 차이는 연산자가 +=이냐 =이냐이지만 +=은 누적시키는 것이고,
+        =은 갱신시키는 것이다.
+11.''는 덧셈이 안되지만 없는건 연산이 가능하다.
+차이점은 ''의 위치에 따라 52285이냐,32512가
+되냐의 차이이다.
+
+
+15.
+var num01 =30;
+        var num02 =30;
+        alert(`표현식 273 + 52의 값은 
+              ${52 + 273},${num01+num02}입니다...!`);
+
+
+
+
+
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+ <!-- <body>
+        [1단계:개념] 1. html태그에서 &XXX; 를 사용하는 이유는 무엇인가? 예제를 통해 설명하세요.
+        <h4>안녕</h4>
+    <script>
+     var h4Ob = document.querySelector("h4") //2. dom 쓰는거
+        h4Ob.onclick=function(){
+            // this : onclick한 객체
+            this.innerHTML+='&#36;' //$의 특수문자 코드
+        } //웹 표준 적합을 위해 특수문자 코드를 사용한다.
+    </script>
+     </body> -->
+        <!--[1단계:확인] 2. 아래와 같이 기능버튼에 따라 출력되게, 처리하세요. (하는중..)
+         //안녕하세요
+         //공백
+        // 줄바꿈처리
+        // ----------(사선)
+        // <p></p>
+        // 위 명령을 클릭시마다, 화면에 위 명령내용 출력 및 처리 출력//
+        var h2Ob = document.querySelectorAll("h2") //2. dom 쓰는거<-->
+        
+    <!--<body>
+        [1단계:개념] 3. img의 속성을 기술하고, 좋아하는 풍경이미지를 동적으로 크졌다 작아졌다 변경되었다하게 처리하세요.
+        <img src="data:image/jpeg;base64,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" 
+       alt="내가좋아하는 구름사진" width="500" height="500">
+        <h2 onclick="lgImg()">커져라!!</h2>
+        <h2 onclick="smImg()">작아져라!!</h2>
+        <h2 onclick="chImg()">바뀌어라!!</h2>
+        <script>
+        var imgObj = document.querySelector("img") //첫번째 이미지 접근
+        var imgs = ["cloud.jpg","cloud2.jpg"]
+        var idx=0;
+        function lgImg(){imgObj.width+=20;imgObj.height+=20;}
+       function smImg(){imgObj.width-=20;imgObj.height-=20;}
+        function chImg(){imgObj.src="cloud/"+imgs[idx++%2]} 
+    </script>
+     </body> -->
+
+   <body>      
+        [1단계:확인] 4. 주사위 이미지(1~6)를 복사해서 현재 폴드에 넣고, 클릭시 마다 주사위의 번호가 바뀌게 처리하세요. (하는중..)
+      <script>
+         </script>
+   </body>
+
+
+     <!--<body>
+          5. 블럭태그와 인라인 태그의 차이점을 기본예제와 함께 기술하세요.
+         <div>블럭 태그는 새로운 줄에서 시작하고 </div>
+         <div>새로운 줄에서 시작하고 새로운 블록 요소의 상단과 하단에 줄 바꿈을 추가합니다. </div>
+         <div>블록 태그는 가로 공간 전체 너비를 차지하며, 기본적으로 새로운 줄에서 시작합니다. </div>
+         <div>블록 요소는 다른 블록 요소나 인라인 요소를 포함할 수 있습니다</div>
+         <span> 이것은 인라인 태그 입니다. 내용에 맞게 너비를 차지, 문장내에 다른 인라인 요소와 나란히 배치</span>
+         <span> 높이를 지정할 수 없습니다.</span>
+         <script>
+        </script>
+     </body> -->
+
+</html>
+
+
+<!--강사님 답안
+/*
+[1단계:개념] 1. html태그에서 &XXX; 를 사용하는 이유는 무엇인가? 예제를 통해 설명하세요.
+[1단계:확인] 2. 아래와 같이 기능버튼에 따라 출력되게, 처리하세요.
+	      안녕하세요
+	      공백
+	      줄바꿈처리
+	      ----------(사선)
+	      <p></p>
+	      위 명령을 클릭시마다, 화면에 위 명령내용 출력 및 처리 출력
+[1단계:개념] 3. img의 속성을 기술하고, 좋아하는 풍경이미지를 동적으로 크졌다 작아졌다 변경되었다하게 처리하세요.
+[1단계:확인] 4. 주사위 이미지(1~6)를 복사해서 현재 폴드에 넣고, 클릭시 마다 주사위의 번호가 바뀌게 처리하세요.
+[1단계:개념] 5. 블럭태그와 인라인 태그의 차이점을 기본예제와 함께 기술하세요.
+
+
+### 1. html태그에서 &XXX; 사용 이유
+
+`&XXX;` 형태의 문자열은 HTML 엔터티(Entity)입니다. HTML에서는 `<`, `>`, `&`와 같은 특수 문자를 직접 사용하면 문제가 발생할 수 있기 때문에 이들 문자를 안전하게 표현하기 위해 엔터티를 사용합니다.
+
+예제:
+```html
+<p>&lt;div&gt;This is a div tag&lt;/div&gt;</p>
+```
+위 예제에서 `<div>` 태그는 화면에 표시되지 않지만 `&lt;div&gt;`를 사용하면 화면에 `<div>` 문자열로 표시됩니다.
+
+### 2. 기능버튼 출력
+
+```html
+<button onclick="displayText('안녕하세요')">안녕하세요</button>
+<button onclick="displayText(' ')">공백</button>
+<button onclick="displayText('<br/>')">줄바꿈처리</button>
+<button onclick="displayText('----------')">----------(사선)</button>
+<button onclick="displayText('<p></p>')"><p></p></button>
+
+<div id="output"></div>
+
+
+function displayText(text) {
+    const output = document.querySelector('#output');
+    output.innerHTML += text;
+}
+
+
+### 3. img의 속성
+
+`<img>` 태그는 이미지를 표시하기 위해 사용되며, 주로 `src`, `alt`, `width`, `height`와 같은 속성을 포함합니다.
+
+예제:
+```html
+<img id="landscape" src="path_to_landscape.jpg" alt="Beautiful Landscape" width="300" height="200">
+
+<script>
+const img = document.querySelector('#landscape');
+var isClick=true
+// setInterval(function(){반복할함수},1/1000초단위)
+// 해당 초단위로 반복할 함수 내용 처리
+
+var setInt = setInterval(function(){
+	if(isClick){
+    	img.width = 100;
+    	img.height =100;
+    	isClick=false
+    }else{
+	    img.width = 300;
+	    img.height = 300;
+	    isClick=true		
+	}	
+},1000)
+
+### 4. 주사위 이미지 변경
+
+```html
+
+dice1.jpg dice2.jpg dice3.jpg dice4.jpg dice5.jpg dice6.jpg
+<img id="dice" src="dice0.jpg" alt="Dice">
+
+<script>
+const dice = document.querySelector('#dice');
+var idx=0;
+dice.onclick= function() {
+	
+    dice.src = `dice${idx+1}.jpg`;
+    idx++%6;
+};
+
+### 5. 블럭태그와 인라인 태그의 차이점
+블럭(Block) 태그는 새로운 라인에서 시작되고, 가능한 모든 너비를 차지하는 반면, 인라인(Inline) 태그는 내용의 흐름에 따라 나타나며 해당 내용만큼의 너비를 차지합니다.
+예제:
+ 블럭 태그 
+ <div>This is a block element.</div>
+
+인라인 태그 
+<span>This is an inline element.</span>
+```
+
+위 예제에서 `<div>` 태그는 블럭 요소이므로 새로운 라인에서 시작되고, 전체 너비를 차지하는 반면, `<span>` 태그는 
+	인라인 요소로 텍스트의 흐름 안에서 등장합니다.
+*/	
+	
+</script>
+</html> -->
+	

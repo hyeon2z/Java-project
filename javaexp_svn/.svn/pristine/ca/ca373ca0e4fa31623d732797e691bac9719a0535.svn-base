@@ -1,0 +1,302 @@
+----------------------------------------------------------------------------------------------------------------------------------
+과제시작과제시작과제시작과제시작과제시작과제시작과제시작과제시작과제시작과제시작과제시작과제시작
+----------------------------------------------------------------------------------------------------------------------------------
+/*
+# 연휴과제
+# 미니프로젝트 1개와 아래 일자별 과제 진행
+# 일자별 진행할 내용
+# javascript와 java로 처리하고 차이점에 대하여 기술하세요.
+
+### 09/28 (목요일)
+- **개념문제**: 자바의 메모리 분류 및 기본 데이터 유형에 대한 설명.
+<java and javascript>
+Heap영역 : 실질적인 배열과 객체가 저장되는 공간 , Stack영역 : 변수이름, 배열이름, 객체이름이 저장되는 공간
+정수형 byte short int long 
+실수형 float double
+문자열형 String
+문자형 char
+boolean형 boolean
+- **코드연습문제**: 다양한 기본 데이터 유형을 가진 변수를 선언하고 값을 할당하는 코드 작성.
+1. 실수 유형의 10.5 값을 `정수` 유형으로 형변환하여 출력하세요.
+<java>
+double d=10.5;
+System.out.println((int)d);
+<javascript>
+alert(Math.floor(10.5));
+2. 변수명으로 적절하지 않은 것들을 선언해보고, 왜 그것이 적절하지 않은지 설명하세요.
+<java> 123ad:숫자로 시작 , ^dfa:허용되지 않은 특수문자 포함
+<javascript> 123ad:숫자로 시작 , ^dfa:허용되지 않은 특수문자 포함
+---
+### 09/29 (금요일)
+- **개념문제**: 데이터 유형의 형변환 및 변수 선언 규칙에 대한 이해.
+<java>
+형변환을 위해서 (목표 형변환 type)변수 형태를 사용한다.
+작은범위->큰범위 : promotion
+큰범위->작은범위 : typecasting
+<javascript>
++연산자는 문자열을 합할때 사용된다.
+그래서 자동형변환이 문자열로 되는 경우가 일반적이다.
+하지만 나머지 연산자들은 문자열 type의 숫자(예를들면 "23")를 숫자 type으로 자동 형변환 해준다.
+- **코드연습문제**: 형변환을 요구하는 다양한 상황의 코드 작성 및 변수 선언 규칙을 따르는 코드 작성.
+사용자로부터 두 개의 정수 `a`와 `b`를 입력받아, 그 중 어느 수가 큰지 판별하고, 두 수의 합, 차, 곱, 나눗셈의 몫과 나머지를 출력하세요.
+<java>
+	      Scanner scanner=new Scanner(System.in);
+	      
+	      System.out.print("첫번쨰 정수 입력 : ");
+	      int a=Integer.parseInt(scanner.nextLine());
+	      System.out.print("두번쨰 정수 입력 : ");
+	      int b=Integer.parseInt(scanner.nextLine());
+	      if(a>b){System.out.println(a+"가 더 큽니다.");}
+	      else if(a<b){ System.out.println(b+"가 더 큽니다.");}
+	      else{System.out.println("둘은 같습니다.");}
+	     
+	      System.out.println("두 수의 합 : "+(a+b));
+	      System.out.println("두 수의 차 : "+(a-b));
+	      System.out.println("두 수의 곱 : "+(a*b));
+	      System.out.println("두 수의 나눗셈 : "+(a/b));
+	      System.out.println("두 수의 나머지 : "+(a%b));
+<javascript>
+    let a=Number(prompt("한개의 정수를 입력하세요","0"));
+    let b=Number(prompt("한개의 정수를 입력하세요","0"));
+
+    if(a>b){alert(a+"가 더 큽니다.");}
+	else if(a<b){alert(b+"가 더 큽니다.");}
+	else{alert("둘은 같습니다.");}
+
+    alert("두 수의 합 : "+(a+b));
+    alert("두 수의 차 : "+(a-b));
+    alert("두 수의 곱 : "+(a*b));
+    alert("두 수의 몫 : "+(a/b));
+    alert("두 수의 나머지 : "+(a%b));
+---
+### 09/30 (토요일)
+- **개념문제**: 자바의 연산자들에 대한 설명 및 각 연산자의 용도 이해.
++ : 덧셈 연산자
+- : 뺄셈 연산자
+* : 곱셈 연산자
+/ : 나눗셈의 몫 연산자
+% : 나눗셈의 나머지 연산자
+- **코드연습문제**: 주어진 문제 상황에 맞는 연산자를 사용하여 코드를 작성.
+사용자로부터 정수를 하나 입력받아, 그 수가 양수인지, 음수인지, 또는 0인지 판별하세요.
+<java>
+	      //사용자로부터 정수를 하나 입력받아, 그 수가 양수인지, 음수인지, 또는 0인지 판별하세요.
+	      Scanner scanner=new Scanner(System.in);
+	      System.out.println("정수를 하나 입력하세요.");
+	      int num=Integer.parseInt(scanner.nextLine());
+	      if(num>0)
+	      {
+	    	  System.out.println("양수");
+	      }
+	      else if(num<0)
+	      {
+	    	  System.out.println("음수");
+	      }
+	      else
+	      {
+	    	  System.out.println("0 입니다.");
+	      }
+<javascript>
+	      let num=Number(prompt("정수를 하나 입력하세요.","0"));
+	      if(num>0)
+	      {
+	    	  alert("양수");
+	      }
+	      else if(num<0)
+	      {
+            alert("음수");
+	      }
+	      else
+	      {
+            alert("0 입니다.");
+	      }
+---
+### 10/01 (일요일)
+- **개념문제**: 조건문의 개념 및 각 구문의 사용 방법에 대한 이해.
+if(조건1)
+{조건 충족시 실행되는 statements}
+else if(조건2)
+{조건1을 충족하지 못하지만 조건2를 충족할떄 실행되는 statements}
+else
+{조건1과 조건2를 모두 충족하지 못할떄 실행되는 statements}
+- **코드연습문제**: 주어진 문제 상황에 맞는 if-else 문 또는 switch-case 문을 사용하여 코드를 작성.
+사용자로부터 정수를 하나 입력받아, 그 수가 양수인지, 음수인지, 또는 0인지 판별하세요.
+<java>
+	      //사용자로부터 정수를 하나 입력받아, 그 수가 양수인지, 음수인지, 또는 0인지 판별하세요.
+	      Scanner scanner=new Scanner(System.in);
+	      System.out.println("정수를 하나 입력하세요.");
+	      int num=Integer.parseInt(scanner.nextLine());
+	      if(num>0)
+	      {
+	    	  System.out.println("양수");
+	      }
+	      else if(num<0)
+	      {
+	    	  System.out.println("음수");
+	      }
+	      else
+	      {
+	    	  System.out.println("0 입니다.");
+	      }
+<javascript>
+	      let num=Number(prompt("정수를 하나 입력하세요.","0"));
+	      if(num>0)
+	      {
+	    	  alert("양수");
+	      }
+	      else if(num<0)
+	      {
+            alert("음수");
+	      }
+	      else
+	      {
+            alert("0 입니다.");
+	      }
+---
+
+### 10/02 (월요일)
+- **개념문제**: 반복문의 개념 및 각 구문의 사용 방법에 대한 이해.
+정해진 조건 혹은 횟수만큼 반복문 몸체의 Statements를 반복한다.
+for(초기화;조건;증감식){몸체}
+while(조건){몸체}
+do{몸체}while(조건)
+- **코드연습문제**: 주어진 문제 상황에 맞는 for, while, do-while 문을 사용하여 코드를 작성.
+1부터 사용자가 입력한 수까지의 모든 정수의 합을 구하세요.
+<java>
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("1부터 n까지 정수의 합을 구할것입니다. n을 입력하세요.");
+		int sum=0;
+		int n=Integer.parseInt(scanner.nextLine());
+		for(int i=1;i<=n;i++)
+		{
+			sum+=i;
+		}
+		System.out.println("총합 : "+sum);
+<javascript>
+		let n = Number(prompt("1부터 n까지 정수의 합을 구할것입니다. n을 입력하세요.","0"));
+       		let sum=0;
+		for(let i=1;i<=n;i++)
+		{
+			sum+=i;
+		}
+		alert("총합 : "+sum);
+
+---
+### 10/03 (화요일)
+- **개념문제**: 자바의 데이터 처리 방식 및 객체의 개념 이해.
+객체는 클래스의 실체이다.
+각각의 객체는 독립된 값을 가질 수 있다.
+Static 키워드가 붙은 멤버의 경우 클래스 멤버라서 클래스이름.멤버이름으로 접근 가능하다
+그러나 Static 키워드가 없는 멤버는 인스턴스 멤버라서 각각 독립된 값을 갖는다.
+
+- **코드연습문제**: 배열과 객체를 활용하는 코드 작성 및 클래스의 구성요소에 따라 메서드와 필드를 가진 클래스 설계.
+사각형 클래스를 만들고, 넓이와 둘레를 구하는 메서드를 포함시키세요. 객체를 생성하고 해당 메서드를 호출하여 결과를 출력하세요.
+package javaexp.a02_var;
+import java.util.Scanner;
+public class A03_ChangeType
+{
+	public static void main(String[] args) 
+	{
+		//배열과 객체를 활용하는 코드 작성 및 클래스의 구성요소에 따라 메서드와 필드를 가진 클래스 설계.
+		//사각형 클래스를 만들고, 넓이와 둘레를 구하는 메서드를 포함시키세요. 객체를 생성하고 해당 메서드를 호출하여 결과를 출력하세요.
+		Scanner scanner=new Scanner(System.in);
+		RectAngle square=new RectAngle(3,4);
+		System.out.println("사각형의 x : "+square.getX());
+		System.out.println("사각형의 y : "+square.getY());
+		System.out.println("사각형의 넓이 : "+square.getArea());
+		System.out.println("사각형의 둘레 : "+square.getTotalLength());
+	}
+}
+
+class RectAngle
+{
+	private double x;
+	private double y;
+	
+	public RectAngle()
+	{
+		
+	}
+	public RectAngle(int x, int y)
+	{
+		this.x=x;
+		this.y=y;
+	}
+	public double getX() 
+	{
+		return x;
+	}
+	public void setX(double x) 
+	{
+		this.x = x;
+	}
+	public double getY() 
+	{
+		return y;
+	}
+	public void setY(double y) 
+	{
+		this.y = y;
+	}
+	public double getArea()
+	{
+		return x*y;
+	}
+	public double getTotalLength()
+	{
+		return 2*(x+y);
+	}
+}
+
+개인별/조별 미니프로젝트 주제 및 내용 전달
+package javaexp.a04_process;
+import java.util.*;
+class sy
+{
+   public static void main(String args[])
+   {
+      int arr[]=new int[6];
+      System.out.println("민기 로또 1등 기원");
+      for(int j=0;j<5;j++)// 5세트 출력용 for문
+      {
+            for(int k=0;k<arr.length;k++)
+            {
+               int num=(int)((Math.random()*45)+1);
+               if(CheckArray.checkarray(arr, num))
+               {
+                  k--;
+                  continue;
+               }
+               else
+               {
+                  arr[k]=num;
+               }
+            }
+         for(int i=0;i<arr.length;i++)
+         {
+            System.out.print(arr[i]+"\t");
+         }
+         System.out.println("");
+      }
+   }
+}
+
+class CheckArray
+{
+   static boolean checkarray(int arr[],int value)
+   {
+      for(int i=0;i<arr.length;i++)
+      {
+         if(value==arr[i])
+         {
+            return true;
+         }
+         else
+         {
+            continue;
+         }
+      }
+      return false;
+   }
+}
+ * */
+----------------------------------------------------------------------------------------------------------------------------------

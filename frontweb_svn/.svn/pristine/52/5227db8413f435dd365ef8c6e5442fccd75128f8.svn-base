@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        # arguments에 대한 이해
+        1. 여러가지 매개변수를 효율적으로 동적으로 처리하기 위한
+           내장된 객체
+        2. function buyList(){
+               var fruits = ""
+               for(var idx=0;arguments.length;idx++){
+                   fruits += arguments[idx]+","
+               }
+               alert("구매한과일:"+fruits)
+           }
+           buyList('사과')   arguments = ['사과']
+           buyList('사과','바나나')   arguments = ['사과','바나나']
+           buyList('사과','바나나','오렌지')   
+                arguments = ['사과','바나나','오렌지']
+        3. 위와 같은 함수명으로 여러가지 매개변수를 동적으로 
+           처리할 때, 필요로 하는 것을 arguments 객체로 가능하다.
+        */
+        function buyList(){
+            var fruits = ""
+            for(var idx=0;idx<arguments.length;idx++){
+                fruits += arguments[idx]+", "
+            }
+            alert("구매한 과일:"+ fruits)
+        }
+        //buyList("사과")
+        //buyList("오렌지","수박")
+        //buyList("딸기","바나나","키위")
+        function totPoint(){
+            var sum = 0
+            var cnt = arguments.length
+            for(var idx=0;idx < cnt;idx++){
+                sum += Number(arguments[idx])
+            }
+            alert("학생 "+cnt+"명의 총점은 "+sum +", 평균은 "+(sum/cnt))
+        }
+        //totPoint(70)
+        //totPoint(70,80)
+        //totPoint(90,85,75,50,79)
+        // regMember 함수로 가입한 회원명단으로 출력하는 함수를 선언하고,
+        // 여러 매개변수에 따라서 처리할 수 있게 처리하세요.
+        // 회원 1명, 회원 3명, 회원 5명 아이디 입력
+        function regMember(){
+            var mList = []
+            for(var idx=0;idx<arguments.length;idx++){
+                mList.push(arguments[idx])
+            }
+            alert("가입된 회원:"+mList)
+        }
+        regMember('홍길동')
+        regMember('홍길동','김길동','오길동')
+        regMember('홍길동','김길동','오길동','신길동','차길동')
+
+    </script>
+</body>
+</html>

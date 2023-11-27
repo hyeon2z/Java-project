@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$("ancestor descendant")  선택자 실습</title>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){    
+    //                                굵기 종류   색상
+	   $( "form input" ).css( "border", "2px dotted blue" );
+	   $( "form fieldset input" ).css( "background-color", "yellow" );
+     // input중에서 form과 그 하위 fieldset을 조상으로
+     // 가진 것을 설정..
+     // cf)$( "form>fieldset>input" )
+     //  바로 위 부모 그 위 부모
+     });
+</script>
+</head>
+<body>
+<form>
+  <div>기본 폼</div>
+  <label for="name">기본 폼의 자식</label>
+  <input name="name" id="name">
+  <fieldset>
+    <label for="newsletter">기본 폼의 자손, 필드셋의 자식</label>
+    <input name="newsletter" id="newsletter">
+  </fieldset>
+</form>
+기본 폼의 형제: <input name="none">
+
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	
+	
+-->
+<script>
+	/*
+[1단계:개념] 1. js에서 DOM의 이벤트 구성요소를 기술하고, 기본예제를 통해서 구성요소의 역할을 설명하세요.
+[1단계:개념] 2. DOM이 한개인 경우, 여러 개인 경우에 click이벤트 처리 방법의 차이점을 예제를 통해 설명하세요
+[1단계:확인] 3. h2로 구성된 5개의 도서명리스트 하고, 클릭시 마다, 아래의 p태그에 해당 도서를 담는 처리흘 하세요.
+[1단계:확인] 4. key이벤트 중에 바로 this를 사용하는 경우의 의미와 왼쪽화살표를 클릭시, 카운트를 감소하고, 오른쪽 화살표 클릭시 카운트를
+	      증가하는 처리를 하세요.
+[1단계:개념] 5. 테이블의 구성요소를 기술하세요
+[1단계:확인] 6. 3행3열/4행3열 테이블 만들어 보고, 학생테이블(학생번호, 학생명, 국어, 영어, 수학)를 타이틀과 데이터가 들어간 행태로 테이블을 구성하고 출력하세요
+[1단계:개념] 7. 테이블의 병합의 기준과 처리방법을 기본 예제를 통해서 설명하세요
+[1단계:설치] 8. 오라클 설치 과정을 ppt를 캡처해서 정리하고, 제출하세요.
+### [1단계:개념] 1. 
+**이벤트 구성요소**:
+- **이벤트 타겟(Event Target)**: 이벤트가 발생하는 DOM 요소입니다.
+- **이벤트 타입(Event Type)**:(이벤트종류) 발생하는 이벤트의 종류(ex: 'click', 'keyup').
+- **이벤트 리스너(Event Listener)**:(이벤트핸들러함수) 이벤트가 발생했을 때 실행되는 함수.
+**기본 예제**:
+```javascript
+document.getElementById('btn').addEventListener('click', function() {
+  alert('Button clicked!');
+});
+var btnObj = document.querySelector("#btn")
+btnObj.onclick=function(){
+	alert("버튼 클릭!")
+}
+```
+- **이벤트 타겟**: `document.getElementById('btn')` 
+- **이벤트 타입**: `'click'`
+- **이벤트 리스너**: `function() { alert('Button clicked!'); }`
+
+### [1단계:개념] 2. 
+- **DOM이 한 개인 경우**: 
+  ```javascript
+  document.getElementById('elementId').addEventListener('click', function() {
+    console.log('Clicked!');
+  });
+  <h1 id="elementId">
+  var elementIdOb = document.querySelector("#elementId")
+  elementIdOb.onclick=function(){
+	  
+  }
+  ```
+- **DOM이 여러 개인 경우**:
+  ```javascript
+  document.querySelectorAll('.elementsClass').forEach(element => {
+    element.addEventListener('click', function() {
+      console.log('Clicked!');
+    });
+  });
+  var classArr = document.querySelectorAll('.elementsClass')
+  for(var idx=0;idx<classArr.length;idx++){
+	  console.log(classArr[idx].innerText)
+  }
+  classArr.forEach(function(ele, idx){
+	  console.log(ele.innerText)
+  })
+  ```
+  
+  
+  
+
+### [1단계:확인] 3. 
+```html
+<h2>Book 1</h2>
+<h2>Book 2</h2>
+<h2>Book 3</h2>
+<h2>Book 4</h2>
+<h2>Book 5</h2>
+<p id="selectedBook"></p>
+
+<script>
+document.querySelectorAll('h2').forEach(book => {
+  book.addEventListener('click', function() {
+    document.getElementById('selectedBook').textContent = 'Selected Book: ' + this.textContent;
+  });
+});
+
+
+### [1단계:확인] 4. 
+html
+<p>Count: <span id="counter">0</span></p>
+<script>
+var counterOb = document.querySelector("#counter")
+this.onkeyup=function(){
+	if(event.keyCode==37){
+		this.innerText = Number(this.innerText) - 1
+	}
+	if(event.keyCode==39){
+		this.innerText = Number(this.innerText) + 1
+	}
+}	
+	
+	
+	
+document.addEventListener('keydown', function(e) {
+  const countSpan = document.getElementById('counter');
+  let count = parseInt(countSpan.textContent);
+
+  if (e.key === "ArrowRight") {
+    count++;
+  } else if (e.key === "ArrowLeft") {
+    count--;
+  }
+
+  countSpan.textContent = count;
+});
+
+```
+
+### [1단계:개념] 5. 
+**테이블의 구성요소**:
+- **`<table>`**: 테이블을 생성.
+- **`<thead>`**: 테이블의 헤더를 구성.
+- **`<tbody>`**: 테이블의 본문을 구성.
+- **`<tr>`**: 테이블의 행을 생성.
+- **`<th>`**: 테이블의 헤더 셀을 생성.
+- **`<td>`**: 테이블의 데이터 셀을 생성.
+
+### [1단계:확인] 6. 
+html
+<table border="1">
+  <thead>
+    <tr>
+      <th>학생번호</th>
+      <th>학생명</th>
+      <th>국어</th>
+      <th>영어</th>
+      <th>수학</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>홍길동</td>
+      <td>85</td>
+      <td>90</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>김길동</td>
+      <td>95</td>
+      <td>75</td>
+      <td>80</td>
+    </tr> 
+  </tbody>
+</table>
+```
+
+### [1단계:개념] 7. 
+셀 병합은 주로 `<td>` 또는 `<th>` 태그의 `colspan`과 `rowspan` 속성을 사용하여 수행됩니다.
+
+- **`colspan`**: 현재 셀이 몇 개의 열에 걸쳐 확장될 것인지 지정.
+- **`rowspan`**: 현재 셀이 몇 개의 행에 걸쳐 확장될 것인지 지정.
+
+**기본 예제**:
+html
+<table border="1">
+  <tr>
+    <th rowspan="2">Name</th>
+    <th colspan="2">Scores</th>
+  </tr>
+  <tr>
+    <th>Math</th>
+    <th>English</th>
+  </tr>
+  <tr>
+    <td>John</td>
+    <td>90</td>
+    <td>85</td>
+  </tr>
+</table>
+
+여기서 첫 번째 행의 "Scores"는 2개의 열에 걸쳐 있고, 첫 번째 열의 "Name"은 2개의 행에 걸쳐 있습니다.
+
+	*/
+	
+</script>
+</body>
+</html>

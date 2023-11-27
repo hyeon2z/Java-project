@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 선언적 함수
+        function fun01() { alert('함수 A'); }
+        function fun01() { alert('함수 B'); }
+        // 마지막 정의된 함수 수행
+        // fun01();
+        // 앞에 변수형 함수와 달리 선언 앞에 호출되어도
+        // 처리가 가능하다.
+        //fun02()
+        function fun02(){
+            alert("안녕하세요!!(호출 후 선언)")
+        }
+        // 주의 변수형 함수는 선언 후에 반드시 호출
+        //fun03()
+        var fun03 = function(){
+            alert("변수형 함수")
+        }
+        //fun03();
+        // ex) 선언적 함수로 두개의 값을 합산하는 것과
+        //     변수형 함수로 두개의 값을 곱셈처리하는 것을
+        //     처리하세요..
+        plus()
+        function plus(){
+            var num01 = Number(prompt("첫번째 수","0"))
+            var num02 = Number(prompt("두번째 수","0"))
+            alert(`${num01} + ${num02} = ${num01+num02}`)
+        }
+        var multi = function(num01, num02){
+             return num01*num02
+        }
+        alert(`${25} x ${5} = ${multi(25, 5)}`)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

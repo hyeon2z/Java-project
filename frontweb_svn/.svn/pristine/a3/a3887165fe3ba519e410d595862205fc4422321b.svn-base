@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+//	[1단계:개념] 1. js에서 DOM의 이벤트 구성요소를 기술하고, 기본예제를 통해서 구성요소의 역할을 설명하세요.
+    // 이벤트 구성 요소 : DOM객체(이벤트 대상), 이벤트 내용, 이벤트 핸들러 함수
+
+//	[1단계:개념] 2. DOM이 한개인 경우, 여러 개인 경우에 click이벤트 처리 방법의 차이점을 예제를 통해 설명하세요
+    /*
+    1. DOM이 한개인 경우
+        <h2>이벤트</h2>
+        --------스크립트----------
+        var h2Ob = document.querySelector("h2")
+        h4Ob.onclick = function(){
+            처리할 내용
+        }
+    2. DOM이 여러개인 경우
+        <h3>이벤트</h3>
+        <h3>이벤트</h3>
+        <h3>이벤트</h3>
+        --------스크립트------------
+        var h3Arr = document.querySelectorAll("h3")
+        for(var idx=0;idx<h3Arr.length;idx++){
+            h3Arr[idx].onclick = function(){
+                처리할 내용
+            }
+        }
+    */
+
+//	[1단계:확인] 3. h2로 구성된 5개의 도서명리스트 하고, 클릭시 마다, 아래의 p태그에 해당 도서를 담는 처리흘 하세요.
+
+//	[1단계:확인] 4. key이벤트 중에 바로 this를 사용하는 경우의 의미와 왼쪽화살표를 클릭시, 카운트를 감소하고,
+//				  오른쪽 화살표 클릭시 카운트를 증가하는 처리를 하세요.
+    // key이벤트에서 대상 DOM객체는 윈도우창 전체를 의미한다.
+
+//	[1단계:개념] 5. 테이블의 구성요소를 기술하세요
+    // 테이블은 행/열로 구성되어있다.
+    // 테이블 생성 태그 : table, tr, td 등
+
+//	[1단계:확인] 6. 3행3열/4행3열 테이블 만들어 보고, 학생테이블(학생번호, 학생명, 국어, 영어, 수학)를
+//				  타이틀과 데이터가 들어간 행태로 테이블을 구성하고 출력하세요
+
+//	[1단계:개념] 7. 테이블의 병합의 기준과 처리방법을 기본 예제를 통해서 설명하세요
+    // 테이블의 각 셀을 행으로 또는 열로 병합할 수 있다.
+    // 행로 병합하는 경우에는 병합할 셀 중 가장 앞의 것에 rowspan="병합할 셀의 수"를 입력하고 뒤의 셀을 지우면 된다.
+    // 열로 병합하는 경우는 행을 병합할 때와 거의 같지만 colspan을 사용한다는 점이 다르다.
+
+//	[1단계:설치] 8. 오라클 설치 과정을 ppt를 캡처해서 정리하고, 제출하세요.
+
+</script>
+<h1>1. DOM이벤트 구성요소</h1>
+<h4>이벤트(클릭)</h4>  <!--DOM객체-->
+<hr>
+<h1>3. 도서명리스트</h1>
+<h2>자바의정석</h2>
+<h2>신곡</h2>
+<h2>군주론</h2>
+<h2>죄와벌</h2>
+<h2>유토피아</h2>
+<p></p>
+<hr>
+<h1>4. key이벤트</h1>
+<h3>0</h3>
+<hr>
+<h1>6. 테이블</h1>
+<h4>3행3열</h4>
+<table border>
+    <tr><td>1행1열</td><td>1행2열</td><td>1행3열</td></tr>
+    <tr><td>2행1열</td><td>2행2열</td><td>2행3열</td></tr>
+    <tr><td>3행1열</td><td>3행2열</td><td>3행3열</td></tr>
+</table>
+<h4>4행3열</h4>
+<table border>
+    <tr><td>1행1열</td><td>1행2열</td><td>1행3열</td></tr>
+    <tr><td>2행1열</td><td>2행2열</td><td>2행3열</td></tr>
+    <tr><td>3행1열</td><td>3행2열</td><td>3행3열</td></tr>
+    <tr><td>4행1열</td><td>4행2열</td><td>4행3열</td></tr>
+</table>
+<h4>학생테이블</h4>
+<table border>
+    <caption>학생정보</caption>
+    <thead>
+		<tr><th>학생번호</th><th>학생명</th><th>국어</th><th>영어</th><th>수학</th></tr>
+	</thead>
+    <tbody>
+		<tr><th>1</th><th>홍길동</th><th>80</th><th>95</th><th>90</th></tr>
+		<tr><th>2</th><th>김길동</th><th>65</th><th>85</th><th>100</th></tr>
+		<tr><th>3</th><th>신길동</th><th>75</th><th>80</th><th>95</th></tr>
+		<tr><th>4</th><th>오길동</th><th>85</th><th>85</th><th>75</th></tr>
+		<tr><th>5</th><th>최길동</th><th>95</th><th>90</th><th>80</th></tr>
+	</tbody>
+</table>
+<hr>
+<h1>7. 테이블 병합</h1>
+<h4>4행3열</h4>
+<table border>
+    <tr><td>1행1열</td><td colspan="2">1행2열</td></tr>
+    <tr><td>2행1열</td><td>2행2열</td><td>2행3열</td></tr>
+    <tr><td>3행1열</td><td>3행2열</td><td rowspan="2">3행3열</td></tr>
+    <tr><td>4행1열</td><td>4행2열</td></tr>
+</table>
+
+<script>
+    var h4Ob = document.querySelector("h4")
+    h4Ob.onclick = function(){  // 이벤트 핸들러 함수
+        alert("안녕하세요") // 이벤트 내용
+    }
+
+    var h2Arr = document.querySelectorAll("h2")
+    var pOb = document.querySelector("p")
+    pOb.innerHTML+="<h2>--장바구니--</h2>"
+    for(var idx=0;idx<h2Arr.length;idx++){
+        h2Arr[idx].onclick=function(){
+            pOb.innerHTML+="<h4>"+this.innerText+"</h4>"
+        }
+    }
+
+    var num = 0
+    var h3Ob = document.querySelector("h3")
+    this.onkeyup=function(){
+        if(event.keyCode==37) num--
+        if(event.keyCode==39) num++
+        h3Ob.innerHTML="<h3>"+num+"</h3>"
+    }
+    
+</script>
+</body>
+</html>

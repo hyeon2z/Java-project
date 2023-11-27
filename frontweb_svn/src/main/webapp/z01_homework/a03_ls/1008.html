@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    // 8. **객체 기반 주소록 시스템**:
+    // - 이름, 전화번호, 이메일 주소 등의 정보를 입력하고 조회, 수정, 삭제하는 기능
+
+    const info  = [];
+    function infoList (name,pNum,eMail){
+       info.push({name,pNum,eMail})
+    }
+    infoList("홍길동","01011111111","hong@gmail.com")
+    infoList("김길동","01022222222","kim@gmail.com")
+    infoList("박길동","01033333333","park@gmail.com") 
+    // info배열에 infoList함수를 통해 주소록 추가
+    info[2] = ("신길동","01033333333","sin@gmail.com")  //  주소록 수정
+    info.splice(2,1) // 마지막 배열 삭제 
+
+
+   var sName= prompt("검색하실 이름을 입력하세요","") 
+    function search(sName){
+        
+        for(let i = 0; i<info.length; i++){
+        let searchList = info[i];
+       if(searchList.name == sName){
+        console.log(`
+        검색searchList.name == sName한 이름의 정보
+        이름 : ${searchList.name},
+        번호 : ${searchList.pNum},
+        이름 : ${searchList.eMail},
+        `);
+        
+        break;
+       }
+    }
+       if (searchList.name != sName){
+        console.log("등록된 정보가 없습니다")
+       }
+    }
+    search(sName);
+
+// 2. **숫자 맞추기 게임**:
+//     - 컴퓨터가 1부터 100까지의 숫자 중 하나를 무작위로 선택
+//     - 사용자가 숫자를 입력하여 맞추는 게임
+
+    let ranNum = Math.floor(Math.random()*100+1); // 컴퓨터 랜덤숫자 부여
+    
+    var myNum = Number(prompt("1~100 중에 생각한 숫자를 입력하세요",)) // 내숫자 입력
+   
+    while(true){
+    if(ranNum>myNum){
+        alert("입력하신 숫자가 더 작습니다.")
+        var myNum = Number(prompt("1~100 중에 생각한 숫자를 입력하세요",))
+    }if(ranNum<myNum){
+        alert("입력하신 숫자가 더 큽니다.")
+        var myNum = Number(prompt("1~100 중에 생각한 숫자를 입력하세요",))
+    }if(ranNum==myNum){
+    alert(`
+    컴퓨터의 숫자 : ${ranNum}
+    입력한 숫자 : ${myNum}
+    정답입니다!
+    `)
+    break;}
+    }
+
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

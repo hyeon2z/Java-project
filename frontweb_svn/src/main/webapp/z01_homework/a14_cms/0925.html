@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <script>
+// [개념] 1. js의 ", '의 js와의 차이점을 기술하세요
+// js에서 '와 "는 차이가 없으며 둘 다 문자열을 표현할 때 사용된다.
+// 또한 js에서는 문자형 데이터가 없고, 문자열 데이터만 존재한다.
+// '와 "는 서로 포함될 수 있다.
+// [개념] 2. js의 ", ' 데이터 출력형식을 기술하세요.
+ alert('안녕하세요.') //'를 사용해서 문자열 데이터를 출력
+ alert("안녕하세요.") // ""를 사용해서 문자열 데이터를 출력
+ alert("안녕하세요 '최명신' 입니다.")
+ alert('안녕하세요 "최명신" 입니다.')
+// [개념] 3. js의 데이터유형을 기술하고, 예제를 통해 데이터 유형을 확인하는 함수와 함께 출력하세요.
+//1) 숫자형 데이터
+var numVar = 10;
+console.log(typeof(numVar))
+//2) 문자열 데이터
+var strVar = "문자열입니다."
+console.log(typeof(strVar))
+//3) boolean 형 변수 출력
+var booleanVar = true;
+console.log(typeof(booleanVar))
+//4) 함수형 변수
+var functionVar = function(){};
+console.log(typeof(functionVar));
+//객체형 변수
+var objectVar = {pname :"핸드크림", price : 6500};
+console.log(typeof(objectVar))
+
+// 4) 
+// [확인] 4. js를 통해서 입력한 영화 관객 인원수와 관람료를 통한 총비용을 출력하게 하세요.
+//Number() : 정수/실수 해당 유형으로 처리
+//parseInt() : "25.7" ==> 25.7 ==> 25 
+//              "2500원 " ==> "2500" ==> 2500 앞에 숫자만 추출
+//parseDouble()  : 정수형, 실수형
+var audience = prompt("관객수 입력", 0);
+var price = prompt("관람료 입력", 0);
+var tot = audience*price;
+alert("총비용은 " + tot)
+// [개념] 5. BOM과 DOM의 차이점을 기술하세요.
+//document는 window의 html문서입니다. DOM은 htmp과 js를 연결해주는
+//역할을 합니다.
+//BOM은 Browser Object Model의 준말로 웹페이지의 내용을 제외한
+//브라우저창에 포함되는 모든 객체 요소를 의미합니다.
+
+// [개념] 6. 문자열을 선언하고, 대입하는 것과 누적하는 것의 차이점을 예시로 만들어서 처리하세요.
+var str01 = "내 이름은 ";
+var str02 = "최명신"
+var str03 = "입니다."
+var acc = str01+str02+str03;
+alert("문자열 누적"+acc);
+var numStr01 = 12
+var numStr02 = 15
+var numStr03 = 16
+var sumNum = Number(numStr01+numStr02+numStr03);
+alert(sumNum)
+
+// [개념] 7. ++변수, 변수--의 의미를 예시를 통해서 기술하세요.
+var num01 = 1;
+var num02 = 10;
+console.log(num01++) //1 출력후 연산 
+console.log(num01++) //2
+console.log(num01++) //3
+console.log(--num02)//9 연산 후 출력
+console.log(--num02)//8
+console.log(--num02)//7
+// [개념] 8. js에서 변수을 선언/할당에 있어서, java와의 차이점을 예제를 통해 기술하세요.
+//java에서는 변수를 선언할 때 명확하게 데이터 유형을 선언해야 하지만
+//js에서는 변수형을 var로 형성하면 알아서 데이터 유형을 할당해줍니다.
+// Java var y = 300 //버전에 따라 지원
+// 또한 java에서는 변수를 선언한 후 초기화를 하지 않으면 error가 나서 프로그램이 진행되지 않지만
+// js에서는 error 인해 프로그램이 중단되지는 않습니다. 대신 error 메시지가 나옵니다.
+// [개념] 9. prompt창의 사용법을 기본예제를 통해서 기술하세요..
+var age = prompt("나이를 입력하십시오.", 0); //message + 초기값
+var name = prompt("이름을 입력하십시오" , null);
+// [개념] 10. confirm창의 사용법을 기본예제를 통해서 기술하세요..
+var isPassed = confirm("2023년도 정보처리기사 실기에 합격하셨습니까?")
+//확인을 누르면 isPassed에 true가 할당되고, 취소를 누르면 false가 할당된다.
+// [개념] 11. 형변환 '52' + 273 + 12, 52 + 273 + '12' 차이점을 기술하세요.
+console.log('52'+273+12); //맨 앞에 있는 52가 문자열 데이터이기 때문에 뒤에 있는 데이터도
+//자동으로 문자열로 형변환되어서 5227312가 출력됩니다.
+console.log(52+273+'12'); //52+273 연산이 진행된 후 문자열 12가 누적된 값이 출력됩니다.
+//32512 출력
+// [개념] 12. js에서 형변환의 특징을 예제를 통해 기술하세요
+var a = 10;
+var b = '25';
+console.log(a+b) //a가 자동으로 문자열 데이터로 형변환 되어 1025의 값이 출력됩니다.
+//a+b를 숫자형으로 바꾸고 싶으면
+console.log(Number(a+b)) //Number 함수를 사용해야 합니다.
+var c = 20;
+var d = 30;
+console.log(c*d) //+연산을 제외한 산술연산자는 자동으로 숫자형 데이터로 형변환되어
+//20*30인 600인 값이 처리됩니다.
+
+// [개념] 13. js에서 사용하는 Math객체의 하위 메서드를 예제를 통해 기술하세요.
+//1~6까지의 임의의 수를 출력
+var dice = Math.floor((Math.random()*6+1));
+alert(dice);
+
+var dbl01 = 3.142592
+//실수 내림 처리
+console.log(Math.floor(dbl01))
+//올림
+console.log(Math.ceil(dbl01))
+//반올림
+console.log(Math.round(dbl01))
+// [확인] 14. js에서 사용하는 Math객체의 random()메서드를 활용해서 모두의 마블 2개의 팀의 점수를 나타내세요.
+var dice1 = Math.floor(Math.random()*6+1)*1;
+var dice2 = Number(Math.floor(Math.random()*6+1));
+var mScore = dice1 + dice2;
+alert("모두의 마블 점수는 " + mScore)
+
+// [확인] 15. js에서 back tick 사용을 통해서 변수 선언과 활용 예제 만들어 기술하세요
+var subject = "객체지향언어1";
+var avg = 75.4;
+alert(`A대학교 23년 2학기,
+${subject}과목의 평균 점수는 
+${avg}입니다.` )
+// # 조별로 파악사항(아래사항 조별로 취합 전달)
+// 1. 오늘 가장 어려웠던 부분 best3 및 내일 자세한 설명 필요한 부분
+// 2. 지난 주 금요일 같이 미니 프로젝트 시간 필요여부(매주)
+// 3. 오늘 지각인원과 사유
+    </script>
+
+</body>
+</html>

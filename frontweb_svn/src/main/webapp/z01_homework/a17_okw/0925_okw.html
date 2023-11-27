@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+// # 아래 내용을 수업 예제 코드와 인터넷도 검색해서 정리해보세요
+// [개념] 1. js의 ", '의 java와의 차이점을 기술하세요
+		/*
+		java는 ''는 단일문자를, ""는 문자열을 입력할 때 사용하는데, js 는 '',"" 구분 없이 모두 문자열에 사용.
+		"" 안에 '', ''안에 ""를 넣어 포함관계로 사용할 수도 있다.
+		*/
+// [개념] 2. js의 ", ' 데이터 출력형식을 기술하세요.
+	/*
+	ex)
+	alert("홍길동씨가 '안녕하다'라고 했다.")
+	*/
+// [개념] 3. js의 데이터유형을 기술하고, 예제를 통해 데이터 유형을 확인하는 함수와 함께 출력하세요.
+	// // 1. 문자열
+	// var stringVar = 'String';
+	// // 2. 숫자형(실수, 정수)
+	// var numberVar = 273;
+	// // 3. boolean형
+	// var booleanVar = true;
+	// // 4. 함수형
+	// var functionVar = function(){
+	// 	alert("함수 호출")
+	// 	return "리턴한 문자열 데이터";
+	// }
+	// // 5. 객체형
+	// var objectVar = {name: "김갑환", age:27}  // 한줄에 한 데이터에는 ; 생략도 가능
+// [확인] 4. js를 통해서 입력한 영화 관객 인원수와 관람료를 통한 총비용을 출력하게 하세요.
+	// var mAudience = prompt("관객 수를 입력","0")
+	// var mPrice = 12000
+	// var mTot = (mAudience*mPrice)
+	// alert("영화관람 총 비용 : "+mTot)
+// [개념] 5. BOM과 DOM의 차이점을 기술하세요.
+	// window : BOM
+	//	하위에 document(DOM)으로 구성된 계층 구조이다.
+	//	window는 브라우저의 로딩된 창을 나타내는 객체이다. 
+	// BOM 내부에 변수를 선언하고 연산자를 사용해서 문서(DOM)에 출력한다.
+// [개념] 6. 문자열을 선언하고, 대입하는 것과 누적하는 것의 차이점을 예시로 만들어서 처리하세요.
+	// 대입하는 것
+	// var pName = '김갑환, ';
+	// // 누적하는 것
+	// pName += '최번개, '
+	// pName += '오근우'
+	// // 출력 결과
+	// alert("못생긴 사람 목록 : "+ pName)
+// [개념] 7. ++변수, 변수--의 의미를 예시를 통해서 기술하세요.
+	// var num07 = 5;
+	// alert(++num07)	// 6
+	// alert(num07++)	// 6	
+	// alert(++num07)	// 8
+	// alert(--num07)	// 7
+	// alert(num07--)	// 7
+	// alert(--num07)	// 5
+// [개념] 8. js에서 변수을 선언/할당에 있어서, java와의 차이점을 예제를 통해 기술하세요.
+		// var myName = "오근우"
+		// var myName = "오박사"
+		// // 이처럼 js에서는 java와 달리 중복된 변수 선언과 할당을 허용한다.
+		// // 그리고 최종적으로 할당한 변수를 인식한다.
+		// alert(myName)
+// [개념] 9. prompt창의 사용법을 기본예제를 통해서 기술하세요..
+		// var product = prompt("상품명 입력", "사과(default)")
+		// alert("상품명:" + product)
+// [개념] 10. confirm창의 사용법을 기본예제를 통해서 기술하세요..
+		// var enroll = confirm("등록하시겠습니까?")
+		// if(enroll){
+		// 	alert("등록되었습니다.")
+		// }else{
+		// 	alert("등록을 취소하셨습니다.")
+		// }
+// [개념] 11. 형변환 '52' + 273 + 12, 52 + 273 + '12' 차이점을 기술하세요.
+		// '52' + 273 + 12  ==> 5227372 로 출력된다. 
+		// 왼쪽에서부터 읽기 때문에 앞에 문자열이 선언되어 있으면 숫자도 문자열로 인식된다.
+		// 52 + 273 +'12' ==> 32512 로 출력된다.
+		// 52 + 273은 숫자로 인식되고, 뒤에 문자열 '12'를 더하기 때문에 32512가 된다.
+// [개념] 12. js에서 형변환의 특징을 예제를 통해 기술하세요
+		// var inAge = prompt("몇 살인가요?",0)  // 문자열로 인식된다. 때문에 + 연산이 문자열이 더해지는걸로 인식
+		// alert("10년후 나이는 " + (inAge+10))
+		// var inAge = prompt("몇 살인가요?",0)*1  // ==> *1을 붙여서 자동 형변환. 숫자형으로 변환한다.
+		// alert("10년후 나이는 " + (inAge+10))
+		// var inCnt = Number(prompt("물건 몇 개?",0))	// ==>Number()를 통한 명시적 형변환 처리. 숫자형으로 변환한다.
+		// var price12 = 3000
+		// alert("물건의 총 가격은 "+ (price12*inCnt))	// js에서는 +를 제외하곤 딱히 형변환하지 않아도 자동 형변환이 인식된다.
+// [개념] 13. js에서 사용하는 Math객체의 하위 메서드를 예제를 통해 기술하세요.
+		// // Math객체의 하위 메서드 종류
+        // // 1. 실수 내림 처리(정수형)
+		// // 2. 임의의 수 처리
+        //    var dice = Math.floor(Math.random()*6+1)
+		// // 3. 반올림 
+        //    var pi = Math.round(3.141592)
+		// // 4. 올림
+        //    var pi2 = Math.ceil(3.141592)
+		// // 출력을 통해 확인
+		//    alert(dice); alert(pi); alert(pi2);
+// [확인] 14. js에서 사용하는 Math객체의 random()메서드를 활용해서 모두의 마블 2개의 팀의 점수를 나타내세요.
+		// 1번팀
+		// var dice01 = Math.floor(Math.random()*6+1) 
+		// var dice02 = Math.floor(Math.random()*6+1)
+		// var diceT1 = dice01 + dice02
+		// // 2번팀
+		// var dice03 = Math.floor(Math.random()*6+1)
+		// var dice04 = Math.floor(Math.random()*6+1)
+		// var diceT2 = dice03 + dice04
+		// alert("1번 팀의 주사위 눈은 " + dice01 + ", " + dice02 + "로 "+ "합은 " + diceT1 )
+		// alert("2번 팀의 주사위 눈은 " + dice03 + ", " + dice04 + "로 "+ "합은 " + diceT2 )
+// [확인] 15. js에서 back tick 사용을 통해서 변수 선언과 활용 예제 만들어 기술하세요
+// 		var p01 = "사과", p02 = "복숭아", p03 = "딸기"
+// 		var price1 = 3000, price2 = 4000, price3 = 5000 
+// 		alert(`${p01}  ${p02}  ${p03}
+// ${price1}  ${price2}  ${price3}`)
+
+// # 조별로 파악사항(아래사항 조별로 취합 전달)
+// 1. 오늘 가장 어려웠던 부분 best3 및 내일 자세한 설명 필요한 부분
+// 2. 지난 주 금요일 같이 미니 프로젝트 시간 필요여부(매주)
+// 3. 오늘 지각인원과 사유
+		
+		
+	</script>
+
+</body>
+</html>

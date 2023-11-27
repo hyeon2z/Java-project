@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+    <script>
+        //# javascript
+        // [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+            /*
+            선언방법
+                1) 선언적 함수
+                    function 함수명(매개변수) {
+                        처리할내용
+                        return 리턴값
+                    }
+                2) 변수형 함수
+                    var 함수명 = function(매개변수) {
+                        처리할내용
+                        return 리턴값
+                    }
+            출력방법
+                함수명(매개변수값)
+                차이점: 선언적 함수는 함수 선언 앞에 코드를 입력해도 출력되나
+                        변수형 함수는 반드시 함수를 선언한 이후에 코드를 입력해야 출력된다.
+                        (그렇지 않으면 정의되지 않은 함수라고 에러가 뜨고 진행이 멈춘다)
+            */
+           fun01();
+           function fun01() {alert('선언적 함수')}
+           var fun02 = function() {alert('변수형 함수')}
+           fun02();
+
+        // [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+        	gugudan(prompt("시작단수 입력","0"),prompt("마지막단수 입력","0"));
+        	function gugudan(num01,num02){
+            	if(num01<=num02){
+                	for(let i=num01;i<=num02;i++){
+                    	for(let j=1;j<=9;j++){
+                        	console.log(`${i} x ${j} = ${i*j}`);
+                    	}
+                	}
+            	}else{
+                	for(let i=num01;i>=num02;i--){
+                    	for(let j=1;j<=9;j++){
+                        	console.log(`${i} x ${j} = ${i*j}`);
+                    	}
+                	}
+            	}
+        	}
+        
+        // [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+        	/*
+        	function 함수명(매개변수) {
+            	처리할내용
+            	return 리턴값
+        	}
+        	함수를 호출할 때
+        	함수명(매개변수값) => 이렇게 사용하기 때문에 매개변수에 원하는 값을 넣어서 호출한다.
+        	그러면 리턴값은 호출시 지정한 매개변수값으로 처리가 이루어져서 리턴된다.
+        	리턴값은 함수의 결과값이라 생각하면 된다.
+        	*/
+        	function square(x){
+            	return alert(`${x}의 제곱은 ${x*x}`)
+        	}
+        	square(3);  // => 3의 제곱은 9가 출력된다.
+
+        // [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요
+        	/*
+        	arguments는 매개변수를 배열로 받아서 처리하는 객체이다.
+        	즉, 매개변수를 배열로 받고 싶을 때
+        	매개변수 값을 넣는 자리에 여러개의 값을 넣은 후 arguments를 이용하여 배열로 받아서 처리한다.
+        	단, 함수 안의 처리도 배열에 대한 처리를 할 때처럼 입력해야 한다.
+        	*/
+        	function multiple() {
+            	for(let idx in arguments) {
+                	alert(`${arguments[idx]} x 2 = ${arguments[idx]*2}`)
+            	}
+        	}
+        	multiple(3,4,5,6,7);
+
+    </script>
+</body>
+</html>

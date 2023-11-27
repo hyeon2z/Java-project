@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        /*
+        # eval(문자열)
+        1. 문자열로된 내용을 실행을 처리해주는 내용
+        */
+        // 문자열을 생성합니다.
+        var willEval = '';
+        willEval += 'var number = 10;';
+        willEval += 'alert(number);'
+        //alert(willEval)
+        // eval() 함수를 호출합니다.
+        //eval(willEval);
+        //alert( eval("3 + 5") )
+        // eval("var no = 10; alert('출력:'+no)")
+        // ex) 연산할 내용을 prompt로 입력받은 후,
+        //     총 연산 결과값을 document.write()를 이용해
+        //    출력하세요.
+        //var str = prompt("연산식을 입력하세요","1+2")
+        //document.write(str+"="+eval(str))
+        // ex) prompt 창에서 1~10까지출력하는 반복문 코드를
+        //     입력하여 eval을 통해서 처리하세요
+        /*
+        for(var cnt=1;cnt<=10;cnt++){ alert(cnt) }
+        */
+        var code = prompt("프로그램할 코드 입력하세요","")
+        eval(code)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+----------------------------------------------------------------------------------------------------------------------------------------
+과제시작과제시작과제시작과제시작과제시작과제시작과제시작과제시작
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[1단계:개념] 1. 상속의 기본 구조를 예제로 함께 기술하세요.
+      Parents p=new Parents();
+      Children c=new Children();
+      p.Say();
+      c.Say();
+      System.out.println(c.house);
+      System.out.println(c.color);
+   }
+}
+
+class Parents
+{
+   String house="경기도 광주시";
+   String color="black";
+   void Say()
+   {
+      System.out.println("Method of Parents");
+   }
+}
+class Children extends Parents
+{
+   int number;
+   void Say()
+   {
+      System.out.println("Method of Children");
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[2단계:조별] 5. Person 클래스를 상속받는 Student 클래스를 작성하세요.
+      //Person 클래스는 name과 age를 필드로 가지고 있고, 
+      //introduce() 메서드를 통해 자신을 소개합니다.
+      //Student 클래스는 grade를 추가 필드로 가지고 있고, 
+      //introduce() 메서드를 통해 학년도 함께 소개합니다.
+      
+      Person p =new Person("장선웅",29);
+      Student st=new Student("코알라",28,5);
+      p.introduce();
+      st.introduce();
+   }
+}
+
+class Person
+{
+   String name;
+   int age;
+   
+   Person()
+   {
+      
+   }
+   Person(String name, int age)
+   {
+      this.name=name;
+      this.age=age;
+   }
+   void introduce()
+   {
+      System.out.println("안녕하세요! 제 이름은 "+name+"이고 "+age+" 살 입니다.");
+   }
+}
+class Student extends Person
+{
+   int grade;
+   Student()
+   {
+      
+   }
+   Student(String name,int age,int grade)
+   {
+      super(name,age);
+      this.grade=grade;
+   }
+   void introduce()
+   {
+      System.out.println("안녕하세요! 제 이름은 "+name+"이고 "+age+" 살 입니다. 그리고 "+grade+" 학년 입니다.");
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[2단계:조별] 6.Animal 클래스를 상속받는 Dog 클래스와 Cat 클래스를 작성하세요.
+      //Animal 클래스는 sound() 메서드를 통해 자신의 울음소리를 출력합니다.
+      //Dog 클래스는 sound() 메서드를 재정의하여 "멍멍"을 출력하고,
+      //Cat 클래스는 sound() 메서드를 재정의하여 "야옹"을 출력합니다.
+      Animal a=new Animal();
+      Dog d=new Dog();
+      Cat c=new Cat();
+      a.sound();
+      d.sound();
+      c.sound();
+      
+   }
+}
+class Animal
+{
+   void sound()
+   {
+      System.out.println("무언가의 울음소리");
+   }
+}
+class Dog extends Animal
+{
+   void sound()
+   {
+      System.out.println("멍뭉");
+   }
+}
+class Cat extends Animal
+{
+   void sound()
+   {
+      System.out.println("야옹");
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[1단계:조별] 8.(상위생성자호출)Person 클래스를 상속받는 Student 클래스를 작성하세요.
+      //Person 클래스의 생성자에서 name과 age를 초기화하고,
+      //Student 클래스의 생성자에서는 grade를 초기화합니다.
+      Person p =new Person("장선웅",29);
+      Student st=new Student("코알라",28,5);
+      p.introduce();
+      st.introduce();
+   }
+   }
+}
+class Person
+{
+   String name;
+   int age;
+   
+   Person()
+   {
+      
+   }
+   Person(String name, int age)
+   {
+      this.name=name;
+      this.age=age;
+   }
+   void introduce()
+   {
+      System.out.println("안녕하세요! 제 이름은 "+name+"이고 "+age+" 살 입니다.");
+   }
+}
+class Student extends Person
+{
+   int grade;
+   Student()
+   {
+      
+   }
+   Student(String name,int age,int grade)
+   {
+      super(name,age);
+      this.grade=grade;
+   }
+   void introduce()
+   {
+      System.out.println("안녕하세요! 제 이름은 "+name+"이고 "+age+" 살 입니다. 그리고 "+grade+" 학년 입니다.");
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[1단계:확인] 2. Child, Parent 상속관계에 있어서 메서드를 상속한 경우를 만들어 보세요.
+      Parents p=new Parents();
+      Children c=new Children();
+      p.Say1();
+      c.Say1();
+      c.Say2();
+      System.out.println(c.house);
+      System.out.println(c.color);
+   }
+}
+
+class Parents
+{
+   String house="경기도 광주시";
+   String color="black";
+   void Say1()
+   {
+      System.out.println("Method of Parents P1");
+   }
+   void Say2()
+   {
+      System.out.println("Method of Parents P2");
+   }
+}
+class Children extends Parents
+{
+   int number;
+   void Say1()
+   {
+      System.out.println("Method of Children C1");
+   }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------
+      //[1단계:개념] 3. 상속에서 super를 쓰는 경우를 기술하세요.
+      /*
+      super.멤버는 자식클래스에서 조상클래스의 멤버(필드 , 메소드)에 접근하기위해 사용한다.
+      super()메소드는 자식클래스의 생성자에서 조상클래스의 생성자를 호출하기 위해 사용한다. (단, 생성자의 첫번쨰 줄에 사용해야만 한다.)  
+      */
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[1단계:확인] 4. Animal Dog를 this, super를 이용해서 필드(kind), 메서드(sound())를 처리해보세요.
+      Animal a=new Animal();
+      Dog d=new Dog();
+      d.SuperAndThis();
+   }
+}
+
+class Animal
+{
+   String kind="Animal";
+   void sound()
+   {
+      System.out.println("Animal Sound");
+   }
+}
+class Dog extends Animal
+{
+   String kind="Dog";
+   void sound()
+   {
+      System.out.println("Dog Sound");
+   }
+   void SuperAndThis()
+   {
+      System.out.println("this.kind : "+this.kind);
+      System.out.println("super.kind : "+super.kind);
+      this.sound();
+      super.sound();
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------
+package Today20231010;
+
+public class A01_Basic 
+{
+   public static void main(String args[])
+   {
+      //[1단계:확인] 7.(상위생성자호출) Person 클래스를 상속받는 Employee 클래스를 작성하세요. 
+      //Employee 클래스는 company와 job을 추가 필드로 가지고 있습니다. 
+      //Employee 클래스의 기본 생성자는 부모 클래스의 생성자를 호출하여 name과 age를 초기화하고, company와 job을 null로 초기화합니다.
+      Employee e=new Employee("장선웅",29);
+
+   }
+}
+
+class Person
+{
+   String name;
+   int age;
+   Person()
+   {
+      
+   }
+   Person(String name, int age)
+   {
+      this.name=name;
+      this.age=age;
+   }
+}
+class Employee extends Person
+{
+   String company;
+   String job;
+   Employee(String name, int age)
+   {
+      super(name,age);
+      company=null;
+      job=null;
+   }
+}
+----------------------------------------------------------------------------------------------------------------------------------------

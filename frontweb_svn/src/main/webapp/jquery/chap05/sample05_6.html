@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$(".class.otherclass") 선택자 실습</title>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+	     $(".myClass").css("border","2px solid blue");
+        // .클래스1.클래스2
+        // 클래스1과 글래스2가 모두 있을 때.. 적용되는 내용
+	     $(".myClass.otherClass").css("color","red");
+        // .myClass 하위에 .otherClass가 있을 때..
+	     $(".myClass .otherClass").css("background","orange");
+        // ex) cls01, cls02 둘다 선언되어 있을때, 배경색상 설정
+        //     cls01 하위 cls02 계층 구조로 선언되어있을 때, 글자 색상을 선언
+        //     하여 출력하세요..
+        $(".cls01.cls02").css("background","orange");
+        $(".cls01 .cls02").css("color","blue")
+
+   });
+</script>
+</head>
+<body>
+   <h1 class="cls01 cls02">
+      안녕하세요
+   </h1>
+   <div class="cls01">
+      좋은 하루입니다<span class="cls02"> 월요일!!</div>
+   </div>
+
+
+<div class="myClass">div class="notMe"
+   <span class="otherClass">other Class</span>
+</div>
+<!--  class="클래스1 클래스2"-->
+<div class="myClass otherClass">div class="myClass"</div>
+<span class="myClass otherClass">span class="myClass"
+</span>
+</body>
+</html>

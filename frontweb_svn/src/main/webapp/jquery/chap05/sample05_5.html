@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$(".class") 선택자 실습</title>
+<style>
+	/*
+	# 기본선택자 3가지
+	태그명{속성:속성값;}   태그일때 적용
+	#아이디명{속성:속성값;}  <태그 id="아이디명"
+	.클래스명{속성:속성값;}  <태그 class="클래스명"
+	
+	*/
+	.cls01{color:green;}
+	.cls02{background-color:yellow;}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+	     $(".myClass").css("color","red");
+	     console.log("첫 번째 .myClass 값:" + $(".myClass").first().text() );
+	     console.log("마지막 .myClass 값:" + $(".myClass").last().text() );
+		 $(".notMe").css("color","blue")
+		 $(".notMe").eq(2).css("color","green")
+
+		 // class = "cls01 cls02"
+		 // ==> jquery 선택자
+		 // $(".클래스명1.클래스명2") : 클래스1과 클래스2가 
+		 //    태그로 나열되어 선언되어 있을 때, 선택자..
+		 $(".cls01.cls02").text("변경되었네요!!!")
+		 $(".cls5.cls6.cls7").css("color",'red')
+		 // ex) h3로 class를 속성으로 cls9 cls10 cls11로 선언하고,
+		 //    jquery 로 선택자로 선언하고, 배경색상을 orange 처리..
+		 $(".cls9.cls10.cls11").css("color","navy").text("happy days!")
+         
+		 // $("상위 하위") : 중간에 다른 계층 레벨이 들어가도 상관없음.
+		 $(".cls12 .cls13").css("color","orange");
+         // ex1) div cls14 상위  p cls15 하위로 해석  배경색상 설정.
+		 $(".cls14 .cls15").css("background-color","yellow")
+         // ex2) table cls16 상위  td cls17 하위로 해석  글자색상 설정.
+         $(".cls16 .cls17").css("color","orange")
+		 // $("상위>하위") : 중간에 다른 계층 레벨이 없이 바로 부모를 가진
+		 //    하위 선택자
+		 $(".cls14>.cls15").text("부모자식 적용1");
+		 // tr을 바로 위 부모로 해서 class가 cls17인 경우
+		 $("tr>.cls17").text("부모자식 적용2");
+
+		 // ex) tr을 부모계층으로 한 th의 배경색상으로 red로 처리..
+         // $("table td")  부모/자식(X)  조상/후손)(O)
+         // $("tr td")  부모/자식(O)  조상/후손(O)
+		 // $("table>td")  부모/자식(X)
+		 // $("tr>td")  부모/자식(O)
+		 // $("부모>자식") 바로있는 부모를 가진 자식에 대한 속성 설정시
+		 // $("조상 후손") 레벨상관없이 조상을 가진 후손에 댛산 속성 설정시
+		 $("tr th").css("background-color","red")
+   });
+</script>
+</head>
+<body>
+	<table class="cls16" border>
+
+		<tr>
+			<th>회원명</th></tr>
+		<tr><td class="cls17">홍길동</td></tr>
+		<tr><td>김길동</td></tr>
+		<tr><td class="cls17">신길동</td></tr>
+		<tr><td>오길동</td></tr>
+
+	</table>
+	<div class="cls14">
+		<h2>자바프로그램</h2>
+		<p class="cls15">
+			자바 프로그래밍은 객체 지향 프로그램으로서 플랫폼 독립적이다
+		</p>
+	</div>
+	<div class="cls12">
+		웃으면 <h2 class="cls13">복이와요!</h2>
+	</div>
+    <h3 class="cls9 cls10 cls11">행복한 날들!!</h3>
+	<h1 class="cls5 cls6 cls7">좋은 하루</h1>
+	<div class="cls01">안녕하세요1</div>	
+	<div class="cls02">안녕하세요2</div>
+	<!-- class="클래스명1 클래스2"-->	
+	<div class="cls01 cls02">안녕하세요3</div>	
+
+
+
+
+	<div class="notMe">div class="notMe"</div>
+	<div class="myClass">div class="myClass"</div>
+	<span class="myClass">span class="myClass"</span>
+	<div class="notMe">div class="notMe"</div>
+	<div class="notMe">div class="notMe"</div>
+
+</body>
+</html>

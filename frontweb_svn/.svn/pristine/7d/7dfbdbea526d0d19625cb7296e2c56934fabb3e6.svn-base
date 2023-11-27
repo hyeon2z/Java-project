@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 입력을 위한 창
+        // prompt("설명내용","초기값설정")
+        // 문자열 데이터를 입력 받을 수 있음.
+        // 1. 기본문자열 입력
+        //var fruit = prompt("과일입력","사과")
+        //console.log( fruit )
+        // 2. 연산데이터 입력
+        var pt1 = prompt("국어점수입력","0")
+        var pt2 = prompt("영어점수입력","0")
+        alert(pt1 + pt2) // 문자열이기 나열이된다.
+        // 3. 연산데이터 입력(숫자변환1)
+        var pt1 = prompt("국어점수입력","0")*1
+        var pt2 = prompt("영어점수입력","0")*1
+        alert(pt1 + pt2) // 형변환이 되어 연산 결과 처리
+        // 4. 연산데이터 입력(숫자변환2)
+        //    함수2( 함수1() ) : 이중함수 적용
+        var pt1 = Number(prompt("국어점수입력","0"))
+        var pt2 = Number( prompt("영어점수입력","0"))
+        alert(pt1 + pt2) // 형변환 연산 처리
+        // # js에서 +만 연산시 형변환 필요,
+        // 다른 연산시는 자동 형변환이 처리된다.
+
+
+    </script>
+</body>
+</html>

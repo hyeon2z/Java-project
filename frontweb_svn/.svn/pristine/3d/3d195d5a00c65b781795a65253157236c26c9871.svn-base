@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Rate</title>
+</head>
+<body>
+    <script>
+        function convertCurrency(amount, fromCurrency, toCurrency){
+            const exchangeRates={
+                "KRW": 1.0,
+                "USD": 0.00074,
+                "JPY": 0.11
+            }
+        
+
+            if(!exchangeRates[fromCurrency] || !exchangeRates[toCurrency]){
+                alert("올바른 화폐 코드를 입력하세요!(KRW,USD,JPY)")
+                return;
+            }
+            const convertedAmount = amount * (exchangeRates[toCurrency] / exchangeRates[fromCurrency])
+            return convertedAmount.toFixed(2);
+        }
+
+        const fromCurrency = prompt("변환 전 화폐코드를 입력하세요(KRW,USD,JPY)","KRW")
+        const amountInput = parseFloat(prompt("변환할 금액을 입력하세요.","0"))
+        const toCurrency = prompt("변환 후 화폐코드를 입력하세요(KRW,USD,JPY)","USD")
+
+        if(!isNaN(amountInput) && fromCurrency && toCurrency){
+            const result = convertCurrency(amountInput, fromCurrency, toCurrency)
+            alert(`${amountInput} ${fromCurrency}는 ${result} ${toCurrency} 입니다.`)
+        }else {
+            alert("잘못된 입력을 하셨습니다.")
+        }
+    </script>
+    
+</body>
+</html>

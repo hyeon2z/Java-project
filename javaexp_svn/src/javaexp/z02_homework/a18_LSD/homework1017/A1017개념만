@@ -1,0 +1,49 @@
+//		[1단계:개념]  1. 사용자 정의 예외 클래스 생성과 main()에서 호출 규칙을 기술하세요
+				답: 1. 사용자정의 예외클래스 선언 - 기본 예외 클래스를 상속해 처리함.
+					class UserException extends Exception{}
+				    2. 기본 생성자에서 추가할 내용이 필요하면 super()를 활용,
+				    	상위 생성자의 내용을 호출하면서 처리할 수 있다.
+				    	UserException(String name){
+				    		super("[사용자정의예외]"+name)
+				    	}
+				    3. 클래스를 정의할 때, 필요로 하는 필요로 하는 필드와 메서드들을 추가하거나
+				  		정의해서 사용할 수 있다.
+				  	class UserException extends Exception{
+				  		private String name; //추가필드
+				  		public void setname(String name){
+				  				this.name = name;
+				  		}
+				  		//기존의 메서드 재정의 처리
+				  		public String getMessage(){
+				  			return "[재정의 메소드]"+super.getMessage()
+				  		}
+				  	}
+				  	4. main()이나 다른 클래스의 메서드에서 호출
+				  	try{
+				  		if(조건){
+				  			throw new UserException();
+				  		}
+				  	}catch(UserException ue){
+				  		System.out.println(ue.getMessage());
+				  	}
+				  	
+//		[1단계:개념]  2. 사용자 정의 예외 클래스의 생성자 호출과 getMessage()와의 관계를 설명하세요.
+					답: 예외 객체 생성시 기본 클래스 생성자, getMessage() 어떤것 사용해도 무방.
+					   
+//		[1단계:개념]  4. "안녕"과 new String("안녕")의 heap메모리상의 차이점으로 이야기하세요.
+					답: "안녕"은 데이터 할당, new String("안녕")은 주소값을 가지고 heap메모리에 떠있음
+					
+//		[1단계:개념]  6. 자바의 최상위 클래스는 무엇이고 사용되는 메서드 toString() 어떤 역할을 하는가?
+					답: 최상위 클래스는 Object 이고, toString()은 문자열로 리턴하는 역할을 함.
+					
+//		[1단계:개념]  10. StringBuffer와 String의 차이점을 기본 예제를 통해서 설명하세요.
+				    딥: StringBuffer - 변하는 속성 가짐.append() .delete() 등의 API를 이용하여 
+				    							   동일 객체내에서 문자열을 변경하는 것이 가능
+					    String - 변하지 않는 속성가짐. 문자열을 수정하는 시점에 새로운 String 인스턴스가 생성
+							 <String>	                  <StringBuffer>
+						예시) String str = "hello";        StringBuffer sb = new StringBuffer("hello");
+							 str = str + " world";        sb.append(" world");
+						
+
+
+

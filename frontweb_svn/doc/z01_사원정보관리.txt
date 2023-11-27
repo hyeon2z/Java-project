@@ -1,0 +1,106 @@
+# 사원정보관리는
+0. 주요 파일 및 기능 메서드
+	1) Dao
+		frontweb.database.PreparedStmtDao
+			getEmpList(Emp sch) (전체조회)
+			insertEmp01(EmpDTO ins) (등록)
+			getEmp(int empno) (상세조회)
+			updateEmp(EmpDTO upt) (수정)
+			deleteEmp(int empno) (삭제)
+	2) Dto
+		frontweb.vo.EmpDTO
+	   Vo	
+	    frontweb.Emp
+	3) 화면단
+	    webapp\a01_database\a01_empList.jsp (전체조회리스트)
+	    webapp\a01_database\a01_empInsert.jsp (등록화면)
+	    webapp\a01_database\a01_empDetail.jsp (상세화면)
+	    
+	    
+
+
+1. 초기화면은 사원정보 전체 검색 리스트에서 
+2. 검색버튼 클릭, 검색 처리가 되고
+3. 사원등록버튼 클릭시, 사원등록화면으로 전환
+	사원등록화면이 나타나고, a01_empInsert.jsp
+	입력항목으로 사원번호, 사원명, 직책명, 관리자번호,
+		입사일, 급여, 보너스, 부서번호가
+		있고, 여기서 등록시, 등록 처리를 하여,
+		Dao(PreparedStmtDao.java)의 
+		public int insertEmp01(EmpDTO ins) 
+		기능 메서드를 호출 하여 등록 처리가 된후,
+		계속 등록하시겠습니까? 여부를 확인 후,
+		다시, 등록하든지, 메인 화면으로 이동 처리하게 한다.
+4. 리스트 항목 중에서 특정한 항목을 클릭하면,
+	empno키를 전송하여, 상세 조회 화면(a02_empDetail.jsp)으로 이동하고,
+	입력된 항목을 볼 수 있으면, 
+5. 여기서, 데이터를 수정 클릭하면 Dao에서updateEmp01(EmpDTO upt)를
+	처리하여 수정이 되고
+6. 상세화면에서, 삭제 버튼을 클릭하면 dao에서 deleteEmp01(int deptno)를
+	처리하여 삭제 후, 메인 리스트 화면이 처리된다.
+	
+# 등록 처리
+1. 리스트 화면에서 사원정보등록 버튼 추가
+2. 버튼 클릭시, onclick="location.href='a01_empInsert.jsp'";
+	이동 처리
+3. 등록화면 form 화면 만들기
+	등록 목록을 <input type="text" name="empno"/>
+	부터시작해서 항목을 테이블 안에 리스트로 만든다. 
+	<form>
+	<input type="number" name="empno"/>
+	<input type="text" name="ename"/>
+	<input type="text" name="job"/>
+	<input type="number" name="mgr"/>
+	<input type="text" name="hiredatestr"/>
+	<input type="number" name="sal"/>
+	<input type="number" name="comm"/>
+	<input type="number" name="deptno"/>
+	<input type="submit" value="등록"/>
+	<input type="button" value="메인리스트화면" 
+		onclick="location.href='a01_empList.jsp'"/>
+	</form> 으로 만든다.
+4. 요청값 처리 : 위 등록 항목들을 요청값을 선언한다.
+	String empnoStr = request.getParameter("empno");
+	String ename = request.getParameter("ename");
+	String job = request.getParameter("job");
+	String mgrStr = request.getParameter("mgr");
+	String hiredatestr = request.getParameter("hiredatestr");
+	String salStr = request.getParameter("sal");
+	String commStr = request.getParameter("comm");
+	String deptnoStr = request.getParameter("deptno");
+5. 데이터 Dao 처리
+	import="frontweb.database.PreparedStmtDao"
+    import="frontweb.vo.EmpDTO"
+	empnoStr기준으로 null이 아니면 등록처리가 되게 한다.
+		null은 메인화면에서 넘어 올 때 처리
+	boolean isInsert = false;	
+	if(empnoStr!=null){
+		int empno = Integer.parseInt(empnoStr);
+		int mgr = Integer.parseInt(mgrStr);
+		double sal = Double.parseDouble(salStr);
+		double comm = Double.parseDouble(commStr);
+		int deptno = Integer.parseInt(deptnoStr);
+		PreparedStmtDao dao = new PreparedStmtDao();
+		dao.insertEmp01(new EmpDTO(
+							empno, ename, job, mgr, hiredatestr,
+							sal, comm, deptno
+						));
+		isInsert = true;					
+	}	
+	<script>
+		var isInsert = <%=isInsert%>;	// java ==> javascript
+		if(isInsert){
+			if(!confirm("등록성공\n계속하시겠습니까?")){
+				location.href="a01_empList.jsp";
+			}
+		}
+		
+		
+		
+
+
+	
+	
+	 
+	
+	

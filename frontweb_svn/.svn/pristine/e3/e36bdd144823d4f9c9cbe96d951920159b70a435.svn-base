@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$("*") 선택자 실습</title>
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+	     $("*").css("color","red");
+        // * : 선택자
+        // $("요소객체선택자").css("css속성","속성값");
+        // $("선택자").css({속성:속성값, 속성2, 속성값2})
+        $("button").css({backgroundColor:"pink",color:"blue"})
+        // ex) 하단 2X2테이블을 추가하여, td 단위로 글자와 배경색상을 설정하고
+        //    출력해보세요..
+        $("td").css({backgroundColor:"yellow",color:"green"})
+        // .eq(1) : 단일 지정할 때..
+        $("td").eq(1).css("color","blue")
+   });
+</script>
+</head>
+<body>
+ <div>DIV</div>
+ <span>SPAN</span>
+ <p>P <button>Button</button></p>
+ <table width="200" height="200" border>
+   <tr><td>1</td><td>2</td></tr>
+   <tr><td>3</td><td>4</td></tr>
+
+ </table>
+
+
+</body>
+</html>

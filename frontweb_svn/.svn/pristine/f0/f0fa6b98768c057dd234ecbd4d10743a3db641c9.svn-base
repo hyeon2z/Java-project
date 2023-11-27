@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+// # 아래 내용을 javascript 문제로 처리해주세요
+// [개념] 1. var, let, const 변수형식의 차이점을 예제를 통해서 기술하세요
+	// // var 는 js의 기본 변수로, 지역/전역변수를 구분하지 못한다. 즉, 어디서나 읽히는 셈
+	//  {var varA = "hello";
+	// 	alert("내부 출력 :" + varA)}
+	//  alert("외부 출력 :" + varA)  // 중괄호 내부에서 선언된 변수임에도 인식한다.
+	// // let 변수는 지역변수와 전역변수를 구분하여 처리할때 사용한다. 즉, block 안에서 선언하면 지역변수가 된다.
+	// {let letA = "world";
+	// 	alert("내부 출력 :" + letA)}	// 내부에서 선언되어 지역변수 취급
+	// 	alert("외부 출력 :" + letA)	// 외부출력시 에러 발생.
+// [확인] 2. 위 let 변수를 이용해서 for문의 1~10까지 합산을 alert으로 출력하세요 
+	// var sum = 0;
+	// for(let i = 1; i <=10 ; i++){
+	// 	sum += i;
+	// }
+	// alert("1~10 까지의 합은 " + sum)
+// [토론] 3. 기본 if문, if else문, if else if문의 형식과 차이를 기본예제를 통해 설명하세요
+// 	 조원들과 의견을 나누고 결론을 정리하여 제출하세요.
+	// if는 단순한조건, 조건 하나일때
+	// if else는 조건에 대한 예외 처리가 필요할때
+	// if else if는 조건 여러개가 필요할때
+	/*
+	//1) if문
+	var age = Number(prompt("나이를 입력하십시오.", 0));
+	if(age>18){
+    	alert("성인입니다.")
+	}
+	if(age<65 && age<39){
+    	alert("청년입니다.")
+	}
+	//2) if else문
+	if(age<18){
+    	alert("미성년자입니다.")
+	}
+	else if(age<39){ //age>18 && age<39와 동일하다. 
+    	alert("청년입니다.")
+	}
+	*/
+// [토론] 4. 프로그램에서 전역변수와 지역변수의 사용의 필요성에 대하여 의견을 나누어 보세요
+	/*
+	지역변수의 필요성
+	다양한 블록에 중복된 변수명을 사용할 수 있다. 
+	지역변수 사용하면 블럭이 끝날 시 변수가 초기화되기 때문에 사용시 메모리 효율이 높아진다. 
+	지역변수는 값을 한 블럭 내 가둬놓을 수 있는 장점이 있다.
+
+	전역변수의 필요성
+	여러 블록에 동일한 변수를 사용할 수 있다. 
+	상수는 전역변수로 사용하면 좋을 것 같다. 
+	상수는 변하지 않은 상태로 계속 사용하기 때문이다. 
+	*/
+// [확인] 5. 아래 내용을 중첩 조건문을 사용하여 처리해보세요
+
+// 1. **음식 선택 가이드**:
+//    사용자의 기분과 시간에 따라 다른 음식을 추천해주는 시스템을 만들어보세요.
+//    **조건**:
+//    - 기분: `hungry`, `sad`, `happy`
+//    - 시간: `morning`, `afternoon`, `evening`
+
+//    **도표**:
+   
+//    | 기분   | 시간       | 추천 음식               |
+//    |-------|-----------|------------------------|
+//    | hungry| morning   | Breakfast burrito      |
+//    | hungry| afternoon | Chicken Sandwich       |
+//    | hungry| evening   | Spaghetti              |
+//    | sad   | morning   | Pancakes with syrup    |
+//    | sad   | afternoon | Ice Cream              |
+//    | sad   | evening   | Chocolate Cake         |
+//    | happy | morning   | Fruit Salad            |
+//    | happy | afternoon | Sushi Roll             |
+//    | happy | evening   | Grilled Salmon         |
+
+// ---
+	const mood = "happy";		// hungry, sad, happy 중 하나 입력
+	const time = 'morning';		// morning, afternoon, evening 중 하나 입력
+
+	let recommendFood;
+
+	if(mood == "hungry"){
+		if(time == "morning"){
+			recommendFood = "Breakfast burrito";
+		}else if(time == "afternoon"){
+			recommendFood = 'chicken Sandwich';
+		}else if(time == 'evening'){
+			recommendFood = 'spaghetti';
+		}
+	}else if (mood == "sad"){
+		if(time == 'morning'){
+			recommendFood = 'Pancakes with syrup';
+		}else if(time == 'afternoon'){
+			recommendFood = 'Ice cream';
+		}else if(time == 'evening'){
+			recommendFood = 'Chocolate Cake';
+		}
+	}else if(mood == "happy"){
+		if(time == 'morning'){
+			recommendFood = 'Fruit Salad';
+		}else if(time == 'afternoon'){
+			recommendFood = 'Sushi Roll';
+		}else if(time == 'evening'){
+			recommendFood = 'Grilled Salmon';
+		}
+	}
+	console.log(`기분 : ${mood}, 시간 : ${time}`);
+	console.log(`추천음식 : ${recommendFood}`);
+// 2. **여행지 추천**:
+   
+//    계절과 활동 선호도에 따라 여행지를 추천해주세요.
+
+//    **조건**:
+//    - 계절: `summer`, `winter`
+//    - 활동: `adventure`, `relax`
+
+//    **도표**:
+
+//    | 계절  | 활동       | 여행지               |
+//    |-------|-----------|----------------------|
+//    | summer| adventure | Beach surfing        |
+//    | summer| relax     | Tropical resort      |
+//    | winter| adventure | Skiing in the Alps   |
+//    | winter| relax     | Cabin by a fireplace |
+	const seasons = 'summer';	// summer, winter 중 하나
+	const activity = 'relax';	// adventure, relax 중 하나
+
+	var travel;
+
+	if(seasons === 'summer'){
+		if(activity === 'adventure'){
+			travel = 'Beach surfing';
+		}else if(activity === 'relax'){
+			travel = 'Tropical resort';
+		}
+	}else if(seasons === 'winter'){
+		if(activity === 'adventure'){
+			travel = 'skiing in the Alps';
+		}else if(activity === 'relax'){
+			travel = 'Cabin by a fireplace';
+		} 
+	}
+	console.log(`계절 : ${seasons}, 활동 : ${activity}`)
+	console.log(`여행지 : ${travel}`)
+// ---
+
+// 3. **책 추천**:
+   
+//    사용자의 연령과 선호하는 장르에 따라 책을 추천해주세요.
+
+//    **조건**:
+//    - 연령: `kid`, `teen`, `adult`
+//    - 장르: `fantasy`, `mystery`
+
+//    **도표**:
+
+//    | 연령  | 장르       | 책                  |
+//    |-------|-----------|---------------------|
+//    | kid   | fantasy   | Harry Potter        |
+//    | kid   | mystery   | Nancy Drew          |
+//    | teen  | fantasy   | Percy Jackson       |
+//    | teen  | mystery   | Sherlock Holmes     |
+//    | adult | fantasy   | Game of Thrones     |
+//    | adult | mystery   | The Da Vinci Code   |
+// ---
+	const age = 'adult'	// `kid`, `teen`, `adult` 중 하나
+	const genre = 'mystery'	// `fantasy`, `mystery` 중 하나
+
+	let book;
+	if(age === 'kid'){
+		if(genre ==='fantasy'){
+			book = 'Harry Potter';
+		}else if(genre === 'mystery'){
+			book = 'Nancy Drew';
+		}
+	}else if(age === 'teen'){
+		if(genre ==='fantasy'){
+			book = 'Percy Jackson';
+		}else if(genre === 'mystery'){
+			book = 'Sherlock Holems';
+		}
+	}else if(age === 'adult'){
+		if(genre ==='fantasy'){
+			book = 'Game of Thrones';
+		}else if(genre === 'mystery'){
+			book = 'The Da Vinci Code';
+		}
+	}
+	console.log(`연령대 : ${age}, 장르 : ${genre}`)
+	console.log(`추천 책 : ${book}`)
+
+// [확인] 6. 아래 내용을 if else if 조건문을 사용하여 처리해보세요
+// 1. **음악 장르 추천**:
+//    사용자의 나이에 따라 음악 장르를 추천해보세요.
+//    **조건**: 나이
+//    **도표**:
+//    | 나이      | 추천 장르       |
+//    |----------|--------------|
+//    | 0-10     | Kids Music   |
+//    | 11-20    | Pop          |
+//    | 21-30    | Rock         |
+//    | 31-50    | Jazz         |
+//    | 50+      | Classical    |
+// ---
+	var age2 = Number(prompt("나이를 입력하세요(0~)", '0'))
+	var genre2;
+
+	if(age2>=0 && age2 <=10){
+		genre2 = 'Kids Music';
+	}else if(age2>10 && age2<=20){
+		genre2 = 'Pop';
+	}else if(age2>20 && age2<=30){
+		genre2 = 'rock';
+	}else if(age2>30 && age2 <=50){
+		genre2 = 'Jazz';
+	}else{
+		genre2 = 'Classical';
+	}
+	console.log(`연령대 : ${age2},  추천장르 : ${genre2}`)
+// 2. **음료 선택**:
+
+//    현재 시간에 따라 음료를 추천해주세요.
+
+//    **조건**: 현재 시간 (24시간 형식)
+
+//    **도표**:
+
+//    | 시간      | 추천 음료     |
+//    |---------|------------|
+//    | 0-6     | Warm Milk  |
+//    | 7-10    | Coffee     |
+//    | 11-14   | Juice      |
+//    | 15-20   | Tea        |
+//    | 21-24   | Water      |
+
+// ---
+	var date = new Date();
+	alert(date);
+	var hours = date.getHours();
+	let recommendDrink
+
+	if(hours>=0 && hours<=6){
+		recommendDrink = 'Warm Milk';
+	}else if(hours>=7 && hours<=10){
+		recommendDrink = 'Coffee';
+	}else if(hours>=11 && hours<=14){
+		recommendDrink = 'Juice';
+	}else if(hours>=15 && hours<=20){
+		recommendDrink = 'Tea';
+	}else{
+		recommendDrink = 'Water';
+	}
+	console.log(`시간 : ${hours}, 추천음료 : ${recommendDrink}`)
+
+// 3. **활동 추천**:
+   
+//    날씨에 따른 야외 활동을 추천해주세요.
+
+//    **조건**: 날씨 (sunny, rainy, cloudy)
+
+//    **도표**:
+
+//    | 날씨     | 추천 활동        |
+//    |--------|--------------|
+//    | sunny  | Picnic       |
+//    | rainy  | Indoor games |
+//    | cloudy | Photography  |	
+	const weather = 'rainy'  // sunny, rainy, cloudy 중 하나
+	let recommendAct;
+	if(weather === 'sunny'){
+		recommendAct = 'Picnic';
+	}else if(weather === 'rainy'){
+		recommendAct = 'Indoor games';
+	}else if(weather === 'cloudy'){
+		recommendAct = 'Photography';
+	}
+	console.log(`날씨 : ${weather}, 추천 활동 : ${recommendAct}`)
+
+/*
+# 조별로 파악사항(아래사항 조별로 취합 전달 17:20까지 전달)
+1. 오늘 가장 어려웠던 부분 best3 및 내일 자세한 설명 필요한 부분
+2. 토론 주제에 대한 의견과 결론을 정리해서 제출하세요
+3. 오늘 지각(9:00기준)인원과 사유
+*/	
+</script>
+</head>
+<body>
+
+</body>
+</html>

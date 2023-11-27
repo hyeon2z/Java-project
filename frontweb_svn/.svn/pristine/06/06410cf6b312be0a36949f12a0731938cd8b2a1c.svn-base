@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// # 주관식 연습 및 실습 10문제:
+// 1. `arguments` 객체는 어떤 자료형으로 출력되는가? 배열
+// 2. `arguments`의 주요 용도는 무엇인가요? 가변하게 입력하는 함수의 매개변수를 동적으로 받아 처리할 수 있게 해줍니다.
+// 3. `setInterval` 함수는 어떻게 사용되나요? 그리고 어떤 동작을 수행하는가? 
+//		setInterval(함수, 1/1000) : 함수 안에 있는 내용을 해당 시간마다 반복한다.
+//		setInterval() 함수는 어떤 코드를 일정한 시간 간격을 두고 반복해서 실행하고 싶을 때 사용합니다.
+//		웹페이지의 특정 부분을 주기적으로 업데이트해줘야 하거나, 어떤 API로 부터 변경된 데이터를 주기적으로 받아와야 하는 경우 주로 사용됩니다.
+// 4. `setTimeout`과 `clearInterval`을 함께 사용하는 주된 목적은 무엇인가요?
+//		setTimeout()를 사용할 때 clearTimeout()를 사용해서 타이머를 청소해주어야 메모리 누수(memory leak)를 막을 수 있습니다.
+// 5. `eval()` 함수의 기능은 무엇인가요? 문자열로 받은 함수를 계산해서 결과값을 return해준다.
+// 6. `isNaN` 함수는 어떤 경우에 `true`를 반환하는가? 인가받은 데이터 타입이 숫자형이 아닐 때. 
+// 7. 매개변수의 기본값은 어떻게 설정하는가? js에서 매개변수의 기본값은 undefined 이다.
+//		만약 매개변수의 기본값을 설정해주고 싶다면 함수 안에 if문을 넣어서 if(기본값을 설정하고 싶은 매개변수=='undefined'){매개변수=기본값;}
+//		이렇게 설정해주면 된다. 또는 함수(매개변수=기본값)으로 설정해줘도 가능하다.
+// 8. `Number()` 함수와 `parseInt()`, `parseFloat()`의 차이점은 무엇인가요?
+//		`Number()` 함수는 인가받은 값이 모두 숫자여야 숫자형으로 형변환해주고
+//		`parseInt()`, `parseFloat()`는 문자열이 섞여 있어도 첫 숫자부터 숫자형으로 변환해준다.
+// #객관식(4지선다) 10문제:
+// 1. `arguments` 객체는? A
+//    - A. 배열
+//    - B. 객체
+//    - C. 문자열
+//    - D. 숫자
+// 2. `setInterval` 함수의 목적은? B
+//    - A. 지정된 시간 후 함수를 한 번만 실행한다.
+//    - B. 지정된 시간마다 함수를 반복적으로 실행한다.
+//    - C. 지정된 시간 동안 함수를 일시 중단한다.
+//    - D. 모든 타이머를 중지한다.
+
+// 3. `eval` 함수의 역할은? B
+//    - A. 코드를 문자열로 변환한다.
+//    - B. 문자열로 된 코드를 실행한다.
+//    - C. 변수의 값을 계산한다.
+//    - D. 문자열을 숫자로 변환한다.
+
+// 4. 다음 중 `isNaN` 함수가 `true`를 반환하는 것은? C
+//    - A. `isNaN("100")`
+//    - B. `isNaN(100)`
+//    - C. `isNaN("Hello")`
+//    - D. `isNaN(undefined)`
+
+// 5. 매개변수의 기본값을 설정하는 방법은? A
+//    - A. `function test(a = 10) {}`
+//    - B. `function test(a: 10) {}`
+//    - C. `function test(a; 10) {}`
+//    - D. `function test(a) = 10 {}`
+
+// 6. 1 나누기 0의 결과는? D
+//    - A. 1
+//    - B. 0
+//    - C. `undefined`
+//    - D. `Infinity`
+
+// 7. 함수를 다른 함수의 매개변수로 전달하는 기능을 무엇이라고 하는가? A
+//    - A. 콜백 함수
+//    - B. 리턴 함수
+//    - C. 중첩 함수
+//    - D. 순수 함수
+
+// 8. `Number("1000원")`의 결과는? D
+//    - A. `NaN`
+//    - B. 1000
+//    - C. "1000원"
+//    - D. 에러 발생
+
+// 9. `parseInt("1.5달러")`의 결과는? B
+//    - A. 1.5
+//    - B. 1
+//    - C. `NaN`
+//    - D. 에러 발생
+
+// 10. JavaScript에서 `arguments` 객체는 어떤 함수에서 사용 가능한가? A
+//    - A. 모든 함수에서
+//    - B. 화살표 함수에서만
+//    - C. 전통적인 함수에서만
+//    - D. 클래스 내부 함수에서만
+
+// # 실습문제
+// 1. **arguments 객체 활용**:
+//     - `arguments` 객체를 사용하여 받은 숫자의 평균값을 반환하는 함수 `average`를 작성하세요.
+//  function average() {
+//             var sum = 0;
+//             for (var i = 0; i < arguments.length; i++) {
+//                 sum += arguments[i];
+//             }
+//             alert('평균값은:'+sum/arguments.length)
+//         }
+//         average(100, 80, 87);
+
+// 2. **함수를 매개변수로 전달**:
+//     - `call01` 함수와 같은 방식으로, 문자열을 출력하는 함수 `printMessage`를 작성하고, 이 함수를 매개변수로 받아 3번 출력하는 `repeatMessage` 함수를 작성하세요.
+    // function printMessage(){
+    //     alert('안녕하세요')
+    // }
+    // function repeatMessage (print){
+    //     for(var i =0;i<3;i++){
+    //         print()
+    //     }
+    // }
+    // repeatMessage(printMessage)
+// 3. **setInterval & setTimeout 활용**:
+//     - 5초 간격으로 현재 시간을 출력하고, 총 3번 출력한 후에 타이머를 종료하는 코드를 작성하세요.
+    // var cnt=0; 
+    // var time=setInterval(function () {
+    //         document.write('<p>' + new Date() + '</p>');
+    //         cnt++
+    //         if(cnt==3){
+    //             clearInterval(time)
+    //         }
+    //     }, 5000);
+
+// 4. **eval 함수 활용**:
+//     - `eval` 함수를 사용하여 "5+7" 이라는 문자열의 연산 결과를 출력하는 코드를 작성하세요.
+    // var ex = '5+7'
+    // document.write(eval(ex))
+
+// 5. **숫자 에러 체크**:
+//     - "Hello"라는 문자열을 숫자로 변환하려고 할 때 발생하는 에러를 확인하고, `isNaN` 함수로 이 에러를 체크하는 코드를 작성하세요.
+    // var num = Number("Hello")
+    // console.log(num)
+    // console.log(isNaN(num))
+// 6. **기본 매개변수 활용**:
+//     - 세 개의 매개변수 a, b, c의 곱을 반환하는 함수를 작성하세요. b와 c는 기본값이 각각 3, 5로 설정되어 있어야 합니다.
+
+// 7. **문자열에서 숫자 추출**:
+//     - "35km"와 "10m"에서 숫자만 추출하여 더한 결과를 출력하는 코드를 작성하세요.
+
+// 8. **prompt를 활용한 입력과 형변환**:
+//     - 사용자에게 "3.2kg"와 같이 kg 단위로 무게를 입력받고, 두 입력 값을 합산하여 출력하는 코드를 작성하세요.
+
+// 9. **함수 호출 시 값 전달**:
+//     - 위에서 정의한 `test` 함수를 호출하되, a만 값을 전달하여 b와 c의 기본값과 함께 출력되게 하세요.
+
+// 10. **문자열 내 숫자 추출 및 연산**:
+//     - "120$"와 "100$"에서 각각의 숫자만 추출하여 더한 후 결과를 출력하는 코드를 작성하세요.
+
+    </script>
+</body>
+</html>

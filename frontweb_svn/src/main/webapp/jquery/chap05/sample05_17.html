@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>:animated Filter Selector</title>
+<style>
+  div {
+    background: red;
+    border: 1px solid blue;
+    width: 70px;
+    height: 70px;
+    margin: 0 3px; /* 상하/좌우 여백*/
+    float: left; /*float로 왼쪽으로 나열됨*/
+  }
+  .toggleWidth{
+     width: 40px;
+  }
+  </style>
+
+
+<script type="text/javascript" src="jquery-3.1.1.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(){
+
+	   $( "#run" ).click(function() {
+       // toggleClass("css에서선언된클래스")
+       // 클릭시 마다 선언된 클래스가
+       // 적용여부를 반복할 때, 처리하는 것을
+       // 말한다.
+       $("div").toggleClass("toggleWidth")
+		   // $( ":animated" ).toggleClass("toggleWidth");
+       //$( "#ani" ).slideDown( "slow");
+	   });
+	   // 재귀 호출 처리 함쉬  
+	   function animateIt() {
+	     //$( "#ani" ).slideUp( "slow");
+
+       // $("선택자").slideToggle("속도",함수호출)
+	     $( "#ani" ).slideToggle( "slow", animateIt );
+	   } 
+	   animateIt();
+     /*
+     1. 재귀처리할 함수 선언
+     2. 초기 호출
+        함수안에서 매개변수로 함수호출
+
+
+     */
+   });
+</script>
+</head>
+<body>
+
+<button id="run">Run</button>
+
+<div>1</div>
+<div id="ani">2</div>
+<div>3</div>
+</body>
+</html>

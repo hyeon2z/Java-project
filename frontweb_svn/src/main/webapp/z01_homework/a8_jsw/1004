@@ -1,0 +1,117 @@
+//# javascript
+// [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+// [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+// [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+// [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요
+
+
+
+javascript 개념 1 :
+선언적 함수는 함수를 정의하기 전에 함수를 사용할 수 있다.
+let x=plus(1,2);
+function plus(a,b)
+{
+return a+b;
+}
+
+변수형 함수는 함수를 정의하고 나서 함수를 사용할 수 있다.
+let minus=function(a,b)
+{
+return a-b;
+}
+alert(minus(2,3))
+
+
+
+
+
+javascript 확인 2 :
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<script>
+// [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+
+let start=prompt("구구단의 시작단수 입력","0");
+while(true)
+{
+    if(!(start>=1))
+    {
+        start=prompt("시작단수를 다시 입력","0");
+        
+    }
+    else
+    {
+        break;
+    }
+}
+
+let end=prompt("구구단의 끝단수 입력","0");
+while(true)
+{
+    if(!(end>=1))
+    {
+        end=prompt("끝단수를 다시 입력","0");
+    }
+    else
+    {
+        break;
+    }
+}
+
+for(let x=start;x<=end;x++)
+{
+    for(let y=1;y<=9;y++)
+    {
+        console.log(x+" * "+y+" = "+x*y);
+    }
+}
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+javascript 개념 3 :
+js함수 헤더에 리턴타입은 없고, 매개변수의 타입도 없다.
+function plus(a,b)
+{
+return a+b;
+}
+java에서는 function대신 리턴타입이 있었고, 매개변수도 타입을 기입해야했다.
+
+
+
+
+
+
+
+javascript 개념 4 :
+argument는 함수 호출시에 전달되는 매개변수들이다.
+arguments 객체는 함수 호출시에 전달된 인수들(arguments)의 유사 배열 객체이다. 함수 내부에서 지역변수처럼 사용된다.
+
+function add()
+{
+    var res = 0;
+    for(var i=0; i<arguments.length; i++)
+    {
+        res += arguments[i];
+    }
+    return(console.log(res));
+}
+add(1, 2, 3); // 6
+

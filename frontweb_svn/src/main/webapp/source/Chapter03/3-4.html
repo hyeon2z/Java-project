@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        // 변수를 선언합니다.
+        var date = new Date();
+        var hour = date.getHours();
+        /*
+        // 중첩 조건문
+        if (hour < 11) {
+            // "hour < 11"이 참일 때 실행합니다.
+            alert('아침 먹을 시간입니다.');
+        } else {
+            // "hour < 11"이 거짓일 때 실행합니다.
+            if (hour < 15) {
+                // "hour < 15"가 참일 때 실행합니다.
+                alert('점심 먹을 시간입니다.');
+            } else {
+                // "hour < 15"가 거짓일 때 실행합니다.
+                alert('저녁 먹을 시간입니다.');
+            }
+        }
+        */
+        // ex) 중첩조건으로 회원가입시, id/pass/age 입력시,
+        //     id/pass입력를 1차 조건으로 입력여부 check하고
+        //     age가 18이상 여부에 따라 성년/미성년 회원으로 구분하여
+        //     1차조건이 안될시 : 아이디/패스워드 입력하세요.
+        //     2차조건에 따라  성년회원 가입 성공
+        //                     미성년회원 가입 성공 처리하세요.
+        //    1) prompt id, pass, age을 입력받아.
+        //    2) if(){}else{} 1차조건 is/pass 입력 여부 확인. 
+        //          id!="" && pass!=""
+        //    3) 2차조건  if(){} 해당 블럭안 age나이 성년여부check
+        var id = prompt("아이디를 입력","")
+        var pass = prompt("패스워드를 입력","")
+        var age = prompt("나이를 입력","")
+        /// 1조건 (id!="" && pass!="") 입력을 반드시 해야하고
+        //  2조건 (id!=null && pass!=null)  둘다 취소버튼을 클릭하지 않을 때,
+        //  1조건안에 2조건이 포함되어 있을 수 있기때문에 &&(and)로 
+        //  모두다 check 처리.
+        if( (id!="" && pass!="") && (id!=null && pass!=null) ){ // 1차 조건  아이디와 패스워드 입력시
+            if(age!="" && age!=null){          
+                if(age>=18){ //2차 조건
+                    alert("성인회원 가입성공")
+                }else{
+                    alert("미성인회원 가입성공")
+                }
+            }else{
+                alert("나이를 입력하세요")
+            }
+        }else{
+            alert("아이디와 패스워드를 입력하세요")
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

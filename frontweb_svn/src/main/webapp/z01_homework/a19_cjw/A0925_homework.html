@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		// # 아래 내용을 수업 예제 코드와 인터넷도 검색해서 정리해보세요
+		// [개념] 1. js의 ", '의 js와의 차이점을 기술하세요
+		/* java에서는 문자형은 ''를 사용하고 문자열에 ""를 사용했지만
+			js는 문자형과 문자열의 구분이 없기 때문에 문자에 ''와 ""를 모두 사용한다.
+		*/
+
+		// [개념] 2. js의 ", ' 데이터 출력형식을 기술하세요.
+		alert("문자 출력");	alert('이것도 문자 출력');
+		// "와 ' 간에 차이가 없다. 대신 포함관계로 ""안에 ''를, ''안에 ""를 사용할 수 있다.
+		alert("'문자' 출력"); alert('"문자" 출력');
+		// ""안에 ""를 사용하거나 ''안에 ''를 사용하기 위해서는 \를 활용해야 한다.
+		alert("\"문자\" 출력"); alert('\'문자\' 출력');
+
+		// [개념] 3. js의 데이터유형을 기술하고, 예제를 통해 데이터 유형을 확인하는 함수와 함께 출력하세요.
+		// 1. 숫자형(정수, 실수 모두 포함)
+		var stringVar = 'String';
+		alert(typeof(stringVar));
+		// 2. 문자형
+		var numberVar = 30;
+		alert(typeof(numberVar));
+		// 3. boolean형
+		var booleanVar = true;
+		alert(typeof(booleanVar));
+		// 4. 함수형
+		var functionVar = function () {
+			alert("함수호출");
+			return "반환할문자열데이터";
+		}
+		alert(typeof(functionVar));
+		// 5. 객체형
+		var objectVar = {i:"i", j:3};
+		alert(typeof(objectVar));
+
+		// [확인] 4. js를 통해서 입력한 영화 관객 인원수와 관람료를 통한 총비용을 출력하게 하세요.
+		var audience = 1000000;
+		var price = 13000;
+		alert("총비용: "+(audience*price));
+
+		// [개념] 5. BOM과 DOM의 차이점을 기술하세요.
+		/* BOM(browser object model): window 제어(DOM의 상위 객체)
+			window.onload = function () {}
+			window : 로딩된 브라우저 창을 의미하는 객체
+			.onlead : 창이 로딩되면 이라는 이벤트 처리
+			= function(){} : 이벤트로 처리할 내용
+		*/
+		/* DOM(document object model): document 제어
+			BOM의 function(){여기}에 사용됨
+            document.body.innerHTML = list;
+			document.body : body 태그 지칭
+            innerHTML : 화면에 출력할 내용 지정(태그 랜더링)
+            innerText : 화면에 출력할 내용 지정(태그 랜더링X)
+		*/
+
+		// [개념] 6. 문자열을 선언하고, 대입하는 것과 누적하는 것의 차이점을 예시로 만들어서 처리하세요.
+		var str = "사과";
+		str = "바나나";
+		str = "딸기";
+		alert(str);	// 출력값은 마지막에 대입한 딸기.
+		var str1 = "사과, ";
+		str1 += "바나나, "
+		str1 += "딸기"
+		alert(str1);	// 출력값은 사과, 바나나, 딸기
+
+		// [개념] 7. ++변수, 변수--의 의미를 예시를 통해서 기술하세요.
+		var num1 = 1;
+		alert(num1++); // 1출력 => num1 = num1+1(즉 2)
+		alert(num1++); // 2
+		alert(num1++); // 3
+		alert(++num1); // num1=num1+1 => num1 출력(5)
+		alert(++num1); // 6
+		alert(++num1); // 7
+		alert(--num1); // 6
+		alert(--num1); // 5
+		alert(--num1); // 4
+		alert(num1--); // 4
+		alert(num1--); // 3
+		alert(num1--); // 2
+		alert(num1);   // 1
+
+		// [개념] 8. js에서 변수을 선언/할당에 있어서, java와의 차이점을 예제를 통해 기술하세요.
+		var num = 3;
+		var num = 5;
+		// java는 재할당은 가능해도 재선언은 불가능하지만
+		// js는 재선언도 가능하다.
+
+		// [개념] 9. prompt창의 사용법을 기본예제를 통해서 기술하세요..
+		var name = prompt("이름 입력","홍길동"); // 이름 입력(메세지 설명), 홍길동(입력창에 default값으로 띄워져있지만 지우고 다른 값 입력 가능)
+		alert("이름: "+name); // 입력한 값이 name 변수에 저장되어있기 때문에 이를 name으로 출력 가능.
+
+		// [개념] 10. confirm창의 사용법을 기본예제를 통해서 기술하세요..
+		var isTrue = confirm("제출하시겠습니까?") // 문자열이 메시지로 출력되고 밑에 확인/취소 버튼이 존재. 확인 => true 취소 => false
+		alert(isTrue);
+
+		// [개념] 11. 형변환 '52' + 273 + 12, 52 + 273 + '12' 차이점을 기술하세요.
+		// 연산은 왼쪽에서 오른쪽으로 순차적으로 진행된다.
+		// 숫자형문자열 + 숫자형 => 숫자형문자열 + 숫자형문자열(형변환처리)
+		alert('52' + 273 + 12);	// 5227312 출력 ('52'+273 = '52273', '52273'+12 = '5227312')
+		alert(52 + 273 + '12'); // 32512 출력 (52+273 = 325, 325+'12' = '32512')
+
+		// [개념] 12. js에서 형변환의 특징을 예제를 통해 기술하세요
+		var num01 = '10';
+		var num02 = 5;
+		alert(num01+num02); // 105
+		alert(num01-num02); // 5
+		alert(num01*num02); // 50
+		alert(num01/num02); // 2
+		alert(num01%num02); // 0
+		// +를 제외한 모든 연산식에서는 숫자형문자열이 숫자형으로 자동형변환된다.
+
+		// [개념] 13. js에서 사용하는 Math객체의 하위 메서드를 예제를 통해 기술하세요.
+		// Math.random() : 0.0 <= Math.random() < 1.0 임의의 수 출력
+		// Math.floor() : 내림
+		// Math.round() : 반올림
+		// Math.ceil() : 올림
+		alert(Math.floor(Math.random())); // 0 출력
+		alert(Math.round(Math.random())); // 0 또는 1 출력
+		alert(Math.ceil(Math.random())); // 1 출력(0.0값은 0, 나머지는 1)
+
+		// [확인] 14. js에서 사용하는 Math객체의 random()메서드를 활용해서 모두의 마블 2개의 팀의 점수를 나타내세요.
+		var dice1 = Math.floor(Math.random()*12+1);
+		var dice2 = Math.floor(Math.random()*12+1);
+		alert("팀1의 점수: "+dice1);
+		alert("팀2의 점수: "+dice2);
+
+		// [확인] 15. js에서 back tick 사용을 통해서 변수 선언과 활용 예제 만들어 기술하세요
+		var sname = "홍길동";
+		var pt = 90;
+		alert(`학생명: ${sname}
+국어 점수: ${pt}점`)
+</body>
+</html>

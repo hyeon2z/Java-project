@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//# javascript
+// [개념] 1. 선언적 함수과 변수형함수의 차이점을 예제를 통해서 설명하세요.
+    //선언 전에 호출 가능
+    fun01()    
+    function fun01(){
+        alert("선언전 호출!!")
+    }
+    //fun() 에러
+    var fun = function (){
+        alert("선언후 호출!!")
+    }
+    fun() // 선언후에만 호출 가능
+
+// [확인] 2. 선언적 함수로 매개변수로, 구구단의 시작단수와 마지막단수를 입력받아 console.log로 구구단을 출력하세요.
+    gugudan()
+    function gugudan(start,end){
+        start = prompt("구구단의 시작단","2");
+        end = prompt("구구단의 끝단","2");
+
+        for(var idx = start;idx<=end;idx++){
+            for(var jdx = 1;jdx<=9;jdx++){
+                console.log(`${idx} X ${jdx} = ${idx*jdx} `)
+
+            }
+        }
+    }
+// [개념] 3. js의 함수의 매개변수와 리턴값을 기본예제를 만들어 설명하세요.
+    function multi(num1,num2){
+        return (num1 * num2)
+    }
+    alert(multi(3,5))
+// [개념] 4. js의 arguments는 어떤 때 사용되는지 기본예제를 통해서 설명하세요
+//함수 호출시 입력된 매개변수의 모든 데이터를 하나의 배열로 불러올때 사용한다
+function fruits(){
+    for(var idx in arguments){
+                console.log(idx + ":"+arguments[idx]) //argsments[0] = "사과",[1] = "바나나" ...
+        }
+}
+fruits("사과","바나나","포도","배");
+
+// # 조별로 파악사항(아래사항 조별로 취합 전달 17:20까지 전달)
+// 1. 오늘 가장 어려웠던 부분 best3 및 내일 자세한 설명 필요한 부분
+// 2. 위 내용 중에 개념부분에 대한 의견을 조원들과 함께 나누고 정리해서 제출하세요
+// 3. 오늘 지각(9:00기준)인원과 사유, 수업 중 집중 의무 준수 여부
+
+
+    </script>
+</body>
+</html>

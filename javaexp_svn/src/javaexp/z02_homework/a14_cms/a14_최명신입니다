@@ -1,0 +1,5 @@
+commit : 서버 전송
+update to head : 서버에 받기
+서버 코드와 불일치시는 안받아진다
+locked : team -> Refresh/Cleanup
+정 안되면 svn delete -> File -> import -> SVN

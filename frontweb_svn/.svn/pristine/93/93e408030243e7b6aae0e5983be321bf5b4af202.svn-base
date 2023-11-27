@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 텍스트 rpg
+        var char = prompt("새로 생성할 캐릭터의 닉네임을 입력하세요","")
+        const player = {
+            name:char,
+            hp:100,
+            attack:10
+
+        }
+        const monster = {
+            name:"슬라임",
+            hp:50,
+            attack:5
+        }
+
+        function showInfo(){
+            console.log(`
+            플레이어 닉네임 : ${player.name} , HP : ${player.hp}
+            몬스터 정보 : ${monster.name} , HP : ${monster.hp}
+            `)}
+
+        function battleStart(){
+            console.log("배틀시작")
+            showInfo();
+            battle();
+        }
+        
+        function playerAttack(){
+            const damage = Math.floor(Math.random() * 10 + 5);
+            monster.hp-=damage
+            console.log(`
+            ${player.name}이 ${monster.name}를 공격하여 
+            ${damage}의 데미지를 입혔습니다
+            `)
+        }
+        function monsterAttack(){
+            const damage = Math.floor(Math.random() * 10 + 2);
+            player.hp-=damage
+            console.log(`
+            ${monster.name}가  ${player.name}을 공격하여 
+            ${damage}의 데미지를 입혔습니다
+            `)
+        }
+        function battle(){
+            while( player.hp>0 && monster.hp>0){
+                playerAttack();
+                monsterAttack();
+                showInfo();
+            }
+        }
+        if(player.hp<=0){
+            console.log(` ${player.name}이 패배하였습니다.`)
+        }else{console.log(`${monster.name}를 물리쳤습니다!`)}
+        
+        battleStart();
+      
+
+
+    </script>
+    
+</body>
+</html>

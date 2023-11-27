@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const computerNum = Math.floor(Math.random()*100+1)
+        let count = 0;
+
+        function guessNumber(){
+            const myNum = parseInt(prompt("1~100사이의 숫자를 입력하세요.","1"))
+            count++;
+
+            if(myNum === computerNum){
+                alert(`정답입니다! ${count}번 만에 맞췄습니다!`)
+            }else if(myNum < computerNum){
+                alert('더 큰 숫자를 입력하세요..')
+                guessNumber();
+            }else{
+                alert('더 작은 숫자를 입력하세요..')
+                guessNumber();
+            }
+        }
+        guessNumber()
+
+    </script>
+    
+</body>
+</html>

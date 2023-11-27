@@ -1,0 +1,558 @@
+//		[개념] 1. 객체의 1:1관계에서 필드 선언, 생성자 호출, 메서드 선언 내용과 각 내용에 대한 역할 부분을 기본 예제를 통해 설명하세요
+
+java 개념 1 :
+A Class의 필드로 B Class의 Instance를 갖는다.
+Instance 이름은 참조변수라서
+<new Class이름(매개변수1, 매개변수2, ...)> 혹은 <기존에 선언한 instance이름>을
+매개변수로 사용 가능하다.
+
+필드 선언 : A Class의 필드로 B Class의 Instance를 갖는다.
+생성자 호출 : B Class의 Instance역시 필드를 갖는다. 즉, B Class의 생성자 메소드를 정의해야한다.
+메서드 선언 내용 : 기본적인 Get/Set/Constructor 메소드들과 A Class의 모든 요소를 출력하는 메소드(ex.show)를 작성 및 사용하여 B Class의 Instance가 할당 되었는지 여부를 판단한다.
+
+예시
+public class Animal
+{
+	String species;
+	String color;
+	
+	//get 메소드
+	//set 메소드
+	//constructor 생성자	 	
+}
+public class Owner
+{
+	String name;
+	int age;
+	Animal animal;
+	//showAll메소드
+	//get 메소드
+	//set 메소드
+	//constructor 생성자	
+}
+public class Today
+{
+public static void main(String args[])
+{
+	Owner owner=new Owner("장선웅",29);
+	owner.setAnimal(new Animal("cat","yellow");
+	owner.showAll();
+}
+}
+
+
+
+
+
+
+
+//		[확인] 2. 아래의 내용을 1:1관계로 설저한 클래스와 main()에서 호출하여 처리하세요(필드는 임의로 설정, 모든 정보를 출력 메서드 추가 처리)
+//			1) 고객과 주문 
+//			2) 학생과 담임교사 
+//			3) Person 객체와 Address 객체의 관계
+//			4) Book 객체와 Author 객체의 관계
+//			5) Member 객체와 Team 객체의 관계
+		package Today20231004;
+
+public class Today20231004HW 
+{
+	public static void main(String[] args) 
+	{
+//		[확인]아래의 내용을 1:1관계로 설정한 클래스와 main()에서 호출하여 처리하세요(필드는 임의로 설정, 모든 정보를 출력 메서드 추가 처리)
+//		1) 고객과 주문 
+		Customer customer=new Customer("장선웅",29);
+		customer.showAll();
+		customer.setOrder(new Order("자바칩프라프치노",3));
+		customer.showAll();
+//		2) 학생과 담임교사 
+		Student student=new Student("장선웅",29);
+		student.showAll();
+		student.setTeacher(new Teacher("양현수",50));
+		student.showAll();
+//		3) Person 객체와 Address 객체의 관계
+		Person person=new Person("장선웅",29);
+		person.showAll();
+		person.setAddress(new Address("경기도","광주시","탄벌동"));
+		person.showAll();
+//		4) Book 객체와 Author 객체의 관계
+		Book book=new Book("아메리칸프로메테우스",15000);
+		book.showAll();
+		book.setAuthor(new Author("가나다라마바사","미국"));		
+		book.showAll();
+//		5) Member 객체와 Team 객체의 관계
+		Team team=new Team("가온누리",5);
+		team.showAll();
+		team.setMember(new Member("장선웅","경기광주"));
+		team.showAll();
+
+	}
+}
+//5) Member 객체와 Team 객체의 관계
+class Team
+{
+	private String teamName;
+	private int people;
+	private Member member;
+	public void showAll()
+	{
+		System.out.println(teamName);
+		System.out.println(people);
+		if(member!=null)
+		{
+			System.out.println(member.getName());
+			System.out.println(member.getLocation());
+		}
+		else
+		{
+			System.out.println("멤버가 없습니다.");
+		}
+		System.out.println("");
+	}
+	public Team()
+	{
+
+	}
+	public Team(String teamName, int people)
+	{
+		this.teamName = teamName;
+		this.people = people;
+	}
+	public String getTeamName() 
+	{
+		return teamName;
+	}
+	public void setTeamName(String teamName)
+	{
+		this.teamName = teamName;
+	}
+	public int getPeople() 
+	{
+		return people;
+	}
+	public void setPeople(int people) 
+	{
+		this.people = people;
+	}
+	public Member getMember() 
+	{
+		return member;
+	}
+	public void setMember(Member member) 
+	{
+		this.member = member;
+	}
+
+	
+}
+
+class Member
+{
+	private String name;
+	private String location;
+	public Member() 
+	{
+
+	}
+	public Member(String name, String location) 
+	{
+		this.name = name;
+		this.location = location;
+	}
+	public String getName() 
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+	public String getLocation()
+	{
+		return location;
+	}
+	public void setLocation(String location)
+	{
+		this.location = location;
+	}
+	
+}
+
+
+//4) Book 객체와 Author 객체의 관계
+class Book
+{
+	
+	private String title;
+	private int price;
+	private Author author;
+	
+	public Book()
+	{
+
+	}
+	public Book(String title, int price)
+	{
+		this.title = title;
+		this.price = price;
+	}
+	public void showAll()
+	{
+		System.out.println(title);
+		System.out.println(price);
+		if(author!=null)
+		{
+			System.out.println(author.getName());
+			System.out.println(author.getLocation());
+		}
+		else
+		{
+			System.out.println("작가 미상");
+		}
+		System.out.println("");
+	}
+	public Author getAuthor() 
+	{
+		return author;
+	}
+	public void setAuthor(Author author) 
+	{
+		this.author = author;
+	}
+
+	public String getTitle() 
+	{
+		return title;
+	}
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+	public int getPrice() 
+	{
+		return price;
+	}
+	public void setPrice(int price) 
+	{
+		this.price = price;
+	}
+	
+}
+class Author
+{
+	private String name;
+	private String location;
+	
+	public Author() 
+	{
+
+	}
+	public Author(String name, String location) 
+	{
+		this.name = name;
+		this.location = location;
+	}
+	public String getName() 
+	{
+		return name;
+	}
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+	public String getLocation()
+	{
+		return location;
+	}
+	public void setLocation(String location) 
+	{
+		this.location = location;
+	}
+	
+}
+
+//3) Person 객체와 Address 객체의 관계
+class Person
+{
+	private String name;
+	private int age;
+	private Address address;
+	
+	public void showAll()
+	{
+		System.out.println(name);
+		System.out.println(age);
+		if(address!=null)
+		{
+			System.out.println(address.getFirst());
+			System.out.println(address.getSecond());
+			System.out.println(address.getThird());
+		}
+		else
+		{
+			System.out.println("주소가 없습니다.");
+		}
+		System.out.println("");
+	}
+	public String getName() 
+	{
+		return name;
+	}
+	public void setName(String name) 
+	{
+		this.name = name;
+	}
+	public int getAge() 
+	{
+		return age;
+	}
+	public void setAge(int age) 
+	{
+		this.age = age;
+	}
+	public Person(String name, int age)
+	{
+		this.name = name;
+		this.age = age;
+	}
+	public Person()
+	{
+
+	}
+	public Address getAddress() 
+	{
+		return address;
+	}
+	public void setAddress(Address address) 
+	{
+		this.address = address;
+	}
+
+	
+	
+}
+class Address
+{
+	private String first;
+	private String second;
+	private String third;
+	
+	public Address(String first, String second, String third)
+	{
+		super();
+		this.first = first;
+		this.second = second;
+		this.third = third;
+	}
+	public String getFirst() 
+	{
+		return first;
+	}
+	public void setFirst(String first)
+	{
+		this.first = first;
+	}
+	public String getSecond() 
+	{
+		return second;
+	}
+	public void setSecond(String second) 
+	{
+		this.second = second;
+	}
+	public String getThird() 
+	{
+		return third;
+	}
+	public void setThird(String third)
+	{
+		this.third = third;
+	}
+}
+//2) 학생과 담임교사
+class Student
+{
+	private String studentName;
+	private int studentAge;
+	private Teacher teacher;
+	
+	public void showAll()
+	{
+		System.out.println(studentName);
+		System.out.println(studentAge);
+		if(teacher!=null)
+		{
+			System.out.println(teacher.getTeacherAge());
+			System.out.println(teacher.getTeacherName());
+		}
+		else
+		{
+			System.out.println("담당교사가 없습니다.");
+		}
+		System.out.println("");
+	}
+	public Student() 
+	{
+	
+	}
+	public Student(String studentName, int studentAge) 
+	{
+		this.studentName = studentName;
+		this.studentAge = studentAge;
+	}
+	public String getStudentName() 
+	{
+		return studentName;
+	}
+	public void setStudentName(String studentName) 
+	{
+		this.studentName = studentName;
+	}
+	public int getStudentAge()
+	{
+		return studentAge;
+	}
+	public void setStudentAge(int studentAge)
+	{
+		this.studentAge = studentAge;
+	}
+	public Teacher getTeacher() 
+	{
+		return teacher;
+	}
+	public void setTeacher(Teacher teacher)
+	{
+		this.teacher = teacher;
+	}
+	
+}
+
+class Teacher
+{
+	private String teacherName;
+	private int teacherAge;
+	
+	public Teacher() 
+	{
+
+	}
+	
+	public Teacher(String teacherName, int teacherAge) 
+	{
+		this.teacherName = teacherName;
+		this.teacherAge = teacherAge;
+	}
+	public String getTeacherName() 
+	{
+		return teacherName;
+	}
+	public void setTeacherName(String teacherName) 
+	{
+		this.teacherName = teacherName;
+	}
+	public int getTeacherAge() 
+	{
+		return teacherAge;
+	}
+	public void setTeacherAge(int teacherAge) 
+	{
+		this.teacherAge = teacherAge;
+	}
+	
+}
+
+
+
+
+
+//1) 고객과 주문
+class Customer
+{
+	private String name;
+	private int age;
+	private Order order;
+	
+	public String getName()
+	{
+		return name;
+	}
+
+	public void setName(String name)
+	{
+		this.name = name;
+	}
+
+	public int getAge() 
+	{
+		return age;
+	}
+
+	public void setAge(int age) 
+	{
+		this.age = age;
+	}
+
+	public Order getOrder() 
+	{
+		return order;
+	}
+
+	public void setOrder(Order order)
+	{
+		this.order = order;
+	}
+
+	public Customer(String name, int age)
+	{
+		super();
+		this.name = name;
+		this.age = age;
+	}
+	public Customer()
+	{
+		
+	}
+	void showAll()
+	{
+		System.out.println(name);
+		System.out.println(age);
+		if(order!=null)
+		{
+			System.out.println(order.getMenu());
+			System.out.println(order.getNumber());
+		}
+		else
+		{
+			System.out.println("주문내역이 없습니다.");
+		}
+		System.out.println("");
+	}
+}
+class Order
+{
+	private String menu;
+	private int number;
+	
+	public Order(String menu, int number) 
+	{
+		super();
+		this.menu = menu;
+		this.number = number;
+	}
+	public String getMenu() 
+	{
+		return menu;
+	}
+	public void setMenu(String menu)
+	{
+		this.menu = menu;
+	}
+	public int getNumber() 
+	{
+		return number;
+	}
+	public void setNumber(int number) 
+	{
+		this.number = number;
+	}
+	
+}
