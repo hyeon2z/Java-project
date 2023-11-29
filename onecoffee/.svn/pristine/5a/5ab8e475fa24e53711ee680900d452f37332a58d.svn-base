@@ -1,0 +1,26 @@
+CREATE SEQUENCE mem_seq;
+CREATE SEQUENCE mem_test;
+
+CREATE TABLE Member(
+	mem number, -- mem_seq , mem_test
+	name varchar(50) not null,
+	id varchar(20) primary key,
+	pwd varchar(20) not null,
+	phoneNum varchar(20) not null,
+	address varchar(50) not null,
+	pwdAnswer varchar(50) not null,
+	terms varchar(20) not NULL,
+	point number(7)
+);
+INSERT INTO MEMBER VALUES (
+	0,
+	'admin',
+	'admin',
+	'1111',
+	'0',
+	'0',
+	'0',
+	'0',
+	'0'
+);
+DROP TABLE MEMBER;
