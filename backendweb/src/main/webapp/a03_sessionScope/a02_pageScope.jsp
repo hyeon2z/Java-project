@@ -35,6 +35,11 @@
 </script>
 </head>
 <%
+// 범위에 따라 같은 이름으로 처리 
+pageContext.setAttribute("name", "홍길동");
+request.setAttribute("name", "홍길동");
+session.setAttribute("name", "홍길동");
+application.setAttribute("name", "홍길동");
 // page scope로 저장 처리
 pageContext.setAttribute("name", "홍길동");
 pageContext.setAttribute("age", 25);

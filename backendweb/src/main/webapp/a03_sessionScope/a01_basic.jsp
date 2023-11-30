@@ -45,6 +45,7 @@
         forward 기능메서드(request, response) 전달하는 메서드
         ex) A.jsp에서 request범위로 데이터 저장한 후,
             forward()로 B.jsp를 호출하면 해당 페이지에서 request 범위로 설정한 데이터는 사용가능하다.
+            ==> MVC 패턴에 모델 데이터로 설정해서 처리할 때, 주로 사용
             
     3) session : session 설정 범위
         같은 웹 브라우저와 웹 서버가 연결되어 있을 때, 데이터를 저장하는 범위를 말하는데,

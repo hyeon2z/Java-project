@@ -62,11 +62,20 @@ CREATE TABLE carttest(
 	price number
 ); -- 내가 가지고 놀 장바구니 테이블
 
-INSERT INTO carttest SELECT * FROM BEVERAGE WHERE (kind='커피') OR (TYPE='hot') or (name LIKE '%아%');
+INSERT INTO carttest
+SELECT *
+FROM BEVERAGE
+WHERE CASE
+    WHEN kind = ' ' THEN kind
+    WHEN type = UPPER('hot') THEN type
+    WHEN name LIKE '% %' THEN name
+    ELSE NULL
+END IS NOT NULL ORDER BY no; 
 -- 장바구니 추가 sql
 
-DELETE FROM carttest WHERE no = 8;
+DELETE FROM carttest;
 -- 장바구니 삭제 sql
+SELECT * FROM CARTTEST;
 
 DELETE FROM 
 -- 장바구니 전체삭제 sql
@@ -75,3 +84,30 @@ UPDATE carttest SET cnt=2 WHERE NO=1;
 -- 장바구니 수량 변경
 
 SELECT * FROM carttest;
+SELECT * FROM beverage WHERE kind='커피' AND TYPE =' ' AND name=' ';
+SELECT * FROM BEVERAGE WHERE (kind=' ' OR TYPE=upper(' ')) and 
+
+SELECT *
+FROM BEVERAGE
+WHERE CASE
+    WHEN kind = ' ' THEN kind
+    WHEN type = UPPER('hot') THEN type
+    WHEN name LIKE '% %' THEN name
+    ELSE NULL
+END IS NOT NULL
+ORDER BY no;
+
+/*
+
+ * */
+
+/*
+SELECT *
+FROM BEVERAGE
+WHERE CASE
+    WHEN kind = ? THEN kind
+    WHEN type = UPPER(?) THEN type
+    WHEN name LIKE ? THEN name
+    ELSE NULL
+END IS NOT NULL;
+ * */

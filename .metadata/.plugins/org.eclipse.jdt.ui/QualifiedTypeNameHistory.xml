@@ -31,4 +31,6 @@
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
+    <fullyQualifiedTypeName name="login.vo.CreateAccount"/>
+    <fullyQualifiedTypeName name="db.DBCon"/>
 </qualifiedTypeNameHistroy>

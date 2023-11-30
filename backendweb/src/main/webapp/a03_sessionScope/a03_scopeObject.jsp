@@ -56,6 +56,9 @@ pageContext.setAttribute("mem",
 <div class="jumbotron text-center">
 
 <h2>객체 처리</h2>
+<h3>${mem.id}</h3>
+<%-- el을 활용하면 객체할당 없이 바로 사용가능. 객체가 없더라도
+nullpointer 예외발생 하지 않는 장점이 있다. --%>
 <%
 Person p01 = (Person)pageContext.getAttribute("p01");
 Member m01 = (Member)pageContext.getAttribute("mem");
