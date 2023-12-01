@@ -1,0 +1,224 @@
+package order_sol;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import db.DBCon;
+
+public class Orderdao {
+	
+	/*
+SELECT * FROM menu 
+WHERE CASE WHEN category = '커피' THEN category
+WHEN drink_Type = lower('') THEN drink_Type 
+WHEN name LIKE '' THEN name ELSE NULL END IS NOT NULL ORDER BY no; 
+
+SELECT * FROM menu 
+WHERE CASE WHEN category = ? THEN category
+WHEN drink_Type = lower(?) THEN drink_Type 
+WHEN name LIKE ? THEN name ELSE NULL END IS NOT NULL ORDER BY no; 
+	 **/
+
+	public List<Menu> getMenuList(Menu sch) {
+		// 메뉴 선택 메서드
+		List<Menu> menuList = new ArrayList<Menu>();
+		String sql = "SELECT * FROM menu \r\n"
+				+ "WHERE CASE WHEN category = ? THEN category\r\n"
+				+ "WHEN drink_Type = lower(?) THEN drink_Type \r\n"
+				+ "WHEN name LIKE ? THEN name ELSE NULL END IS NOT NULL ORDER BY no ";
+	     
+		        try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+					// 처리코드1
+					pstmt.setString(1,  sch.getCategory() );
+					pstmt.setString(2,  sch.getDrink_Type() );
+					pstmt.setString(3, "%"+sch.getName()+"%");
+
+					try (ResultSet rs = pstmt.executeQuery();) {
+						// 처리코드2
+						while (rs.next()) {
+							menuList.add(new Menu(
+									rs.getInt("no"), 
+									rs.getString("category"),
+									rs.getString("name"),
+									rs.getString("drink_Type"), 
+									rs.getInt("price"), 
+									rs.getString("detail")));
+						}
+						System.out.println("건수:" + menuList.size());
+					}
+				} catch (SQLException e) {
+					System.out.println("DB 에러:" + e.getMessage());
+				} catch (Exception e) {
+					System.out.println("일반 에러:" + e.getMessage());
+				}
+
+
+		return menuList;
+	}
+	
+	/*
+	    + "SELECT no, kind, type, name, price, cnt FROM BEVERAGE "
+		        + "WHERE "
+		        + "CASE WHEN kind = ? THEN kind "
+		        + "WHEN type = UPPER(?) "
+		        + "THEN type WHEN name LIKE ? "
+		        + "THEN name "
+		        + "ELSE NULL END IS NOT NULL ORDER BY no";
+	 * */
+	
+	// 장바구니 추가 메서드
+	
+public int insertCarttest(Carttest ins) {
+		int insCnt = 0;
+		String sql = "INSERT INTO Carttest values(?,?,?,?,?,?)";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			con.setAutoCommit(false);
+			// 처리코드1
+			pstmt.setInt(1, ins.getNo());
+			pstmt.setString(2, ins.getKind());
+			pstmt.setString(3, ins.getType());
+			pstmt.setString(4, ins.getName());
+			pstmt.setInt(5, ins.getPrice());
+			pstmt.setInt(6, ins.getCnt());
+			insCnt = pstmt.executeUpdate();
+			if (insCnt == 0) {
+				System.out.println("등록 실패");
+				con.rollback();
+			} else {
+				con.commit(); // Commit the transaction
+				System.out.println("등록 성공");
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+
+		return insCnt;
+	}	
+	
+	
+	// 장바구니 삭제 기능 메서드
+	/*
+	DELETE FROM carttest
+	 * */
+	public int deleteCart() {
+		int delCnt = 0;
+		String sql = "DELETE FROM carttest";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			con.setAutoCommit(false);
+			// 처리코드1
+			delCnt = pstmt.executeUpdate();
+			if (delCnt == 0) {
+				System.out.println("삭제 실패");
+				con.rollback();
+			} else {
+				con.commit(); // Commit the transaction
+				System.out.println("삭제 성공");
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+		return delCnt;
+	}
+
+	
+	
+	// 장바구니 수량 증가 메서드
+	//UPDATE carttest SET cnt= cnt+1 WHERE NO=?;
+	public int plusCnt(int no) {
+		int uptCnt = 0;
+		String sql = "UPDATE carttest SET cnt= cnt+1 WHERE NO=?";
+		try (Connection con = DBCon.con(); PreparedStatement 
+		pstmt = con.prepareStatement(sql);) {
+			con.setAutoCommit(false);
+			// 처리코드1
+			pstmt.setInt(1, no);
+			uptCnt = pstmt.executeUpdate();
+			if (uptCnt == 0) {
+				System.out.println("CUD 실패");
+				System.out.println();
+				con.rollback();
+			} else {
+				con.commit(); // Commit the transaction
+				System.out.println("CUD 성공");
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+
+		return uptCnt;
+	}
+	
+	// 장바구니 수량 감소 메서드
+		//UPDATE carttest SET cnt= cnt-1 WHERE NO=?;
+		public int minusCnt(int no) {
+			int uptCnt = 0;
+			String sql = "UPDATE carttest SET cnt= cnt-1 WHERE NO=?";
+			try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+				con.setAutoCommit(false);
+				// 처리코드1
+				pstmt.setInt(1, no);
+				uptCnt = pstmt.executeUpdate();
+				if (uptCnt == 0) {
+					System.out.println("CUD 실패");
+					con.rollback();
+				} else {
+					con.commit(); // Commit the transaction
+					System.out.println("CUD 성공");
+				}
+			} catch (SQLException e) {
+				System.out.println("DB 에러:" + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("일반 에러:" + e.getMessage());
+			}
+
+			return uptCnt;
+		}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Orderdao dao = new Orderdao();
+		
+		for(Menu m01 : dao.getMenuList(new Menu(" ","ice"," "))) {
+		
+				System.out.print(m01.getCategory() + "\t");
+				
+				System.out.print(m01.getName() + "\t");
+				System.out.print(m01.getDrink_Type() + "\t");
+				System.out.print(m01.getPrice() + "\n");
+			
+		}
+		
+		// 장바구니에 음료를 추가합니다.
+//		Carttest c01 = new Carttest();
+//	
+//		int insCnt = dao.insertCarttest( new Carttest(1,"커피","ICE","아메리카노",3000,1));
+//		System.out.println(insCnt);
+//			
+		
+
+		
+//		dao.plusCnt(2);
+		
+		
+//		for (Beverage b01 : dao.getBevList(new Beverage(" ", "ice", " "))) {
+//			System.out.print(b01.getNo() + "\t");
+//			System.out.print(b01.getKind() + "\t");
+//			System.out.print(b01.getType() + "\t");
+//			System.out.print(b01.getName() + "\t");
+//			System.out.print(b01.getPrice() + "\t");
+//			System.out.print(b01.getCnt() + "\n");
+//		}
+		
+	}
+
+}

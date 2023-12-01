@@ -15,6 +15,8 @@ import backendweb.z01_vo.Member;
 
 
 /*
+import="backendweb.d01_dao.*"
+
 import="backendweb.d01_dao.PreparedStmtDao"
 import="backendweb.z01_vo.*"
 */

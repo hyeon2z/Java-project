@@ -1,0 +1,5 @@
+SELECT * FROM emp;
+
+SELECT *
+FROM emp01
+WHERE empno=7369;
