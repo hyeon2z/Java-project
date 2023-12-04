@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*"
-    import="backendweb.z01_vo.*"
+    import="login.*"
+    import="login.vo.*"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -146,15 +147,31 @@
                             <p></p>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-5">
-                        <div class="header__top__right">
-                            <div class="header__top__links">
-                                <a href="login.jsp" style="color:#7A2D1B">로그인</a>
-                                <a href="createID.jsp" style="color:#7A2D1B">회원가입</a>
-                            </div>
-                            
-                        </div>
-                    </div>
+                    <%
+			            if (session != null) {
+			                String userId = (String) session.getAttribute("User");
+			                if (userId != null) {
+			            %>
+			            	<div class="col-lg-6 col-md-5">
+			                    <div class="header__top__right">
+			                    	<div class="header__top__links" style = "margin:0; width:100%;">
+				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">환영합니다! <%= userId %>님</p>
+				                        <a href="logout.jsp" style="color:#7A2D1B; margin-right:3%">마이페이지</a>
+				                        <a href="logout.jsp" style="color:#7A2D1B">로그아웃</a>
+				                    </div>
+			                    </div>
+			                </div>
+			            <% } else { %>
+			            	<div class="col-lg-6 col-md-5">
+			                    <div class="header__top__right">
+			                    	<div class="header__top__links">    
+					                    <a href="login.jsp" style="color:#7A2D1B">로그인</a>
+		                                <a href="createID.jsp" style="color:#7A2D1B">회원가입</a>
+		                            </div>
+                                </div>
+			                </div>
+			            <% } 
+			            }		%>
                 </div>
             </div>
         </div>
@@ -162,7 +179,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index01.jsp"><img src="img/onelogo.png" alt=""></a>
+                        <a href="./index02.jsp"><img src="img/onelogo.png" alt="ONE COFFEE"></a>
                     </div>
                 </div>
                  <div class="col-lg-6 col-md-6">
@@ -171,8 +188,8 @@
                         <ul>
                             <li ><a href="#" style="color:#7A2D1B">메뉴소개</a></li>
                             <li ><a href="#" style="color:#7A2D1B">매장안내</a></li>
-                            <li ><a href="#" style="color:#7A2D1B">주문하기</a></li>
-                            <li ><a href="#" style="color:#7A2D1B">커뮤니티</a></li>
+                            <li ><a href="selectMenu.jsp" style="color:#7A2D1B">주문하기</a></li>
+                            <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
                            
                         </ul>
                     </nav>
@@ -184,59 +201,59 @@
     </header>
     <!-- Header Section End -->
 <%
-String id = request.getParameter("id");
-if(id==null) id="";
+String id = request.getParameter("id") == null? "" : request.getParameter("id");
 
-String pwd = request.getParameter("pwd");
-if(pwd==null) pwd="";
+String pwd = request.getParameter("pwd") == null? "" : request.getParameter("pwd");
+
+LoginDao loginDao = new LoginDao();
 
 if(!id.equals("") && !pwd.equals("")){
-	if (id.equals("admin") && pwd.equals("0000")) {
-	    // 관리자 페이지로 이동
+	if (loginDao.isAdmin(id, pwd)) { // 관리자 페이지로 이동
 	    response.sendRedirect("admin_main.jsp");
-	} else if(id.equals("test") && pwd.equals("0000")) {
-	    // 다른 페이지로 이동 (예: index02.jsp)
+		session.setAttribute("admin", "admin");
+	} else if(loginDao.userAccess(id, pwd)) { // 유저 로그인
 	    response.sendRedirect("index02.jsp");
-	}	
+		session.setAttribute("User", id);
+	} else {
+		out.println("<script>alert('로그인 실패. 아이디와 비밀번호를 확인하세요.');</script>");
+	}
 }
 
 %>
-<script>
-        function checkAdmin() {
-            var id = document.querySelector("id").value;
-            var pwd = document.querySelector("pwd").value;
-
-            if (id === "admin" && pwd === "0000") {
-                // 관리자 페이지로 이동
-                window.location.href = "index01.jsp";
-            } else {
-                // 다른 페이지로 이동 (예: index02.jsp)
-                window.location.href = "index02.jsp";
-            }
-        }
-    </script>
-	<section class="login-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-8">
-                    <div class="login-form">
-                        <h2>로그인</h2>
-                        <form action="#" method="POST">
-                            <div class="form-group">
-                                <label for="username">아이디</label>
-                                <input name = "id" type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">비밀번호</label>
-                                <input name = "pwd" type="password" class="form-control" id="password" name="password" required>
-                            </div>
-                            <button onclick="checkAdmin()" type="submit" class="btn btn-primary">로그인</button>
-                        </form>
-                    </div>
+<section class="login-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="login-form">
+                    <h2>로그인</h2>
+                    <form action="#" method="POST">
+						<div class="form-group" style="display: flex; align-items: center; margin-bottom: 5px;">
+						    <label for="username" style="color: #7A2D1B; margin-right: 139.5px; margin-bottom: 0;">아이디</label>
+						    <a href="findID.jsp" style="color: #7A2D1B; margin: 0; font-size: 12px;">아이디를 잃어버리셨나요?</a>
+						</div> 
+						<div class="form-group">
+						    <input name="id" type="text" class="form-control" id="username" name="username" required>
+						</div>
+						<div class="form-group" style="display: flex; align-items: center; margin-bottom: 5px;">
+						    <label for="password" style="color: #7A2D1B; margin-right: 120px; margin-bottom: 0;">비밀번호</label>
+						    <a href="findPWD.jsp" style="color: #7A2D1B; margin: 0; font-size: 12px;">비밀번호를 잃어버리셨나요?</a>
+						</div>
+						<div class="form-group">
+						    <input name="pwd" type="password" class="form-control" id="password" name="password" required>
+						</div>
+                        <button type="submit" class="btn btn-primary">로그인</button>
+                    </form>
+                    <!-- "아이디 찾기" 링크 추가 -->
+                    
+                    
+                    <!-- "비밀번호 찾기" 링크 추가 -->
+                    
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Search Begin -->
     <div class="search-model">

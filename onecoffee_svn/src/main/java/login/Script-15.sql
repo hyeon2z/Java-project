@@ -47,3 +47,9 @@ INSERT INTO MEMBER VALUES (
 	0
 );
 */
+
+SELECT * FROM MEMBER
+WHERE id = 'admin';
+
+SELECT * FROM MEMBER
+WHERE id = 'dlathf0303' AND pwd = 'dlathf';

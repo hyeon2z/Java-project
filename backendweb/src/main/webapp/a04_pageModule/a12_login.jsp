@@ -50,6 +50,18 @@ if(id!=null) {
 <%}
 }
 %>
+<%--
+# login DB 연동처리 순서
+1. sql 작성
+2. VO작성/확인
+3. Dao 기능 메서드 처ㅣㄹ
+4. 화면 구성
+5. 요청값 처리
+6. Dao 호출
+7. login 여부에 따라 다시 로그인
+8. 해당 로그인 member 있을 때 session 처리
+9. 로그인 메인페이지 이동
+ --%>
 <body>
 <div class="jumbotron text-center">
   <h2>로그인</h2>

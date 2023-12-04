@@ -7,7 +7,7 @@ int cnt = 5;
 
 int calcul = price*cnt;
 
-Dept d = new Dept(10, "인사", "제주");
+//Dept d = new Dept(10, "인사", "제주");
 %>
 
 <script>

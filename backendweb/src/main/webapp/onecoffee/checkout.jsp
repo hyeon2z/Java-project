@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.*"
-    import="backendweb.z01_vo.*"
+    import="login.*"
+    import="login.vo.*"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -82,8 +83,8 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#" style="color:#7A2D1B">로그인</a>
-                                <a href="#" style="color:#7A2D1B">회원가입</a>
+                                <a href="login.jsp" style="color:#7A2D1B">로그인</a>
+                                <a href="createID.jsp" style="color:#7A2D1B">회원가입</a>
                             </div>
                             
                         </div>
@@ -95,17 +96,17 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/onelogo.png" alt=""></a>
+                        <a href="./index01.jsp"><img src="img/onelogo.png" alt=""></a>
                     </div>
                 </div>
                  <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu" 
                      style="margin-left:20%; margin-right:20%; width:60%; ">
                         <ul>
-                            <li ><a href="./shop.html" style="color:#7A2D1B">메뉴소개</a></li>
-                            <li ><a href="./shop.html" style="color:#7A2D1B">매장안내</a></li>
+                            <li ><a href="#" style="color:#7A2D1B">메뉴소개</a></li>
+                            <li ><a href="#" style="color:#7A2D1B">매장안내</a></li>
                             <li ><a href="#" style="color:#7A2D1B">주문하기</a></li>
-                            <li ><a href="./blog.html" style="color:#7A2D1B">커뮤니티</a></li>
+                            <li ><a href="#" style="color:#7A2D1B">커뮤니티</a></li>
                            
                         </ul>
                     </nav>
@@ -116,7 +117,51 @@
         </div>
     </header>
     <!-- Header Section End -->
+<%
+String name = request.getParameter("name") == null? "" : request.getParameter("name");
+String id = request.getParameter("id") == null? "" : request.getParameter("id");
+String pwd = request.getParameter("pwd") == null? "" : request.getParameter("pwd");
+String pwd2 = request.getParameter("pwd2") == null? "" : request.getParameter("pwd2");
+String phone = request.getParameter("phone") == null? "" : request.getParameter("phone");
+String address = request.getParameter("address") == null? "" : request.getParameter("address");
+String pwdAnswer = request.getParameter("pwdAnswer") == null? "" : request.getParameter("pwdAnswer");
 
+boolean idExist = false;
+boolean isInsert = false;
+String alertMessage = null;
+
+if (request.getMethod().equalsIgnoreCase("post")) {
+    if (id.isEmpty() || name.isEmpty() || pwd.isEmpty() || pwd2.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+        alertMessage = "모든 필드를 입력하세요.";
+    } else {
+        //CreateMemDao dao = new CreateMemDao();
+       // idExist = dao.idExist(id);
+
+        if(idExist){
+            alertMessage = "이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요.";
+        } else if (!pwd.equals(pwd2)) {
+            alertMessage = "비밀번호가 일치하지 않습니다. 다시 입력해주세요.";
+        } else {
+          //  dao.CreateAccount(new CreateAccount(name, id, pwd, phone, address, pwdAnswer));
+            isInsert = true;
+        }
+    }
+}
+%>
+
+<% if (alertMessage!=null) { %>
+    <script>
+        alert("<%= alertMessage %>");
+        history.back();
+    </script>
+<% } %>
+
+<% if (isInsert) { %>
+    <script>
+        alert("회원가입이 완료되었습니다.");
+        window.location.href = "index02.jsp";
+    </script>
+<% } %>
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
@@ -124,197 +169,65 @@
                 <form action="#">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
-                            <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click
-                            here</a> to enter your code</h6>
-                            <h6 class="checkout__title">Billing Details</h6>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Last Name<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                            
+                            <h6 class="checkout__title">회원가입</h6>
+                            <div class="checkout__input">
+                                <p>이름<span>*</span></p>
+                                <input type="text" name = "name">
                             </div>
                             <div class="checkout__input">
-                                <p>Country<span>*</span></p>
-                                <input type="text">
+                                <p>아이디<span>*</span></p>
+                                <input type="text" name = "id">
                             </div>
                             <div class="checkout__input">
-                                <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add">
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                                <p>비밀번호<span>*</span></p>
+                                <input name = "pwd" type="password" placeholder="비밀번호" class="checkout__input__add">
+                                <input name = "pwd2" type="password" placeholder="비밀번호 확인">
                             </div>
                             <div class="checkout__input">
-                                <p>Town/City<span>*</span></p>
-                                <input type="text">
+                                <p>전화번호<span>*</span></p>
+                                <input name = "phone"type="text">
                             </div>
                             <div class="checkout__input">
-                                <p>Country/State<span>*</span></p>
-                                <input type="text">
+                                <p>주소<span>*</span></p>
+                                <input name = "address" type="text">
                             </div>
                             <div class="checkout__input">
-                                <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Phone<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="text">
-                                    </div>
-                                </div>
+                                <p>비밀번호 찾기 질문 선택<span>*</span></p>
+                                <select>
+                                	<option>태어난 도시는?</option>
+                                	<option>가장 친한친구 이름은?</option>
+                                	<option>아버지의 이름은 무엇인가?</option>
+                                </select>
+                            </div><br><br>
+                            
+                            <div class="checkout__input">
+                                <p>정답<span>*</span></p>
+                                <input name = "pwdAnswer" type="text">
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="acc">
-                                    Create an account?
-                                    <input type="checkbox" id="acc">
+                                    개인정보 이용동의
+                                    <input class = check type="checkbox" id="acc">
                                     <span class="checkmark"></span>
                                 </label>
-                                <p>Create an account by entering the information below. If you are a returning customer
-                                please login at the top of the page</p>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Account Password<span>*</span></p>
-                                <input type="text">
                             </div>
                             <div class="checkout__input__checkbox">
                                 <label for="diff-acc">
-                                    Note about your order, e.g, special noe for delivery
-                                    <input type="checkbox" id="diff-acc">
+                                    마케팅 수신동의
+                                    <input class = check type="checkbox" id="diff-acc">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
-                            <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
-                                <input type="text"
-                                placeholder="Notes about your order, e.g. special notes for delivery.">
-                            </div>
+                            <button type="submit" class="site-btn">가입하기</button>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="checkout__order">
-                                <h4 class="order__title">Your order</h4>
-                                <div class="checkout__order__products">Product <span>Total</span></div>
-                                <ul class="checkout__total__products">
-                                    <li>01. Vanilla salted caramel <span>$ 300.0</span></li>
-                                    <li>02. German chocolate <span>$ 170.0</span></li>
-                                    <li>03. Sweet autumn <span>$ 170.0</span></li>
-                                    <li>04. Cluten free mini dozen <span>$ 110.0</span></li>
-                                </ul>
-                                <ul class="checkout__total__all">
-                                    <li>Subtotal <span>$750.99</span></li>
-                                    <li>Total <span>$750.99</span></li>
-                                </ul>
-                                <div class="checkout__input__checkbox">
-                                    <label for="acc-or">
-                                        Create an account?
-                                        <input type="checkbox" id="acc-or">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua.</p>
-                                <div class="checkout__input__checkbox">
-                                    <label for="payment">
-                                        Check Payment
-                                        <input type="checkbox" id="payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="checkout__input__checkbox">
-                                    <label for="paypal">
-                                        Paypal
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <button type="submit" class="site-btn">PLACE ORDER</button>
-                            </div>
-                        </div>
+                        
                     </div>
                 </form>
             </div>
         </div>
     </section>
     <!-- Checkout Section End -->
-
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
-                        </div>
-                        <p>The customer is at the heart of our unique business model, which includes design.</p>
-                        <a href="#"><img src="img/payment.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>NewLetter</h6>
-                        <div class="footer__newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="footer__copyright__text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>2020
-                            All rights reserved | This template is made with <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        </p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
 
     <!-- Search Begin -->
     <div class="search-model">
