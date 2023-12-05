@@ -53,8 +53,41 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>타이틀</h2>
-
+  <h2>jstl 객체 할당</h2>
+  <c:set var = "name" value = "홍길동" scope = "page"/>
+  <h3>기본 변수 호출:${name}</h3>
+  <%
+  request.setAttribute("person", new Person("마길동",25,"서울"));
+  %>
+  <c:set var="p01" value="${person}" 
+    scope="session"/>
+  <h3>기본 객체 변수 호출:${p01.name}</h3>
+  <h3>기본 객체 변수 호출:${p01.age}</h3>
+  <h3>기본 객체 변수 호출:${p01.loc}</h3>
+  <c:set var="ranNum" value="${Math.floor(Math.random()*100+1) }" scope="session"/>
+  <%--
+  ex) c:set
+    1) 변수로 가격을 설정하여 request범위로 호출하고,
+    2) 객체변수로 pageContext로 Dept로 설정하고,
+        다시 c:set 형태로 할당하여 출력
+   --%>
+   <c:set var = "price" value = "15000" scope = "request"/>
+   <h4>가격 : ${price}</h4>
+   <c:set var="d02" value='<%=new Dept(10,"인사","대전") %>' scope="page"/>
+   <%
+   pageContext.setAttribute("dept", new Dept(10, "부서명", "부서위치"));%>
+   <c:set var="d01" value="${dept}" scope="session"/>
+   <h4>객체호출 : ${d01.deptno}</h4>
+   <h4>객체호출 : ${d01.dname}</h4>
+   <h4>객체호출 : ${d01.loc}</h4>
+   <h5>${d02.deptno }</h5>
+   <h5>${d02.dname }</h5>
+   <h5>${d02.loc }</h5>
+   ${d02.setLoc("인천") }
+   <h3>변경property 객체(d02) : ${d02.loc }</h3>
+   <%-- target="${객체변수}" propert="프로퍼티명" value="할당할 값" --%>
+   <c:set target="${d02 }" property = "dname" value = "회계"/>
+   <h3>변경property 객체(d02) : ${d02.dname }</h3>
 </div>
 <div class="container">
 	<form id="frm01" class="form"  method="post">

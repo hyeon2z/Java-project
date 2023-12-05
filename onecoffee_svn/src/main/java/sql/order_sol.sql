@@ -47,42 +47,42 @@ SELECT * FROM BEVERAGE WHERE (kind='커피') OR (TYPE='hot') or (name LIKE '%아
 -- SELECT * FROM BEVERAGE WHERE (kind=?) OR (TYPE=?) or (name LIKE ?);
 
 CREATE TABLE cart(
-	NO NUMBER,
-	kind varchar2(30),
-	TYPE varchar2(30),
+	category varchar2(30),
+	drink_type varchar2(30),
 	name varchar2(50),
-	price number
+	price number,
+	cnt number
 ); -- 장바구니 테이블
 
-CREATE TABLE carttest(
-	NO NUMBER,
-	kind varchar2(30),
-	TYPE varchar2(30),
-	name varchar2(50),
-	price number
-); -- 내가 가지고 놀 장바구니 테이블
+SELECT * FROM cart;
 
-INSERT INTO carttest
-SELECT *
-FROM BEVERAGE
-WHERE CASE
-    WHEN kind = ' ' THEN kind
-    WHEN type = UPPER('hot') THEN type
-    WHEN name LIKE '% %' THEN name
-    ELSE NULL
-END IS NOT NULL ORDER BY no; 
--- 장바구니 추가 sql
+ALTER TABLE cart
+ADD no NUMBER;
 
-DELETE FROM carttest;
+
+INSERT INTO cart (category, drink_type, name, price, cnt)
+SELECT category, drink_type, name, price, 1 as cnt
+FROM menu
+WHERE no = 1;
+
+
+/*
+INSERT INTO cart (category, drink_type, name, price, cnt)
+SELECT category, drink_type, name, price, ? as cnt
+FROM menu
+WHERE no = ?
+ * */
+
+DELETE FROM cart;
 -- 장바구니 삭제 sql
-SELECT * FROM CARTTEST;
+SELECT * FROM CART ;
 
 DELETE FROM 
 -- 장바구니 전체삭제 sql
 
 UPDATE carttest SET cnt=2 WHERE NO=1;
 -- 장바구니 수량 변경
-
+DELETE FROM cart where NO = 8;
 SELECT * FROM carttest;
 SELECT * FROM beverage WHERE kind='커피' AND TYPE =' ' AND name=' ';
 SELECT * FROM BEVERAGE WHERE (kind=' ' OR TYPE=upper(' ')) and 
@@ -111,3 +111,10 @@ WHERE CASE
     ELSE NULL
 END IS NOT NULL;
  * */
+SELECT * FROM MEMBER;
+SELECT point FROM MEMBER WHERE ID = 'test12';
+
+UPDATE MEMBER SET point = point-2000 WHERE id='dlathf0202';
+--SELECT point FROM MEMBER WHERE ID = ?
+
+-- UPDATE MEMBER SET point = point-? WHERE id=?

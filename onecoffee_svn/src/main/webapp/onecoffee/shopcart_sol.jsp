@@ -160,25 +160,32 @@
 			}
 		}
 	}
+	
+	String btnValue = request.getParameter("btnValue");
+	session.setAttribute("btnValue",btnValue);
 	%>
 	<!-- Breadcrumb Section Begin -->
 <body>
 <br><br><br><br>
+			<form>
 <div class="row">
-			<div
-				style="padding-left: 100px; display: flex; margin-left: 30%;width: 100%; ">
-
-				<button type="button" class="btn btn-outline-dark" id="btnCheckData" style="width: 20%; background:#7A2D1B; color:#ECE0DE;" >
+			<div style="padding-left: 100px; display: flex; margin-left: 30%; width: 100%; ">
+				<button type="submit" class="btn btn-outline-dark" name="btnValue" value="픽업주문"
+				 id="btnCheckData" style="width: 20%; background:#7A2D1B; color:#ECE0DE;" >
 				픽업주문
 					</button>
 
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button"class="btn btn-outline-dark" style="width: 20%; background:#7A2D1B; color:#ECE0DE;">매장주문</button>
+				<button type="submit"class="btn btn-outline-dark" name="btnValue" value="매장주문"
+				style="width: 20%; background:#7A2D1B; color:#ECE0DE;">매장주문</button>
 			</div>
-		
+			
 		</div>
+			</form>
 	<%
 	List<Cart> cartList = dao.getCartList();
+	
+	
 	%>
 	<!-- Shopping Cart Section Begin -->
 	<section class="shopping-cart spad" style="backgorund: #FFF8F8;">
@@ -231,12 +238,13 @@
 			<div
 				style="padding-left: 100px; display: flex; margin-left: 35%; width: 100%;">
 
-				<button type="button" class="btn btn-outline-dark" id="btnCheckData" style="background:#7A2D1B; color:#ECE0DE;" >Continue
-					Shopping</button>
+				<button type="button" class="btn btn-outline-dark" id="btnCheckData" style="background:#7A2D1B; color:#ECE0DE;"
+				 onclick="location.href='selectMenu.jsp'">
+					주문 페이지</button>
 
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<button type="submit" onclick="location.href='shopcart_sol.jsp'"
-					class="btn btn-outline-dark" style="background:#7A2D1B; color:#ECE0DE;">delete Cart</button>
+					class="btn btn-outline-dark" style="background:#7A2D1B; color:#ECE0DE;">메뉴 삭제</button>
 			</div>
 			</form>
 
@@ -247,7 +255,7 @@
 			<ul>
 				<li>Total <span>${total}</span></li>
 			</ul>
-			<a href="Payment.jsp" class="primary-btn" style="background:#7A2D1B; color:#ECE0DE;">Payment Page</a>
+			<a href="PaymentInfo.jsp" class="primary-btn" style="background:#7A2D1B; color:#ECE0DE;">결제하기</a>
 		</div>
 
 	</section>

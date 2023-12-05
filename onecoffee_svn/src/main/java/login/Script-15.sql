@@ -22,14 +22,14 @@ INSERT INTO MEMBER VALUES (
 	0
 );
 INSERT INTO MEMBER VALUES (
-	mem_test.nextval,
-	'게스트',
-	'guest1',
-	'guest1122',
+	mem_seq.nextval,
+	'임솔',
+	'dlathf0202',
+	'1111',
 	'010-1234-5678',
-	'서울시 강남구',
-	'서울시',
-	default
+	'경기도 남양주',
+	'임솔',
+	1000000
 );
 DROP TABLE MEMBER;
 SELECT * FROM MEMBER;
@@ -47,9 +47,3 @@ INSERT INTO MEMBER VALUES (
 	0
 );
 */
-
-SELECT * FROM MEMBER
-WHERE id = 'admin';
-
-SELECT * FROM MEMBER
-WHERE id = 'dlathf0303' AND pwd = 'dlathf';
