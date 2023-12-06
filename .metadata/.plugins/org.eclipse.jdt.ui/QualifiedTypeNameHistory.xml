@@ -34,4 +34,5 @@
     <fullyQualifiedTypeName name="login.vo.CreateAccount"/>
     <fullyQualifiedTypeName name="db.DBCon"/>
     <fullyQualifiedTypeName name="login.vo.Member"/>
+    <fullyQualifiedTypeName name="backendweb.z01_vo.Member"/>
 </qualifiedTypeNameHistroy>

@@ -105,8 +105,28 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h2>타이틀</h2>
-
+  <h2>useBean활용</h2>
+	<jsp:useBean id = "p01" class = "backendweb.z01_vo.Person" scope = "session"/>
+	<%-- Person p01 = new Person(); session.setAttribute("p01", p01); --%>
+	<jsp:useBean id="m01" class = "backendweb.z01_vo.Member" scope = "session"/>
+	
+	<h3>객체생성후, property호출 : ${p01.name}</h3>
+	<jsp:setProperty property="name" name="p01" value = "홍길동"/>
+	<%-- p01.setName("홍길동"); --%>
+	<jsp:setProperty property="id" name="m01" value = "himan"/>
+	<jsp:setProperty property="name" name="m01" value = "김철수"/>
+	
+	<h3>set property호출 후, getProperty호출 : ${p01.name}</h3>
+	
+	<h3>get property 정석적인 호출
+	<jsp:getProperty property="name" name="p01"/>
+	</h3>
+	<a href = "a02_showSession.jsp">세션 범위 확인</a>
+	<%-- a02_showSession.jsp 코드 내용 세션값 확인 : ${p01.name} 
+	
+	ex) Member 클래스를 bean으로 설정하고, Member의 id와 name을 property로 설정 호출하고
+	a02_showSession.jsp 에서 출력되게 설정
+	--%>
 </div>
 <div class="container">
 	<form id="frm01" class="form"  method="post">
