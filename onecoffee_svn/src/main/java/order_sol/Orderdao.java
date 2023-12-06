@@ -298,8 +298,8 @@ public class Orderdao {
 //		System.out.println(insCnt);
 //			
 
-//		int insCnt = dao.insertCart(2,1);
-//		System.out.println(insCnt);
+		int insCnt = dao.insertCart(2,1);
+		System.out.println(insCnt);
 
 //		dao.plusCnt(2);
 
@@ -324,7 +324,7 @@ public class Orderdao {
 		int point = dao.getPoint("dlathf0202");
 		System.out.println(point);
 		
-		int plusPoint = dao.plusPoint(2000,"dlathf0202");
+		int plusPoint = dao.plusPoint(9000,"dlathf0202");
 		
 
 	}

@@ -47,3 +47,14 @@ INSERT INTO MEMBER VALUES (
 	0
 );
 */
+
+SELECT name, id, pwd, phonenum, address, point
+FROM MEMBER
+WHERE id = 'dlathf0202';
+SELECT pwd, phonenum, address
+FROM MEMBER
+WHERE id = 'hyeon2';
+
+UPDATE MEMBER SET
+pwd = '1111', phonenum = '010-1234-5678', address = '서울'
+WHERE id = 'hyeon2';

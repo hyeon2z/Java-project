@@ -33,4 +33,5 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="login.vo.CreateAccount"/>
     <fullyQualifiedTypeName name="db.DBCon"/>
+    <fullyQualifiedTypeName name="login.vo.Member"/>
 </qualifiedTypeNameHistroy>

@@ -5,6 +5,10 @@
 <%@page import="admin.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<fmt:requestEncoding value="utf-8" />
+<!DOCTYPE html>
+<html lang="zxx">
 <%
 MenuDao dao = new MenuDao();
 String name = request.getParameter("name");
@@ -16,11 +20,6 @@ int deptno = 0; // 초기화면에 출력 부서번호가 10기본 출력하기 
 if(deptnoStr!=null) deptno = Integer.parseInt(deptnoStr);
 %>
 
-
-<c:set var="path" value="${pageContext.request.contextPath }" />
-<fmt:requestEncoding value="utf-8" />
-<!DOCTYPE html>
-<html lang="zxx">
 <style>
 table {
 	border: none;
@@ -90,6 +89,9 @@ a.primary-btn {
 			                    	<div class="header__top__links" style = "margin:0; width:100%;">
 				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">
 				                        환영합니다! <%= userId %>님</p>
+				                      
+				                        <a href="admin_main.jsp" style="color: #7A2D1B">메인으로</a>
+				                        
 				                        <a href="logout.jsp" style="color: #7A2D1B">로그아웃</a>
 				                    </div>
 			                    </div>
@@ -119,10 +121,11 @@ a.primary-btn {
 					<nav class="header__menu mobile-menu"
 						style="margin-left: 20%; margin-right: 20% width:60%;">
 						<ul>
+							
 							<li ><a href="admin_list.jsp" style="color:#7A2D1B">메뉴관리</a></li>
-                            <li ><a href="#" style="color:#7A2D1B">회원관리</a></li>
-                            <li ><a href="#" style="color:#7A2D1B">매출관리</a></li>
-                            <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li>
+                            <li ><a href="admin_member.jsp" style="color:#7A2D1B">회원관리</a></li>
+                            <li ><a href="admin_sal.jsp" style="color:#7A2D1B">매출관리</a></li>
+                            <!-- <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li> -->
                             <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
                            
 

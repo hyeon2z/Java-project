@@ -45,6 +45,11 @@ public class Emp {
 		this.deptno = deptno;
 	}
 	
+	public Emp(String ename, String job) {
+		this.ename = ename;
+		this.job = job;
+	}
+
 	public Emp(int deptno) {
 		this.deptno = deptno;
 	}
