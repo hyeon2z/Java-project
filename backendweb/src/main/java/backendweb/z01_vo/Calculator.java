@@ -5,9 +5,32 @@ public class Calculator {
 	private int num2;
 	private String oper;
 	private String plus;
+	public int getCal() {
+		return cal;
+	}
+
+	public void setCal(int cal) {
+		this.cal = cal;
+	}
 	private String minus;
 	private String multi;
 	private String divide;
+	private int cal;
+	public Calculator(int num1, int num2, int cal) {
+		this.num1 = num1;
+		this.num2 = num2;
+		this.cal = cal;
+	}
+	public String getCalStr() {
+		String[] calS = {"+","-","*","/"};
+		// cal의 index값이 0~3까지 나오므로 이에 대한 문자열 데이터 처리
+		return calS[cal];
+	}
+	public int getTot() {
+		int[] tot = {num1+num2, num1-num2, num1*num2, num2==0?0:num1/num2};
+		return tot[cal];
+	}
+	
 	public Calculator() {
 		// TODO Auto-generated constructor stub
 	}

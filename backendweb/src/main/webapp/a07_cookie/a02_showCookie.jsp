@@ -41,6 +41,8 @@
 <div class="jumbotron text-center">
   <h2>쿠키값 확인</h2>
 <%
+	// 클라이언트(브라우저)가 가지고 있는 cookie정보를 서버에
+	// request 객체로 전송해서 그 중에 getCookies()라는 메서드를 통해 쿠키정보를 서버에서 배열로 확인한다.
 	Cookie[] cookies = request.getCookies();
 
 for(Cookie c : cookies){

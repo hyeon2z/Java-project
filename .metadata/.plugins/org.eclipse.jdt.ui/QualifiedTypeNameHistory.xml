@@ -20,7 +20,6 @@
     <fullyQualifiedTypeName name="frontweb.database.EmpDao"/>
     <fullyQualifiedTypeName name="frontweb.database.ExpDao"/>
     <fullyQualifiedTypeName name="frontweb.vo.Employee"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="frontweb.database.DBCon"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="frontweb.database.PreparedStmtDao"/>
@@ -35,4 +34,5 @@
     <fullyQualifiedTypeName name="db.DBCon"/>
     <fullyQualifiedTypeName name="login.vo.Member"/>
     <fullyQualifiedTypeName name="backendweb.z01_vo.Member"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

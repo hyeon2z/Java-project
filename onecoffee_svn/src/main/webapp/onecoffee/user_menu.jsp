@@ -29,12 +29,27 @@ if(detail==null) detail = "";
 <html lang="zxx">
 <style>
 table {
-	border: none;
+  border: none;
+  width: 70%;
+  align-content: center;
+  color: #742D18;
+  margin: 0 auto;
+
 }
 
-table td, table th {
-	border: none;
+.btn {
+  display: block;
+  margin: 0 10px;
+  width: 250px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 10px 20px;
 }
+
+.data>td{padding : 10px;}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -117,9 +132,12 @@ a.primary-btn {
 			            	<div class="col-lg-6 col-md-5">
 			                    <div class="header__top__right">
 			                    	<div class="header__top__links" style = "margin:0; width:100%;">
-				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">환영합니다! <%= userId %>님</p>
-				                        <a href="mypage.jsp" style="color:#7A2D1B; margin-right:3%">마이페이지</a>
-				                        <a href="logout.jsp" style="color:#7A2D1B">로그아웃</a>
+				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">
+				                        환영합니다! <%= userId %>님</p>
+				                       
+				                        <a href="admin_main.jsp" style="color: #7A2D1B">메인으로</a>
+				                        
+				                        <a href="logout.jsp" style="color: #7A2D1B">로그아웃</a>
 				                    </div>
 			                    </div>
 			                </div>
@@ -132,10 +150,6 @@ a.primary-btn {
 		                            </div>
                                 </div>
 			                </div>
-			                    <script>
-							        alert("로그인이 필요한 기능입니다.");
-							        window.location.href = "login.jsp";
-							    </script>
 			            <% } 
 			            }		%>
                 </div>
@@ -145,16 +159,18 @@ a.primary-btn {
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/onelogo.png" alt=""></a>
+					<a href="./admin_main.jsp"><img src="img/onelogo.png" alt=""></a>
+					
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<nav class="header__menu mobile-menu"
 						style="margin-left: 20%; margin-right: 20% width:60%;">
 						<ul>
-						 <li ><a href="user_menu.jsp" style="color:#7A2D1B">메뉴소개</a></li>
-                            <li ><a href="contact.jsp" style="color:#7A2D1B">매장안내</a></li>
-                            <li ><a href="selectMenu.jsp" style="color:#7A2D1B">주문하기</a></li>
+							<li ><a href="admin_list.jsp" style="color:#7A2D1B">메뉴관리</a></li>
+                            <li ><a href="admin_member.jsp" style="color:#7A2D1B">회원관리</a></li>
+                            <li ><a href="admin_sal.jsp" style="color:#7A2D1B">매출관리</a></li>
+                            <!-- <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li> -->
                             <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
                            
 
@@ -178,7 +194,7 @@ a.primary-btn {
 </script>
 
 	<!-- Search Begin -->
-	<div class="search-model">
+		<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
 			<form class="search-model-form">
@@ -186,40 +202,45 @@ a.primary-btn {
 			</form>
 		</div>
 	</div>
-	<!-- Search End -->
-	<script>
 
-
-function goPage(no) {
-	location.href = "/admin_menu_detail.jsp?no=" + no;
-}
-</script>
 <body>
-	<br>
-	<h2 align="center"></h2>
-	<table class="customers" width="60%" border align="center">
-		<tr>
+	<br><br>
+	 <table class="t" >
+	    	<col width="5%">
+		   	<col width="10%">
+		   	<col width="20%">
+		   	<col width="10%">
+		   	<col width="20%">
+		   	<col width="40%">
+		   	<col width="5%">
+		 <tr>
 			<th>NO</th>
 			<th>카테고리</th>
 			<th>음료명</th>
 			<th>음료타입</th>
 			<th>금액</th>
 			<th>음료설명</th>
+			<th></th>
 		</tr>
-		<% for(Menu menu : dao.getMenuList()){ %>
-		<tr ondblclick="goPage(<%=menu.getNo()%>)">
-			<td><%=menu.getNo()%></td>
+		<%
+		no = 0;
+		for(Menu menu : dao.getMenuList()){ %>
+		<tr class ="data" >
+			<td><%=++no%></td>
 			<td><%=menu.getCategory()%></td>
 			<td><%=menu.getName()%></td>
 			<td><%=menu.getDrink_type()%></td>
-			<td><%=menu.getPrice()%></td>
+			<td><%=menu.getPrice()%>원</td>
 			<td><%=menu.getDetail()%></td>
-		</tr>
+			<td>
+			
 		<%}%>
-
+	</td>
+		</tr>
 	</table>
 
-	
+	<br><br>
+
 
 </body>
 <!-- Js Plugins -->

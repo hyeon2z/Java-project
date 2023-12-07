@@ -29,12 +29,27 @@ if(detail==null) detail = "";
 <html lang="zxx">
 <style>
 table {
-	border: none;
+  border: none;
+  width: 70%;
+  align-content: center;
+  color: #742D18;
+  margin: 0 auto;
+
 }
 
-table td, table th {
-	border: none;
+.btn {
+  display: block;
+  margin: 0 10px;
+  width: 250px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 10px 20px;
 }
+
+.data>td{padding : 10px;}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -119,7 +134,7 @@ a.primary-btn {
 			                    	<div class="header__top__links" style = "margin:0; width:100%;">
 				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">
 				                        환영합니다! <%= userId %>님</p>
-				                        
+				                       
 				                        <a href="admin_main.jsp" style="color: #7A2D1B">메인으로</a>
 				                        
 				                        <a href="logout.jsp" style="color: #7A2D1B">로그아웃</a>
@@ -144,7 +159,8 @@ a.primary-btn {
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/onelogo.png" alt=""></a>
+					<a href="./admin_main.jsp"><img src="img/onelogo.png" alt=""></a>
+					
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
@@ -178,7 +194,7 @@ a.primary-btn {
 </script>
 
 	<!-- Search Begin -->
-	<div class="search-model">
+		<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
 			<form class="search-model-form">
@@ -186,45 +202,66 @@ a.primary-btn {
 			</form>
 		</div>
 	</div>
-	<!-- Search End -->
-	<script>
 
-
-
-</script>
 <body>
-	<br>
-	<h2 align="center"></h2>
-	<table class="customers" width="60%" border align="center">
-		<tr>
+	<br><br>
+	 <table class="t" >
+	    	<col width="5%">
+		   	<col width="10%">
+		   	<col width="20%">
+		   	<col width="10%">
+		   	<col width="20%">
+		   	<col width="40%">
+		   	<col width="5%">
+		 <tr>
 			<th>NO</th>
 			<th>카테고리</th>
 			<th>음료명</th>
 			<th>음료타입</th>
 			<th>금액</th>
 			<th>음료설명</th>
+			<th></th>
 		</tr>
-		<% for(Menu menu : dao.getMenuList()){ %>
-		<tr>
-			<td><%=menu.getNo()%></td>
+		<%
+		no = 0;
+		for(Menu menu : dao.getMenuList()){ %>
+		<tr class ="data" >
+			<td><%=++no%></td>
 			<td><%=menu.getCategory()%></td>
 			<td><%=menu.getName()%></td>
 			<td><%=menu.getDrink_type()%></td>
-			<td><%=menu.getPrice()%></td>
+			<td><%=menu.getPrice()%>원</td>
 			<td><%=menu.getDetail()%></td>
-		</tr>
+			<td>
+			
+			<div style="display: flex; justify-content: center;">
+				<a href="admin_update.jsp?no=<%=menu.getNo()%>" 
+				style="display: #7A2D1B; margin: 0 10px; 
+				width: 100px; background-color: #7A2D1B; 
+				color: white; font-size: 16px; border: 1px solid black; 
+				padding: 10px 20px;"
+				class="btn">Update</a>
+				<button type="button" class="btn delete" 
+				style="display: #7A2D1B; margin: 0 10px; 
+				width: 100px; background-color: #7A2D1B; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;"
+				onClick="menu_delete(<%=menu.getNo()%>)">Delete</button>
+			</div>
+		
+	
+		
+		
 		<%}%>
-
+	</td>
+		</tr>
 	</table>
 
 	<br><br>
 	<div style="display: flex; justify-content: center;">
-		
-		<button type="submit"
-		onclick="location.href='admin_Insert.jsp'"
-			style="display: block; margin: 0 10px; width: 250px; background-color: black; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;">
-		Add</button>
-		
+		<a href="admin_Insert.jsp" class="btn"
+		style="display: #7A2D1B; margin: 0 10px; 
+				width: 100px; background-color: #7A2D1B; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;"
+		>Add</a>
+		<!--  
 		
 		<button type="submit"
 		onclick="location.href='admin_update.jsp'"
@@ -235,7 +272,17 @@ a.primary-btn {
 		onclick="location.href='admin_delete.jsp'"
 			style="display: block; margin: 0 10px; width: 250px; background-color: black; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;">
 		Delete</button>
+		-->
 		</div>
+<br><br><br><br><br>
+
+<script>
+function menu_delete(no) {
+	if(confirm("해당 메뉴를 삭제할까요?")) {
+		location.href = "admin_delete_ok.jsp?no=" + no;
+	}
+}
+</script>
 
 </body>
 <!-- Js Plugins -->

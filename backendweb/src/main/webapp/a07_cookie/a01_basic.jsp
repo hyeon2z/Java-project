@@ -28,6 +28,10 @@
         price ==> 5000
         같은 키 인경우 최종으로 설정된 값이 해당 쿠키의 값으로 저장된다.
         
+        response.addCookie(new Cookie("price", "3000"));
+        response.addCookie(new Cookie("price", "5000"));
+        ==> 같은 키 price를 최종으로 5000을 할당했기에 수정처리와 동일한 효과를 볼 수 있다.
+        
     cf) 쿠키는 기존에 없는 키로 생성을 하면 새로운 쿠키값이 추가되고 기존에 있는 키의 경우 변경된 쿠키값으로 저장된다.
     
     3) 쿠키 생성 형식
@@ -41,8 +45,8 @@
         response.addCookie()로 쿠키를 추가하여 전달하면 client단에서 사라지게 된다.
 
         ex) Cookie c = new Cookie("key", "value");
-        c.setMaxAge(0);
-        response.addCookie(c);
+        	c.setMaxAge(0);
+        	response.addCookie(c);
         
  --%>
 <html>

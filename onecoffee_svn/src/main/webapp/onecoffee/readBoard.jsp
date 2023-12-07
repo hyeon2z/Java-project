@@ -53,6 +53,14 @@
 		alert("처리 완료 되었습니다.")
 		location.href = 'boardIsEnd.jsp?boardNum=' + boardNum
 	}
+	function deleteBoard(boardNum, title) {
+		if(confirm("삭제하시겠습니까?")) {
+			location.href = 'deleteBoard.jsp?boardNum=' + boardNum + '&title=' + title
+		}
+	}
+	function updateBoard(boardNum, title) {
+		location.href = 'updateBoard.jsp?boardNum=' + boardNum + '&title=' + title
+	}
 </script>
 </head>
 <body>
@@ -69,7 +77,7 @@
 					<%
 					if (session != null) {
 						String userId = (String) session.getAttribute("User");
-						if (userId != null) {
+						if (userId != null && !userId.equals("admin")) {
 					%>
 					<div class="col-lg-6 col-md-5">
 						<div class="header__top__right">
@@ -85,7 +93,17 @@
 						</div>
 					</div>
 					<%
-					} else {
+					} else if(userId != null && userId.equals("admin")){ %>
+						<div class="col-lg-6 col-md-5">
+		                    <div class="header__top__right">
+		                    	<div class="header__top__links" style = "margin:0; width:100%;">
+			                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">
+			                        환영합니다! <%= userId %>님</p>
+			                        <a href="logout.jsp" style="color: #7A2D1B">로그아웃</a>
+			                    </div>
+		                    </div>
+		                </div>
+					<% } else {
 					%>
 					<div class="col-lg-6 col-md-5">
 						<div class="header__top__right">
@@ -102,6 +120,39 @@
 				</div>
 			</div>
 		</div>
+		<% if (session != null) {
+			String userId = (String) session.getAttribute("User");
+			if (userId != null && userId.equals("admin"))	{
+		%>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="header__logo">
+						<a href="./admin_main.jsp"><img src="img/onelogo.png" alt=""></a>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<nav class="header__menu mobile-menu"
+						style="margin-left: 20%; margin-right: 20% width:60%;">
+						<ul>
+							<li ><a href="admin_list.jsp" style="color:#7A2D1B">메뉴관리</a></li>
+                            <li ><a href="admin_member.jsp" style="color:#7A2D1B">회원관리</a></li>
+                            <li ><a href="admin_sal.jsp" style="color:#7A2D1B">매출관리</a></li>
+                            <!-- <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li> -->
+                            <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
+                           
+
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+			<div class="canvas__open">
+				<i class="fa fa-bars"></i>
+			</div>
+
+		</div>
+		<% } else { %>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
@@ -126,11 +177,10 @@
 				<i class="fa fa-bars"></i>
 			</div>
 		</div>
+		<% } } %>
 	</header>
 	<%
-		
 		Board board = boardDao.getBoardByNumAndTitle(boardNum, title);
-	
 	%>
 	<script>
 		function updateRe() {
@@ -178,7 +228,15 @@
 		<input type="button" onclick="updateEnd(<%= board.getNo() %>)" value="처리완료"
 			style="color:#7A2D1B; background-color: #FFEFEB; border: none;
 				padding: 10px 30px;">
-	<% } %>
+	<% } else if(userId.equals(board.getMember().getId())) { %>		
+	<input type="button" onclick="deleteBoard(<%= board.getNo() %>, '<%= board.getTitle() %>')" value="삭제하기"
+			style="color:#7A2D1B; background-color: #FFEFEB; border: none;
+				padding: 10px 30px;">
+	<%-- <input type="button" onclick="updateBoard(<%= board.getNo() %>, '<%= board.getTitle() %>')" value="수정하기"
+		style="color:#7A2D1B; background-color: #FFEFEB; border: none;
+			padding: 10px 30px;"> --%>
+	<% }%>
+	
 	<% } }  %>
 	</div>
 	

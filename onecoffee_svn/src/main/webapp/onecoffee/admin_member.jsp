@@ -32,12 +32,14 @@ if(pointStr!=null) point = Integer.parseInt(pointStr);
 <html lang="zxx">
 <style>
 table {
-	border: none;
-}
+  border: none;
+  width: 70%;
+  align-content: center;
+  color: #742D18;
+  margin: 0 auto;
 
-table td, table th {
-	border: none;
 }
+.data>td{padding : 10px;}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -65,6 +67,18 @@ table td, table th {
 <style>
 a.primary-btn {
 	float: right;
+}
+
+.btn {
+  display: block;
+  margin: 0 10px;
+  width: 250px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 10px 20px;
 }
 </style>
 <body>
@@ -147,7 +161,8 @@ a.primary-btn {
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/onelogo.png" alt=""></a>
+					<a href="./admin_main.jsp"><img src="img/onelogo.png" alt=""></a>
+					
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
@@ -197,7 +212,13 @@ a.primary-btn {
 <body>
 	<br>
 	<h2 align="center"></h2>
-	<table class="customers" width="60%" border align="center">
+ <table class="t" >
+	    	<col width="5%">
+		   	<col width="15%">
+		   	<col width="18%">
+		   	<col width="20%">
+		   	<col width="33%">
+		   	<col width="15%">
 		<tr>
 			<th>NO</th>
 			<th>이름</th>
@@ -208,16 +229,16 @@ a.primary-btn {
 		</tr>
 	<% 
 		int no = 0;
-	
  %>
 		<% for(Member mlist : dao.getMemList()){ %>
-		<tr>
+		<tr class="data">
+			<tr class ="data" >
 			<td><%=++no%></td>
-			<td><%=mlist.getName()%></td>
+			<td><%=mlist.getName()%> 님</td>
 			<td><%=mlist.getId()%></td>
 			<td><%=mlist.getPhonenum()%></td>
 			<td><%=mlist.getAddress()%></td>
-			<td><%=mlist.getPoint()%></td>
+			<td><%=mlist.getPoint()%> Point</td>
 		</tr>
 		<%}%>
 
@@ -225,11 +246,14 @@ a.primary-btn {
 
 	<br><br>
 	<div style="display: flex; justify-content: center;">
-		
 		<button type="submit"
 		onclick="location.href='admin_main.jsp'"
-			style="display: block; margin: 0 10px; width: 250px; background-color: black; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;">
-		이전으로</button>
+			style="display: #7A2D1B; 
+			margin: 0 10px; width: 200px; 
+			background-color: #7A2D1B; color: white; font-size: 16px; 
+			 border-radius: 5px;
+			border: 1px solid black; padding: 10px 20px;">
+		이전으로</button></div>
 		
 		
 

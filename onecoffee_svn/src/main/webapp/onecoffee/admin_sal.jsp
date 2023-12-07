@@ -39,12 +39,14 @@ if(noStr!=null) no = Integer.parseInt(noStr);
 <html lang="zxx">
 <style>
 table {
-	border: none;
-}
+  border: none;
+  width: 60%;
+  align-content: center;
+  color: #742D18;
+  margin: 0 auto;
 
-table td, table th {
-	border: none;
 }
+.data>td{padding : 10px;}
 </style>
 <head>
 <meta charset="UTF-8">
@@ -152,7 +154,8 @@ a.primary-btn {
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-						<a href="./index.html"><img src="img/onelogo.png" alt=""></a>
+					<a href="./admin_main.jsp"><img src="img/onelogo.png" alt=""></a>
+					
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
@@ -202,27 +205,32 @@ a.primary-btn {
 <body>
 	<br>
 	<h2 align="center"></h2>
-	<table class="customers" width="60%" border align="center">
-		<tr>
+	 <table class="t" >
+	    	<col width="10%">
+		   	<col width="15%">
+		   	<col width="10%">
+		   	<col width="40%">
+		   	<col width="15%">
+		   	<col width="10%">
+	  <thead>
+	  <tr>
 			<th>NO</th>
 			<th>카테고리</th>
 			<th>음료타입</th>
 			<th>음료명</th>
 			<th>금액</th>
 			<th>잔 수</th>
-			<th>NO</th>
 			
 		</tr>
-		
+		  </thead>
 		<% for(Cart slist : dao.getSalList()){ %>
-		<tr>
+		<tr class="data">
 			<td><%=++no%></td>
 			<td><%=slist.getCategory()%></td>
 			<td><%=slist.getDrink_type()%></td>
 			<td><%=slist.getName()%></td>
-			<td><%=slist.getPrice()%></td>
-			<td><%=slist.getCnt()%></td>
-			<td><%=slist.getNo()%></td>
+			<td><%=slist.getPrice()%>원</td>
+			<td><%=slist.getCnt()%>잔</td>
 		</tr>
 		<%}%>
 
@@ -230,13 +238,14 @@ a.primary-btn {
 
 	<br><br>
 	<div style="display: flex; justify-content: center;">
-		
 		<button type="submit"
 		onclick="location.href='admin_main.jsp'"
-			style="display: block; margin: 0 10px; width: 250px; background-color: black; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;">
-		이전으로</button>
-		
-		
+			style="display: #7A2D1B; 
+			margin: 0 10px; width: 200px; 
+			background-color: #7A2D1B; color: white; font-size: 16px; 
+			 border-radius: 5px;
+			border: 1px solid black; padding: 10px 20px;">
+		이전으로</button></div>
 
 </body>
 <!-- Js Plugins -->

@@ -3,6 +3,7 @@
     import="java.util.*"
     import="backendweb.z01_vo.*"
     import="backendweb.d01_dao.*"
+    errorPage="a05_errorPage.jsp"
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -36,27 +37,23 @@
 	});
 </script>
 </head>
+<%
+String id = request.getParameter("id");
+String pwd = request.getParameter("pwd");
+id.toString();
+pwd.toString();
 
+%>
 <body>
 <div class="jumbotron text-center">
-<%--
-# jstl과 el을 통한 쿠키 생성(version영향)
-1. 쿠키 생성
-    <c:cookie name="쿠키의 키" value = "쿠키의 값"/>
-    
-2. 쿠키 확인
-    <c:forEach items = "${requestScope.cookieMap}" var="cookie">
-        <h2>${cookie.name}/${cookie.value}<h2>
-    </c:forEach>
- --%>
-  <h2>abc</h2>
+  <h2>로그인</h2>
 
 </div>
 <div class="container">
 	<form id="frm01" class="form"  method="post">
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" placeholder="제목" />
-	    <input class="form-control mr-sm-2" placeholder="내용" />
+	    <input name = "id" class="form-control mr-sm-2" placeholder="아이디" />
+	    <input name = "pwd" class="form-control mr-sm-2" placeholder="비밀번호" />
 	    <button class="btn btn-info" type="submit">Search</button>
 	    <button class="btn btn-success" 
 	    	data-toggle="modal" data-target="#exampleModalCenter"

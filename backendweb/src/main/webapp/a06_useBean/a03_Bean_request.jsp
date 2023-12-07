@@ -16,6 +16,22 @@
 2. 기본 요청값 처리 예시
     페이지?name=홍길동&age=25
     
+    String name = request.getParameter("name");
+    if(name==null) name="";
+    
+    String ageStr = request.getParameter("age");
+    if(ageStr==null) ageStr = "0";
+    
+    int age = Integer.parseInt(ageStr);
+    
+    Person p01 = new Person(name, age);
+    session.setAttribute("p01", p01);
+    
+    ==>
+    
+    <jsp:useBean id = "p01" class = "XXX.vo.Person" scope = "session"/>
+    <jsp:setProperty name = "p01" property = "*"/>
+    
     <jsp:setProperty name = "p01" property = "name"/>
     <jsp:setProperty name = "p01" property = "age"/>
     

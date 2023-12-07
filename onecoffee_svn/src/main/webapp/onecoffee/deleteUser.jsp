@@ -157,7 +157,7 @@
 					        </nav>
                             <div class="checkout__input">
                                 <p style = "margin-top:40px">비밀번호</p>
-                                <input value = "비밀번호 입력" type="password" name = "pwd">
+                                <input type="password" name = "pwd">
                             </div>
                             <button type="submit" class="site-btn">탈퇴하기</button>
                         </div>
