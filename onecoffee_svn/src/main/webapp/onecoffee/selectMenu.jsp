@@ -101,7 +101,8 @@
 			            	<div class="col-lg-6 col-md-5">
 			                    <div class="header__top__right">
 			                    	<div class="header__top__links" style = "margin:0; width:100%;">
-				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">환영합니다! <%= userId %>님</p>
+				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">
+				                        환영합니다! <%= userId %>님</p>
 				                        <a href="mypage.jsp" style="color:#7A2D1B; margin-right:3%">마이페이지</a>
 				                        <a href="logout.jsp" style="color:#7A2D1B">로그아웃</a>
 				                    </div>
@@ -151,6 +152,9 @@
     </header>
     <!-- Header Section End -->
 <%
+   Orderdao dao = new Orderdao();
+	dao.deleteCart();
+
    String category = request.getParameter("category");
    if(category==null) category="";
 
@@ -166,7 +170,6 @@
    // 장바구니 테이블에 체크박스로 메뉴 테이블의 값(no)을 넘겨받아 해당
    // 음료 정보와 페이지에서 처리한 수량입력값과 함께 장바구니 테이블에 저장
    String noStr[] = request.getParameterValues("selectedMenus");
-   Orderdao dao = new Orderdao();
    if (noStr != null) {
        for (String menuNo : noStr) {
           String cntStr = request.getParameter("cnt_" + menuNo);
@@ -204,7 +207,7 @@
 </script>
     <!-- Shop Section Begin -->
     <section class="shop spad">
-        <div class="container">
+        <div class="container" style="max-width:1200px;'">
             <div class="row">
                 <div class="sol">
                     <div class="shop__sidebar">

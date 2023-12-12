@@ -23,7 +23,9 @@ if(address==null) address = "";
 int point = 0;
 String pointStr = request.getParameter("point");
 if(pointStr!=null) point = Integer.parseInt(pointStr);
+
 %>
+
 
 
 <c:set var="path" value="${pageContext.request.contextPath }" />
@@ -41,6 +43,9 @@ table {
 }
 .data>td{padding : 10px;}
 </style>
+<script type="text/javascript">
+
+</script>
 <head>
 <meta charset="UTF-8">
 <meta name="description" content="Male_Fashion Template">
@@ -67,6 +72,11 @@ table {
 <style>
 a.primary-btn {
 	float: right;
+}
+
+table td, table th {
+	border: none;
+	color: #742D18;
 }
 
 .btn {
@@ -192,7 +202,9 @@ a.primary-btn {
 	<!-- 메뉴 리스트  -->
 	<script src="/frontweb/com/jquery-3.6.0.js"></script>
 	<script>
-
+	$(document).ready( function(){
+		$("[name=name]").val("<%=name%>");
+	})
 </script>
 
 	<!-- Search Begin -->
@@ -204,15 +216,28 @@ a.primary-btn {
 			</form>
 		</div>
 	</div>
-	<!-- Search End -->
-	<script>
 
 
-</script>
 <body>
+<<<<<<< .mine
+	<br><br>
+	
+||||||| .r290
 	<br>
 	<h2 align="center"></h2>
+	<br>
+	
  <table class="t" >
+
+	<col width="40%"><tr>
+	<th class="th_form" >회원명</th><td>
+	<input type="text" name="name" value="<%=name%>"/></td>
+	<th class=t  colspan="1">
+			<input type="submit"  value="검색"/>
+			
+	</tr>
+							
+
 	    	<col width="5%">
 		   	<col width="15%">
 		   	<col width="18%">
@@ -227,10 +252,10 @@ a.primary-btn {
 			<th>주소</th>
 			<th>잔여 포인트</th>
 		</tr>
-	<% 
+		<% 
 		int no = 0;
- %>
-		<% for(Member mlist : dao.getMemList()){ %>
+ 		%>
+		<% for(Member mlist : dao.getMemList(name)){ %>
 		<tr class="data">
 			<tr class ="data" >
 			<td><%=++no%></td>
@@ -242,10 +267,44 @@ a.primary-btn {
 		</tr>
 		<%}%>
 
+
 	</table>
 
 	<br><br>
 	<div style="display: flex; justify-content: center;">
+		<h4>
+		<%--
+		<h4 background-color: whithe; color: black; 
+		font-size: 16px; border-radius: 5px; 
+		padding: 10px 20px;">  --%>
+	<% 
+	int mem = 0;
+	mem+=no;
+	out.println("총 회원수 " +mem+"명");%>
+	
+	</h4></div><br>
+	<!-- 검색  -->
+	<form>
+	<table>
+		<tr>
+			<th>이름 검색</th>
+			<td><input type="text" name="name" value="<%=name %>" ></td>
+			<td>
+			<button type="submit"
+				style="display: #7A2D1B; 
+			margin: 0 10px; width: 200px; 
+			background-color: #7A2D1B; color: white; font-size: 16px; 
+			 border-radius: 5px;
+			border: 1px solid black; padding: 10px 20px;"
+			>검색</button>
+			<button type="button" onclick="location.href='admin_member.jsp'"
+				style="display: #7A2D1B; 
+					margin: 0 10px; width: 200px; 
+					background-color: #7A2D1B; color: white; font-size: 16px; 
+					 border-radius: 5px;
+					border: 1px solid black; padding: 10px 20px;"
+			>검색취소</button>
+			
 		<button type="submit"
 		onclick="location.href='admin_main.jsp'"
 			style="display: #7A2D1B; 
@@ -253,9 +312,17 @@ a.primary-btn {
 			background-color: #7A2D1B; color: white; font-size: 16px; 
 			 border-radius: 5px;
 			border: 1px solid black; padding: 10px 20px;">
-		이전으로</button></div>
+		이전으로</button></td>
+		</tr>
+	</table>
+	</form>
+	
+	
 		
-		
+<script type="text/javascript">
+
+	
+</script>			
 
 </body>
 <!-- Js Plugins -->

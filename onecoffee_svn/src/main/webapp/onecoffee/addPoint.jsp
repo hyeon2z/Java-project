@@ -51,6 +51,11 @@
         	System.out.println(e.getMessage());
         }
     }
+	
+	// 주문목록 테이블에 결제한 
+	// 메뉴 저장
+	dao.insertOrderList();	
+	
     %>
     <script>
     $(document).ready(function(){
@@ -91,6 +96,10 @@
             </div>
         </div>
     </section>
+    <%
+    // 장바구니 내역 전체 삭제
+    dao.deleteCart();
+    %>
     <!-- Checkout Section End -->
 
     <!-- Js Plugins -->

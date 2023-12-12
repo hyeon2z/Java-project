@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import db.DBCon;
-import order_sol.Cart;
+import admin.vo.Sal;
 
 public class SalDao {
 	    
-	    public List<Cart> getSalList() {
-			List<Cart> slist = new ArrayList<Cart>();
-			String sql = "SELECT * FROM cart";
+	    public List<Sal> getSalList() {
+			List<Sal> slist = new ArrayList<Sal>();
+			String sql = "SELECT * FROM orderList";
 
 			try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 				// 처리코드1
@@ -21,13 +21,13 @@ public class SalDao {
 				try (ResultSet rs = pstmt.executeQuery();) {
 					// 처리코드2
 					while (rs.next()) {
-						slist.add(new Cart(
+						slist.add(new Sal(
 								rs.getString("category"), 
 								rs.getString("drink_Type"), 
 								rs.getString("name"),
 								rs.getInt("price"), 
-								rs.getInt("cnt"), 
-								rs.getInt("no")));
+								rs.getInt("cnt")
+							));
 					}
 					System.out.println("건수:" + slist.size());
 				}

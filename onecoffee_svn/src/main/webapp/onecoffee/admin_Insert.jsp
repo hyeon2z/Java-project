@@ -9,27 +9,35 @@
 <fmt:requestEncoding value="utf-8" />
 <!DOCTYPE html>
 <html lang="zxx">
-<%
-MenuDao dao = new MenuDao();
-String name = request.getParameter("name");
-if(name==null) name = "";
-String job = request.getParameter("job");
-if(job==null) job = "";
-String deptnoStr = request.getParameter("deptno");
-int deptno = 0; // 초기화면에 출력 부서번호가 10기본 출력하기 위해서..
-if(deptnoStr!=null) deptno = Integer.parseInt(deptnoStr);
-%>
 
 <style>
 table {
 	border: none;
+	margin: 0 auto;
+	width: 20%;
+}
+
+button {
+	display: #7A2D1B;
+	position: absolute;
+	left: 50%;
+	margin: 0px;
+	width: 120px;
+	background-color: #7A2D1B;
+	color: white;
+	font-size: 16px;
+	border: 1px solid black;
+	padding: 10px 20px;
+	
 }
 
 table td, table th {
 	border: none;
+	color: #742D18;
 }
 
 input {
+	color: #7A2D1B;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	width: 250px;
@@ -69,48 +77,54 @@ a.primary-btn {
 <body>
 
 
-	  <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-7">
-                        <div class="header__top__left">
-                            <p></p>
-                        </div>
-                    </div>
-                    <%
-			            if (session != null) {
-			                String userId = (String) session.getAttribute("User");
-			                if (userId != null) {
-			            %>
-			            	<div class="col-lg-6 col-md-5">
-			                    <div class="header__top__right">
-			                    	<div class="header__top__links" style = "margin:0; width:100%;">
-				                        <p style = "margin-right:10%; text-transform:uppercase; display:inline-block; letter-spacing:2px; font-size:14px; color:#7A2D1B;">
-				                        환영합니다! <%= userId %>님</p>
-				                      
-				                        <a href="admin_main.jsp" style="color: #7A2D1B">메인으로</a>
-				                        
-				                        <a href="logout.jsp" style="color: #7A2D1B">로그아웃</a>
-				                    </div>
-			                    </div>
-			                </div>
-			            <% } else { %>
-			            	<div class="col-lg-6 col-md-5">
-			                    <div class="header__top__right">
-			                    	<div class="header__top__links">    
-					                    <a href="login.jsp" style="color:#7A2D1B">로그인</a>
-		                                <a href="createID.jsp" style="color:#7A2D1B">회원가입</a>
-		                            </div>
-                                </div>
-			                </div>
-			            <% } 
-			            }		%>
-                </div>
-            </div>
-        </div>
-     <div class="container">
+	<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-7">
+						<div class="header__top__left">
+							<p></p>
+						</div>
+					</div>
+					<%
+					if (session != null) {
+						String userId = (String) session.getAttribute("User");
+						if (userId != null) {
+					%>
+					<div class="col-lg-6 col-md-5">
+						<div class="header__top__right">
+							<div class="header__top__links" style="margin: 0; width: 100%;">
+								<p
+									style="margin-right: 10%; text-transform: uppercase; display: inline-block; letter-spacing: 2px; font-size: 14px; color: #7A2D1B;">
+									환영합니다!
+									<%=userId%>님
+								</p>
+
+								<a href="admin_main.jsp" style="color: #7A2D1B">메인으로</a> <a
+									href="logout.jsp" style="color: #7A2D1B">로그아웃</a>
+							</div>
+						</div>
+					</div>
+					<%
+					} else {
+					%>
+					<div class="col-lg-6 col-md-5">
+						<div class="header__top__right">
+							<div class="header__top__links">
+								<a href="login.jsp" style="color: #7A2D1B">로그인</a> <a
+									href="createID.jsp" style="color: #7A2D1B">회원가입</a>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+					}
+					%>
+				</div>
+			</div>
+		</div>
+		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
@@ -121,13 +135,13 @@ a.primary-btn {
 					<nav class="header__menu mobile-menu"
 						style="margin-left: 20%; margin-right: 20% width:60%;">
 						<ul>
-							
-							<li ><a href="admin_list.jsp" style="color:#7A2D1B">메뉴관리</a></li>
-                            <li ><a href="admin_member.jsp" style="color:#7A2D1B">회원관리</a></li>
-                            <li ><a href="admin_sal.jsp" style="color:#7A2D1B">매출관리</a></li>
-                            <!-- <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li> -->
-                            <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
-                           
+
+							<li><a href="admin_list.jsp" style="color: #7A2D1B">메뉴관리</a></li>
+							<li><a href="admin_member.jsp" style="color: #7A2D1B">회원관리</a></li>
+							<li><a href="admin_sal.jsp" style="color: #7A2D1B">매출관리</a></li>
+							<!-- <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li> -->
+							<li><a href="board.jsp" style="color: #7A2D1B">커뮤니티</a></li>
+
 
 						</ul>
 					</nav>
@@ -139,7 +153,7 @@ a.primary-btn {
 			</div>
 
 		</div>
-    </header>
+	</header>
 	<!-- Header Section End -->
 
 	<!-- 메뉴 리스트  -->
@@ -158,13 +172,12 @@ a.primary-btn {
 	<!-- Search End -->
 <body>
 	<br>
-	<h2 align="center">메뉴 등록</h2>
+	<h2 align="center" style="color: #7A2D1B">메뉴 등록</h2>
 	<br>
 	<!-- 폼 으로 인풋 을 감쌈, action =값들을 전송할 주소 -->
 	<form method="post" action="./admin_insert_ok.jsp">
-		<table align="center" border width="20%">
+		<table>
 			<col width="60%">
-
 			<!-- 	<tr><th>순서</th><td><input type="number" name="no"/></td></tr> -->
 			<tr>
 				<th>카테고리</th>
@@ -189,12 +202,15 @@ a.primary-btn {
 				<td><input type="text" placeholder="음료에 대한 설명을 입력하세요"
 					name="detail" /></td>
 			</tr>
+
+			<tr>
+				<th><br> <!-- 등록하기 서브밋을 하면 폼이 동작하면서 값들을 전 -->
+					<button type="submit" style="border-radius: 5px">등록하기</button></th>
+			</tr>
+
 		</table>
-		<!-- 등록하기 서브밋을 하면 폼이 동작하면서 값들을 전 -->
-		<br>
-		<button type="submit"
-			style="display: block; margin: 0 auto; width: 250px; background-color: black; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;">
-			등록하기</button>
+
+
 	</form>
 </body>
 

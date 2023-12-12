@@ -161,6 +161,7 @@
 		}
 	}
 	
+	// 픽업주문와 매장주문 중 클릭하면 submit으로 값 전달 + 세션저장
 	String btnValue = request.getParameter("btnValue");
 	session.setAttribute("btnValue",btnValue);
 	%>
@@ -182,11 +183,7 @@
 			
 		</div>
 			</form>
-	<%
-	List<Cart> cartList = dao.getCartList();
 	
-	
-	%>
 	<!-- Shopping Cart Section Begin -->
 	<section class="shopping-cart spad" style="backgorund: #FFF8F8;">
 		<div class="container">
@@ -209,14 +206,14 @@
 						<%
 						int totalPrice = 0;
 						int totalCnt = 0;
+						// 장바구니 테이블 출력 메서드
+						List<Cart> cartList = dao.getCartList();
 						for (Cart c01 : cartList) {
-
 							totalCnt += c01.getCnt();
 							totalPrice += c01.getCnt() * c01.getPrice();
 							session.setAttribute("total", totalPrice);
 							// 총계 session으로 저장 -> 결제페이지에서도 사용
 						%>
-
 						<tr>
 							<td><input type="checkbox" name="selectedMenus" class="chk"
 								value="<%=c01.getNo()%>"></td>
@@ -225,12 +222,10 @@
 							<td><%=c01.getName()%></td>
 							<td><%=c01.getPrice()%></td>
 							<td><%=c01.getCnt()%></td>
-
 						</tr>
 						<%
 						}
 						%>
-					
 				</tbody>
 			</table>
 		</div>

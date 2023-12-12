@@ -193,7 +193,13 @@
 		<tr style="background-color: #FFEFEB;">
 			<td><%=board.getNo()%></td>
 			<td><%=board.getTitle()%></td>
+			<%
+			if (board.getMember() == null) {
+			%>
+			<td>탈퇴한 사용자</td>
+			<% } else { %>
 			<td><%=board.getMember().getName()%></td>
+			<% } %>
 			<td><%=board.getFirstDate()%></td>
 			<% if (board.isNotice()) { %>
 			<td>공지</td>
@@ -228,7 +234,7 @@
 		<input type="button" onclick="updateEnd(<%= board.getNo() %>)" value="처리완료"
 			style="color:#7A2D1B; background-color: #FFEFEB; border: none;
 				padding: 10px 30px;">
-	<% } else if(userId.equals(board.getMember().getId())) { %>		
+	<% } else if(board.getMember()!= null && userId.equals(board.getMember().getId())) { %>		
 	<input type="button" onclick="deleteBoard(<%= board.getNo() %>, '<%= board.getTitle() %>')" value="삭제하기"
 			style="color:#7A2D1B; background-color: #FFEFEB; border: none;
 				padding: 10px 30px;">

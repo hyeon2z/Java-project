@@ -226,8 +226,8 @@
   <uri name="http://xmlns.jcp.org/xml/ns/javaee/web-partialresponse_2_0.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.jst.standard.schemas_1.2.600.v202307260543.jar!/dtdsAndSchemas/web-partialresponse_2_0.xsd"/>
   <uri name="http://xmlns.jcp.org/xml/ns/javaee/web-partialresponse_2_2.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.jst.standard.schemas_1.2.600.v202307260543.jar!/dtdsAndSchemas/web-partialresponse_2_2.xsd"/>
   <uri name="http://xmlns.jcp.org/xml/ns/javaee/web-partialresponse_2_3.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.jst.standard.schemas_1.2.600.v202307260543.jar!/dtdsAndSchemas/web-partialresponse_2_3.xsd"/>
-  <system systemId="http://www.w3.org/2001/xml.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.xsd_2.19.0.v20230614-0642.jar!/cache/www.w3.org/2001/xml.xsd"/>
-  <uri name="http://www.w3.org/2001/XMLSchema" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.xsd_2.19.0.v20230614-0642.jar!/cache/www.w3.org/2001/XMLSchema.xsd"/>
+  <system systemId="http://www.w3.org/2001/xml.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.xsd_2.19.0.v20230916-0637.jar!/cache/www.w3.org/2001/xml.xsd"/>
+  <uri name="http://www.w3.org/2001/XMLSchema" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.xsd_2.19.0.v20230916-0637.jar!/cache/www.w3.org/2001/XMLSchema.xsd"/>
   <system systemId="http://maven.apache.org/maven-v4_0_0.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.m2e.model.edit_2.0.400.20231030-1438.jar!/xsd/maven-v4_0_0.xsd"/>
   <system systemId="http://maven.apache.org/xsd/maven-4.0.0.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.m2e.model.edit_2.0.400.20231030-1438.jar!/xsd/maven-v4_0_0.xsd"/>
   <system systemId="http://maven.apache.org/xsd/settings-1.0.0.xsd" uri="jar:file:/C:/a01_java/eclipse/plugins/org.eclipse.m2e.model.edit_2.0.400.20231030-1438.jar!/xsd/settings-v1_0_0.xsd"/>

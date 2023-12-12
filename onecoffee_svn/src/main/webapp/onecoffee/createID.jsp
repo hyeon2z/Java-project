@@ -85,7 +85,8 @@ boolean isInsert = false;
 String alertMessage = null;
 
 if (request.getMethod().equalsIgnoreCase("post")) {
-    if (id.isEmpty() || name.isEmpty() || pwd.isEmpty() || pwd2.isEmpty() || phone.isEmpty() || address.isEmpty()) {
+    if (id.isEmpty() || name.isEmpty() || pwd.isEmpty() ||
+    		pwd2.isEmpty() || phone.isEmpty() || address.isEmpty()) {
         alertMessage = "입력되지 않은 정보가 있습니다.";
         
     } else {

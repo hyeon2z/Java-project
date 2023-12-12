@@ -14,6 +14,9 @@ CREATE TABLE menu01 (
 );
 
 SELECT * FROM menu01;
+SELECT * FROM member;
+
+SELECT * FROM MEMBER WHERE name LIKE '%근%';
 
 --시퀀스 1부터 시작하 mno 넣기 
 INSERT INTO menu VALUES(seq.nextval,'커피', '아메리카노', 'hot', 3000, '에스프레소와 뜨거운 물을 섞은 커피');

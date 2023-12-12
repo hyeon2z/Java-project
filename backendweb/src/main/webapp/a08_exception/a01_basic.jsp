@@ -41,7 +41,40 @@ ex) 에러가 났을 때, 대체할 페이지 a02_errorPage.jsp
         errorPage = "a02_errorPage.jsp"
         강제 예외 발생 코드
         String s = null; log(s.toString());
+
+# 서버 단위로 에러 페이지 지정 구현
+1. 위와 같이 모든 페이지에 설정하지 않고, web.xml을 활용하여 서버단위로 에러 페이지를 지정하면,
+    모든 페이지에 에러가 난다면 해당 페이지가 아닌 서버의 web.xml단위로 지정된 페이지를 대체하게 처리한다.
     
+2. class 단위 예외 처리
+    자바에서 처리되는 대부분의 클래스 단위 예외에 대한 설정 부분이다.
+    1) 하위 클래스/사용자 정의 예외선언
+        <error-page>
+            <exception-type>java.lang.XXXXException</exception-type>
+            <location>경로지정-에러 페이지</location>
+            
+    2) 최상위 클래스 선언
+        <error-page>
+            <exception-type>java.lang.Exception</exception-type>
+            <location>경로</location>
+
+3. http 코드 에러설정
+    1) 응답코드를 아래와 같이 설정
+        <error-page>
+            <error-code>응답코드</error-code>
+            <location>에러페이지</location>
+            webapp 기준으로 하위에 특정한 경로에 에러페이지를 지정하여 처리
+    2) 응답코드 종류
+        200 : 요청이 성공적으로 되었을 때 처리
+        301 : 요청한 자원이 이동, 에러 정보 이동 위치를 알려주니 다시 요청
+        304 : 클라이언트가 임시 보관할 응답 결과와 다르지 않다.
+        400 : 잘못된 요청
+        401 : 인증오류
+        403 : 사용자 허락코드 오류
+        404 : 요청한 자원 찾지 못함
+        405 : 요청한 method 지원하지 않음
+        500 : 서버 내부에서 오류가 발생
+                프로그램적 오류(java 클래스 예외는 이 경우에 해당된다)
  --%>
 <html>
 <head>
@@ -68,6 +101,12 @@ ex) 에러가 났을 때, 대체할 페이지 a02_errorPage.jsp
 </head>
 
 <body>
+<%
+	String s = null; log(s.toString());
+	String arr[] = new String[1];
+	//log(arr[3]);
+	//log(""+Integer.parseInt(""));
+%>
 <div class="jumbotron text-center">
   <h2>타이틀</h2>
 

@@ -170,11 +170,13 @@ if (session != null) {
                                 </div>
                             <div class="checkout__input">
                                 <p>아이디<span style="margin-left: 5px">(수정불가)</span></p>
-                                <input value = "<%=mem.getId()%>"type="text" name = "id" readonly style="cursor: auto; background-color: #f1f3f5;">
+                                <input value = "<%=mem.getId()%>"type="text" name = "id" 
+                                readonly style="cursor: auto; background-color: #f1f3f5;">
                             </div>
                             <div class="checkout__input">
                                 <p>비밀번호</p>
-                                <input value = "<%=mem.getPwd()%>" name = "pwd" type="text" placeholder="비밀번호" class="checkout__input__add" readonly style="cursor: auto;">
+                                <input value = "<%=mem.getPwd()%>" name = "pwd" type="text" 
+                                placeholder="비밀번호" class="checkout__input__add" readonly style="cursor: auto;">
                                 <input name = "changePwd" type="text" placeholder="수정할 비밀번호 입력">
                             </div>
                             <div class="checkout__input">

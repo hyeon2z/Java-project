@@ -159,7 +159,7 @@ a.primary-btn {
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
 					<div class="header__logo">
-					<a href="./admin_main.jsp"><img src="img/onelogo.png" alt=""></a>
+					<a href="./index02.jsp"><img src="img/onelogo.png" alt=""></a>
 					
 					</div>
 				</div>
@@ -167,12 +167,10 @@ a.primary-btn {
 					<nav class="header__menu mobile-menu"
 						style="margin-left: 20%; margin-right: 20% width:60%;">
 						<ul>
-							<li ><a href="admin_list.jsp" style="color:#7A2D1B">메뉴관리</a></li>
-                            <li ><a href="admin_member.jsp" style="color:#7A2D1B">회원관리</a></li>
-                            <li ><a href="admin_sal.jsp" style="color:#7A2D1B">매출관리</a></li>
-                            <!-- <li ><a href="admin_notice.jsp" style="color:#7A2D1B">공지사항 관리</a></li> -->
+						  <li ><a href="user_menu.jsp" style="color:#7A2D1B">메뉴소개</a></li>
+                            <li ><a href="contact.jsp" style="color:#7A2D1B">매장안내</a></li>
+                            <li ><a href="selectMenu.jsp" style="color:#7A2D1B">주문하기</a></li>
                             <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
-                           
 
 						</ul>
 					</nav>

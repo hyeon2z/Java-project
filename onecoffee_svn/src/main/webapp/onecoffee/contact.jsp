@@ -124,10 +124,10 @@
 					<nav class="header__menu mobile-menu"
 						style="margin-left: 20%; margin-right: 20%; width: 60%;">
 						<ul>
-							<li><a href="#" style="color: #7A2D1B">메뉴소개</a></li>
-							<li><a href="contact.jsp" style="color: #7A2D1B">매장안내</a></li>
-							<li><a href="selectMenu.jsp" style="color: #7A2D1B">주문하기</a></li>
-							<li><a href="board.jsp" style="color: #7A2D1B">커뮤니티</a></li>
+							<li ><a href="user_menu.jsp" style="color:#7A2D1B">메뉴소개</a></li>
+                            <li ><a href="contact.jsp" style="color:#7A2D1B">매장안내</a></li>
+                            <li ><a href="selectMenu.jsp" style="color:#7A2D1B">주문하기</a></li>
+                            <li ><a href="board.jsp" style="color:#7A2D1B">커뮤니티</a></li>
 
 						</ul>
 					</nav>

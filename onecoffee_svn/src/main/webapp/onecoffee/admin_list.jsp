@@ -235,16 +235,19 @@ a.primary-btn {
 			<td>
 			
 			<div style="display: flex; justify-content: center;">
+			
 				<a href="admin_update.jsp?no=<%=menu.getNo()%>" 
 				style="display: #7A2D1B; margin: 0 10px; 
 				width: 100px; background-color: #7A2D1B; 
 				color: white; font-size: 16px; border: 1px solid black; 
 				padding: 10px 20px;"
 				class="btn">Update</a>
+			
 				<button type="button" class="btn delete" 
 				style="display: #7A2D1B; margin: 0 10px; 
 				width: 100px; background-color: #7A2D1B; color: white; font-size: 16px; border: 1px solid black; padding: 10px 20px;"
 				onClick="menu_delete(<%=menu.getNo()%>)">Delete</button>
+				
 			</div>
 		
 	

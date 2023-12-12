@@ -122,7 +122,6 @@ public class Orderdao {
 	}
 
 	// 장바구니 삭제 기능 메서드
-
 	public int deleteCart(int no) {
 		int delCnt = 0;
 		String sql = "DELETE FROM cart where NO = ?";
@@ -174,7 +173,6 @@ public class Orderdao {
 	}
 
 	// 회원 포인트 불러오기
-	// SELECT point FROM MEMBER WHERE ID = ?
 	public int getPoint(String id) {
 		int point = 0;
 		String sql = "SELECT point FROM MEMBER WHERE ID = ?";
@@ -200,7 +198,6 @@ public class Orderdao {
 	}
 
 	// 포인트 사용 메서드
-	// UPDATE MEMBER SET point = point-? WHERE id=?
 	public int uptPoint(int point, String id) {
 		int uptPoint = 0;
 		String sql = "UPDATE MEMBER SET point = point-? WHERE id=?";
@@ -228,7 +225,6 @@ public class Orderdao {
 	}
 
 	// 포인트 추가 메서드
-	// UPDATE MEMBER SET point = point-? WHERE id=?
 	public int plusPoint(int point, String id) {
 		int plustPoint = 0;
 		String sql = "UPDATE MEMBER SET point = point+? WHERE id=?";
@@ -256,7 +252,6 @@ public class Orderdao {
 	}
 	
 	// 장바구니 전체 삭제 메서드 
-
 		public int deleteCart() {
 			int delCnt = 0;
 			String sql = "DELETE FROM cart ";
@@ -278,6 +273,32 @@ public class Orderdao {
 				System.out.println("일반 에러:" + e.getMessage());
 			}
 			return delCnt;
+		}
+
+		// 주문출력 테이블 데이터 할당
+		public int insertOrderList() {
+			int insOrder = 0;
+			String sql = "INSERT INTO orderList (category, drink_type, name, price, cnt)\r\n"
+					+ "SELECT category, drink_type, name, price, cnt FROM cart";
+			try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+				con.setAutoCommit(false);
+				// 처리코드1
+				
+				insOrder = pstmt.executeUpdate();
+				if (insOrder == 0) {
+					System.out.println("등록 실패");
+					con.rollback();
+				} else {
+					con.commit(); // Commit the transaction
+					System.out.println("등록 성공");
+				}
+			} catch (SQLException e) {
+				System.out.println("DB 에러:" + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("일반 에러:" + e.getMessage());
+			}
+
+			return insOrder;
 		}
 
 

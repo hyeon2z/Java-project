@@ -25,13 +25,17 @@ Date date = null;
 <!DOCTYPE html>
 <html lang="zxx">
 <style>
+<style>
 table {
-	border: none;
-}
+  border: none;
+  width: 70%;
+  align-content: center;
+  color: #742D18;
+  margin: 0 auto;
 
-table td, table th {
-	border: none;
 }
+.data>td{padding : 10px;}
+</style>
 </style>
 <head>
 <meta charset="UTF-8">

@@ -211,9 +211,11 @@ if(!id.equals("") && !pwd.equals("")){
 	if (loginDao.isAdmin(id, pwd)) { // 관리자 페이지로 이동
 	    response.sendRedirect("admin_main.jsp");
 		session.setAttribute("User", id);
+		
 	} else if(loginDao.userAccess(id, pwd)) { // 유저 로그인
 	    response.sendRedirect("index02.jsp");
 		session.setAttribute("User", id);
+		
 	} else {
 		out.println("<script>alert('로그인 실패. 아이디와 비밀번호를 확인하세요.');</script>");
 	}

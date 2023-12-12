@@ -204,7 +204,13 @@
 					onclick="boardDetail(<%=board.getNo()%>, '<%= board.getTitle() %>' )">
 					<td><%=board.getNo()%></td>
 					<td><%=board.getTitle()%></td>
+					<%
+					if (board.getMember() == null) {
+					%>
+					<td>탈퇴한 사용자</td>
+					<% } else { %>
 					<td><%=board.getMember().getName()%></td>
+					<% } %>
 					<td><%=board.getFirstDate()%></td>
 					<% if (board.isNotice()) { %>
 					<td>공지</td>

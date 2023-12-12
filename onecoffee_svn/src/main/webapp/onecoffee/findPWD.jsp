@@ -150,6 +150,17 @@ if(pwd!=null){%>
 	alert("찾으시는 비밀번호는 <%=pwd%> 입니다.");
 </script>
 <%}%>
+<% if (request.getMethod().equalsIgnoreCase("post")) {
+	if(pwd!=null&&!pwd.isEmpty()){%>
+	<script>
+	alert("찾으시는 비밀번호는 <%=pwd%> 입니다.");
+	</script>
+	<%}else{%>
+	<script>
+		alert("입력된 정보가 옳지 않습니다.");
+	</script>
+	<%} 
+	}%>
     <!-- Checkout Section Begin -->
     <section class="checkout spad" >
         <div class="container">

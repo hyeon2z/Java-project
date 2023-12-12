@@ -144,12 +144,17 @@ if(!name.equals("") && !phoneNumber.equals("")){
 	id = dao.getID(name, phoneNumber);
 }
 %>
-<%
-if(id!=null){%>
-<script>
-	alert("찾으시는 아이디는 <%=id%> 입니다.");
-</script>
-<%}%>
+<% if (request.getMethod().equalsIgnoreCase("post")) {
+	if(id!=null&&!id.isEmpty()){%>
+	<script>
+		alert("찾으시는 아이디는 <%=id%> 입니다.");
+	</script>
+	<%}else{%>
+	<script>
+		alert("입력된 정보가 옳지 않습니다.");
+	</script>
+	<%} 
+	}%>
     <!-- Checkout Section Begin -->
     <section class="checkout spad" >
         <div class="container">
