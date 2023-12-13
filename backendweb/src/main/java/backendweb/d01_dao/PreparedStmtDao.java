@@ -373,34 +373,71 @@ public class PreparedStmtDao {
 
 		return uptCnt;
 	}
-	public Member login(String id, String pwd) {
-		Member mem = new Member();
+	
+//	public Member login(String id, String pwd) {
+//		Member mem = new Member();
+//		String sql = "select * from member01 where id = ? AND pwd = ?";
+//		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+//			// 처리코드1
+//			pstmt.setString(1, id);
+//			pstmt.setString(2, pwd);
+//			try (ResultSet rs = pstmt.executeQuery();) {
+//				// 처리코드2
+//				if(rs.next()) {
+//					rs.getInt("mno");
+//					rs.getString("name");
+//					rs.getString("id");
+//					rs.getString("pwd");
+//					rs.getString("auth");
+//					rs.getInt("point");
+//					
+//				}
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("DB 에러:" + e.getMessage());
+//		} catch (Exception e) {
+//			System.out.println("일반 에러:" + e.getMessage());
+//		}
+//		return mem;
+//	}
+
+	
+
+	public boolean login(String id, String pwd) {
+		boolean loginCheck = false;
 		String sql = "select * from member01 where id = ? AND pwd = ?";
 		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			// 처리코드1
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
 			try (ResultSet rs = pstmt.executeQuery();) {
-				// 처리코드2
-				if(rs.next()) {
-					rs.getInt("mno");
-					rs.getString("name");
-					rs.getString("id");
-					rs.getString("pwd");
-					rs.getString("auth");
-					rs.getInt("point");
-					
-				}
+				loginCheck = rs.next();
 			}
 		} catch (SQLException e) {
 			System.out.println("DB 에러:" + e.getMessage());
 		} catch (Exception e) {
 			System.out.println("일반 에러:" + e.getMessage());
 		}
-		return mem;
+		return loginCheck;
 	}
-
 	
+	public boolean login(Member m) {
+		boolean isLog = false;
+		String sql = "select * from member01 where id = ? AND pwd = ?";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			// 처리코드1
+			pstmt.setString(1, m.getId());
+			pstmt.setString(2, m.getPwd());
+			try (ResultSet rs = pstmt.executeQuery();) {
+				isLog = rs.next();
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+		return isLog;
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

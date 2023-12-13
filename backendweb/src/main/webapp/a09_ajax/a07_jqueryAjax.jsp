@@ -73,7 +73,13 @@
         $.ajax({
             url:요청자원의명,
             type:'get/post',
-            data:'name=홍길동', // 요청값 처리 형식 $("form").serialize(),
+            data:'name=홍길동',
+            # 요청값 처리 형식 
+            1. key=val
+            2. $("form").serialize(), form 하위의 name, value 속성을
+                key=val 형식으로 변환시켜준다.
+            3. json형식
+                {name:'홍길동',age:25}
             dataType:"json/text/xml", 결과값 형식을 지정
             success:function(data){ // 성공하였을 때, 결과값
                 data : 서버에서 전송된 결과값을 받을 수 있다.
