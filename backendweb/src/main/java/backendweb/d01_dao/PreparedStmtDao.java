@@ -439,6 +439,40 @@ public class PreparedStmtDao {
 		return isLog;
 	}
 
+	public boolean checkDeptno(int deptno) {
+		boolean chNo = false;
+		String sql = "select * " + "from dept01 " + "where deptno = ? ";
+		// try(객체처리-연결;대화;결과){} : try resource 구문 파일이나 DB연결 자동 자원해제..
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, deptno);
+			try (ResultSet rs = pstmt.executeQuery();) {
+				chNo = rs.next();
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+		return chNo;
+	}
+
+	public boolean checkEmpno(int empno) {
+		boolean chNo = false;
+		String sql = "select * " + "from emp01 " + "where empno = ? ";
+		// try(객체처리-연결;대화;결과){} : try resource 구문 파일이나 DB연결 자동 자원해제..
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setInt(1, empno);
+			try (ResultSet rs = pstmt.executeQuery();) {
+				chNo = rs.next();
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+		return chNo;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PreparedStmtDao dao = new PreparedStmtDao();

@@ -53,6 +53,7 @@
  */
 	
 	$(document).ready(function(){
+        // sumit처리방지
 		$("form").on("keypress", function(e){
 			if(e.keyCode==13){
 				e.preventDefault()

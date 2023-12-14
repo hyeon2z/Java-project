@@ -31,11 +31,99 @@
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		// enter키 입력시, submit()방지 코드
+		$("form").on("keypress",function(e){
+			if(e.keyCode==13){   //  enter키의 keycode는 13
+				e.preventDefault() // enter키의 기본 동작을 중단 처리
+			}
+		})	
+		search()
+		$("#schBtn").click(function(){
+			search()
+		})
+		$("[name=dname],[name=loc]").keyup(function(){
+			if(event.keyCode==13){
+				search()
+			}
+		})
+		$("#regFrmBtn").click(function(){
+			$("#modalTitle").text("부서정보등록")
+		})
+		$("#frm02 [name=deptno]").keyup(function(){
+			console.log("#부서정보 확인#")
+			if(event.keyCode==13){
+				console.log("#부서정보 확인(enter)#")
+				$.ajax({
+					url:"z17_checkDupDetpno.jsp",
+					data:"deptno="+$(this).val(),
+					dataType:"json",
+					success:function(rs){
+						console.log("진행결과")
+						//alert(rs.checkDeptno)
+						if(rs.checkDeptno){
+							alert("등록된 부서번호가 있습니다.\n다른 번호로 확인하세요")
+							$("#frm02 [name=deptno]").val("").focus()
+						}else{
+							alert("부서번호 등록 가능합니다!")
+							$("#ckNo").val("Y")
+						}
+					},
+					error:function(err){
+						console.log(err)
+					}
+				})
+			}
+		})
+		$("#regBtn").click(function(){
+			//alert( $("#frm02").serialize() )
+			if($("#ckNo").val()!="Y"){
+				alert("부서번호 중복 체크 하셔야 등록가능합니다.")
+				return;
+			}
+			if(confirm("등록하시겠습니까?")){
+				$.ajax({
+					url:"z13_deptInsert.jsp",
+					data:$("#frm02").serialize(),
+					dataType:"json",
+					success:function(rs){
+						var rcnt = rs.insDept
+						if(rcnt>0){
+							alert("등록 성공")
+							search()
+							$("#frm02")[0].reset()
+							if(!confirm("계속 등록하시겠습니까?")){
+								$("#clsBtn").click() // 창닫기 실행	
+							}
+						}else{
+							alert("등록 실패")
+						}
+						
+					},
+					error:function(err){
+						console.log(err)
+					}
+				})				
+			}
+			
+		})  
 	
 	});
 	function search(){
-		alert( $("form").serialize() )
+		//alert( $("#frm01").serialize() )
+		$.ajax({
+			url:"z12_deptList.jsp",
+			data:$("#frm01").serialize(),
+			dataType:"html",
+			success:function(deptHTML){
+				$("#deptList").html(deptHTML)
+			},
+			error:function(err){
+				console.log(err)
+			}
+		})
 	}
+	// ex) a13_empManager.jsp  z21_empList.jsp
+	
 </script>
 </head>
 
@@ -48,76 +136,64 @@
 1. 조회 list부터, 등록, 상세화면(수정/삭제) ajax로 처리..
 2. 주요 파일
 	1) a12_deptManager.jsp : 부서정보메인 화면
-	2) z12_deptList.jsp : 부서정보조회  list json데이터(ajax)
+	2) z12_deptList.jsp : 부서정보조회
+							html 화면으로 가져오는 처리(ajax)  
+							list json데이터(ajax)
 	3) z13_deptInsert.jsp : 부서정보등록처리 (ajax)
 	4) z14_deptDetail.jsp : 부서정보상세데이터 가져오기 처리(ajax)
 	5) z15_deptUpt.jsp : 부서정보 수정처리(ajax)
 	6) z16_deptDel.jsp : 부서정보 삭제처리(ajax)
 	7) dao 파일 backendweb.d01_dao.PreparedStmtDao
-			   backendweb.z01_vo.Dept
-			   	
+			   backendweb.z01_vo.Dept		   	
 	//  List<Dept> getDeptList(String dname, String loc)
 	//  int insertDept(Dept ins)
 	//  int updateDept(Dept upt)
 	//  int deleteDept(int deptno)
 	//  Dept getDept(int deptno) 		
-# 부서정보리스트
-1. 	
-	
+# 부서번호 중복 처리 순서
+1. 사용자 인터페이스 정리
+	부서번호을 입력하고 enter 입력시, 중복여부를 확인해서
+	중복이 있으면 지우고 다시 입력하게 하고, 중복이 없으면 등록하는 합니다
+	하고, chId도 Y로 처리된다. 이 부분은 최종 입력 후, 등록시, 다시 체크하여
+	등록 가능하게 해준다. (유일키 입력 방지)
+2. dao 처리 
+	select * from dept where deptno=? 로 기능 메서드 추가.
+	checkDeptno(int deptno)
+	backendweb.d01_dao.PreparedStmtDao
+3. z17_checkDupDetpno.jsp
+	dao 호출, 기능 메서드 처리
+	{"ckDeptno",${dao.checkDeptno(param.deptno)}}
+4. 부서번호 입력 후, enter입력시, 해당 기능 ajax 처리..
+	유효하면 $("#chiId").val("Y")로 처리 한다.
+		
 
 
 
 
 		
     --%>
-	<div class="container">
+	<div class="container"> 
 		<form id="frm01" class="form" method="post">
 			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 				<input placeholder="부서명" name="dname" class="form-control mr-sm-2" /> <input
 					placeholder="부서위치" name="loc" class="form-control mr-sm-2" />
 				<button class="btn btn-info" id="schBtn" type="button">Search</button>
 				<button class="btn btn-success" data-toggle="modal"
-					data-target="#exampleModalCenter" type="button">등록</button>
+					data-target="#exampleModalCenter" id="regFrmBtn" type="button">등록</button>
 			</nav>
 		</form>
-		<table class="table table-hover table-striped">
-			<col width="10%">
-			<col width="50%">
-			<col width="15%">
-			<col width="15%">
-			<col width="10%">
+		<table id="deptTab" class="table table-hover table-striped">
+			<col width="33%">
+			<col width="34%">
+			<col width="33%">
 			<thead>
-
 				<tr class="table-success text-center">
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회</th>
+					<th>부서번호</th>
+					<th>부서명</th>
+					<th>부서위치</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
+			<tbody id="deptList">
 			</tbody>
 		</table>
 
@@ -128,7 +204,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">타이틀</h5>
+					<h5 class="modal-title" id="modalTitle">부서정보등록</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -138,20 +214,33 @@
 					<form id="frm02" class="form" method="post">
 						<div class="row">
 							<div class="col">
-								<input type="text" class="form-control" placeholder="사원명 입력"
-									name="ename">
+								<input type="text" class="form-control" 
+									placeholder="부서번호 enter입력시 중복확인"
+									name="deptno">
+								<input type="hidden" id="ckNo" value="N"/>	
 							</div>
+						</div>
+						<div class="row">	
 							<div class="col">
-								<input type="text" class="form-control" placeholder="직책명 입력"
-									name="job">
+								<input type="text" class="form-control" 
+									placeholder="부서명"
+									name="dname">
 							</div>
+						</div>
+						<div class="row">		
+							<div class="col">
+								<input type="text" class="form-control" 
+									placeholder="부서위치"
+									name="loc">
+							</div>							
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+
+					<button type="button" id="regBtn" class="btn btn-primary">등록</button>
+					<button type="button" id="clsBtn" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>					
 				</div>
 			</div>
 		</div>

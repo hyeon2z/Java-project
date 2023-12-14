@@ -1,0 +1,3 @@
+SELECT * FROM dept01;
+DELETE FROM dept01
+WHERE deptno = 0;

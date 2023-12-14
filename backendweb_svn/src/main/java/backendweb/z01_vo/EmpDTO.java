@@ -1,5 +1,5 @@
 package backendweb.z01_vo;
-// frontweb.vo.EmpDTO
+// backendweb.z01_vo.EmpDTO
 public class EmpDTO {
 	private int empno;
 	private String ename;

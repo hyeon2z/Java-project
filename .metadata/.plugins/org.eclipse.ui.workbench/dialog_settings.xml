@@ -62,10 +62,10 @@
 		<item key="EditorSelectionDialog.STORE_ID_DESCR" value="org.jkiss.dbeaver.ui.editors.sql.SQLEditor"/>
 	</section>
 	<section name="WorkbenchPreferenceDialog">
-		<item key="DIALOG_X_ORIGIN" value="900"/>
-		<item key="DIALOG_Y_ORIGIN" value="353"/>
+		<item key="DIALOG_X_ORIGIN" value="484"/>
+		<item key="DIALOG_Y_ORIGIN" value="350"/>
 		<item key="DIALOG_WIDTH" value="783"/>
-		<item key="DIALOG_HEIGHT" value="633"/>
+		<item key="DIALOG_HEIGHT" value="769"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>

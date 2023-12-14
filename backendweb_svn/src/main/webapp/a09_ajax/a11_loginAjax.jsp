@@ -38,28 +38,59 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
+/*
+# form의 내장된 이벤트
+1. javascript를 설정하지 않더라도 처리되는 이벤트를 default 이벤트라고 한다.
+2. form 하위에 입력값을 입력하고, enter키를 입력시, default 이벤트로
+	submit가 처리되는 현상을 볼 수 있다. 
+3. 위 default submit 이벤트의 경우, 일반 화면전환 요청처리의 경우 유용하게 사용할
+	수 있지만, ajax의 경우 불편한 경우를 발생하게 된다.
+4. 위 default 이벤트를 방지하려면 다음과 같은 코드를 처리하여야 한다.
+	$("form").on("keypress",function(e){
+		if(e.keyCode==13){   //  enter키의 keycode는 13
+			e.preventDefault() // enter키의 기본 동작을 중단 처리
+		}
+		
+	})
+
+ 
+ */
 	$(document).ready(function(){
+		// submit 처리 방지
+		$("form").on("keypress",function(e){
+			if(e.keyCode==13){   //  enter키의 keycode는 13
+				e.preventDefault() // enter키의 기본 동작을 중단 처리
+			}
+		})	
 		$("#logBtn").click(function(){
 			//alert($("#frm01").serialize())
-			$.ajax({
-				url:"z11_loginData.jsp",
-				data:$("#frm01").serialize(),
-				dataType:"json",
-				success:function(data){
-					//alert("로그인성공여부:"+data.loginRst)
-					if(data.loginRst){
-						alert("로그인 성공")
-					}else{
-						alert("로그인 실패\n다시 로그인 하세요")
-						
-					}
-				},
-				error:function(err){
-					console.log(err)
-				}
-			})
+			ckId()
+		})
+		$("[name=id],[name=pwd]").keyup(function(){
+			if(event.keyCode==13)
+				ckId()
 		})
 	});
+	function ckId(){
+		$.ajax({
+			url:"z11_loginData.jsp",
+			data:$("#frm01").serialize(),
+			dataType:"json",
+			success:function(data){
+				//alert("로그인성공여부:"+data.loginRst)
+				if(data.loginRst){
+					alert("로그인 성공")
+				}else{
+					alert("로그인 실패\n다시 로그인 하세요")
+					
+				}
+			},
+			error:function(err){
+				console.log(err)
+			}
+		})		
+		
+	}
 </script>
 </head>
 

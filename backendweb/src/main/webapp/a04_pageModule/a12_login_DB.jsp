@@ -48,14 +48,14 @@ String logSuc = "";
 
 if(id!=null){ // 초기 아이디 패스워드 입력 전 화면과 구분
 	PreparedStmtDao dao = new PreparedStmtDao();
-	Member mem = dao.login(id, pwd);
+//	Member mem = dao.login(id, pwd);
 	
-	if(mem!=null){
+//	if(mem!=null){
 		logSuc = "Y";
-		session.setAttribute("member", mem); // 로그인 성공
+//		session.setAttribute("member", mem); // 로그인 성공
 	}else{
 		logSuc = "N";
-	}
+	//}
 }
 %>
 <script type="text/javascript">
