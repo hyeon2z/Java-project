@@ -108,8 +108,24 @@
 		$.ajax({
 			url:"z21_empList.jsp",
 			data:$("#frm01").serialize(),
-			dataType:"html",
-			success:function(empHTML){
+			dataType:"json",
+			success:function(empList){
+				var empHTML = ""
+				$(empList).each(function(idx, emp){
+					
+					empHTML += "<tr ondblclick='detail("+emp.empno+")'>"
+					empHTML += "<td>"+emp.empno+"</td>"
+					empHTML += "<td>"+emp.ename+"</td>"
+					empHTML += "<td>"+emp.job+"</td>"
+					empHTML += "<td>"+emp.mgr+"</td>"
+					empHTML += "<td>"+emp.hiredate+"</td>"
+					empHTML += "<td>"+emp.sal+"</td>"
+					empHTML += "<td>"+emp.comm+"</td>"
+					empHTML += "<td>"+emp.deptno+"</td></tr>"
+					
+				})
+				
+				
 				$("#empList").html(empHTML)
 			},
 			error:function(err){
@@ -117,6 +133,34 @@
 			}
 		})
 	}
+    function detail(empno){
+        $("#regFrmBtn").click()
+        $("#modalTitle").text("부서정보상세")
+        $("#regBtn").hide();
+        $("#uptBtn").show();
+        $("#delBtn").show();
+        $.ajax({
+			url:"z23_empDetail.jsp",
+			data:"empno="+empno,
+			dataType:"json",
+			success:function(emp){
+				console.log(emp)
+				alert(emp.ename)
+				$("#frm02 [name=empno]").val(emp.empno)
+				$("#frm02 [name=ename]").val(emp.ename)
+				$("#frm02 [name=job]").val(emp.job)
+				$("#frm02 [name=mgr]").val(emp.mgr)
+				$("#frm02 [name=hiredate]").val(emp.hiredate)
+				$("#frm02 [name=sal]").val(emp.sal)
+				$("#frm02 [name=comm]").val(emp.comm)
+				$("#frm02 [name=deptno]").val(emp.deptno)
+			},
+			error:function(err){
+				console.log(err)
+			}
+        })
+        
+    }
 </script>
 </head>
 
@@ -211,8 +255,10 @@
 	    </form> 
       </div>
       <div class="modal-footer">
-        <button id= "clsBtn" type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button id = "regBtn" type="button" class="btn btn-primary">등록</button>
+        <button type="button" id="uptBtn" class="btn btn-info">수정</button>
+        <button type="button" id="delBtn" class="btn btn-danger">삭제</button>
+        <button type="button" id="regBtn" class="btn btn-primary">등록</button>
+      	<button type="button" id = "clsBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

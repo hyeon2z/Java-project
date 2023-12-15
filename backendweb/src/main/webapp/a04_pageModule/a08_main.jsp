@@ -42,7 +42,7 @@
 <h3>가격:<%=price %></h3>
 <h3>갯수:<%=cnt %></h3>
 <h3>계산:<%=calcul %></h3>
-<h4><%=d.getDeptno() %></h4>
+<%-- <h4><%=d.getDeptno() %></h4>--%>
 <h2 onclick = "calcul()">계산</h2>
 
 <script>

@@ -10,8 +10,49 @@
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
 <%--
-
-
+# 상세화면 로딩과 수정 삭제 처리
+1. 부서정보 상세 로딩
+    1) 리스크에서 행단위 클릭 시, 부서번호를 전달하면서 수정가능한 상세 화면 모달창 로딩 처리한다.
+        - 클릭 시, 모달창이 수정/삭제버튼이 있고 타이틀로 부서정보상세가 있는 화면 로딩
+            function detail(deptno){
+                $("#regFrmBtn").click()
+                $("#modalTitle").text("부서정보상세")
+                $("#regBtn").hide();
+                $("#uptBtn").show();
+                $("#delBtn").show();
+                // $.ajax({})
+                
+            }
+            <tr ondblclick="detail("+dept.deptno+")"
+        - AJAX로 단위 부서정보 처리
+        - 가져온 데이터를 상세 화면에 로딩 처리
+        
+    2) 삭제 처리
+       프로세스 : 삭제 버튼을 클릭 시, 
+       ajax로 요청값을 해당 삭제 jsp에 deptno를 전달하고 해당 삭제.
+       jsp에서 dao를 호출하여 삭제메서드를 통해서 삭제가 되게 처리한다.
+       그리고, success:function(){} 삭제 갯수를 받아서 삭제가 되었을 때,
+       창이 닫히고 조회를 처리한다.
+       
+       처리 순서
+           삭제 JSP(z16_deptDel.jsp)
+               useBean으로 dao 선언
+               <jsp:useBean id="dao" class="backendweb.d01_dao.PreparedStmtDao"/>
+               dao 삭제 메서드 호출과 매개변수로 deptno를 입력 처리
+               {"delCnt":${dao.deleteDept(param.deptno)}}
+               
+           data:"deptno="+$("#frm02 [name=deptno]").val(),
+           dataType:"json",
+           success:function(dept){
+               alert(dept.delCnt)
+               if(dept.delCnt>0){
+                   alert("삭제성공");
+                   $("#clsBtn").click()
+               }else{
+                   alert("삭제실패");
+               }
+           }
+              
  --%>
 <html>
 <head>
@@ -46,6 +87,10 @@
 		})
 		$("#regFrmBtn").click(function(){
 			$("#modalTitle").text("부서정보등록")
+			$("#regBtn").show();
+			$("#uptBtn").hide();
+			$("#delBtn").hide();
+	      	
 		})
 		$("#frm02 [name=deptno]").keyup(function(){
 			if(event.keyCode==13){
@@ -100,15 +145,71 @@
 				})
 			}
 		})
-		
+		$("#uptBtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				alert($("#frm02").serialize())
+				$.ajax({
+					url:"z15_deptUpt.jsp",
+					data:$("#frm02").serialize(),
+					dataType:"json",
+					success:function(dept){
+						alert(dept.uptCnt)
+						if(dept.uptCnt>0){
+							if(confirm("수정완료!\n창을 닫으시겠습니까?")){
+								$("#frm02")[0].reset()
+								$("#clsBtn").click()
+							}
+						}else{
+							alert("수정이 되지 않았습니다")
+						}
+					},
+					error:function(err){
+						console.log(err)
+					}
+				})
+			}
+		})
+		// {"delCnt":${dao.deleteDept(param.deptno)}}
+		$("#delBtn").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				var delNo = $("#frm02 [name=deptno]").val()
+				$.ajax({
+					url:"z16_deptDel.jsp",
+					data:"deptno="+delNo,
+					dataType:"json",
+					success:function(dept){
+						// alert(dept.delCnt)
+						if(dept.delCnt>0){
+							alert("삭제성공")
+							search()
+							${"#clsBtn"}.click()
+						}else{
+							alert("삭제실패")
+						}
+					},
+					error:function(err){
+						console.log(err)
+					}
+				})
+			}
+		})
 	});
 	function search(){
 		// alert($("#frm01").serialize())
 		$.ajax({
 			url:"z12_deptList.jsp",
 			data:$("#frm01").serialize(),
-			dataType:"html",
-			success:function(deptHTML){
+			dataType:"json",
+			success:function(deptList){
+				console.log(deptList)
+				var deptHTML=""
+				$(deptList).each(function(idx,dept){
+					deptHTML += "<tr ondblclick='detail("+dept.deptno+")'>"
+					deptHTML += "<td>"+dept.deptno+"</td>"
+					deptHTML += "<td>"+dept.dname+"</td>"
+					deptHTML += "<td>"+dept.loc+"</td></tr>"
+				})
+				console.log(deptHTML)
 				$("#deptList").html(deptHTML)
 			},
 			error:function(err){
@@ -116,6 +217,30 @@
 			}
 		})
 	}
+    function detail(deptno){
+        $("#regFrmBtn").click()
+        $("#modalTitle").text("부서정보상세")
+        $("#frm02 [name=deptno]").attr("readonly",true)
+        $("#regBtn").hide();
+        $("#uptBtn").show();
+        $("#delBtn").show();
+        $.ajax({
+			url:"z14_deptDetail.jsp",
+			data:"deptno="+deptno,
+			dataType:"json",
+			success:function(dept){
+				console.log(dept)
+				alert(dept.dname)
+				$("#frm02 [name=deptno]").val(dept.deptno)
+				$("#frm02 [name=dname]").val(dept.dname)
+				$("#frm02 [name=loc]").val(dept.loc)
+			},
+			error:function(err){
+				console.log(err)
+			}
+        })
+        
+    }
 	// ex) a13_empManager.jsp z21_empList.jsp
 </script>
 </head>
@@ -218,8 +343,16 @@
 	    </form> 
       </div>
       <div class="modal-footer">
-        <button type="button" id = "clsBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      	<%--
+      	등록버튼 클릭 시, $("#regBtn").show(); $("#uptBtn").hide(); $("#delBtn").hide();
+      	상세화면 로딩 시, $("#regBtn").hide(); $("#uptBtn").show(); $("#delBtn").show();
+      	
+      	 --%>
+      
+        <button type="button" id="uptBtn" class="btn btn-info">수정</button>
+        <button type="button" id="delBtn" class="btn btn-danger">삭제</button>
         <button type="button" id="regBtn" class="btn btn-primary">등록</button>
+      	<button type="button" id = "clsBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
