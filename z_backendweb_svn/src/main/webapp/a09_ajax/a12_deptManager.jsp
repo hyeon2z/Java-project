@@ -106,6 +106,7 @@
 					data:"deptno="+$(this).val(),
 					dataType:"json",
 					success:function(rs){
+						// {"checkDeptno":${dao.checkDeptno(param.deptno)}}
 						console.log("진행결과")
 						//alert(rs.checkDeptno)
 						if(rs.checkDeptno){
@@ -113,7 +114,11 @@
 							$("#frm02 [name=deptno]").val("").focus()
 						}else{
 							alert("부서번호 등록 가능합니다!")
-							$("#ckNo").val("Y")
+							$("[name=ckNo]").val("Y")
+							$("#frm02 [name=deptno]").attr("readonly",true)
+							// 부서번호 중복을 체크해서 중복이 안 될 때에만 등록이 가능하게
+							// hidden으로 설정 처리..
+							// 중복확인이 완료되었을 때, 더 이상 변경하지 못 하게 처리.
 						}
 					},
 					error:function(err){
@@ -123,8 +128,9 @@
 			}
 		})
 		$("#regBtn").click(function(){
+			//alert($("#ckNo").val());
 			//alert( $("#frm02").serialize() )
-			if($("#ckNo").val()!="Y"){
+			if($("[name=ckNo]").val()!="Y"){
 				alert("부서번호 중복 체크 하셔야 등록가능합니다.")
 				return;
 			}
@@ -219,7 +225,7 @@
 		$.ajax({
 			url:"z12_deptList.jsp",
 			data:$("#frm01").serialize(),
-			dataType:"json",
+			dataType:"json", // 문자열 json데이터 ==> 객체형으로 변환
 			success:function(deptList){
 				console.log(deptList)
 				var deptHTML =""
@@ -359,7 +365,7 @@
 									 
 									placeholder="부서번호 enter입력시 중복확인"
 									name="deptno">
-								<input type="hidden" id="ckNo" value="N"/>	
+								<input type="hidden" name="ckNo" value="N"/>	
 							</div>
 						</div>
 						<div class="row">	
