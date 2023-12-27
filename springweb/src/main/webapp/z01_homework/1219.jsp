@@ -53,7 +53,6 @@ default값으로 객체의 경우 null, 숫자형은 0으로 변환이 된다.
 			</tr>
 		</tbody>
 	</table>
-	
 
 [1단계:개념] 3. 스프링에서 DI, IOC, DL개념을 찾아서 정리를 해보고, 오늘 코드한 소스에 연결하여 설명하세요.
 1. DI(Dependency Injection) : 의존성 주입, 객체 간 의존성을 외부에서 주입하는 방식
@@ -106,7 +105,10 @@ Person p01 = ctx.getBean("p01",Person.class);
 	System.out.println(ac01.getWithdraw());
 		
 [1단계:개념] 5. 데이터베이스의 엔티티, 속성, 엔티티타입, 개체인스턴스를 구분하여 설명하세요.
-
+엔티티는 데이터베이스에서 설정하는 객체들..? 테이블이라고 보면 되고
+속성은 그 객체가 가지는 상세정보들. 컬럼명 이라고 생각하면 된다.
+엔티티타입은 해당 엔티티와 연관되는 비슷한 타입들을 말한다.
+개체인스턴트는 엔티티에 실제로 들어가는 정보들.
 
 [1단계:확인] 6. 도서대출관리시스템에서 사용자, 대출, 도서의 erd를 속성을 도출하고 erd를 그려서 제출시 캡쳐하세요
 
@@ -129,11 +131,15 @@ Person p01 = ctx.getBean("p01",Person.class);
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("form").on("keypress",function(e){
-			if(e.keyCode==13){   //  enter키의 keycode는 13
-				e.preventDefault() // enter키의 기본 동작을 중단 처리
-			}
-		})		
+		var id = "${member.id}"		
+		var pwd = "${member.pwd}"
+		if(id!="" && pwd!=""){
+			if(id=="himan" && pwd == "7777"){
+				alert("로그인성공")
+			}else{
+				alert("로그인실패")
+			} 
+		}
 	});
 </script>
 </head>

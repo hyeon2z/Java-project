@@ -30,6 +30,22 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       ">
-
-      <bean id="obj" class="java.lang.Object"/>
+<!-- 
+	생성자 처리
+	Person p01 = new Person("홍길동", 25, "서울");
+ -->
+      <bean id="p01" class="a01_diexp.z01_vo.Person">
+      	<constructor-arg value="홍길동"/>
+      	<constructor-arg value="25"/>
+      	<constructor-arg value="서울"/>
+      </bean>
+      <!-- 
+      	Music mname, singer, pubyear(int) 추가하고 생성자를 통해서 객체 생성 후 호출처리
+       -->
+       <bean id = "m01" class="a01_diexp.z01_vo.Music">
+       	<constructor-arg value="payphone" />
+       	<constructor-arg value="ma5" />
+       	<constructor-arg value="2005" />
+       </bean>
+       
  </beans>      

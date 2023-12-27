@@ -1,0 +1,184 @@
+<%@page import="admin.ReportDao"%>
+<%@page import="user.UserDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<fmt:requestEncoding value="utf-8" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="css/jquery.timepicker.css">
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- 상단바 -->
+
+<%
+UserDao dao = new UserDao();
+ReportDao dao2 = new ReportDao();
+if (session != null) {
+	String userId = (String) session.getAttribute("userId");
+	String role = (String) session.getAttribute("role");
+	String username = dao.getUserName(userId);
+	session.setAttribute("userName",username);
+	if (userId != null && role.equals("user")) { // 유저 로그인 상단바
+		int warningCount = dao2.getWarningCount(userId);
+%>
+<div class="wrap">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 d-flex align-items-center justify-content-end">
+			<%if(warningCount>0){ %>
+			<span style="color:red;">주의!!! 경고 <%=warningCount%>회 누적 (3회 누적 시 계정정지)</span>
+			<%} %>
+			</div>
+			<div class="col-md-6 d-flex justify-content-md-end">
+				<div class="social-media">
+					<p class="mb-0 d-flex">
+						<span style="margin-right:20px; margin-top:10px;">${userName}님 로그인 중</span>
+						<a href="Mypage.jsp"
+							class="d-flex align-items-center justify-content-center"
+							style="width: 100px;">마이페이지</a> 
+							<a href="logOut.jsp"
+							class="d-flex align-items-center justify-content-center"
+							style="width: 100px;">로그아웃</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav
+	class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+	id="ftco-navbar">
+	<div class="container">
+		<a class="navbar-brand" href="index.jsp"><img
+			src="images/BBcare.jpg" style="width: 100px; height: 100px"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#ftco-nav" aria-controls="ftco-nav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="fa fa-bars"></span> Menu
+		</button>
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a href="index.jsp"
+					class="nav-link">메인화면</a></li>
+				<li class="nav-item"><a href="" class="nav-link">커뮤니티</a></li>
+				<li class="nav-item"><a href="chat.jsp" class="nav-link">상담하기</a></li>
+				<li class="nav-item"><a href="sub.jsp" class="nav-link">구독하기</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<%
+} else if (userId != null && role.equals("admin")) {
+%>
+<div class="wrap">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 d-flex align-items-center"></div>
+			<div class="col-md-6 d-flex justify-content-md-end">
+				<div class="social-media">
+					<p class="mb-0 d-flex">
+					<span style="margin-right:20px; margin-top:10px;">${userName}님 로그인 중</span>
+						<a href="chat.jsp"
+							class="d-flex align-items-center justify-content-center"
+							style="width: 100px;">채팅목록</a> <a href="logOut.jsp"
+							class="d-flex align-items-center justify-content-center"
+							style="width: 100px;">로그아웃</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav
+	class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+	id="ftco-navbar">
+	<div class="container">
+		<a class="navbar-brand" href="index.jsp"><img
+			src="images/BBcare.jpg" style="width: 100px; height: 100px"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#ftco-nav" aria-controls="ftco-nav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="fa fa-bars"></span> Menu
+		</button>
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a href="index.jsp"
+					class="nav-link">메인화면</a></li>
+				<li class="nav-item"><a href="#" class="nav-link">커뮤니티</a></li>
+				<li class="nav-item"><a href="MemberManage.jsp" class="nav-link">회원관리</a></li>
+				<li class="nav-item"><a href="report.jsp" class="nav-link">신고처리</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<%
+} else {
+%>
+<div class="wrap">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 d-flex align-items-center"></div>
+			<div class="col-md-6 d-flex justify-content-md-end">
+				<div class="social-media">
+					<p class="mb-0 d-flex">
+						<a href="Sign_up.jsp"
+							class="d-flex align-items-center justify-content-center"
+							style="width: 100px;">회원가입</a> <a href="login.jsp"
+							class="d-flex align-items-center justify-content-center"
+							style="width: 100px;">로그인</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav
+	class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+	id="ftco-navbar">
+	<div class="container">
+		<a class="navbar-brand" href="index.jsp"><img
+			src="images/BBcare.jpg" style="width: 100px; height: 100px"></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#ftco-nav" aria-controls="ftco-nav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="fa fa-bars"></span> Menu
+		</button>
+		<div class="collapse navbar-collapse" id="ftco-nav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active"><a href="index.jsp"
+					class="nav-link">메인화면</a></li>
+				<li class="nav-item"><a href="login.jsp" class="nav-link">커뮤니티</a></li>
+				<li class="nav-item"><a href="login.jsp" class="nav-link">상담하기</a></li>
+				<li class="nav-item"><a href="login.jsp" class="nav-link">구독하기</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<%
+}
+}
+%>
+

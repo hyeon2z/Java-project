@@ -44,7 +44,7 @@ CREATE SEQUENCE Com_seq
 START WITH 1; --1부터 시작 
 --삭제
 DROP sequence Com_seq;
-DROP TABLE COMMENTS;
+DROP TABLE COMMENT;
 
 INSERT INTO comments VALUES(Com_seq.nextval, 'iamcat', '냥냥이', '강아지홈페이지 꼽사리~',0,sysdate);
 INSERT INTO comments VALUES(Com_seq.nextval, 'iamdog', '리트리버','사람 좋아 강아지 좋아~',59,sysdate);

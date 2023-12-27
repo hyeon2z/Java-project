@@ -1,19 +1,71 @@
 CREATE SEQUENCE seq_sol01 START WITH 1;
 CREATE SEQUENCE seq_sol02 START WITH 1;
+CREATE SEQUENCE seq_sol03 START WITH 1;
+
+--구독테이블
+CREATE TABLE Subscribe(
+	subNo NUMBER unique, -- 고유키
+	subPrice NUMBER DEFAULT 3300, -- 결제가격
+	-- 첫번째 구독기간 삭제 
+	subDate DATE NOT null, -- 최근 구독날짜
+	subExpiryDate DATE NOT NULL, -- 만료날짜
+	userId varchar2(30) PRIMARY KEY, -- 아이디
+	SubMonths NUMBER DEFAULT 1; --구독 지속기간
+	FOREIGN KEY (UserID) REFERENCES Users(UserID) 
+	ON DELETE CASCADE
+);
+
+SELECT * FROM Subscribe;
+
+DELETE FROM Subscribe WHERE userId = ? AND subExpiryDate < TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS');
+
+UPDATE Users
+SET subStatus = 'N'
+WHERE userId IN (SELECT userId
+                 FROM Users
+                 WHERE subStatus = 'Y')
+  AND NOT EXISTS (
+      SELECT 1
+      FROM Subscribe
+      WHERE Users.userId = Subscribe.userId
+        AND TRUNC(subExpiryDate) >= TRUNC(SYSDATE)
+  );''
+
+
+
+
+ALTER TABLE Subscribe
+
+ALTER TABLE Subscribe
+DROP COLUMN subFirstDate;
+
+ADD SubMonths NUMBER DEFAULT 1; -- 넣기
+
+
 
 CREATE TABLE Pets (
-    petno NUMBER PRIMARY KEY,
-    PetName VARCHAR2(30) NOT NULL,
-    PetType VARCHAR2(30) NOT NULL,
-    Breed VARCHAR2(50),
-    Age NUMBER NOT NULL,
-    Gender CHAR(1) CHECK (Gender IN ('F', 'M')),
-    Neutered CHAR(1) CHECK (Neutered IN ('Y', 'N')),
-    Weight NUMBER,
-    ImageURL VARCHAR2(255),
-    UserID VARCHAR2(30),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+    petno NUMBER PRIMARY KEY, -- 고유키
+    PetName VARCHAR2(30) NOT NULL, -- 이름 
+    PetType VARCHAR2(30) NOT NULL, -- 종류
+    Breed VARCHAR2(50), -- 품종(선택입력)
+    Age NUMBER NOT NULL, -- 나이
+    Gender CHAR(1) CHECK (Gender IN ('F', 'M')), -- 성별
+    Neutered CHAR(1) CHECK (Neutered IN ('Y', 'N')), -- 중성화여부
+    Weight NUMBER, -- 몸무게(선택입력)
+    ImageURL VARCHAR2(255), -- 이미지경로(선택입력)
+    UserID VARCHAR2(30), -- 유저아이디
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+    ON DELETE CASCADE -- 외래키설정
 );
+INSERT INTO Pets (petno, PetName, PetType, Breed, Age, Gender, Neutered, Weight, ImageURL, UserID)
+VALUES (seq_sol02.nextval, '임칠봉', '강아지', '푸들', 10, 'M', 'Y', 5, NULL, 'dlathf0202');
+
+/*
+INSERT INTO Pets (petno, PetName, PetType, Breed, Age, Gender, Neutered, Weight, ImageURL, UserID)
+VALUES (seq_sol02.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+ * */
+
+SELECT petName, age, gender FROM pets WHERE userid='dlathf0202';
 
 
 CREATE TABLE Users (
@@ -28,17 +80,35 @@ CREATE TABLE Users (
     PetStatus CHAR(1) CHECK (PetStatus IN ('Y', 'N')), -- 반려동물 여부
     SubStatus CHAR(1) CHECK (SubStatus IN ('Y', 'N')), -- 구독여부
     SubDate VARCHAR2(20), -- 구독결제시 날짜 입력
-    Role VARCHAR2(10) CHECK (Role IN ('admin', 'user')) -- 역할
+    Role VARCHAR2(10) CHECK (Role IN ('admin', 'user')), -- 역할
+	joinDate date DEFAULT sysdate, -- 가입날짜
+	WarningCount INT DEFAULT 0, -- 경고횟수
+	LastWarningDate DATE -- 최근 경고 날짜
 );
 
 ALTER TABLE Users ADD joinDate date DEFAULT sysdate;
+
+ALTER TABLE Users
+ADD (
+    WarningCount INT DEFAULT 0,
+    LastWarningDate DATE
+);
 
 INSERT INTO USERS (userno, UserID, Name, Username, Password,Email, Address, PhoneNumber, PetStatus, SubStatus, SubDate, Role)
 VALUES (seq_sol01.nextval, 'dlathf0202', '임솔', '솔꺼', 'dla159', 'dlathf0202@naver.com', '남양주', '01020264701', 'Y', 'N', NULL, 'user');
 
 SELECT * FROM users;
 
-
+UPDATE pets
+	SET petName = ?,
+	petType = ?,
+	breed = ?,
+	Age = ?,
+	Gender = ?,
+	Neutered = ?,
+	Weight = ?,
+	ImageURL = ?
+WHERE petNo=? ;
 
 /*
 INSERT INTO USERS (userno, UserID, Name, Username, Password, Address, PhoneNumber, PetStatus, SubStatus, SubDate, Role)

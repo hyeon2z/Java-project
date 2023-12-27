@@ -1,0 +1,5 @@
+# 특정한 port가 살아있어서 중첩될 때
+톰캣 죽이기
+cmd 에서 진행
+netstat -ao
+taskkill /f /pid [15892] <- 해당 쓰고있는 숫자  

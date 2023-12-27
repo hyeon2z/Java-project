@@ -1,0 +1,133 @@
+<%@page import="admin.ReportDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <link rel="shortcut icon" type="image/x-icon" href="images/BBcare.jpg">
+	<title>신고</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google" content="notranslate">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </head>
+  <body>
+  
+<script>
+$(document).ready(function(){
+		// enter키 입력시, submit()방지 코드
+		$("form").on("keypress",function(e){
+			if(e.keyCode==13){   //  enter키의 keycode는 13
+				e.preventDefault() // enter키의 기본 동작을 중단 처리
+			}
+		})
+		$("#reportBtn").click(function(){
+		    var userId = $("[name=userId]").val();
+		    var reason = $("[name=reason]").val(); 
+
+			if(confirm("신고하시겠습니까?")){
+				$.ajax({
+					url:"insertReport.jsp",
+					data:"userId="+userId+"&reason="+reason,
+					dataType:"json",
+					success:function(rs){
+						var rcnt = rs.insertReport
+						if(rcnt>0){
+							alert("성공적으로 신고 되었습니다.")
+						}else{
+							alert("신고 실패")
+						}
+						
+					},
+					error:function(err){
+						console.log(err)
+					}
+				})				
+			}
+			
+		})
+	});
+
+</script>
+<%
+String reportedUserId = request.getParameter("userId");
+
+ReportDao dao = new ReportDao();
+
+
+%>
+<!-- 신고 등록 섹션 -->
+    <section class="ftco-section contact-section" style="
+    padding-top: 50px;
+    padding-bottom: 50px;">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2 class="mb-4">유저 신고 등록</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 ftco-animate">
+            <form id = "reportForm" method="POST" class="contact-form">
+              <div class="form-group">
+                <input type="text" class="form-control" name="userId" placeholder="피신고자 ID" value="<%= reportedUserId %>" readonly>
+              </div>
+              <div class="form-group">
+                <select class="form-control" name="reason">
+                  <option value="스팸">스팸</option>
+                  <option value="욕설">욕설</option>
+                  <!-- 추가 옵션 -->
+                </select>
+              </div>
+              <div class="form-group">
+                <input id="reportBtn" type="button" value="신고하기" class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+
+
+    
+  </body>
+</html>

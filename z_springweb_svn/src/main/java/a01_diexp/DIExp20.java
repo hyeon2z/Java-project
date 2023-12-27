@@ -1,0 +1,34 @@
+package a01_diexp;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import a01_diexp.z03_vo.Food;
+import a01_diexp.z03_vo.Member;
+
+public class DIExp20 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// 1. 컨테이너 경로
+		String path="a01_diexp\\di20.xml";
+		AbstractApplicationContext ctx = 
+				new GenericXmlApplicationContext(path);
+		// 2. DL(Dependency Lookup) 객체를 찾는 처리
+		Member mem = ctx.getBean("mem", Member.class);
+		System.out.println("컨테이너의 객체 호출:"+mem);
+		mem.setId("himan");
+		mem.setName("홍길동");
+		System.out.println("아이디:"+mem.getId());
+		System.out.println("이름:"+mem.getName());
+		Food food = ctx.getBean("food", Food.class);
+		food.setName("사과");
+		food.setPrice(3000);
+		System.out.println("과일명:"+food.getName());
+		System.out.println("과일가격:"+food.getPrice());
+		// 3. 자원해제 
+		ctx.close();
+		System.out.println("종료@!!");
+	}
+
+}

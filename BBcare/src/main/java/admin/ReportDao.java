@@ -1,0 +1,273 @@
+package admin;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+
+import admin.vo.Report;
+import db.DBCon;
+import user.Pets;
+import user.Users;
+
+
+public class ReportDao {
+	public List<Report> reportList(String status) {
+	    List<Report> reportList = new ArrayList<>();
+	    String sql = "SELECT * FROM REPORTS\r\n"
+	    		+ "WHERE STATUS LIKE ? ORDER BY ReportID";
+	    
+	    try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) { 
+	        // 하나의 input 값에서 아이디, 이름, 닉네임으로 검색이 가능하게 구성
+	        pstmt.setString(1, "%"+status+"%");
+	        try (ResultSet rs = pstmt.executeQuery();) {
+	            while (rs.next()) {
+	                reportList.add(new Report(
+	                        rs.getInt("ReportID"),
+	                        rs.getInt("ReportedContentID"),
+	                        rs.getString("ContentType"),
+	                        rs.getString("ReporterUserID"),
+	                        rs.getString("ReportedUserID"),
+	                        rs.getString("ReportDate"),
+	                        rs.getString("ReportReason"),
+	                        rs.getString("Status")
+	                ));
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 에러:" + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 에러:" + e.getMessage());
+	    }
+	    return reportList;
+	}
+	
+	public int updateStatus(String status, int reportID) {
+		int uptCnt = 0;
+		// 현재 유저 신고 Status 확인
+		String currentStatus = getStatus(reportID);
+		
+		if("처리완료".equals(currentStatus)) {
+			return 0; // 처리완료 일 떄는 업데이트 안됨
+		} 
+		// Reports 테이블 업데이트
+		String sql = "UPDATE reports\r\n"
+				+ "	SET status = ? \r\n"
+				+ "WHERE reportID = ?"; 
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			con.setAutoCommit(false);
+			
+			pstmt.setString(1, status);
+			pstmt.setInt(2, reportID);
+			uptCnt = pstmt.executeUpdate();
+			
+			// Reports 테이블 업데이트 실패 
+			if (uptCnt == 0) {
+				System.out.println("수정 실패");
+				con.rollback();
+				
+			} else {
+				if("처리완료".equals(status)) {
+					System.out.println(status);
+					String uptWarningSql = "UPDATE users \r\n"
+							+ "SET WarningCount = WarningCount + 1, \r\n"
+							+ "LastWarningDate = SYSDATE \r\n"
+							+ "WHERE userID = \r\n"
+							+ "(SELECT ReportedUserID FROM reports WHERE reportID = ?)";
+					try (PreparedStatement warningPstmt = con.prepareStatement(uptWarningSql)) {
+						warningPstmt.setInt(1, reportID);
+	                    int warningUpdateCount = warningPstmt.executeUpdate();
+	                    if (warningUpdateCount == 0) {
+	                        System.out.println("경고 카운트 업데이트 실패");
+	                        con.rollback();
+	                        return 0;
+	                    }
+					}
+					
+					int warningCount = getWarningCount(reportID);
+					if(warningCount<=1) {
+						System.out.println(warningCount);
+						String insAlertSql = "INSERT INTO reportalert (UserID, alertCount)\r\n"
+								+ "SELECT reportedUserID, 0 \r\n"
+								+ "FROM reports \r\n"
+								+ "WHERE reportID = ?";
+						try (PreparedStatement alertPstmt = con.prepareStatement(insAlertSql)) {
+							alertPstmt.setInt(1, reportID);
+		                    int insAlert = alertPstmt.executeUpdate();
+		                    if (insAlert == 0) {
+		                        System.out.println("경고알림 갱신 실패");
+		                        con.rollback();
+		                        return 0;
+		                    }
+						}
+					}	
+				}
+				con.commit();
+				System.out.println("수정 성공");
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+		return uptCnt;		
+	}
+	public String getStatus(int reportID) {
+		String currentStatus = "처리대기";
+		String sql = "SELECT status FROM reports WHERE reportID = ?";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) { 
+	        pstmt.setInt(1, reportID);
+	        try (ResultSet rs = pstmt.executeQuery();) {
+	            if(rs.next()) {
+	            	currentStatus = rs.getString("status");
+	            	System.out.println(currentStatus);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 에러:" + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 에러:" + e.getMessage());
+	    }
+		return currentStatus;
+	}
+	public int getWarningCount(int reportID) {
+		int warningCount = 0;
+		String sql = "SELECT warningcount FROM users\r\n"
+				+ "WHERE USERID = \r\n"
+				+ "(SELECT reportedUserID FROM reports WHERE reportID = ?)";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) { 
+	        pstmt.setInt(1, reportID);
+	        try (ResultSet rs = pstmt.executeQuery();) {
+	            if(rs.next()) {
+	            	warningCount = rs.getInt("warningcount");
+	            	System.out.println(warningCount);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 에러:" + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 에러:" + e.getMessage());
+	    }
+		
+		return warningCount;
+	}
+
+	public int getWarningCount(String userID) {
+		int warningCount = 0;
+		String sql = "SELECT warningcount FROM users \r\n"
+				+ "WHERE userid = ?";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) { 
+	        pstmt.setString(1, userID);
+	        try (ResultSet rs = pstmt.executeQuery();) {
+	            if(rs.next()) {
+	            	warningCount = rs.getInt("warningcount");
+	            	System.out.println(warningCount);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 에러:" + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 에러:" + e.getMessage());
+	    }
+		
+		return warningCount;
+	}
+	
+	public int getAlertCount(String userID) {
+		int alertCount = 0;
+		String sql = "SELECT alertcount FROM REPORTALERT \r\n"
+				+ "WHERE userid = ?";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) { 
+	        pstmt.setString(1, userID);
+	        try (ResultSet rs = pstmt.executeQuery();) {
+	            if(rs.next()) {
+	            	alertCount = rs.getInt("alertcount");
+	            	System.out.println(alertCount);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 에러:" + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 에러:" + e.getMessage());
+	    }
+		
+		return alertCount;
+	}
+	
+	public int updateAlertCount(String userID) {
+	    int uptCnt = 0;
+	    String sql = "UPDATE REPORTALERT \r\n"
+	    		+ "SET alertcount = alertcount + 1 \r\n"
+	    		+ "WHERE userid = ?";
+	    try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        con.setAutoCommit(false);
+	        
+	        pstmt.setString(1, userID);
+	        
+	        uptCnt = pstmt.executeUpdate();
+	        if (uptCnt == 0) {
+	            System.out.println("수정 실패");
+	            con.rollback();
+	        } else {
+	            con.commit();
+	            System.out.println("수정 성공");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("DB 에러:" + e.getMessage());
+	    } catch (Exception e) {
+	        System.out.println("일반 에러:" + e.getMessage());
+	    }
+	    return uptCnt;
+	}
+	
+	public int insertReport(String userId, String reason) {
+		int insCnt = 0;
+		String sql = "INSERT INTO reports\r\n"
+				+ "VALUES (\r\n"
+				+ "	report_seq.nextval,\r\n"
+				+ "	'0',\r\n"
+				+ "	'채팅',\r\n"
+				+ "	'admin',\r\n"
+				+ "	?,\r\n"
+				+ "	TO_DATE(sysdate, 'YYYY-MM-DD'),\r\n"
+				+ "	?,\r\n"
+				+ "	default\r\n"
+				+ ")";
+		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			con.setAutoCommit(false);
+			// 처리코드1
+			pstmt.setString(1, userId);
+			pstmt.setString(2, reason);
+			
+			insCnt = pstmt.executeUpdate();
+			if (insCnt == 0) {
+				System.out.println("등록 실패");
+				con.rollback();
+			} else {
+				con.commit(); // Commit the transaction
+				System.out.println("등록 성공");
+			}
+		} catch (SQLException e) {
+			System.out.println("DB 에러:" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("일반 에러:" + e.getMessage());
+		}
+		
+		return insCnt;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		ReportDao dao = new ReportDao();
+		// dao.updateStatus("처리완료", 23);
+		dao.insertReport("1", "욕설");
+		
+		//dao.getAlertCount("codemaster");
+		//dao.getWarningCount("codemaster");
+	}
+
+}

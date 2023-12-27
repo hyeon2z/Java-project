@@ -17,9 +17,9 @@ public class DIHome10 {
 				new GenericXmlApplicationContext(path);
 		// 2. DL(Dependency Lookup) 객체를 찾는 처리
 		Car c01 = ctx.getBean("c01", Car.class);
-		System.out.println(c01.getColor());
-		System.out.println(c01.getBrand());
-		System.out.println(c01.getYear());
+//		System.out.println(c01.getColor());
+//		System.out.println(c01.getBrand());
+//		System.out.println(c01.getYear());
 		
 		Account ac01 = ctx.getBean("ac01", Account.class);
 		ac01.setBalance(1000000);

@@ -1,0 +1,84 @@
+<%@page import="java.util.List"%>
+<%@page import="user.Users"%>
+<%@page import="user.UserDao"%>
+<%@page import="chat.ChatDao"%>
+<%@page import="chat.vo.Chat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script>
+/* $('#test').scrollTop($('#test')[0].scrollHeight) */
+</script>
+<%-- <%
+UserDao dao = new UserDao();
+
+if (session != null) {
+	String userId = (String) session.getAttribute("userId");
+	String role = (String) session.getAttribute("role");
+	String username = dao.getUserName(userId);
+	session.setAttribute("userName",username);
+	if (userId != null /* && role.equals("user") */) {
+%>
+<%
+ChatDao chatDao = new ChatDao();
+UserDao userDao = new UserDao();
+Users user = userDao.getUser(userId);
+List<Chat> chatList = chatDao.getChatList(user);
+%>
+<%
+for (Chat chat : chatList) {
+%>
+<div>
+	<div><%=chat.getChat()%></div>
+	<div><%=chat.getUser01().getName()%></div>
+	<div><%=chat.getSendDate()%></div>
+</div>
+<%
+} }}
+%> --%>
+
+<jsp:useBean id="chatDao" class="chat.ChatDao" />
+<jsp:useBean id="userDao" class="user.UserDao" />
+<jsp:useBean id="chat" class="chat.vo.Chat" />
+<jsp:useBean id="user01" class="user.Users" />
+<jsp:setProperty property="userId" name="user01" value="${ param.user01 }"/>
+<jsp:useBean id="user02" class="user.Users" />
+<jsp:setProperty property="userId" name="user02" value="${ param.user02 }"/>
+
+<c:set var="lastName" value="" />
+<%-- <c:set var="lastDate" value="" /> --%>
+
+<c:forEach var="chat" items="${ chatDao.getChatList(user01, user02) }" varStatus="status">
+
+<c:if test="${ lastName ne chat.user01.name }">
+<%-- <div style="color: black;">${ chat.user01.name }</div> --%>
+</c:if>
+
+<%-- <div class="chat ${ chat.user01.userId }">
+	<div>${ chat.chat }</div>
+</div> --%>
+
+<fmt:parseDate value="${ chat.sendDate }" var="registered" pattern="yyyy-MM-dd HH:mm" />
+
+<c:if test="${ lastName ne chat.user01.name }">
+<div style="color: black;">${ chat.user01.name }</div>
+<fmt:formatDate value="${registered}" pattern="yyyy-MM-dd HH:mm" />
+</c:if>
+
+<c:if test="${ lastName eq chat.user01.name }">
+<c:if test="${ lastDate ne registered }">
+<%-- <div style="color: black;">${ chat.user01.name }</div> --%>
+<fmt:formatDate value="${registered}" pattern="yyyy-MM-dd HH:mm" />
+</c:if>
+</c:if>
+
+<div class="chat ${ chat.user01.userId }">
+	<div>${ chat.chat }</div>
+</div>
+	<%-- <div>${ chat.sendDate }</div> --%>
+	
+<c:set var="lastName" value="${ chat.user01.name }" />
+<fmt:parseDate value="${ chat.sendDate }" var="lastDate" pattern="yyyy-MM-dd HH:mm" />
+<c:set var="lastDate" value="${ lastDate }" />
+</c:forEach>

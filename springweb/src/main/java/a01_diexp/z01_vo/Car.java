@@ -1,33 +1,34 @@
 package a01_diexp.z01_vo;
 
 public class Car {
-	private String color;
-	private String brand;
-	private int year;
+	private String kind;
+	private int cc;
+	private int maxVel;
+	public Car(String kind, int cc, int maxVel) {
+		this.kind = kind;
+		this.cc = cc;
+		this.maxVel = maxVel;
+	}
 	public Car() {
 		// TODO Auto-generated constructor stub
 	}
-	public Car(String color, String brand, int year) {
-		this.color = color;
-		this.brand = brand;
-		this.year = year;
+	public String getKind() {
+		return kind;
 	}
-	public String getColor() {
-		return color;
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public int getCc() {
+		return cc;
 	}
-	public String getBrand() {
-		return brand;
+	public void setCc(int cc) {
+		this.cc = cc;
 	}
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public int getMaxVel() {
+		return maxVel;
 	}
-	public int getYear() {
-		return year;
+	public void setMaxVel(int maxVel) {
+		this.maxVel = maxVel;
 	}
-	public void setYear(int year) {
-		this.year = year;
-	}
+
 }
