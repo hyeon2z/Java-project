@@ -11,10 +11,9 @@
 		</list>
 	</section>
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.tigris.subversion.subclipse.ui.wizards.CheckoutWizard"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.NewPackageCreationWizard"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="com.tomato.exerd.ui.newWizards.category"/>
-			<item value="org.tigris.subversion.subclipse.ui.svn"/>
+			<item value="org.eclipse.jdt.ui.java"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
@@ -63,9 +62,9 @@
 		<item key="EditorSelectionDialog.STORE_ID_DESCR" value="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart"/>
 	</section>
 	<section name="WorkbenchPreferenceDialog">
-		<item key="DIALOG_X_ORIGIN" value="568"/>
-		<item key="DIALOG_Y_ORIGIN" value="172"/>
-		<item key="DIALOG_WIDTH" value="849"/>
+		<item key="DIALOG_X_ORIGIN" value="301"/>
+		<item key="DIALOG_Y_ORIGIN" value="176"/>
+		<item key="DIALOG_WIDTH" value="1126"/>
 		<item key="DIALOG_HEIGHT" value="1240"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>

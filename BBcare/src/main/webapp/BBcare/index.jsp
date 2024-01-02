@@ -62,7 +62,8 @@ if (session != null) {
 	if(warningCount == 3){
 		    %>
     <script>
-    deleteAccount(<%= alertCount %>);
+    var alertCount = ${alertCount};
+    deleteAccount(alertCount);
     <%dao.deleteUser(userId);%>
     </script>
     <%
@@ -70,7 +71,7 @@ if (session != null) {
 	    dao2.updateAlertCount(userId);
 	    %>
 	    <script>
-	    warning(<%= alertCount %>);
+	    warning(alertCount);
 	    </script>
 	    <%
 	}

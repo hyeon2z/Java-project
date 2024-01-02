@@ -69,7 +69,7 @@ public class PreparedStmtDao {
 		return cudCnt;
 	}
 
-	public List<Dept> getDeptList(String dname, String loc) {
+	public List<Dept> getDeptList(Dept sch) {
 		List<Dept> dlist = new ArrayList<Dept>();
 		String sql = "select deptno,dname,loc " 
 				+ "from dept01 " 
@@ -78,8 +78,8 @@ public class PreparedStmtDao {
 				+ " order by deptno ";
 		// try(객체처리-연결;대화;결과){} : try resource 구문 파일이나 DB연결 자동 자원해제..
 		try (Connection con = DBCon.con(); PreparedStatement pstmt = con.prepareStatement(sql);) {
-			pstmt.setString(1, "%" + dname + "%");
-			pstmt.setString(2, "%" + loc + "%");
+			pstmt.setString(1, "%" + sch.getDname() + "%");
+			pstmt.setString(2, "%" + sch.getLoc() + "%");
 			try (ResultSet rs = pstmt.executeQuery();) {
 				while (rs.next()) {
 					dlist.add(new Dept(rs.getInt("deptno"), rs.getString("dname"), rs.getString("loc")));
@@ -99,7 +99,7 @@ public class PreparedStmtDao {
 	 */
 	public List<Emp> getEmpList(Emp sch) {
 		List<Emp> empList = new ArrayList<Emp>();
-		String sql = "SELECT *\r\n" + "FROM emp02\r\n"
+		String sql = "SELECT *\r\n" + "FROM emp01\r\n"
 		            + "WHERE ename LIKE ?\r\n" 
 				    + "AND job LIKE ?\r\n ";
 		// 기본값 0인경우 전체 검색이 필요하기에 0면 검색조건에서 제외

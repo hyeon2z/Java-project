@@ -1,6 +1,6 @@
 CREATE SEQUENCE report_seq START WITH 1;
 
-SELECT * FROM users
+SELECT * FROM users;
 ORDER BY joindate;
 WHERE role = 'user' AND (userid LIKE '%%' OR name LIKE '%%' OR username LIKE '%%')
 SELECT * FROM reports;
@@ -10,10 +10,10 @@ VALUES (
     report_seq.nextval,  -- 신고 고유 키
     '123',             -- 신고된 컨텐츠 ID
     '게시글',           -- 컨텐츠 타입
-    'dlathf0202',             -- 신고자 ID
-    '11',             -- 신고 받은 사람 ID
+    'hyeon2',             -- 신고자 ID
+    'abc123',             -- 신고 받은 사람 ID
     TO_DATE(sysdate, 'YYYY-MM-DD'), -- 날짜를 NULL로 설정
-    '욕설',             -- 신고 이유
+    '도배',             -- 신고 이유
     default              -- 상태 (기본값 '처리대기' 사용)
 );
 INSERT INTO reports

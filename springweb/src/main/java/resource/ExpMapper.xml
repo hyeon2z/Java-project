@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springweb.a02_mvc.a03_dao.A01_Dao">
+	<select id="getEmpList" 
+			resultType="emp"
+			parameterType="emp">
+		<!-- 
+		mybatis에서 typeAlias 에 해당 경로 alias로 지정 했을 경우
+		변경가능.
+		resultType="springweb.z01_vo.Emp"
+		parameterType="springweb.z01_vo.Emp">
+			 -->
+		SELECT *
+		FROM emp01
+		WHERE ename like '%'|| #{ename} || '%'
+		and job like '%' || #{job} || '%'
+	</select>
+	<select id="getCountEmp" resultType="int">
+		select count(*) from emp
+	</select>
+		<!--  ename ==> sch.getEname(),
+				job ==> sch.getJob()
+		 -->
+	<select id="getDeptList" 
+			resultType="dept"
+			parameterType="dept">
+		SELECT deptno,dname,loc
+		FROM dept01
+		WHERE dname like '%'|| #{dname} || '%'
+		and loc like '%' || #{loc} || '%'
+		order by deptno
+	</select>
+	<!-- 
+			String sql = "select deptno,dname,loc " 
+				+ "from dept01 " 
+				+ "where dname like ? " 
+				+ " and loc like ? "
+				+ " order by deptno "; -->
+	<select id="getCountDept" resultType="int">
+		select count(*) from dept
+	</select>
+	<!-- 
+	공통 mybatis에서 typeAlias alias="emp" type="springweb.z01_vo.Emp"
+	라고 선언되어 있기때문에 emp로 간단하게 선언 가능
+	 -->
+	<select id="getEmp" resultType="emp">
+			SELECT *
+			FROM emp
+			WHERE empno = 7369
+	</select>
+	<select id="getDname" resultType="String"
+	parameterType="int">
+	SELECT dname
+	FROM dept
+	WHERE deptno = #{deptno}
+	</select>
+</mapper>

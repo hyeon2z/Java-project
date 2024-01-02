@@ -14,6 +14,11 @@ public class DBCon {
 	//         드라이버정보:@ip:port:DB명
 	private static final String USERNAME = "scott";
 	private static final String PASSWORD = "tiger";
+
+    oracle.jdbc.driver.OracleDriver
+    jdbc:oracle:thin:@localhost:1521:xe
+    scott
+    tiger
 */	
 	
 	private static final String URL="jdbc:oracle:thin:@localhost:1521:xe";
