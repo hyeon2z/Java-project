@@ -81,6 +81,7 @@
 	</bean>	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="springweb.a02_mvc.a03_dao" />
+		<!--                                springweb.a02_mvc.a03_dao -->
 	</bean>
 	 
 	 

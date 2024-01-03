@@ -29,5 +29,3 @@ public class A01_EmpController {
 		return "WEB-INF\\views\\a03_mvc\\a02_deptList.jsp";
 	}
 }
-
-

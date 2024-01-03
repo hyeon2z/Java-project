@@ -76,3 +76,4 @@ FROM EMPLOYEES e , JOBS j
 WHERE e.JOB_ID = j.JOB_ID
 GROUP BY job_title
 ORDER BY msal;
+
